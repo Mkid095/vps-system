@@ -199,7 +199,7 @@
         "step10": []
       },
       "priority": 2,
-      "passes": false,
+      "passes": true,
       "notes": ""
     },
     {
@@ -227,7 +227,7 @@
         "step10": []
       },
       "priority": 2,
-      "passes": false,
+      "passes": true,
       "notes": ""
     },
     {
