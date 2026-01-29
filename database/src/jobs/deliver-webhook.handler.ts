@@ -49,6 +49,61 @@ const DEFAULT_RETRY_CONFIG: WebhookRetryConfig = {
 const MAX_CONSECUTIVE_FAILURES = 5;
 
 /**
+ * Sensitive header names that should be redacted in logs
+ */
+const SENSITIVE_HEADERS = [
+  'authorization',
+  'x-api-key',
+  'x-auth-token',
+  'cookie',
+  'set-cookie',
+  'x-csrf-token',
+  'x-xsrf-token',
+] as const;
+
+/**
+ * Security configuration constants
+ */
+const SECURITY_CONFIG = {
+  // Maximum webhook payload size in bytes (10MB)
+  MAX_PAYLOAD_SIZE: 10 * 1024 * 1024,
+
+  // Maximum timeout for webhook delivery in milliseconds (5 minutes)
+  MAX_TIMEOUT: 300000,
+
+  // Minimum timeout for webhook delivery in milliseconds (1 second)
+  MIN_TIMEOUT: 1000,
+
+  // Allowed URL protocols
+  ALLOWED_PROTOCOLS: ['https:'],
+
+  // Blocked private IP ranges (CIDR notation)
+  BLOCKED_IP_RANGES: [
+    '127.0.0.0/8',       // Loopback
+    '10.0.0.0/8',        // Private network
+    '172.16.0.0/12',     // Private network
+    '192.168.0.0/16',    // Private network
+    '169.254.169.254/32', // Cloud metadata services
+    '::1/128',           // IPv6 loopback
+    'fc00::/7',          // IPv6 private
+    'fe80::/10',         // IPv6 link-local
+  ],
+
+  // Blocked hostnames
+  BLOCKED_HOSTNAMES: [
+    'localhost',
+    'metadata.google.internal',
+    'instance-data',
+  ],
+
+  // Maximum header value size in bytes (8KB)
+  MAX_HEADER_SIZE: 8 * 1024,
+
+  // Maximum total headers size in bytes (64KB)
+  MAX_HEADERS_TOTAL_SIZE: 64 * 1024,
+} as const;
+
+/**
  * Deliver webhook job handler
  *
  * This handler executes the webhook delivery process:
@@ -77,6 +132,9 @@ export const deliverWebhookHandler: JobHandler = async (
     // Validate and parse payload
     const params = validatePayload(payload);
 
+    // Sanitize URL for logging
+    const sanitizedUrl = sanitizeUrl(params.webhook_url);
+
     console.log(`[DeliverWebhook] Starting delivery for webhook: ${params.webhook_id}`);
 
     // Check if webhook is disabled
@@ -99,7 +157,7 @@ export const deliverWebhookHandler: JobHandler = async (
         event_type: params.event_type,
         event_id: params.event_id,
         project_id: params.project_id,
-        webhook_url: params.webhook_url,
+        webhook_url: sanitizedUrl, // Store sanitized URL
         duration_ms: 0,
       },
     };
@@ -155,7 +213,7 @@ export const deliverWebhookHandler: JobHandler = async (
 
         console.error(
           `[DeliverWebhook] Attempt ${attempt} failed for webhook: ${params.webhook_id}`,
-          error
+          lastError
         );
 
         // Check if we should retry
@@ -206,7 +264,7 @@ export const deliverWebhookHandler: JobHandler = async (
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
 
-    console.error(`[DeliverWebhook] Failed to deliver webhook:`, error);
+    console.error(`[DeliverWebhook] Failed to deliver webhook:`, errorMessage);
 
     return {
       success: false,
@@ -216,7 +274,7 @@ export const deliverWebhookHandler: JobHandler = async (
 };
 
 /**
- * Validate and parse job payload
+ * Validate and parse job payload with security checks
  */
 function validatePayload(payload: JobPayload): DeliverWebhookPayload {
   if (!payload.webhook_id || typeof payload.webhook_id !== 'string') {
@@ -227,18 +285,161 @@ function validatePayload(payload: JobPayload): DeliverWebhookPayload {
     throw new Error('Invalid or missing webhook_url in payload');
   }
 
-  // Validate URL format
-  try {
-    new URL(payload.webhook_url);
-  } catch {
-    throw new Error(`Invalid webhook URL format: ${payload.webhook_url}`);
-  }
+  // Validate URL with security checks
+  validateWebhookUrl(payload.webhook_url);
 
   if (!payload.payload || typeof payload.payload !== 'object') {
     throw new Error('Invalid or missing payload in webhook data');
   }
 
+  // Validate payload size
+  const payloadSize = JSON.stringify(payload.payload).length;
+  if (payloadSize > SECURITY_CONFIG.MAX_PAYLOAD_SIZE) {
+    throw new Error(
+      `Webhook payload exceeds maximum size of ${SECURITY_CONFIG.MAX_PAYLOAD_SIZE} bytes`
+    );
+  }
+
+  // Validate timeout if provided
+  if (payload.timeout !== undefined) {
+    if (typeof payload.timeout !== 'number' ||
+        payload.timeout < SECURITY_CONFIG.MIN_TIMEOUT ||
+        payload.timeout > SECURITY_CONFIG.MAX_TIMEOUT) {
+      throw new Error(
+        `Timeout must be between ${SECURITY_CONFIG.MIN_TIMEOUT} and ${SECURITY_CONFIG.MAX_TIMEOUT} milliseconds`
+      );
+    }
+  }
+
+  // Validate headers if provided
+  if (payload.headers) {
+    validateHeaders(payload.headers as Record<string, string>);
+  }
+
   return payload as unknown as DeliverWebhookPayload;
+}
+
+/**
+ * Validate webhook URL for security issues
+ * - Ensures HTTPS is used
+ * - Blocks private IP addresses
+ * - Blocks internal hostnames
+ * - Prevents SSRF attacks
+ */
+function validateWebhookUrl(urlString: string): void {
+  let url: URL;
+
+  try {
+    url = new URL(urlString);
+  } catch (error) {
+    throw new Error('Invalid webhook URL format');
+  }
+
+  // Ensure only HTTPS is allowed
+  if (!SECURITY_CONFIG.ALLOWED_PROTOCOLS.includes(url.protocol as 'https:')) {
+    throw new Error(
+      `Webhook URL must use HTTPS protocol. Found: ${url.protocol.replace(':', '')}`
+    );
+  }
+
+  // Check for blocked hostnames
+  const hostname = url.hostname.toLowerCase();
+  for (const blockedHostname of SECURITY_CONFIG.BLOCKED_HOSTNAMES) {
+    if (hostname === blockedHostname || hostname.endsWith(`.${blockedHostname}`)) {
+      throw new Error('Webhook URL hostname is not allowed');
+    }
+  }
+
+  // Check for private IP ranges to prevent SSRF
+  const ipAddress = url.hostname;
+  if (isPrivateIp(ipAddress)) {
+    throw new Error('Webhook URL cannot point to private IP addresses');
+  }
+}
+
+/**
+ * Check if an IP address is in a private range
+ */
+function isPrivateIp(ipAddress: string): boolean {
+  // Check if it's an IP address (not a hostname)
+  const ipv4Regex = /^(\d{1,3}\.){3}\d{1,3}$/;
+  const ipv6Regex = /^([0-9a-fA-F]{0,4}:){7}[0-9a-fA-F]{0,4}$/;
+
+  if (!ipv4Regex.test(ipAddress) && !ipv6Regex.test(ipAddress)) {
+    // It's a hostname, not an IP - safe to resolve
+    return false;
+  }
+
+  // Check against blocked IP ranges
+  for (const blockedRange of SECURITY_CONFIG.BLOCKED_IP_RANGES) {
+    if (isIpInRange(ipAddress, blockedRange)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+/**
+ * Check if an IP address is in a CIDR range
+ */
+function isIpInRange(ipAddress: string, cidr: string): boolean {
+  const [range, prefixLength] = cidr.split('/');
+  const prefix = parseInt(prefixLength || '32', 10);
+
+  // Convert IP to integer
+  const ipToInteger = (ip: string): number => {
+    const parts = ip.split('.');
+    return (
+      (parseInt(parts[0] || '0', 10) << 24) +
+      (parseInt(parts[1] || '0', 10) << 16) +
+      (parseInt(parts[2] || '0', 10) << 8) +
+      parseInt(parts[3] || '0', 10)
+    );
+  };
+
+  const ipInt = ipToInteger(ipAddress);
+  const rangeInt = ipToInteger(range || '0.0.0.0');
+  const mask = prefix === 0 ? 0 : (~0 << (32 - prefix));
+
+  return (ipInt & mask) === (rangeInt & mask);
+}
+
+/**
+ * Validate webhook headers for injection and size limits
+ */
+function validateHeaders(headers: Record<string, string>): void {
+  let totalSize = 0;
+
+  for (const [key, value] of Object.entries(headers)) {
+    // Check header name format
+    if (!/^[a-zA-Z0-9-]+$/.test(key)) {
+      throw new Error(`Invalid header name: ${key}`);
+    }
+
+    // Check for header injection attempts
+    if (key.toLowerCase().includes('\r') || key.toLowerCase().includes('\n')) {
+      throw new Error('Header name contains invalid characters');
+    }
+    if (value && (value.includes('\r') || value.includes('\n'))) {
+      throw new Error('Header value contains invalid characters');
+    }
+
+    // Check individual header size
+    const headerSize = key.length + (value?.length || 0);
+    if (headerSize > SECURITY_CONFIG.MAX_HEADER_SIZE) {
+      throw new Error(`Header "${key}" exceeds maximum size`);
+    }
+
+    totalSize += headerSize;
+  }
+
+  // Check total headers size
+  if (totalSize > SECURITY_CONFIG.MAX_HEADERS_TOTAL_SIZE) {
+    throw new Error(
+      `Total headers size exceeds maximum of ${SECURITY_CONFIG.MAX_HEADERS_TOTAL_SIZE} bytes`
+    );
+  }
 }
 
 /**
@@ -260,6 +461,9 @@ async function deliverWebhook(
 
   const timeout = params.timeout || 30000; // 30 seconds default
 
+  // Sanitize URL for logging
+  const sanitizedUrl = sanitizeUrl(params.webhook_url);
+
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), timeout);
@@ -276,10 +480,18 @@ async function deliverWebhook(
     const responseBody = await response.text();
 
     if (!response.ok) {
-      throw new Error(
-        `HTTP ${response.status}: ${response.statusText} - ${responseBody}`
+      // Sanitize error message to prevent information leakage
+      const sanitizedError = sanitizeErrorMessage(
+        `HTTP ${response.status}: ${response.statusText}`
       );
+      throw new Error(sanitizedError);
     }
+
+    // Log success with sanitized information
+    console.log(
+      `[DeliverWebhook] Successfully delivered webhook to ${sanitizedUrl} ` +
+      `(status: ${response.status}, attempt: ${attemptNumber})`
+    );
 
     return {
       statusCode: response.status,
@@ -340,6 +552,45 @@ function calculateRetryDelay(
  */
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/**
+ * Sanitize headers for logging by redacting sensitive values
+ * Exported for external use in logging and monitoring
+ */
+export function sanitizeHeaders(headers: Record<string, string>): Record<string, string> {
+  const sanitized: Record<string, string> = {};
+
+  for (const [key, value] of Object.entries(headers)) {
+    const lowerKey = key.toLowerCase();
+    if (SENSITIVE_HEADERS.some((sensitive) => lowerKey === sensitive)) {
+      sanitized[key] = '[REDACTED]';
+    } else {
+      sanitized[key] = value || '';
+    }
+  }
+
+  return sanitized;
+}
+
+/**
+ * Sanitize URL for logging (remove query parameters and fragments)
+ */
+function sanitizeUrl(url: string): string {
+  try {
+    const parsed = new URL(url);
+    return `${parsed.protocol}//${parsed.host}${parsed.pathname}`;
+  } catch {
+    return '[INVALID URL]';
+  }
+}
+
+/**
+ * Sanitize error message to prevent information leakage
+ */
+function sanitizeErrorMessage(message: string): string {
+  // Remove any URLs that might be in error messages
+  return message.replace(/https?:\/\/[^\s]+/g, '[URL REDACTED]');
 }
 
 /**
