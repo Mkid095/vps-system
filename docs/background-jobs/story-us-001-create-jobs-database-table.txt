@@ -1,0 +1,44 @@
+---
+memoryVersion: 1
+storyId: US-001
+storyTitle: Create Jobs Database Table
+completedDate: 2026-01-29
+---
+
+STORY: US-001 - Create Jobs Database Table
+========================================
+
+DESCRIPTION:
+As a platform engineer, I want a jobs table to track async operations so that I can monitor and retry failed jobs.
+
+MAVEN STEPS COMPLETED: [1, 2, 7]
+
+IMPLEMENTATION SUMMARY:
+Created a jobs database table in the control_plane schema for tracking background async operations. The table includes status tracking, retry logic with attempt counters, and scheduled execution support. Added TypeScript types exported from the database package and comprehensive integration tests.
+
+KEY FILES:
+- database/migrations/003_create_jobs_table.sql - Database migration
+- database/types/jobs.types.ts - TypeScript types (JobStatus enum, Job interface, etc.)
+- database/src/index.ts - Exported job types from database package
+- database/src/errors.ts - Fixed TypeScript override modifier
+- database/src/__tests__/jobs.integration.test.ts - Integration tests (46 tests)
+- database/vitest.config.ts - Test configuration
+
+DECISIONS MADE:
+- Used control_plane schema (same as audit_logs)
+- Status enum: pending, running, failed, completed
+- Default max_attempts: 3
+- JSONB payload for flexible job data
+- Composite index on (status, scheduled_at) for worker polling
+- Vitest for integration testing
+
+INTEGRATION POINTS:
+- Jobs table in control_plane schema (alongside audit_logs)
+- Types exported from @nextmavens/audit-logs-database package
+- Will be used by job queue system (US-002) and job worker (US-003)
+
+LESSONS LEARNED:
+- Migration file was created in earlier session (commit 861c4fe2)
+- This session added: integration tests, type exports, vitest config
+- Test helpers (createTestJob, cleanupTestJobs) follow audit-logs pattern
+- Database constraints enforced at DB level (attempts >= 0, max_attempts > 0)
