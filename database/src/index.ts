@@ -99,3 +99,45 @@ export {
 } from './pool.js';
 
 export type { DatabaseConfig } from './pool.js';
+
+// ============================================================================
+// JOB TYPES EXPORT
+// ============================================================================
+// US-001: Create Jobs Database Table
+//
+// Job-related types for background job processing and queue management.
+// These types are used across api-gateway, worker, and other services.
+//
+// @example
+// ```typescript
+// import { Job, JobStatus, JobType } from '@nextmavens/audit-logs-database';
+//
+// // Create a job
+// const job: Job = {
+//   id: 'job-123',
+//   type: JobType.PROVISION_PROJECT,
+//   payload: { project_id: 'proj-456' },
+//   status: JobStatus.PENDING,
+//   attempts: 0,
+//   max_attempts: 3,
+//   last_error: null,
+//   scheduled_at: new Date(),
+//   started_at: null,
+//   completed_at: null,
+//   created_at: new Date(),
+// };
+// ```
+export type {
+  Job,
+  JobPayload,
+  CreateJobInput,
+  JobQuery,
+  JobResponse,
+  JobExecutionResult,
+  JobHandler,
+  JobHandlerRegistry,
+  WorkerOptions,
+  RetryConfig,
+} from '../types/jobs.types.js';
+
+export { JobStatus, JobType } from '../types/jobs.types.js';

@@ -16,15 +16,14 @@
 | US-007 | Implement View Active Sessions | 2 | Pending | |
 | US-008 | Add User Filtering | 2 | Complete | Step 5 completed |
 | US-009 | Add User Export | 3 | Complete | Step 5 completed |
-| US-010 | Show User Auth History | 3 | Pending | |
-| US-010 | Show User Auth History | 3 | Pending | |
+| US-010 | Show User Auth History | 3 | Complete | Step 5 completed |
 | US-011 | Integrate with Auth Service API | 1 | In Progress | Steps 1-5 completed |
 
 ## Progress Summary
 - Total Stories: 11
-- Completed: 2 (18%)
+- Completed: 3 (27%)
 - In Progress: 1 (US-011)
-- Pending: 8
+- Pending: 7
 
 ## Iteration Log
 
@@ -103,3 +102,41 @@
   - ✅ Includes: email, name, created_at, last_sign_in, metadata
   - ✅ Typecheck passes (no errors in US-009 files)
 - **Remaining Steps for US-009**: Step 7 (Testing), Step 10 (Documentation)
+
+### 2026-01-29 - US-010 Step 5 (Implementation & Quality Check) Completed
+- **Status**: Step 5 complete
+- **Quality Check Results**:
+  - ✅ Typecheck passes with zero errors
+  - ✅ No 'any' types found (zero violations)
+  - ✅ No gradients in CSS/UI (solid professional colors only)
+  - ✅ No relative imports (all use @/ aliases)
+  - ✅ All components under 300 lines:
+    - UserAuthHistory.tsx: 287 lines
+    - UserDetail.tsx: 252 lines
+  - ✅ Proper TypeScript types from @/lib/types/auth-user.types
+  - ✅ Professional icon library (lucide-react) used throughout
+  - ✅ Zero emojis - all icons from lucide-react
+- **Implementation Details**:
+  - Authentication history section in UserDetail component
+  - Shows: sign_in_at, sign_out_at, method (email, oauth), IP address
+  - Device type and browser information
+  - Distinguishes successful vs failed authentication attempts
+  - Paginated list (20 items per page, configurable)
+  - Refresh functionality
+  - Relative time display ("2h ago") and absolute time
+  - Color-coded method badges (Email, Google, GitHub, Microsoft)
+  - Failed attempts highlighted in red
+- **Files Created**:
+  - `/home/ken/developer-portal/src/features/auth-users/components/UserAuthHistory.tsx` - Auth history component (287 lines)
+  - `/home/ken/developer-portal/src/app/api/auth/users/[userId]/auth-history/route.ts` - API endpoint
+- **Files Modified**:
+  - `/home/ken/developer-portal/src/lib/types/auth-user.types.ts` - Added auth history types
+  - `/home/ken/developer-portal/src/lib/api/auth-service-client.ts` - Added getEndUserAuthHistory() method
+  - `/home/ken/developer-portal/src/features/studio/lib/auth-service-client.ts` - Added getEndUserAuthHistory() method
+  - `/home/ken/developer-portal/src/features/auth-users/components/UserDetail.tsx` - Integrated auth history
+- **Acceptance Criteria Met**:
+  - ✅ Auth history section in UserDetail
+  - ✅ Shows: sign_in_at, sign_out_at, method, IP
+  - ✅ Paginated list
+  - ✅ Typecheck passes
+- **Remaining Steps for US-010**: Step 7 (Testing), Step 10 (Documentation)

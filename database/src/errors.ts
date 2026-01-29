@@ -12,21 +12,18 @@
 export class AuditLogError extends Error {
   public readonly code: string;
   public readonly details: Record<string, unknown>;
+  public readonly cause?: unknown;
 
   constructor(message: string, options?: { code?: string; details?: Record<string, unknown>; cause?: unknown }) {
     super(message);
     this.name = 'AuditLogError';
     this.code = options?.code || 'AUDIT_LOG_ERROR';
     this.details = options?.details || {};
+    this.cause = options?.cause;
 
     // Maintains proper stack trace for where our error was thrown (only available on V8)
     if (Error.captureStackTrace) {
       Error.captureStackTrace(this, AuditLogError);
-    }
-
-    // Preserve cause if provided
-    if (options?.cause) {
-      this.cause = options.cause;
     }
   }
 

@@ -1,17 +1,17 @@
 [
   {
     "content": "Process Step 5 (Quality Agent) for US-010",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Processing Step 5"
   },
   {
     "content": "Process Step 10 (Security Agent) for US-010",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Processing Step 10"
   },
   {
     "content": "Run typecheck and verify completion",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Running typecheck"
   },
   {

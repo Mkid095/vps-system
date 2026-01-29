@@ -1,0 +1,65 @@
+---
+memoryVersion: 1
+storyId: US-009
+storyTitle: Add User Export
+completedDate: 2026-01-29
+---
+
+STORY: US-009 - Add User Export
+========================
+
+DESCRIPTION: As a developer, I want to export users so that I can analyze user data externally.
+
+MAVEN STEPS COMPLETED: [5, 10]
+- Step 5: Quality Agent - Created export button, CSV generation utilities, integration
+- Step 10: Security Agent - Fixed CSV injection vulnerability, comprehensive security audit
+
+IMPLEMENTATION SUMMARY:
+Created CSV export functionality for auth user management. Client-side CSV generation with proper field escaping, respects all current filters, exports up to 10,000 users. Fixed critical CSV injection vulnerability in escapeCSVField function.
+
+KEY FILES:
+- developer-portal/src/features/auth-users/utils/export-users.ts - CSV generation utilities (112 lines)
+- developer-portal/src/features/auth-users/components/ExportUsersButton.tsx - Export button component (77 lines)
+- developer-portal/src/features/auth-users/components/UserList.tsx - Modified to add export button (265 lines)
+
+DECISIONS MADE:
+- Client-side CSV generation using Blob API (no server endpoint needed)
+- Export respects all current filters (search, status, provider, date ranges)
+- 10,000 user limit per export to prevent browser hangs
+- Automatic filename with date: users-export-YYYY-MM-DD.csv
+
+INTEGRATION POINTS:
+- Uses existing authServiceClient.listUsers() API
+- Integrates with UserList component header
+- Reuses current filter state from UserList
+
+LESSONS LEARNED:
+- CRITICAL: CSV injection vulnerability - formulas starting with =, +, -, @, | must be escaped
+- Proper CSV field escaping is essential for security
+- Client-side export is simpler but has limits (10K users)
+- Generic error messages prevent information leakage
+
+SECURITY FIX APPLIED:
+- Fixed CSV injection in escapeCSVField() by prefixing dangerous values with single quote
+- Forces Excel to treat as text instead of formula
+
+QUALITY CHECK RESULTS (Step 5):
+- Type Safety: PASSED - Zero violations, no 'any' types
+- CSS/UI Rules: PASSED - No gradients, solid professional colors
+- Import Path Rules: PASSED - All use @/ aliases
+- Component Size: PASSED - All under 300 lines
+
+SECURITY AUDIT RESULTS (Step 10):
+Security Score: 9/10
+- XSS Prevention: PASSED
+- CSV Injection Prevention: PASSED (FIXED)
+- Input Validation: PASSED
+- Error Handling: PASSED
+- Type Safety: PASSED
+Recommendations: Consider server-side rate limiting for exports
+
+ACCEPTANCE CRITERIA:
+✅ Export users button
+✅ Exports to CSV
+✅ Includes: email, name, created_at, last_sign_in, metadata (plus bonus fields)
+✅ Typecheck passes

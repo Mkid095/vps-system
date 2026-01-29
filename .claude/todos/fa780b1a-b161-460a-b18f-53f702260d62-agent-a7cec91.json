@@ -1,0 +1,27 @@
+[
+  {
+    "content": "Create jobs directory structure in api-gateway/src/lib/jobs",
+    "status": "completed",
+    "activeForm": "Creating jobs directory structure"
+  },
+  {
+    "content": "Implement queue.ts with JobQueue class and enqueueJob function",
+    "status": "completed",
+    "activeForm": "Implementing queue.ts with JobQueue class"
+  },
+  {
+    "content": "Install uuid and @types/uuid dependencies",
+    "status": "in_progress",
+    "activeForm": "Installing uuid dependency"
+  },
+  {
+    "content": "Run typecheck to verify implementation",
+    "status": "pending",
+    "activeForm": "Running typecheck to verify implementation"
+  },
+  {
+    "content": "Create commit with job queue implementation",
+    "status": "pending",
+    "activeForm": "Creating commit with job queue implementation"
+  }
+]
