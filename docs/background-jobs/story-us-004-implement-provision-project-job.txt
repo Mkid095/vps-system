@@ -1,0 +1,49 @@
+---
+memoryVersion: 1
+storyId: US-004
+storyTitle: Implement Provision Project Job
+completedDate: 2026-01-29
+---
+
+STORY: US-004 - Implement Provision Project Job
+===============================================
+
+DESCRIPTION:
+As a platform operator, I want project provisioning to run as a background job so that failures can be retried automatically.
+
+MAVEN STEPS COMPLETED:
+[1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Created a complete provision_project job handler that provisions tenant infrastructure including PostgreSQL database, schema, service registration (auth, realtime, storage), and API key generation. The handler includes comprehensive security fixes for SQL injection prevention, input validation, and service-to-service authentication.
+
+KEY FILES:
+- api-gateway/src/lib/jobs/handlers/provision-project.handler.ts - Main handler (258 lines)
+- api-gateway/src/lib/jobs/handlers/provision-project/database.ts - Database/schema creation (108 lines)
+- api-gateway/src/lib/jobs/handlers/provision-project/services.ts - Service registration (159 lines)
+- api-gateway/src/lib/jobs/handlers/provision-project/api-keys.ts - API key generation (70 lines)
+- api-gateway/src/lib/jobs/handlers/provision-project/types.ts - Type definitions (149 lines)
+- api-gateway/src/lib/jobs/handlers/provision-project/config.ts - Configuration validation (new)
+- api-gateway/src/lib/jobs/handlers/provision-project/index.ts - Module exports (27 lines)
+- api-gateway/.env.example - Environment variable template
+- api-gateway/SECURITY_AUDIT_US-004.md - Security audit report
+
+DECISIONS MADE:
+- Used PostgreSQL format() function for SQL injection prevention
+- Created validateDatabaseName() to sanitize project IDs before database operations
+- Implemented service-to-service authentication via Bearer tokens (backward compatible)
+- Created ProvisioningError and ServiceRegistrationError for structured error handling
+- Retry configuration: max 3 attempts, 5-minute intervals via enqueueProvisionProjectJob
+
+INTEGRATION POINTS:
+- Uses JobQueue from api-gateway/src/lib/jobs/queue.ts for job enqueuing
+- Uses query() from @nextmavens/audit-logs-database for database operations
+- Registers with auth service, realtime service, and storage service via HTTP APIs
+- Generates API keys using crypto.randomUUID() and SHA256 hashing
+
+LESSONS LEARNED:
+- SQL injection vulnerability was present initially - fixed with format() and input validation
+- TypeScript control flow analysis produces false positives for imports in try-catch blocks
+- Service authentication should be required in production (tokens via env vars)
+- URL encoding required for project IDs in HTTP endpoints
+- Generic error messages prevent information leakage

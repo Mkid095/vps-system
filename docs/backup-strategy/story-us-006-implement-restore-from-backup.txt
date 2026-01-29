@@ -1,0 +1,53 @@
+---
+memoryVersion: 1
+storyId: US-006
+storyTitle: Implement Restore from Backup
+completedDate: 2026-01-29
+---
+
+STORY: US-006 - Implement Restore from Backup
+========================
+
+DESCRIPTION:
+As a developer, I want to restore from backup so that I can recover from data loss.
+
+MAVEN STEPS COMPLETED: [1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Created comprehensive restore functionality with POST /api/backup/restore endpoint that restores SQL dumps from Telegram backups. Implemented both synchronous (small backups) and asynchronous (large backups via job queue) restoration with full audit trail tracking, security hardening, and data loss prevention mechanisms.
+
+KEY FILES:
+- api-gateway/src/lib/backups/restore.service.ts - Core restore logic with psql integration
+- api-gateway/src/lib/backups/restore-history.service.ts - Restore tracking and audit (8 functions)
+- api-gateway/src/lib/backups/restore-history.types.ts - TypeScript interfaces for restore tracking
+- api-gateway/src/api/routes/backup/restore.controller.ts - REST API controller
+- api-gateway/src/api/routes/backup/backup.types.ts - RestoreRequest, RestoreResponse types
+- api-gateway/src/api/routes/backup/index.ts - Route registration with middleware
+- database/migrations/012_create_restore_history_table.sql - Restore tracking table
+- database/migrations/013_add_restore_count_to_backups.sql - Backup usage tracking
+- api-gateway/src/lib/backups/backups.service.ts - Enhanced with restore_count support
+- api-gateway/docs/security-audit-restore-US-006.md - Security audit report
+
+DECISIONS MADE:
+- Force flag required to prevent accidental data overwrite
+- Synchronous restore for backups <100MB, async via job queue for larger
+- Strict rate limiting: 3 restore attempts per hour per project
+- Authorization check verifies JWT project_id matches request body
+- Separate restore_history table for full audit trail
+- restore_count column tracks backup usage patterns
+- Error message sanitization prevents information leakage
+
+INTEGRATION POINTS:
+- Uses existing backup-telegram.integration.ts for fetching files
+- Uses existing job queue (worker.ts, queue.ts) for async restores
+- Uses backups.service.ts to verify backup exists before restore
+- Integrates with control_plane database for restore tracking
+- Follows same patterns as export-backup.handler.ts
+
+LESSONS LEARNED:
+- Critical authorization vulnerability fixed: JWT project_id must match request body
+- Command injection prevention: use array format for child_process.spawn
+- Rate limiting should use project_id from JWT, not IP address
+- Audit logging essential for restore operations (data loss risk)
+- Error messages must be sanitized to prevent information leakage
+- Security audit report should document all vulnerabilities and fixes

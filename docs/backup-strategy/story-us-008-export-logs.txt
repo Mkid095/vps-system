@@ -1,0 +1,47 @@
+---
+memoryVersion: 1
+storyId: US-008
+storyTitle: Export Logs
+completedDate: 2026-01-29
+---
+
+STORY: US-008 - Export Logs
+========================
+
+DESCRIPTION:
+As a developer, I want to export logs so that I can archive them externally.
+
+MAVEN STEPS COMPLETED: [1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Created complete export logs functionality with async job processing. Supports JSON and text export formats with flexible filtering (date range, action type, actor type). Integrates with Telegram storage for archiving and backup history tracking.
+
+KEY FILES:
+- api-gateway/src/api/routes/backup/logs-export.types.ts - Request/response type definitions
+- api-gateway/src/api/routes/backup/logs-export.controller.ts - API endpoint controller with validation
+- api-gateway/src/lib/jobs/handlers/export-logs.handler.ts - Async job handler for log export
+- api-gateway/src/api/routes/backup/index.ts - Route registration with JWT auth and rate limiting
+- api-gateway/src/lib/jobs/jobs-worker.ts - Handler registration
+
+DECISIONS MADE:
+- Query control_plane.audit_logs table (not project_logs - naming clarification)
+- Use job queue for async processing to prevent timeouts on large exports
+- Auto-compression for exports over 10MB
+- Record export in backup history with type='logs'
+- Support both JSON (structured) and text (human-readable) formats
+- Optional Telegram storage integration (mock implementation)
+
+INTEGRATION POINTS:
+- Uses @nextmavens/audit-logs-database for query() and enqueueJob()
+- Uses recordBackup() from @nextmavens/audit-logs-database for history tracking
+- Uses JWT middleware for authentication
+- Uses existing Telegram storage patterns from export-backup.handler.ts
+- Follows backup.controller.ts patterns for API structure
+
+LESSONS LEARNED:
+- Parameterized queries essential for SQL injection prevention with dynamic filters
+- Generic error messages prevent project enumeration
+- Rate limiting (10 req/min) prevents abuse of expensive export operations
+- Non-blocking backup history recording (failure doesn't fail export)
+- Temp file cleanup critical for both success and error paths
+- Security audit passed: 10/10 (JWT auth, input validation, rate limiting, error handling)

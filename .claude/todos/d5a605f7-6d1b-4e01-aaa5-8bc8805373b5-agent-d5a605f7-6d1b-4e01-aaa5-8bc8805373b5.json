@@ -1,0 +1,42 @@
+[
+  {
+    "content": "Process Maven Step 1 - Foundation & Setup",
+    "status": "completed",
+    "activeForm": "Processing Maven Step 1"
+  },
+  {
+    "content": "Process Maven Step 2 - Package Manager",
+    "status": "completed",
+    "activeForm": "Processing Maven Step 2"
+  },
+  {
+    "content": "Process Maven Step 7 - Integration",
+    "status": "completed",
+    "activeForm": "Processing Maven Step 7"
+  },
+  {
+    "content": "Process Maven Step 10 - Security & Auth Review",
+    "status": "in_progress",
+    "activeForm": "Processing Maven Step 10"
+  },
+  {
+    "content": "Run typecheck and fix errors",
+    "status": "pending",
+    "activeForm": "Running typecheck"
+  },
+  {
+    "content": "Mark US-010 complete in PRD",
+    "status": "pending",
+    "activeForm": "Marking story complete"
+  },
+  {
+    "content": "Commit changes",
+    "status": "pending",
+    "activeForm": "Committing changes"
+  },
+  {
+    "content": "Create story memory",
+    "status": "pending",
+    "activeForm": "Creating story memory"
+  }
+]
