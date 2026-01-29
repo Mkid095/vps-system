@@ -1,0 +1,93 @@
+---
+memoryVersion: 1
+storyId: US-002
+storyTitle: Send Backup to Telegram
+completedDate: 2026-01-29
+---
+
+STORY: US-002 - Send Backup to Telegram
+========================================
+
+DESCRIPTION:
+As a developer, I want backups sent to Telegram so that I have long-term storage.
+
+MAVEN STEPS COMPLETED: [1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Implemented a complete TypeScript service for sending SQL backups to Telegram with proper security,
+rate limiting, error handling, and database integration.
+
+KEY FILES:
+
+**Telegram Service:**
+- telegram-service/tsconfig.json - TypeScript configuration with strict mode
+- telegram-service/package.json - Updated with TypeScript dependencies and scripts
+- telegram-service/src/types/backup.ts - BackupMetadata, SendBackupOptions, BackupSendResult interfaces
+- telegram-service/src/types/telegram.ts - Telegram Bot API type definitions
+- telegram-service/src/utils/filename.ts - Filename generation and sanitization
+- telegram-service/src/utils/rate-limiter.ts - Sliding window rate limiting (30 req/sec)
+- telegram-service/src/utils/retry.ts - Exponential backoff with jitter
+- telegram-service/src/utils/audit.ts - Audit logging with sensitive data redaction
+- telegram-service/src/clients/telegram.ts - Telegram client wrapper with sendDocument() support
+- telegram-service/src/services/backup.service.ts - Main sendBackup() implementation
+
+**API Gateway Integration:**
+- api-gateway/src/lib/backups/backup-telegram.integration.ts - BackupTelegramIntegration class
+- api-gateway/src/lib/backups/backup-auth.middleware.ts - JWT authentication middleware
+- api-gateway/src/lib/backups/backup-security.ts - Input validation and sanitization
+- api-gateway/src/lib/backups/backup-config.ts - Configuration validation
+
+**Database:**
+- database/migrations/013_add_restore_count_to_backups.sql - Adds restore_count column
+- database/types/backups.types.ts - Backup type definitions (from previous story)
+
+DECISIONS MADE:
+- Used node-telegram-bot-api for Telegram Bot API integration
+- Implemented sliding window rate limiting (30 req/sec for Telegram API)
+- Added filename sanitization to prevent path traversal attacks
+- Sensitive data redaction in audit logs (tokens, passwords, secrets)
+- Exponential backoff with jitter for retry logic (max 3 attempts)
+- File size validation (50MB limit per Telegram API)
+- Type-safe error handling with sanitized error messages
+
+INTEGRATION POINTS:
+- Telegram Bot API (sendDocument endpoint)
+- Database backups table (control_plane schema)
+- JWT authentication for API endpoints
+- Audit logging for compliance
+
+LESSONS LEARNED:
+- Telegram Bot API has 50MB file size limit for documents
+- Rate limiting is essential to avoid Telegram API bans
+- Filename sanitization prevents path traversal vulnerabilities
+- Audit logs must redact sensitive data (tokens, passwords)
+- Exponential backoff with jitter prevents thundering herd
+- TypeScript strict mode catches many potential runtime errors
+
+SECURITY MEASURES IMPLEMENTED:
+- Filename sanitization (path traversal prevention)
+- Rate limiting (Telegram: 30/sec, API: 10/min)
+- Sensitive data redaction in logs
+- JWT-based authentication for backup operations
+- Configuration validation (no placeholder credentials)
+- File size validation (50MB limit)
+- Secure error messages (no information leakage)
+
+TECH STACK:
+- TypeScript with strict mode
+- node-telegram-bot-api for Telegram Bot API
+- PostgreSQL database (control_plane schema)
+- Express.js (existing telegram-service)
+- JWT authentication
+
+TESTING:
+- Typecheck passes: npm run typecheck
+- Lint passes: npm run lint
+- Build successful: npm run build
+
+ACCEPTANCE CRITERIA MET:
+Integration with Telegram backup bot
+Sends SQL dump to Telegram (via sendDocument API)
+Generates unique filename (format: {project}_{type}_{date}_{time}_{random}.{ext})
+Returns Telegram file ID
+Typecheck passes

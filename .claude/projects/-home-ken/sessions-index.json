@@ -1323,18 +1323,6 @@
       "isSidechain": false
     },
     {
-      "sessionId": "b57c8236-59ac-4599-b068-756c5d471436",
-      "fullPath": "/home/ken/.claude/projects/-home-ken/b57c8236-59ac-4599-b068-756c5d471436.jsonl",
-      "fileMtime": 1769703866450,
-      "firstPrompt": "<command-message>flow-work-story</command-message> <command-name>/flow-work-story</command-name> <command-args>docs/prd-backup-strategy.json US-005</command-args>",
-      "messageCount": 9,
-      "created": "2026-01-29T15:57:09.693Z",
-      "modified": "2026-01-29T15:58:52.275Z",
-      "gitBranch": "master",
-      "projectPath": "/home/ken",
-      "isSidechain": false
-    },
-    {
       "sessionId": "76036c51-98cb-49b7-b969-dae4997d468c",
       "fullPath": "/home/ken/.claude/projects/-home-ken/76036c51-98cb-49b7-b969-dae4997d468c.jsonl",
       "fileMtime": 1769703692061,
@@ -1342,30 +1330,6 @@
       "messageCount": 24,
       "created": "2026-01-29T15:38:10.797Z",
       "modified": "2026-01-29T16:21:20.323Z",
-      "gitBranch": "master",
-      "projectPath": "/home/ken",
-      "isSidechain": false
-    },
-    {
-      "sessionId": "9b309f75-4a23-423e-9873-f51f5e103771",
-      "fullPath": "/home/ken/.claude/projects/-home-ken/9b309f75-4a23-423e-9873-f51f5e103771.jsonl",
-      "fileMtime": 1769703702178,
-      "firstPrompt": "<command-message>flow-work-story</command-message> <command-name>/flow-work-story</command-name> <command-args>docs/prd-backup-strategy.json US-008</command-args>",
-      "messageCount": 12,
-      "created": "2026-01-29T16:05:23.135Z",
-      "modified": "2026-01-29T16:08:26.212Z",
-      "gitBranch": "master",
-      "projectPath": "/home/ken",
-      "isSidechain": false
-    },
-    {
-      "sessionId": "758864fc-1ebf-4e5d-b31b-71f1d29091f1",
-      "fullPath": "/home/ken/.claude/projects/-home-ken/758864fc-1ebf-4e5d-b31b-71f1d29091f1.jsonl",
-      "fileMtime": 1769703568083,
-      "firstPrompt": "<command-message>flow-work-story</command-message> <command-name>/flow-work-story</command-name> <command-args>docs/prd-backup-strategy.json US-002</command-args>",
-      "messageCount": 13,
-      "created": "2026-01-29T15:30:30.178Z",
-      "modified": "2026-01-29T16:19:26.545Z",
       "gitBranch": "master",
       "projectPath": "/home/ken",
       "isSidechain": false
@@ -1383,13 +1347,61 @@
       "isSidechain": false
     },
     {
+      "sessionId": "c5c43ea6-9de4-41a5-b1cd-3146cbff33f0",
+      "fullPath": "/home/ken/.claude/projects/-home-ken/c5c43ea6-9de4-41a5-b1cd-3146cbff33f0.jsonl",
+      "fileMtime": 1769705035490,
+      "firstPrompt": "<command-message>flow-work-story</command-message> <command-name>/flow-work-story</command-name> <command-args>docs/prd-backup-strategy.json US-007</command-args>",
+      "messageCount": 5,
+      "created": "2026-01-29T16:24:33.623Z",
+      "modified": "2026-01-29T16:43:55.488Z",
+      "gitBranch": "master",
+      "projectPath": "/home/ken",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "b57c8236-59ac-4599-b068-756c5d471436",
+      "fullPath": "/home/ken/.claude/projects/-home-ken/b57c8236-59ac-4599-b068-756c5d471436.jsonl",
+      "fileMtime": 1769704844478,
+      "firstPrompt": "<command-message>flow-work-story</command-message> <command-name>/flow-work-story</command-name> <command-args>docs/prd-backup-strategy.json US-005</command-args>",
+      "messageCount": 23,
+      "created": "2026-01-29T15:57:09.693Z",
+      "modified": "2026-01-29T16:40:44.467Z",
+      "gitBranch": "master",
+      "projectPath": "/home/ken",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "9b309f75-4a23-423e-9873-f51f5e103771",
+      "fullPath": "/home/ken/.claude/projects/-home-ken/9b309f75-4a23-423e-9873-f51f5e103771.jsonl",
+      "fileMtime": 1769704646877,
+      "firstPrompt": "<command-message>flow-work-story</command-message> <command-name>/flow-work-story</command-name> <command-args>docs/prd-backup-strategy.json US-008</command-args>",
+      "messageCount": 14,
+      "created": "2026-01-29T16:05:23.135Z",
+      "modified": "2026-01-29T16:37:26.875Z",
+      "gitBranch": "master",
+      "projectPath": "/home/ken",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "758864fc-1ebf-4e5d-b31b-71f1d29091f1",
+      "fullPath": "/home/ken/.claude/projects/-home-ken/758864fc-1ebf-4e5d-b31b-71f1d29091f1.jsonl",
+      "fileMtime": 1769705038594,
+      "firstPrompt": "<command-message>flow-work-story</command-message> <command-name>/flow-work-story</command-name> <command-args>docs/prd-backup-strategy.json US-002</command-args>",
+      "messageCount": 23,
+      "created": "2026-01-29T15:30:30.178Z",
+      "modified": "2026-01-29T16:43:58.592Z",
+      "gitBranch": "master",
+      "projectPath": "/home/ken",
+      "isSidechain": false
+    },
+    {
       "sessionId": "a0704923-2c04-48b5-8f84-69f9d6726c0e",
       "fullPath": "/home/ken/.claude/projects/-home-ken/a0704923-2c04-48b5-8f84-69f9d6726c0e.jsonl",
-      "fileMtime": 1769703854250,
+      "fileMtime": 1769704572087,
       "firstPrompt": "<command-message>flow-work-story</command-message> <command-name>/flow-work-story</command-name> <command-args>docs/prd-backup-strategy.json US-006</command-args>",
-      "messageCount": 7,
+      "messageCount": 8,
       "created": "2026-01-29T15:58:03.316Z",
-      "modified": "2026-01-29T16:05:58.478Z",
+      "modified": "2026-01-29T16:36:12.078Z",
       "gitBranch": "master",
       "projectPath": "/home/ken",
       "isSidechain": false

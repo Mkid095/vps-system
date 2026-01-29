@@ -1879,3 +1879,1357 @@
 2026-01-29T16:41:59.228Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300041583b6e9565dd604b2c"}
 2026-01-29T16:42:10.103Z [ERROR] API error (attempt 6/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300042096a39bb5c190740ec"}
 2026-01-29T16:42:32.546Z [ERROR] API error (attempt 7/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004232e20f5c5114df4881"}
+2026-01-29T16:43:20.008Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:43:20.009Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:43:20.009Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:43:20.012Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:43:20.012Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:43:20.012Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:43:20.012Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:43:20.026Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:43:20.026Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:43:20.026Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:43:20.026Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:43:20.033Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:43:20.033Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:43:20.033Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:43:20.033Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:43:20.033Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:43:20.033Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:43:20.034Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:43:20.035Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:43:21.767Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004321e4da046e8f9049b9"}
+2026-01-29T16:43:21.767Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:43:21.767Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:43:21.767Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:43:22.506Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300043228be88016e5ac40a4"}
+2026-01-29T16:43:25.240Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300043247cc82e0854c74fc9"}
+2026-01-29T16:43:29.054Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000432883f492a7fa1f4970"}
+2026-01-29T16:43:32.649Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000433276f859db631c41d2"}
+2026-01-29T16:43:33.627Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:43:33.814Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:43:39.248Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:43:39.248Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:43:39.248Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:43:39.249Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:43:39.249Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:43:39.249Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:43:39.250Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:43:39.262Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:43:39.275Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:43:39.275Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:43:39.276Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:43:40.081Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004339a7b08f6f19974119"}
+2026-01-29T16:43:40.081Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:43:40.081Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:43:40.082Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:43:41.633Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004341a3730e82c9964aff"}
+2026-01-29T16:43:44.419Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:43:44.432Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:43:44.432Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:43:44.432Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:43:44.432Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:43:44.451Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:43:44.452Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:43:44.452Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:43:44.452Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:43:44.452Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:43:44.452Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:43:44.453Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:43:44.453Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:43:45.981Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000434508d279c14a8f4478"}
+2026-01-29T16:43:45.982Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:43:45.982Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:43:45.983Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:43:46.124Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004345eedd753412f84b53"}
+2026-01-29T16:43:46.124Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:43:46.124Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:43:46.124Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:43:48.086Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300043471c451dc41be546ce"}
+2026-01-29T16:43:53.555Z [DEBUG] Getting matching hook commands for PostToolUseFailure with query: Bash
+2026-01-29T16:43:53.555Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:43:53.555Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:43:53.560Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:43:53.564Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:43:53.564Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:43:53.564Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:43:57.626Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:43:57.645Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:43:57.645Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:43:57.645Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:43:57.645Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:43:57.645Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:43:57.645Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:43:57.645Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:43:57.645Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:43:57.765Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:43:57.765Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:43:57.765Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:43:57.766Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:43:57.766Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:43:57.766Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:43:57.766Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:43:57.771Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:43:57.772Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:43:57.772Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:43:57.772Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:43:57.772Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:43:57.772Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:43:57.772Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:43:57.780Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:43:57.783Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:43:57.783Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:43:57.783Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:01.216Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:44:01.229Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:44:01.229Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:44:01.229Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:44:01.229Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:44:01.229Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:44:01.229Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:44:01.229Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:44:01.229Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:44:01.358Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:44:01.358Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:01.358Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:01.360Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:44:01.360Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:44:01.360Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:44:01.360Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:01.365Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:44:01.365Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:01.365Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:01.367Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:44:01.367Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:44:01.367Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:44:01.367Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:01.378Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:44:01.382Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:01.382Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:01.383Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:02.318Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004402020955f5dd80419f"}
+2026-01-29T16:44:02.318Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:02.318Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:02.318Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:03.723Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300044033e8ea5803db74624"}
+2026-01-29T16:44:03.736Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004402b6318bf704a344a5"}
+2026-01-29T16:44:03.736Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:03.736Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:03.737Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:04.808Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:44:04.823Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:44:04.824Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:44:04.824Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:44:04.824Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:44:04.932Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:44:04.932Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:04.932Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:04.934Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:44:04.934Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:44:04.934Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:44:04.935Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:04.942Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:44:04.946Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:04.946Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:04.946Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:05.140Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004404f1f34da1dc44434f"}
+2026-01-29T16:44:05.362Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000440433671b0304a94ff9"}
+2026-01-29T16:44:05.827Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004405091b65d3af184b7b"}
+2026-01-29T16:44:05.827Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:05.827Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:05.828Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:06.953Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000440688df217c39b44d1a"}
+2026-01-29T16:44:08.352Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300044085e7a08bdc2564e42"}
+2026-01-29T16:44:08.757Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:44:08.770Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:44:08.770Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:44:08.770Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:44:08.770Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:44:08.774Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:44:08.774Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:44:08.775Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:08.775Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:08.775Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:08.775Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:08.779Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:08.779Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:08.996Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300044085c76cceb7d40463b"}
+2026-01-29T16:44:09.936Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300044095819db87ba2c474d"}
+2026-01-29T16:44:09.937Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:09.937Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:09.937Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:09.950Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004409e24f97095b0640d8"}
+2026-01-29T16:44:09.951Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:09.951Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:09.951Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:10.307Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-29T16:44:10.307Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-29T16:44:10.307Z [DEBUG] Metrics export disabled by organization setting
+2026-01-29T16:44:10.956Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000441083dba2f3b1324475"}
+2026-01-29T16:44:11.341Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300044104f98b4fe4dfb4b6a"}
+2026-01-29T16:44:12.994Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:44:13.037Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:44:13.530Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300044131cc4121fece247fe"}
+2026-01-29T16:44:14.200Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300044138ef72ac0c43f4d0c"}
+2026-01-29T16:44:15.641Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004415d5e9359f77244bd7"}
+2026-01-29T16:44:16.853Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004416f0d0bccf291f42c3"}
+2026-01-29T16:44:33.808Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:44:33.808Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:33.808Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:33.809Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:44:33.809Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:44:33.809Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:44:33.809Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:33.818Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:44:33.821Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:33.821Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:33.822Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:37.996Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:44:39.038Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:44:39.048Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:44:39.048Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:44:39.048Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:44:39.048Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:44:39.130Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:44:39.130Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:39.130Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:39.131Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:44:39.131Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:44:39.131Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:44:39.131Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:39.139Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:44:39.144Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:39.144Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:39.145Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:40.066Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000443929afdef295614088"}
+2026-01-29T16:44:40.066Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:40.066Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:40.066Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:41.757Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000444022122ca693494665"}
+2026-01-29T16:44:43.038Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:44:43.049Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:44:43.049Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:44:43.049Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:44:43.049Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:44:43.143Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:44:43.144Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:43.144Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:43.144Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:44:43.145Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:44:43.145Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:44:43.145Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:43.150Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:44:43.153Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:43.153Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:43.153Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:43.813Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000444341f0aeb153b345e5"}
+2026-01-29T16:44:43.813Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:43.813Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:43.814Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:44.278Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004443924570d6ff7a4b74"}
+2026-01-29T16:44:46.779Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000444586279a3bf430488a"}
+2026-01-29T16:44:47.128Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004446b5b6ee101fc44388"}
+2026-01-29T16:44:47.400Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:44:47.414Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:44:47.414Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:44:47.414Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:44:47.414Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:44:47.515Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:44:47.515Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:47.515Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:47.516Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:44:47.516Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:44:47.516Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:44:47.516Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:47.522Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:44:47.526Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:47.526Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:47.526Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:48.569Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004448e97ed9570d20419e"}
+2026-01-29T16:44:48.569Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:48.569Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:48.569Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:49.915Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300044494dad7de80fcd4d21"}
+2026-01-29T16:44:50.023Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000444964656485c52d44a7"}
+2026-01-29T16:44:51.903Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000445121e2772b503e447f"}
+2026-01-29T16:44:52.683Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004452874be2e7ac364dd6"}
+2026-01-29T16:44:53.798Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:44:53.835Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:44:53.835Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:44:53.835Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:44:53.835Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:44:53.998Z [DEBUG] Getting matching hook commands for PostToolUseFailure with query: Bash
+2026-01-29T16:44:53.998Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:44:53.998Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:44:54.004Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:44:54.007Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:54.007Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:54.008Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:44:54.537Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000445494724376b5664553"}
+2026-01-29T16:44:55.543Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004455c927e66bea4640cc"}
+2026-01-29T16:44:58.054Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004457786c6df466b343ee"}
+2026-01-29T16:44:58.516Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:44:58.535Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:44:58.535Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:44:58.535Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:44:58.535Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:44:58.734Z [DEBUG] Getting matching hook commands for PostToolUseFailure with query: Bash
+2026-01-29T16:44:58.734Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:44:58.734Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:44:58.745Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:44:58.751Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:44:58.751Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:44:58.751Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:45:01.140Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000450066b84c32da3c48e3"}
+2026-01-29T16:45:02.679Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:45:02.691Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:45:02.691Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:45:02.691Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:45:02.691Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:45:02.792Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:45:02.793Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:45:02.793Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:45:02.794Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:45:02.794Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:45:02.794Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:45:02.794Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:45:02.803Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:45:02.810Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:45:02.810Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:45:02.811Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:45:03.767Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000450323f05bc2348d4584"}
+2026-01-29T16:45:03.928Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000450393f13407132c4993"}
+2026-01-29T16:45:03.928Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:45:03.928Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:45:03.928Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:45:05.475Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000450448edaf13716840f8"}
+2026-01-29T16:45:07.008Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:45:07.633Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300045070a6cb94568d549e5"}
+2026-01-29T16:45:11.043Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:45:11.044Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:45:11.044Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:45:11.044Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:45:11.212Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:45:11.213Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:45:11.213Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:45:11.215Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:45:11.215Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:45:11.215Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:45:11.215Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:45:11.235Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:45:11.239Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:45:11.239Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:45:11.240Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:45:11.388Z [ERROR] API error (attempt 6/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300045111df78e13b224402a"}
+2026-01-29T16:45:12.256Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300045117f57f15388854b0b"}
+2026-01-29T16:45:12.257Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:45:12.257Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:45:12.257Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:45:13.083Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004512fff99a05c4714875"}
+2026-01-29T16:45:14.397Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004514badadb9118a94af7"}
+2026-01-29T16:45:15.391Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:45:16.214Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004515d85de1149cd2464b"}
+2026-01-29T16:45:17.313Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-29T16:45:17.313Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:45:17.313Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-29T16:45:17.318Z [DEBUG] Getting matching hook commands for PostToolUse with query: Task
+2026-01-29T16:45:17.318Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:45:17.319Z [DEBUG] Matched 0 unique hooks for query "Task" (0 before deduplication)
+2026-01-29T16:45:17.334Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:45:17.334Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:45:17.334Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:45:17.334Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:45:17.335Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:45:17.348Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:45:17.348Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:45:17.348Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:45:21.607Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:45:21.617Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:45:21.617Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:45:21.617Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:45:21.617Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:45:21.817Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:45:21.818Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:45:21.818Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:45:21.818Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:45:21.818Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:45:21.818Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:45:21.819Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:45:21.826Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:45:21.826Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:45:21.826Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:45:21.826Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:45:21.827Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:45:21.831Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:45:21.831Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:45:21.831Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:45:22.456Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004522822d58f5422744cb"}
+2026-01-29T16:45:22.456Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:45:22.456Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:45:22.456Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:45:23.425Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004523509032f2bc57420e"}
+2026-01-29T16:45:28.389Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:45:28.394Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-29T16:45:28.394Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-29T16:45:28.394Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:45:28.395Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-29T16:45:28.395Z [DEBUG] Writing to temp file: /home/ken/.claude/todos/9b309f75-4a23-423e-9873-f51f5e103771-agent-9b309f75-4a23-423e-9873-f51f5e103771.json.tmp.3251931.1769705128395
+2026-01-29T16:45:28.395Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:45:28.396Z [DEBUG] Temp file written successfully, size: 1188 bytes
+2026-01-29T16:45:28.396Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:45:28.396Z [DEBUG] Renaming /home/ken/.claude/todos/9b309f75-4a23-423e-9873-f51f5e103771-agent-9b309f75-4a23-423e-9873-f51f5e103771.json.tmp.3251931.1769705128395 to /home/ken/.claude/todos/9b309f75-4a23-423e-9873-f51f5e103771-agent-9b309f75-4a23-423e-9873-f51f5e103771.json
+2026-01-29T16:45:28.396Z [DEBUG] File /home/ken/.claude/todos/9b309f75-4a23-423e-9873-f51f5e103771-agent-9b309f75-4a23-423e-9873-f51f5e103771.json written atomically
+2026-01-29T16:45:28.397Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-29T16:45:28.397Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:45:28.397Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-29T16:45:28.401Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:45:28.401Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:45:28.401Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:45:28.401Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:45:28.402Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:45:28.407Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:45:28.407Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:45:28.407Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:45:41.184Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:45:41.196Z [DEBUG] executePreToolHooks called for tool: Task
+2026-01-29T16:45:41.196Z [DEBUG] Getting matching hook commands for PreToolUse with query: Task
+2026-01-29T16:45:41.196Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:45:41.196Z [DEBUG] Matched 0 unique hooks for query "Task" (0 before deduplication)
+2026-01-29T16:45:41.216Z [DEBUG] Getting matching hook commands for SubagentStart with query: development-agent
+2026-01-29T16:45:41.216Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:45:41.216Z [DEBUG] Matched 0 unique hooks for query "development-agent" (0 before deduplication)
+2026-01-29T16:45:41.229Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:45:41.232Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:45:41.232Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:45:41.232Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:45:44.623Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:45:44.635Z [WARN] [PROMPT CACHE BREAK] unknown cause [source=agent:custom, call #52, cache read: 79488 → 38784, creation: 0]
+2026-01-29T16:45:44.636Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:45:44.636Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:45:44.636Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:45:44.636Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:45:44.636Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:45:44.636Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:45:44.636Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:45:44.636Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:45:44.636Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:45:44.636Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:45:44.636Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:45:44.636Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:45:44.641Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:45:44.641Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:45:44.641Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:45:44.641Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:45:44.641Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:45:44.641Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:45:44.641Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:45:44.641Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:45:44.641Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:45:44.670Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:45:44.673Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:45:44.673Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:45:44.673Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:45:48.606Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:45:48.621Z [DEBUG] executePreToolHooks called for tool: Grep
+2026-01-29T16:45:48.621Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:45:48.621Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:45:48.621Z [DEBUG] Getting matching hook commands for PreToolUse with query: Grep
+2026-01-29T16:45:48.621Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:45:48.621Z [DEBUG] Matched 0 unique hooks for query "Grep" (0 before deduplication)
+2026-01-29T16:45:48.621Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:45:48.621Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:45:48.621Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:45:48.621Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:45:48.621Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:45:48.621Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:45:48.628Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:45:48.628Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:45:48.628Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:45:48.628Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:45:48.628Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:45:48.628Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:45:57.753Z [DEBUG] Getting matching hook commands for PostToolUse with query: Grep
+2026-01-29T16:45:57.753Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:45:57.753Z [DEBUG] Matched 1 unique hooks for query "Grep" (1 before deduplication)
+2026-01-29T16:45:57.762Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:45:57.765Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:45:57.765Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:45:57.765Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:46:03.251Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:46:03.265Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:46:03.265Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:46:03.265Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:46:03.265Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:46:03.265Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:46:03.265Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:46:03.265Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:46:03.265Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:46:03.268Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:46:03.268Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:46:03.268Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:46:03.268Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:46:03.268Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:46:03.268Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:46:03.285Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:46:03.285Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:46:03.285Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:46:03.285Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:46:08.422Z [DEBUG] Getting matching hook commands for PostToolUseFailure with query: Bash
+2026-01-29T16:46:08.422Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:46:08.422Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:46:08.448Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:46:08.455Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:46:08.455Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:46:08.460Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:46:12.819Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:46:12.840Z [DEBUG] executePreToolHooks called for tool: Grep
+2026-01-29T16:46:12.840Z [DEBUG] Getting matching hook commands for PreToolUse with query: Grep
+2026-01-29T16:46:12.840Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:46:12.840Z [DEBUG] Matched 0 unique hooks for query "Grep" (0 before deduplication)
+2026-01-29T16:46:12.840Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:46:12.841Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:46:12.841Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:46:12.841Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:46:12.850Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:46:12.850Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:46:12.850Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:46:14.444Z [DEBUG] Getting matching hook commands for PostToolUse with query: Grep
+2026-01-29T16:46:14.444Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:46:14.444Z [DEBUG] Matched 1 unique hooks for query "Grep" (1 before deduplication)
+2026-01-29T16:46:14.456Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:46:14.461Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:46:14.461Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:46:14.462Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:46:18.074Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:46:18.085Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-01-29T16:46:18.085Z [DEBUG] executePreToolHooks called for tool: Grep
+2026-01-29T16:46:18.085Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-01-29T16:46:18.085Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:46:18.085Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-29T16:46:18.085Z [DEBUG] Getting matching hook commands for PreToolUse with query: Grep
+2026-01-29T16:46:18.085Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:46:18.085Z [DEBUG] Matched 0 unique hooks for query "Grep" (0 before deduplication)
+2026-01-29T16:46:19.935Z [DEBUG] Getting matching hook commands for PostToolUse with query: Grep
+2026-01-29T16:46:19.935Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:46:19.935Z [DEBUG] Matched 1 unique hooks for query "Grep" (1 before deduplication)
+2026-01-29T16:46:20.358Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2026-01-29T16:46:20.358Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:46:20.358Z [DEBUG] Matched 1 unique hooks for query "Glob" (1 before deduplication)
+2026-01-29T16:46:20.372Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:46:20.379Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:46:20.379Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:46:20.381Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:46:24.187Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:46:24.213Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:46:24.213Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:46:24.213Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:46:24.213Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:46:24.224Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:46:24.224Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:46:24.224Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:46:24.265Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:46:24.270Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:46:24.270Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:46:24.272Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:46:27.698Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:46:29.837Z [DEBUG] executePreToolHooks called for tool: Edit
+2026-01-29T16:46:29.837Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2026-01-29T16:46:29.837Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:46:29.837Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:46:29.841Z [DEBUG] Writing to temp file: /home/ken/api-gateway/src/lib/jobs/jobs-worker.ts.tmp.3251931.1769705189841
+2026-01-29T16:46:29.841Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:46:29.845Z [DEBUG] Temp file written successfully, size: 6534 bytes
+2026-01-29T16:46:29.845Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:46:29.845Z [DEBUG] Renaming /home/ken/api-gateway/src/lib/jobs/jobs-worker.ts.tmp.3251931.1769705189841 to /home/ken/api-gateway/src/lib/jobs/jobs-worker.ts
+2026-01-29T16:46:29.846Z [DEBUG] File /home/ken/api-gateway/src/lib/jobs/jobs-worker.ts written atomically
+2026-01-29T16:46:29.849Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2026-01-29T16:46:29.849Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:46:29.849Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:46:29.899Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:46:29.926Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:46:29.926Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:46:29.928Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:46:33.611Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:46:33.618Z [DEBUG] executePreToolHooks called for tool: Edit
+2026-01-29T16:46:33.618Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2026-01-29T16:46:33.618Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:46:33.618Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:46:33.620Z [DEBUG] Writing to temp file: /home/ken/api-gateway/src/lib/jobs/jobs-worker.ts.tmp.3251931.1769705193620
+2026-01-29T16:46:33.620Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:46:33.623Z [DEBUG] Temp file written successfully, size: 6594 bytes
+2026-01-29T16:46:33.623Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:46:33.623Z [DEBUG] Renaming /home/ken/api-gateway/src/lib/jobs/jobs-worker.ts.tmp.3251931.1769705193620 to /home/ken/api-gateway/src/lib/jobs/jobs-worker.ts
+2026-01-29T16:46:33.623Z [DEBUG] File /home/ken/api-gateway/src/lib/jobs/jobs-worker.ts written atomically
+2026-01-29T16:46:33.626Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2026-01-29T16:46:33.626Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:46:33.626Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:46:33.652Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:46:33.657Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:46:33.657Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:46:33.658Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:46:36.411Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:46:36.422Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:46:36.422Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:46:36.422Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:46:36.422Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:46:36.425Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:46:36.425Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:46:36.425Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:46:36.441Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:46:36.443Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:46:36.443Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:46:36.444Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:46:41.315Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:46:41.327Z [DEBUG] executePreToolHooks called for tool: Grep
+2026-01-29T16:46:41.327Z [DEBUG] Getting matching hook commands for PreToolUse with query: Grep
+2026-01-29T16:46:41.327Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:46:41.327Z [DEBUG] Matched 0 unique hooks for query "Grep" (0 before deduplication)
+2026-01-29T16:46:43.532Z [DEBUG] Getting matching hook commands for PostToolUse with query: Grep
+2026-01-29T16:46:43.532Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:46:43.532Z [DEBUG] Matched 1 unique hooks for query "Grep" (1 before deduplication)
+2026-01-29T16:46:43.564Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:46:43.570Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:46:43.570Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:46:43.571Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:46:48.717Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:46:48.730Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:46:48.730Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:46:48.730Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:46:48.730Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:46:48.733Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:46:48.733Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:46:48.733Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:46:48.759Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:46:48.763Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:46:48.763Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:46:48.764Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:46:52.531Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:46:52.541Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:46:52.541Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:46:52.541Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:46:52.541Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:46:52.543Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:46:52.543Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:46:52.544Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:46:52.571Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:46:52.576Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:46:52.576Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:46:52.576Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:46:56.669Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:46:56.675Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:46:56.675Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:46:56.675Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:46:56.675Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:46:56.677Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:46:56.677Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:46:56.677Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:46:56.686Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:46:56.689Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:46:56.689Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:46:56.689Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:47:01.226Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:47:01.252Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:47:01.252Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:47:01.252Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:47:01.252Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:47:01.257Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:47:01.257Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:47:01.257Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:47:01.293Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:47:01.306Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:47:01.306Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:47:01.307Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:47:05.733Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:47:05.748Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:47:05.751Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:47:05.751Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:47:05.751Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:47:09.170Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:47:09.178Z [DEBUG] executePreToolHooks called for tool: Grep
+2026-01-29T16:47:09.178Z [DEBUG] Getting matching hook commands for PreToolUse with query: Grep
+2026-01-29T16:47:09.178Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:47:09.178Z [DEBUG] Matched 0 unique hooks for query "Grep" (0 before deduplication)
+2026-01-29T16:47:10.746Z [DEBUG] Getting matching hook commands for PostToolUse with query: Grep
+2026-01-29T16:47:10.746Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:47:10.746Z [DEBUG] Matched 1 unique hooks for query "Grep" (1 before deduplication)
+2026-01-29T16:47:10.754Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:47:10.758Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:47:10.758Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:47:10.758Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:47:14.990Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:47:15.007Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:47:15.007Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:47:15.007Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:47:15.007Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:47:15.013Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:47:15.013Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:47:15.013Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:47:15.047Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:47:15.056Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:47:15.056Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:47:15.059Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:47:19.543Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:47:19.557Z [DEBUG] executePreToolHooks called for tool: Edit
+2026-01-29T16:47:19.557Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2026-01-29T16:47:19.557Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:47:19.557Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:47:19.559Z [DEBUG] Writing to temp file: /home/ken/api-gateway/src/lib/backups/restore-history.service.ts.tmp.3251931.1769705239559
+2026-01-29T16:47:19.559Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:47:19.560Z [DEBUG] Temp file written successfully, size: 26793 bytes
+2026-01-29T16:47:19.560Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:47:19.560Z [DEBUG] Renaming /home/ken/api-gateway/src/lib/backups/restore-history.service.ts.tmp.3251931.1769705239559 to /home/ken/api-gateway/src/lib/backups/restore-history.service.ts
+2026-01-29T16:47:19.560Z [DEBUG] File /home/ken/api-gateway/src/lib/backups/restore-history.service.ts written atomically
+2026-01-29T16:47:19.561Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2026-01-29T16:47:19.561Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:47:19.561Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:47:19.567Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:47:19.570Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:47:19.570Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:47:19.570Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:47:23.965Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:47:23.981Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:47:23.981Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:47:23.981Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:47:23.981Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:47:27.673Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:47:27.674Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:47:27.674Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:47:27.675Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:47:27.675Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:47:27.675Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:47:27.675Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:47:27.682Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:47:27.685Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:47:27.685Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:47:27.686Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:47:31.628Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:47:31.642Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:47:31.642Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:47:31.642Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:47:31.642Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:47:31.646Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:47:31.646Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:47:31.646Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:47:31.646Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:47:31.646Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:47:31.646Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:47:31.648Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:47:31.648Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:47:32.645Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300047320083199bfcf54fbf"}
+2026-01-29T16:47:32.645Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:47:32.645Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:47:32.646Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:47:33.297Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000473301e19f1f425b4e7e"}
+2026-01-29T16:47:58.588Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:47:58.908Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:47:58.909Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:47:58.909Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:47:58.909Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:47:58.909Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:47:58.910Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:47:58.910Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:47:58.919Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:47:58.932Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:47:58.932Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:47:58.934Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:47:59.567Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:48:00.798Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:48:13.671Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:48:13.711Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:48:13.711Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:48:13.711Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:48:13.711Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:48:13.839Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:48:13.840Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:48:13.840Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:48:13.842Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:48:13.842Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:48:13.842Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:48:13.842Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:48:13.851Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:48:13.855Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:48:13.856Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:48:13.856Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:48:16.953Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:48:17.456Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:48:17.472Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:48:17.472Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:48:17.472Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:48:17.472Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:48:17.472Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:48:17.472Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:48:17.472Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:48:17.472Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:48:17.733Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:48:17.737Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:48:17.737Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:48:17.758Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:48:17.758Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:48:17.758Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:48:17.758Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:48:17.935Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:48:17.935Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:48:17.935Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:48:17.936Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:48:17.936Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:48:17.936Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:48:17.936Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:48:17.950Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:48:17.956Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:48:17.956Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:48:17.956Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:48:21.727Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:48:22.812Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:48:22.896Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:48:22.896Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:48:22.896Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:48:22.896Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:48:22.896Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:48:22.896Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:48:22.896Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:48:22.896Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:48:22.956Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:48:23.255Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:48:23.256Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:48:23.256Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:48:23.261Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:48:23.261Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:48:23.261Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:48:23.261Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:48:23.287Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:48:23.290Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:48:23.290Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:48:23.292Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:48:23.292Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:48:23.292Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:48:23.293Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:48:23.358Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:48:23.371Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:48:23.371Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:48:23.374Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:48:27.403Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:48:27.408Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:48:27.408Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:48:27.408Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:48:27.928Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:48:28.416Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:48:28.428Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:48:28.428Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:48:28.428Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:48:28.428Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:48:28.579Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:48:28.580Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:48:28.580Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:48:28.580Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:48:28.580Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:48:28.580Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:48:28.580Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:48:28.592Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:48:28.598Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:48:28.598Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:48:28.598Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:48:29.401Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000482924fca12073b94dec"}
+2026-01-29T16:48:29.402Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:48:29.402Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:48:29.402Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:48:30.795Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000483056e3182fb1e6439a"}
+2026-01-29T16:48:32.768Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:48:32.869Z [DEBUG] executePreToolHooks called for tool: Grep
+2026-01-29T16:48:32.869Z [DEBUG] executePreToolHooks called for tool: Grep
+2026-01-29T16:48:32.871Z [DEBUG] Getting matching hook commands for PreToolUse with query: Grep
+2026-01-29T16:48:32.871Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:48:32.871Z [DEBUG] Matched 0 unique hooks for query "Grep" (0 before deduplication)
+2026-01-29T16:48:32.871Z [DEBUG] Getting matching hook commands for PreToolUse with query: Grep
+2026-01-29T16:48:32.871Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:48:32.871Z [DEBUG] Matched 0 unique hooks for query "Grep" (0 before deduplication)
+2026-01-29T16:48:35.878Z [DEBUG] Getting matching hook commands for PostToolUse with query: Grep
+2026-01-29T16:48:35.878Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:48:35.878Z [DEBUG] Matched 1 unique hooks for query "Grep" (1 before deduplication)
+2026-01-29T16:48:36.129Z [DEBUG] Getting matching hook commands for PostToolUse with query: Grep
+2026-01-29T16:48:36.129Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:48:36.129Z [DEBUG] Matched 1 unique hooks for query "Grep" (1 before deduplication)
+2026-01-29T16:48:36.167Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:48:36.186Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:48:36.186Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:48:36.186Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:48:47.759Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:48:47.815Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:48:47.816Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:48:47.816Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:48:47.816Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:48:48.036Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:48:48.037Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:48:48.037Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:48:48.038Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:48:48.038Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:48:48.038Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:48:48.038Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:48:48.059Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:48:48.064Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:48:48.064Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:48:48.064Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:48:50.081Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000484966a51b7125e24e08"}
+2026-01-29T16:48:50.081Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:48:50.081Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:48:50.082Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:48:51.330Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300048508a14f3578ade48e9"}
+2026-01-29T16:48:51.977Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:48:51.995Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:48:51.995Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:48:51.995Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:48:51.995Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:48:52.000Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:48:52.000Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:48:52.000Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:48:52.001Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:48:52.001Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:48:52.001Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:48:52.001Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:48:52.001Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:48:52.001Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:48:52.003Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:48:52.003Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:48:52.003Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:48:56.460Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300048551906128607364d2c"}
+2026-01-29T16:48:59.334Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300048590765015cf52c41d1"}
+2026-01-29T16:48:59.981Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:49:00.541Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:49:01.092Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:49:04.743Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000490476e00cf96f6e421c"}
+2026-01-29T16:49:06.369Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:49:06.370Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:49:06.370Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:49:06.371Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:49:06.371Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:49:06.371Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:49:06.371Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:49:06.380Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:49:06.390Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:49:06.390Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:49:06.393Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:49:07.203Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004906541d3a93d07f4bc7"}
+2026-01-29T16:49:07.203Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:49:07.203Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:49:07.203Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:49:09.833Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:49:09.842Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:49:09.842Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:49:09.842Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:49:09.842Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:49:09.844Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:49:09.844Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:49:09.844Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:49:09.845Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:49:10.031Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004908c3dfc12543964dbc"}
+2026-01-29T16:49:10.318Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-29T16:49:10.318Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-29T16:49:10.318Z [DEBUG] Metrics export disabled by organization setting
+2026-01-29T16:49:10.557Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300049103dfd1aba928c4f02"}
+2026-01-29T16:49:10.558Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:49:10.558Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:49:10.558Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:49:11.229Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004910f7e97967feb94595"}
+2026-01-29T16:49:11.561Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004911dce628b7b37a4607"}
+2026-01-29T16:49:11.824Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300049117a6ca66daa2a4843"}
+2026-01-29T16:49:13.297Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300049134e63094517cb408a"}
+2026-01-29T16:49:13.616Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300049130cf6f2ac40eb4270"}
+2026-01-29T16:49:16.179Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004915b14c18fe595342ee"}
+2026-01-29T16:49:21.317Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000492134fc8183661245c5"}
+2026-01-29T16:49:21.571Z [ERROR] API error (attempt 6/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000492154695e1d96ff4b38"}
+2026-01-29T16:49:26.489Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004926284ad71caa734c29"}
+2026-01-29T16:49:39.122Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:49:39.123Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:49:39.123Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:49:39.124Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:49:39.124Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:49:39.124Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:49:39.124Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:49:39.132Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:49:39.140Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:49:39.140Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:49:39.140Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:49:41.015Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300049408085c19de89948d2"}
+2026-01-29T16:49:41.015Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:49:41.015Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:49:41.016Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:49:42.191Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004941ea977cab8b064a13"}
+2026-01-29T16:49:43.548Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300049435f4d80c504aa48ba"}
+2026-01-29T16:49:43.714Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:49:43.724Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:49:43.724Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:49:43.724Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:49:43.724Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:49:43.826Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:49:43.826Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:49:43.826Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:49:43.827Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:49:43.827Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:49:43.827Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:49:43.827Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:49:43.835Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:49:43.839Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:49:43.839Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:49:43.839Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:49:44.766Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300049444a19fc7901a2437a"}
+2026-01-29T16:49:44.766Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:49:44.766Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:49:44.767Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:49:45.820Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004945999d4f15261e498c"}
+2026-01-29T16:49:46.074Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300049453e4accf90ae14b83"}
+2026-01-29T16:49:47.464Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300049471a75a305de0a432b"}
+2026-01-29T16:49:48.279Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:49:49.006Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004948b68a70a0f6084807"}
+2026-01-29T16:49:50.543Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300049503e32cc67fd28486d"}
+2026-01-29T16:49:52.401Z [DEBUG] Getting matching hook commands for SubagentStop with query: undefined
+2026-01-29T16:49:52.401Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:49:52.401Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-29T16:49:52.403Z [DEBUG] Getting matching hook commands for PostToolUse with query: Task
+2026-01-29T16:49:52.403Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:49:52.403Z [DEBUG] Matched 0 unique hooks for query "Task" (0 before deduplication)
+2026-01-29T16:49:52.407Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:49:52.407Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:49:52.407Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:49:52.407Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:49:52.408Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:49:52.415Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:49:52.415Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:49:52.415Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:49:54.677Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300049549d0b769f326e4c7d"}
+2026-01-29T16:49:55.940Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:49:55.949Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:49:55.949Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:49:55.949Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:49:55.949Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:49:56.149Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:49:56.150Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:49:56.150Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:49:56.150Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:49:56.150Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:49:56.150Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:49:56.150Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:49:56.155Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:49:56.155Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:49:56.156Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:49:56.156Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:49:56.157Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:49:56.162Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:49:56.162Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:49:56.162Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:49:56.761Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000495675966a9989e746be"}
+2026-01-29T16:49:57.466Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300049574a78bc56af5b4682"}
+2026-01-29T16:49:57.466Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:49:57.466Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:49:57.466Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:50:00.415Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130005000bbf2a1254cdd4e0b"}
+2026-01-29T16:50:00.683Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:50:00.688Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-29T16:50:00.689Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-29T16:50:00.689Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:50:00.689Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-29T16:50:00.689Z [DEBUG] Writing to temp file: /home/ken/.claude/todos/9b309f75-4a23-423e-9873-f51f5e103771-agent-9b309f75-4a23-423e-9873-f51f5e103771.json.tmp.3251931.1769705400689
+2026-01-29T16:50:00.689Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:50:00.693Z [DEBUG] Temp file written successfully, size: 1190 bytes
+2026-01-29T16:50:00.694Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:50:00.694Z [DEBUG] Renaming /home/ken/.claude/todos/9b309f75-4a23-423e-9873-f51f5e103771-agent-9b309f75-4a23-423e-9873-f51f5e103771.json.tmp.3251931.1769705400689 to /home/ken/.claude/todos/9b309f75-4a23-423e-9873-f51f5e103771-agent-9b309f75-4a23-423e-9873-f51f5e103771.json
+2026-01-29T16:50:00.694Z [DEBUG] File /home/ken/.claude/todos/9b309f75-4a23-423e-9873-f51f5e103771-agent-9b309f75-4a23-423e-9873-f51f5e103771.json written atomically
+2026-01-29T16:50:00.694Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-29T16:50:00.694Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:50:00.694Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-29T16:50:00.698Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:50:00.698Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:50:00.698Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:50:00.698Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:50:00.699Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:50:00.703Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:50:00.703Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:50:00.703Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:50:08.237Z [ERROR] API error (attempt 6/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300050084b2f06671ba441e1"}
+2026-01-29T16:50:10.971Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:50:10.980Z [DEBUG] executePreToolHooks called for tool: Task
+2026-01-29T16:50:10.980Z [DEBUG] Getting matching hook commands for PreToolUse with query: Task
+2026-01-29T16:50:10.980Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:50:10.980Z [DEBUG] Matched 0 unique hooks for query "Task" (0 before deduplication)
+2026-01-29T16:50:10.986Z [DEBUG] Getting matching hook commands for SubagentStart with query: security-agent
+2026-01-29T16:50:10.986Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:50:10.986Z [DEBUG] Matched 0 unique hooks for query "security-agent" (0 before deduplication)
+2026-01-29T16:50:10.996Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:50:10.999Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:50:10.999Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:50:11.000Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:50:18.406Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:50:18.422Z [WARN] [PROMPT CACHE BREAK] system prompt changed (-914 chars) [source=agent:custom, call #82, cache read: 100608 → 12288, creation: 0]
+2026-01-29T16:50:18.441Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:50:18.444Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:50:18.444Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:50:18.444Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:50:21.353Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:50:21.365Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-01-29T16:50:21.365Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:50:21.365Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-01-29T16:50:21.365Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:50:21.366Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-29T16:50:21.366Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:50:21.366Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:50:21.366Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:50:21.475Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:50:21.477Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:50:21.477Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:50:21.480Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:50:21.480Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:50:21.480Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:50:21.481Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:50:22.993Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2026-01-29T16:50:22.993Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:50:22.993Z [DEBUG] Matched 1 unique hooks for query "Glob" (1 before deduplication)
+2026-01-29T16:50:23.002Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:50:23.006Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:50:23.006Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:50:23.007Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:50:23.069Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300050226ddfbf6d8d8e4e0e"}
+2026-01-29T16:50:23.069Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:50:23.069Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:50:23.069Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:50:23.806Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300050234aeb6edf6afd4701"}
+2026-01-29T16:50:27.783Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:50:27.813Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-01-29T16:50:27.814Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-01-29T16:50:27.814Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:50:27.814Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-01-29T16:50:27.814Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:50:27.814Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-29T16:50:27.814Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-01-29T16:50:27.814Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:50:27.814Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-29T16:50:27.814Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:50:27.814Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:50:27.814Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:50:27.828Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:50:27.828Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:50:27.828Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:50:35.886Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2026-01-29T16:50:35.886Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:50:35.886Z [DEBUG] Matched 1 unique hooks for query "Glob" (1 before deduplication)
+2026-01-29T16:50:35.896Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2026-01-29T16:50:35.896Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:50:35.896Z [DEBUG] Matched 1 unique hooks for query "Glob" (1 before deduplication)
+2026-01-29T16:50:35.917Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:50:35.922Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:50:35.922Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:50:35.923Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:50:43.189Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:50:43.240Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-01-29T16:50:43.240Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:50:43.240Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:50:43.240Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-01-29T16:50:43.240Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:50:43.240Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-01-29T16:50:43.240Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:50:43.241Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:50:43.241Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:50:43.241Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:50:43.241Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:50:43.241Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:50:43.241Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:50:43.241Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:50:43.241Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:50:43.241Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:50:43.264Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:50:43.264Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:50:43.264Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:50:43.264Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:50:43.264Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:50:43.264Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:50:43.264Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:50:43.264Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:50:43.264Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:50:50.357Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2026-01-29T16:50:50.357Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:50:50.357Z [DEBUG] Matched 1 unique hooks for query "Glob" (1 before deduplication)
+2026-01-29T16:50:50.373Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:50:50.377Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:50:50.377Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:50:50.377Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:50:54.393Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:50:54.408Z [DEBUG] executePreToolHooks called for tool: Grep
+2026-01-29T16:50:54.408Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:50:54.408Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:50:54.408Z [DEBUG] Getting matching hook commands for PreToolUse with query: Grep
+2026-01-29T16:50:54.408Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:50:54.408Z [DEBUG] Matched 0 unique hooks for query "Grep" (0 before deduplication)
+2026-01-29T16:50:54.408Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:50:54.408Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:50:54.408Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:50:54.408Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:50:54.408Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:50:54.408Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:50:54.419Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:50:54.419Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:50:54.419Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:50:54.419Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:50:54.419Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:50:54.419Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:50:56.208Z [DEBUG] Getting matching hook commands for PostToolUse with query: Grep
+2026-01-29T16:50:56.208Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:50:56.208Z [DEBUG] Matched 1 unique hooks for query "Grep" (1 before deduplication)
+2026-01-29T16:50:56.217Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:50:56.220Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:50:56.220Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:50:56.220Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:50:59.425Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:50:59.443Z [DEBUG] executePreToolHooks called for tool: Grep
+2026-01-29T16:50:59.443Z [DEBUG] Getting matching hook commands for PreToolUse with query: Grep
+2026-01-29T16:50:59.443Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:50:59.443Z [DEBUG] Matched 0 unique hooks for query "Grep" (0 before deduplication)
+2026-01-29T16:50:59.443Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:50:59.443Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:50:59.443Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:50:59.443Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:50:59.451Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:50:59.451Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:50:59.451Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:51:01.784Z [DEBUG] Getting matching hook commands for PostToolUse with query: Grep
+2026-01-29T16:51:01.784Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:51:01.784Z [DEBUG] Matched 1 unique hooks for query "Grep" (1 before deduplication)
+2026-01-29T16:51:01.808Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:51:01.808Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:51:01.808Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:51:01.808Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:51:01.818Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:51:01.820Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:51:01.820Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:51:01.820Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:51:01.820Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:51:01.820Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:51:01.823Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:51:01.823Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:51:03.188Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:51:04.233Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130005104f9c13b7fb06340d4"}
+2026-01-29T16:51:04.234Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:51:04.234Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:51:04.234Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:51:05.745Z [DEBUG] Getting matching hook commands for PostToolUseFailure with query: Bash
+2026-01-29T16:51:05.745Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:51:05.745Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:51:05.751Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:51:05.754Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:51:05.754Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:51:05.755Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:51:08.846Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:51:08.853Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:51:08.854Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:51:08.854Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:51:08.854Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:51:08.855Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:51:08.855Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:51:08.855Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:51:08.856Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:51:09.658Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130005109a36888ba5b2d46e5"}
+2026-01-29T16:51:09.659Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:51:09.659Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:51:09.659Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:51:10.342Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130005110da1c52e7f1544368"}
+2026-01-29T16:51:11.856Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130005111a0d2bce3eb9a43a6"}
+2026-01-29T16:51:13.528Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300051133913171831694437"}
+2026-01-29T16:51:18.155Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:51:18.157Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:51:18.157Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:51:18.159Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:51:18.159Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:51:18.159Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:51:18.159Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:51:18.165Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:51:18.165Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:51:18.165Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:51:18.165Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:51:18.169Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:51:18.169Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:51:18.169Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:51:18.187Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:51:18.193Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:51:18.193Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:51:18.194Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:51:18.870Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300051189fc5b9e31ff64f8a"}
+2026-01-29T16:51:18.870Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:51:18.870Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:51:18.871Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:51:19.872Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300051193b67c65beb9a4651"}
+2026-01-29T16:51:21.609Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130005121ea232061118f472f"}
+2026-01-29T16:51:23.760Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:51:23.779Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:51:23.779Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:51:23.779Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:51:23.779Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:51:27.248Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:51:27.248Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:51:27.248Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:51:27.249Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:51:27.249Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:51:27.249Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:51:27.249Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:51:27.255Z [DEBUG] executePreToolHooks called for tool: Grep
+2026-01-29T16:51:27.255Z [DEBUG] Getting matching hook commands for PreToolUse with query: Grep
+2026-01-29T16:51:27.255Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:51:27.255Z [DEBUG] Matched 0 unique hooks for query "Grep" (0 before deduplication)
+2026-01-29T16:51:29.009Z [DEBUG] Getting matching hook commands for PostToolUse with query: Grep
+2026-01-29T16:51:29.009Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:51:29.009Z [DEBUG] Matched 1 unique hooks for query "Grep" (1 before deduplication)
+2026-01-29T16:51:29.017Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:51:29.021Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:51:29.021Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:51:29.022Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:51:33.805Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:51:45.734Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:51:45.749Z [DEBUG] executePreToolHooks called for tool: Grep
+2026-01-29T16:51:45.749Z [DEBUG] Getting matching hook commands for PreToolUse with query: Grep
+2026-01-29T16:51:45.749Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:51:45.749Z [DEBUG] Matched 0 unique hooks for query "Grep" (0 before deduplication)
+2026-01-29T16:51:45.749Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:51:45.749Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:51:45.749Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:51:45.749Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:51:46.399Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:51:46.399Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:51:46.399Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:51:46.400Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:51:46.400Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:51:46.400Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:51:46.401Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:51:47.464Z [DEBUG] Getting matching hook commands for PostToolUse with query: Grep
+2026-01-29T16:51:47.464Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:51:47.464Z [DEBUG] Matched 1 unique hooks for query "Grep" (1 before deduplication)
+2026-01-29T16:51:47.489Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:51:47.494Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:51:47.494Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:51:47.494Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:51:48.800Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:51:52.144Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:51:52.164Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:51:52.164Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:51:52.165Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:51:52.165Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:51:52.165Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:51:52.165Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:51:52.165Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:51:52.165Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:51:52.172Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:51:52.172Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:51:52.172Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:51:52.289Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:51:52.289Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:51:52.289Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:51:52.290Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:51:52.290Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:51:52.290Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:51:52.290Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:51:52.296Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:51:52.300Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:51:52.300Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:51:52.300Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:51:53.351Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300051524b907c2b94344b80"}
+2026-01-29T16:51:53.351Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:51:53.351Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:51:53.351Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:51:54.363Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000515415c4d7999a714451"}
+2026-01-29T16:51:55.851Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300051558e0041ea10ba420a"}
+2026-01-29T16:51:56.873Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:51:58.399Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000515761850fd5f1aa48a5"}

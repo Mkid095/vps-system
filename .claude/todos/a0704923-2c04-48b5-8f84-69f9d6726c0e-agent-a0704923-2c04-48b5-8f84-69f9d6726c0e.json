@@ -16,12 +16,12 @@
   },
   {
     "content": "Step 7: Data Layer - Implement restore service",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Working on Step 7: Data Layer"
   },
   {
     "content": "Step 10: Security - Add auth and error handling",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Working on Step 10: Security"
   },
   {

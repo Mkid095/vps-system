@@ -1,0 +1,37 @@
+[
+  {
+    "content": "Review and audit restore functionality for security vulnerabilities",
+    "status": "completed",
+    "activeForm": "Reviewing and auditing restore functionality for security vulnerabilities"
+  },
+  {
+    "content": "Fix critical authorization bypass vulnerability (project_id not verified against JWT)",
+    "status": "completed",
+    "activeForm": "Fixing critical authorization bypass vulnerability"
+  },
+  {
+    "content": "Add rate limiting specific to restore operations",
+    "status": "completed",
+    "activeForm": "Adding rate limiting specific to restore operations"
+  },
+  {
+    "content": "Add audit logging for all restore attempts",
+    "status": "completed",
+    "activeForm": "Adding audit logging for all restore attempts"
+  },
+  {
+    "content": "Enhance error messages to prevent information leakage",
+    "status": "completed",
+    "activeForm": "Enhancing error messages to prevent information leakage"
+  },
+  {
+    "content": "Run pnpm run typecheck and fix any errors",
+    "status": "completed",
+    "activeForm": "Running pnpm run typecheck and fixing errors"
+  },
+  {
+    "content": "Document all security improvements made",
+    "status": "in_progress",
+    "activeForm": "Documenting all security improvements made"
+  }
+]

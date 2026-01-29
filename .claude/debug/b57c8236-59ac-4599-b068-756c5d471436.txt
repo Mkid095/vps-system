@@ -3932,3 +3932,6 @@
 2026-01-29T16:40:53.800Z [DEBUG] Stream started - received first chunk
 2026-01-29T16:41:00.951Z [ERROR] API error (attempt 7/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004100a74f704303f64646"}
 2026-01-29T16:41:03.381Z [ERROR] API error (attempt 7/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004103e439c917f95741fd"}
+2026-01-29T16:44:11.699Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-29T16:44:11.699Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-29T16:44:11.699Z [DEBUG] Metrics export disabled by organization setting
