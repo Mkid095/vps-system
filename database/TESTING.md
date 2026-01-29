@@ -180,3 +180,158 @@ Total: 1/1 executed
 psql -c "DROP SCHEMA control_plane CASCADE;"
 psql -c "DROP TABLE schema_migrations;"
 ```
+
+---
+
+# Admin Actions Integration Testing Guide
+
+## Overview
+
+The integration tests for `admin_actions` (US-002) require a running PostgreSQL database with the `control_plane` schema and both `admin_sessions` and `admin_actions` tables created.
+
+## Prerequisites
+
+### 1. Database Setup
+
+Use the same PostgreSQL instance from the audit logs testing above.
+
+### 2. Configure Environment
+
+Ensure your `.env` file is configured (same as audit logs testing):
+
+```bash
+# For local testing with Docker
+DATABASE_URL=postgresql://postgres:password@localhost:5432/postgres
+
+# OR use individual variables
+AUDIT_LOGS_DB_HOST=localhost
+AUDIT_LOGS_DB_PORT=5432
+AUDIT_LOGS_DB_NAME=postgres
+AUDIT_LOGS_DB_USER=postgres
+AUDIT_LOGS_DB_PASSWORD=password
+```
+
+### 3. Run Migrations
+
+```bash
+# Run migrations to create both tables
+pnpm migrate
+
+# Verify migration status - should see 2 migrations
+pnpm migrate:status
+```
+
+Expected output should include:
+- `015_create_admin_sessions_table.sql` ✓ Done
+- `016_create_admin_actions_table.sql` ✓ Done
+
+## Running Tests
+
+### Run All Admin Actions Tests
+
+```bash
+pnpm test:admin-actions
+```
+
+### Run with Verbose Output
+
+```bash
+vitest run src/__tests__/admin-actions.integration.test.ts --reporter=verbose
+```
+
+### Run in Watch Mode
+
+```bash
+vitest src/__tests__/admin-actions.integration.test.ts
+```
+
+## Test Coverage
+
+The integration tests include ~80 comprehensive tests covering:
+
+1. **Migration and Table Structure** (6 tests)
+   - Table existence
+   - Column types and nullability
+   - Schema validation
+
+2. **Creating Actions with Each Action Type** (12 tests)
+   - All 10 action types (unlock_project, override_suspension, force_delete, regenerate_keys, access_project, system_config_change, database_intervention, restore_backup, modify_user, modify_api_key)
+   - NULL constraint validation
+   - Custom action strings
+
+3. **Foreign Key Relationship with admin_sessions** (4 tests)
+   - Foreign key constraint enforcement
+   - Cascade delete behavior
+   - Multiple actions per session
+   - Join queries with sessions
+
+4. **JSONB before_state and after_state Handling** (10 tests)
+   - Simple and complex JSONB objects
+   - NULL values
+   - Nested structures
+   - Arrays and special characters
+   - JSONB field queries
+
+5. **Indexes** (7 tests)
+   - All 6 indexes verified:
+     - idx_admin_actions_session_id
+     - idx_admin_actions_action
+     - idx_admin_actions_target
+     - idx_admin_actions_created_at
+     - idx_admin_actions_session_created (composite)
+     - idx_admin_actions_target_history (composite)
+
+6. **Querying by session_id** (3 tests)
+7. **Querying by target_type and target_id** (4 tests)
+8. **Filters and Pagination** (7 tests)
+9. **Action Type Enumeration** (2 tests)
+10. **Data Integrity and Validation** (4 tests)
+11. **Table and Column Comments** (3 tests)
+12. **Query Patterns** (4 tests)
+13. **Performance** (1 test)
+14. **Foreign Key Constraints** (2 tests)
+15. **Edge Cases** (5 tests)
+
+## Troubleshooting
+
+### Error: Relation "control_plane.admin_actions" does not exist
+
+**Solution:** Run migrations:
+```bash
+pnpm migrate
+```
+
+### Error: Foreign key constraint fails
+
+**Solution:** Ensure `admin_sessions` table exists:
+```bash
+# Check migration status - both 015 and 016 should be applied
+pnpm migrate:status
+```
+
+### Tests timeout
+
+**Solution:** Check database connection:
+```bash
+# Test database connection
+psql -h localhost -U postgres -d postgres -c "SELECT 1"
+```
+
+## Cleanup
+
+Clean up test data (keeps tables):
+
+```bash
+psql -h localhost -U postgres -d postgres -c \
+  "DELETE FROM control_plane.admin_actions WHERE session_id IN
+    (SELECT id FROM control_plane.admin_sessions WHERE admin_id LIKE 'test-admin-%');
+   DELETE FROM control_plane.admin_sessions WHERE admin_id LIKE 'test-admin-%';"
+```
+
+## Notes
+
+- Tests automatically clean up after themselves (beforeEach/afterEach hooks)
+- All test data uses `test-admin-%` prefix for easy identification
+- Tests use Vitest with Node environment
+- Default timeout: 30 seconds (configurable in vitest.config.ts)
+- Tests follow the same patterns as admin-sessions.integration.test.ts

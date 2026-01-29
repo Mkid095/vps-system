@@ -65,13 +65,13 @@ export interface CreateAdminActionInput {
   target_type: string;
 
   /** UUID of the specific resource that was acted upon (optional for system-wide actions) */
-  target_id?: string;
+  target_id?: string | null;
 
   /** Full system state before the action was performed (optional) */
-  before_state?: Record<string, unknown>;
+  before_state?: Record<string, unknown> | null;
 
   /** Full system state after the action was performed (optional) */
-  after_state?: Record<string, unknown>;
+  after_state?: Record<string, unknown> | null;
 }
 
 /**

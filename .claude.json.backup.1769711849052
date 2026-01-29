@@ -60,7 +60,7 @@
     "tengu_react_vulnerability_warning": false,
     "tengu_code_diff_cli": true,
     "tengu_post_compact_survey": false,
-    "tengu_claudeai_mcp_connectors": true,
+    "tengu_claudeai_mcp_connectors": false,
     "enhanced_telemetry_beta": false,
     "tengu_tool_search_unsupported_models": [
       "haiku"
@@ -85,7 +85,8 @@
     "tengu_marble_anvil": true,
     "tengu_coral_fern": false,
     "tengu_system_prompt_global_cache": false,
-    "tengu_workout": false
+    "tengu_workout": false,
+    "tengu_plum_vx3": false
   },
   "userID": "a9182892b82edab57b9a7d0148844b817e9e344e7a52ce06b639391fd4b4fda6",
   "firstStartTime": "2026-01-24T11:43:21.492Z",
@@ -422,12 +423,12 @@
       "lastUsedAt": 1769607304950
     },
     "flow-work-story": {
-      "usageCount": 96,
-      "lastUsedAt": 1769707072177
+      "usageCount": 99,
+      "lastUsedAt": 1769710533722
     },
     "create-story-memory": {
-      "usageCount": 60,
-      "lastUsedAt": 1769706996971
+      "usageCount": 63,
+      "lastUsedAt": 1769710483781
     },
     "consolidate-memory": {
       "usageCount": 1,

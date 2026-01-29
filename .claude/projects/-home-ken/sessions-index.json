@@ -1407,18 +1407,6 @@
       "isSidechain": false
     },
     {
-      "sessionId": "d5a605f7-6d1b-4e01-aaa5-8bc8805373b5",
-      "fullPath": "/home/ken/.claude/projects/-home-ken/d5a605f7-6d1b-4e01-aaa5-8bc8805373b5.jsonl",
-      "fileMtime": 1769706968963,
-      "firstPrompt": "<command-message>flow-work-story</command-message> <command-name>/flow-work-story</command-name> <command-args>docs/prd-backup-strategy.json US-010</command-args>",
-      "messageCount": 8,
-      "created": "2026-01-29T16:52:53.459Z",
-      "modified": "2026-01-29T17:16:08.957Z",
-      "gitBranch": "master",
-      "projectPath": "/home/ken",
-      "isSidechain": false
-    },
-    {
       "sessionId": "a0704923-2c04-48b5-8f84-69f9d6726c0e",
       "fullPath": "/home/ken/.claude/projects/-home-ken/a0704923-2c04-48b5-8f84-69f9d6726c0e.jsonl",
       "fileMtime": 1769705832394,
@@ -1426,6 +1414,66 @@
       "messageCount": 16,
       "created": "2026-01-29T15:58:03.316Z",
       "modified": "2026-01-29T16:57:12.389Z",
+      "gitBranch": "master",
+      "projectPath": "/home/ken",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "8f3f16c8-06fc-4af1-af6b-48c52c841754",
+      "fullPath": "/home/ken/.claude/projects/-home-ken/8f3f16c8-06fc-4af1-af6b-48c52c841754.jsonl",
+      "fileMtime": 1769707965342,
+      "firstPrompt": "<command-message>flow-work-story</command-message> <command-name>/flow-work-story</command-name> <command-args>docs/prd-backup-strategy.json US-009</command-args>",
+      "messageCount": 17,
+      "created": "2026-01-29T17:17:52.193Z",
+      "modified": "2026-01-29T17:32:45.338Z",
+      "gitBranch": "master",
+      "projectPath": "/home/ken",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "d5a605f7-6d1b-4e01-aaa5-8bc8805373b5",
+      "fullPath": "/home/ken/.claude/projects/-home-ken/d5a605f7-6d1b-4e01-aaa5-8bc8805373b5.jsonl",
+      "fileMtime": 1769707828575,
+      "firstPrompt": "<command-message>flow-work-story</command-message> <command-name>/flow-work-story</command-name> <command-args>docs/prd-backup-strategy.json US-010</command-args>",
+      "messageCount": 9,
+      "created": "2026-01-29T16:52:53.459Z",
+      "modified": "2026-01-29T17:30:28.574Z",
+      "gitBranch": "master",
+      "projectPath": "/home/ken",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "d29a020a-1120-4b21-813b-1bebe1b90574",
+      "fullPath": "/home/ken/.claude/projects/-home-ken/d29a020a-1120-4b21-813b-1bebe1b90574.jsonl",
+      "fileMtime": 1769709556552,
+      "firstPrompt": "<command-message>flow-work-story</command-message> <command-name>/flow-work-story</command-name> <command-args>docs/prd-break-glass.json US-001</command-args>",
+      "messageCount": 13,
+      "created": "2026-01-29T17:33:18.097Z",
+      "modified": "2026-01-29T17:59:16.549Z",
+      "gitBranch": "master",
+      "projectPath": "/home/ken",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "ea75fc24-212e-4774-a4c4-a2df08c6faba",
+      "fullPath": "/home/ken/.claude/projects/-home-ken/ea75fc24-212e-4774-a4c4-a2df08c6faba.jsonl",
+      "fileMtime": 1769710511018,
+      "firstPrompt": "<command-message>flow-work-story</command-message> <command-name>/flow-work-story</command-name> <command-args>docs/prd-background-jobs.json US-004</command-args>",
+      "messageCount": 2,
+      "created": "2026-01-29T17:59:37.885Z",
+      "modified": "2026-01-29T18:15:11.016Z",
+      "gitBranch": "master",
+      "projectPath": "/home/ken",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "c314cb5e-54ee-4b75-8156-2237b7b8cb9c",
+      "fullPath": "/home/ken/.claude/projects/-home-ken/c314cb5e-54ee-4b75-8156-2237b7b8cb9c.jsonl",
+      "fileMtime": 1769711914375,
+      "firstPrompt": "<command-message>flow-work-story</command-message> <command-name>/flow-work-story</command-name> <command-args>docs/prd-background-jobs.json US-004</command-args>",
+      "messageCount": 8,
+      "created": "2026-01-29T18:15:33.746Z",
+      "modified": "2026-01-29T18:38:34.360Z",
       "gitBranch": "master",
       "projectPath": "/home/ken",
       "isSidechain": false

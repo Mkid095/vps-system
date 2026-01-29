@@ -60,7 +60,7 @@
     "tengu_react_vulnerability_warning": false,
     "tengu_code_diff_cli": true,
     "tengu_post_compact_survey": false,
-    "tengu_claudeai_mcp_connectors": true,
+    "tengu_claudeai_mcp_connectors": false,
     "enhanced_telemetry_beta": false,
     "tengu_tool_search_unsupported_models": [
       "haiku"
@@ -423,12 +423,12 @@
       "lastUsedAt": 1769607304950
     },
     "flow-work-story": {
-      "usageCount": 96,
-      "lastUsedAt": 1769707072177
+      "usageCount": 98,
+      "lastUsedAt": 1769709577869
     },
     "create-story-memory": {
-      "usageCount": 61,
-      "lastUsedAt": 1769707922361
+      "usageCount": 63,
+      "lastUsedAt": 1769710483781
     },
     "consolidate-memory": {
       "usageCount": 1,
