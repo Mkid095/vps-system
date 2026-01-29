@@ -1,0 +1,42 @@
+---
+memoryVersion: 1
+storyId: US-003
+storyTitle: Create Backup History Table
+completedDate: 2026-01-29
+---
+
+STORY: US-003 - Create Backup History Table
+========================
+
+DESCRIPTION:
+As a platform engineer, I want backup history tracked so that I can see all backups.
+
+MAVEN STEPS COMPLETED: [1, 2, 7]
+
+IMPLEMENTATION SUMMARY:
+Created a comprehensive backup history tracking system in the control_plane schema. Implemented database migration, TypeScript types, and full CRUD data layer service for managing backup records with 30-day retention policy.
+
+KEY FILES:
+- database/migrations/009_create_backups_table.sql - Migration for backups table
+- database/types/backups.types.ts - TypeScript interfaces and enums
+- database/src/index.ts - Export backup types
+- api-gateway/src/lib/backups/backups.service.ts - CRUD service (8 functions)
+- api-gateway/src/lib/backups/index.ts - Module exports
+
+DECISIONS MADE:
+- Placed table in control_plane schema (not tenant schemas) for cross-project visibility
+- Used CHECK constraint for type enum (database, storage, logs)
+- Default 30-day expiration with expires_at computed column
+- Composite index on (project_id, created_at) for common query patterns
+- Parameterized queries throughout for SQL injection prevention
+
+INTEGRATION POINTS:
+- Uses @nextmavens/audit-logs-database package for type sharing
+- Connects to control_plane database connection (not tenant connections)
+- Will be used by US-004 (Record Backup in History) and US-005 (Backup UI)
+
+LESSONS LEARNED:
+- Backup records need to reference external storage (file_id for Telegram)
+- Size tracking in bytes for storage monitoring
+- Expiration logic needed for retention policy cleanup
+- Separate database connection required for control_plane vs tenant schemas

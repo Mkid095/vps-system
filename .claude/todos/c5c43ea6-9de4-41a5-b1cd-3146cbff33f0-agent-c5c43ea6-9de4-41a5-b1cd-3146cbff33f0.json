@@ -1,0 +1,22 @@
+[
+  {
+    "content": "Process Step 5 - Quality: Create backup documentation",
+    "status": "completed",
+    "activeForm": "Processing Step 5 - Quality"
+  },
+  {
+    "content": "Process Step 10 - Security: Validate documentation completeness",
+    "status": "completed",
+    "activeForm": "Processing Step 10 - Security"
+  },
+  {
+    "content": "Run typecheck",
+    "status": "completed",
+    "activeForm": "Running typecheck"
+  },
+  {
+    "content": "Mark US-007 complete and commit",
+    "status": "in_progress",
+    "activeForm": "Marking US-007 complete and committing"
+  }
+]

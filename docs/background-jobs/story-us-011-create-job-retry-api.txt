@@ -1,0 +1,43 @@
+---
+memoryVersion: 1
+storyId: US-011
+storyTitle: Create Job Retry API
+completedDate: 2026-01-29
+---
+
+STORY: US-011 - Create Job Retry API
+========================
+
+DESCRIPTION:
+As a platform operator, I want to retry failed jobs via API so that I can recover from transient failures.
+
+MAVEN STEPS COMPLETED: [1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Created Job Retry API endpoint (POST /api/jobs/:id/retry) with database layer function retryJob().
+Added critical security fix: project ownership verification via project_id column to prevent cross-project job access.
+Implemented audit logging for all retry operations.
+
+KEY FILES:
+- database/migrations/008_add_project_id_to_jobs.sql - Database migration for project_id column
+- database/src/jobs/retry.ts - retryJob() function with authorization check
+- database/types/jobs.types.ts - Updated Job interface with project_id
+- api-gateway/src/api/routes/jobs/jobs.controller.ts - retryJobEndpoint controller
+- api-gateway/src/api/routes/jobs/__tests__/jobs-api.integration.test.ts - Integration tests
+
+DECISIONS MADE:
+- Added project_id as NOT NULL column with foreign key to projects table
+- Returns generic "Job not found" for authorization failures (prevents information leakage)
+- Audit logging using ActorType.PROJECT and TargetType.JOB
+- JWT authentication required with projectId claim
+
+INTEGRATION POINTS:
+- Uses control_plane.jobs table from US-001
+- Integrates with JWT middleware for authentication
+- Uses @nextmavens/audit-logs-database for audit logging
+
+LESSONS LEARNED:
+- Critical security vulnerability found: authorization bypass - any user could retry any job
+- Authorization must check project ownership at database level, not just API level
+- Generic error messages prevent attackers from discovering valid job IDs
+- Submodule commits require separate git operations (database and api-gateway are submodules)

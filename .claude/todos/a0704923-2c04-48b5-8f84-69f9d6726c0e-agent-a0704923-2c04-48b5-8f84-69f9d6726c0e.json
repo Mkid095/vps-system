@@ -1,0 +1,32 @@
+[
+  {
+    "content": "Process US-006 - Implement Restore from Backup",
+    "status": "in_progress",
+    "activeForm": "Processing US-006 - Implement Restore from Backup"
+  },
+  {
+    "content": "Step 1: Foundation - Create restore endpoint and types",
+    "status": "completed",
+    "activeForm": "Working on Step 1: Foundation"
+  },
+  {
+    "content": "Step 2: Package Manager - Install dependencies",
+    "status": "completed",
+    "activeForm": "Working on Step 2: Package Manager"
+  },
+  {
+    "content": "Step 7: Data Layer - Implement restore service",
+    "status": "in_progress",
+    "activeForm": "Working on Step 7: Data Layer"
+  },
+  {
+    "content": "Step 10: Security - Add auth and error handling",
+    "status": "pending",
+    "activeForm": "Working on Step 10: Security"
+  },
+  {
+    "content": "Run typecheck and mark story complete",
+    "status": "pending",
+    "activeForm": "Running typecheck and completing story"
+  }
+]

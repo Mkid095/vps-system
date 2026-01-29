@@ -1,0 +1,47 @@
+---
+memoryVersion: 1
+storyId: US-010
+storyTitle: Create Job Status API
+completedDate: 2026-01-29
+---
+
+STORY: US-010 - Create Job Status API
+====================================
+
+DESCRIPTION:
+As a developer, I want to query job status via API so that I can monitor async operations.
+
+MAVEN STEPS COMPLETED:
+[1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Created GET /api/jobs/:id endpoint for querying job status with JWT authentication and rate limiting. Uses existing getJob() data layer function from database package. Includes comprehensive security audit and 32+ integration tests.
+
+KEY FILES:
+- api-gateway/src/api/routes/jobs/jobs.types.ts - TypeScript type definitions
+- api-gateway/src/api/routes/jobs/jobs.controller.ts - getJobStatus() controller (231 lines)
+- api-gateway/src/api/routes/jobs/index.ts - Route configuration with auth/rate limiting
+- api-gateway/src/api/routes/jobs/__tests__/jobs-api.integration.test.ts - Integration tests (978 lines, 32+ tests)
+- database/src/jobs/queue.ts - getJob() function (existing)
+- database/src/jobs/retry.ts - retryJob() function (existing)
+
+DECISIONS MADE:
+- Used existing getJob() function from database package (no new data layer needed)
+- UUID v4 validation before database query for performance
+- Rate limiting applied before JWT auth to prevent DoS
+- Generic error messages to prevent information leakage
+- Separate retry endpoint (POST /api/jobs/:id/retry) for operational flexibility
+
+INTEGRATION POINTS:
+- Uses getJob() from @nextmavens/audit-logs-database package
+- Uses JWT auth middleware from @/api/middleware/jwt.middleware.js
+- Uses rate limiting from @/api/middleware/rate-limiter.middleware.js
+- Reads from control_plane.jobs table (created in US-001)
+- Follows same patterns as audit-logs API routes
+
+LESSONS LEARNED:
+- Database package already had getJob() function - check existing exports first
+- Integration tests should cover both success and security scenarios
+- Security audit needs to verify: JWT auth, rate limiting, input validation, SQL injection protection
+- Generic error messages prevent information leakage about job existence
+- UUID validation before DB query prevents unnecessary database load

@@ -1,0 +1,27 @@
+[
+  {
+    "content": "Step 1: Create backup_history database table and types",
+    "status": "completed",
+    "activeForm": "Creating backup_history database table and types"
+  },
+  {
+    "content": "Step 2: Create backup history recording functions",
+    "status": "completed",
+    "activeForm": "Creating backup history recording functions"
+  },
+  {
+    "content": "Step 7: Integrate backup recording into export-backup handler",
+    "status": "completed",
+    "activeForm": "Integrating backup recording into export-backup handler"
+  },
+  {
+    "content": "Step 10: Security audit for backup history feature",
+    "status": "completed",
+    "activeForm": "Running security audit for backup history feature"
+  },
+  {
+    "content": "Typecheck and commit changes",
+    "status": "in_progress",
+    "activeForm": "Running typecheck and committing changes"
+  }
+]

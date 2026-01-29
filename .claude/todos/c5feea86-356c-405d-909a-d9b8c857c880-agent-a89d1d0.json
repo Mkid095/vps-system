@@ -1,0 +1,42 @@
+[
+  {
+    "content": "Review authentication implementation",
+    "status": "completed",
+    "activeForm": "Reviewing authentication implementation"
+  },
+  {
+    "content": "Review authorization implementation (can any user retry any job?)",
+    "status": "completed",
+    "activeForm": "Reviewing authorization implementation"
+  },
+  {
+    "content": "Review input validation and SQL injection protection",
+    "status": "completed",
+    "activeForm": "Reviewing input validation and SQL injection protection"
+  },
+  {
+    "content": "Review error handling for information leakage",
+    "status": "completed",
+    "activeForm": "Reviewing error handling for information leakage"
+  },
+  {
+    "content": "Review rate limiting implementation",
+    "status": "completed",
+    "activeForm": "Reviewing rate limiting implementation"
+  },
+  {
+    "content": "Review audit logging",
+    "status": "completed",
+    "activeForm": "Reviewing audit logging"
+  },
+  {
+    "content": "Create security audit report",
+    "status": "completed",
+    "activeForm": "Creating security audit report"
+  },
+  {
+    "content": "Fix critical security issues if found",
+    "status": "pending",
+    "activeForm": "Fixing critical security issues if found"
+  }
+]

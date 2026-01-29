@@ -1,0 +1,47 @@
+[
+  {
+    "content": "Acquire story lock for US-005",
+    "status": "completed",
+    "activeForm": "Acquiring story lock for US-005"
+  },
+  {
+    "content": "Read story US-005 details from PRD",
+    "status": "completed",
+    "activeForm": "Reading story US-005 details from PRD"
+  },
+  {
+    "content": "Load memory from related PRDs",
+    "status": "completed",
+    "activeForm": "Loading memory from related PRDs"
+  },
+  {
+    "content": "Load memory from previous stories",
+    "status": "completed",
+    "activeForm": "Loading memory from previous stories"
+  },
+  {
+    "content": "Process Maven Step 5 with quality-agent",
+    "status": "completed",
+    "activeForm": "Processing Maven Step 5 with quality-agent"
+  },
+  {
+    "content": "Process Maven Step 10 with security-agent",
+    "status": "completed",
+    "activeForm": "Processing Maven Step 10 with security-agent"
+  },
+  {
+    "content": "Run typecheck and verify",
+    "status": "completed",
+    "activeForm": "Running typecheck and verifying"
+  },
+  {
+    "content": "Mark story complete and commit",
+    "status": "in_progress",
+    "activeForm": "Marking story complete and committing"
+  },
+  {
+    "content": "Create story memory",
+    "status": "pending",
+    "activeForm": "Creating story memory"
+  }
+]
