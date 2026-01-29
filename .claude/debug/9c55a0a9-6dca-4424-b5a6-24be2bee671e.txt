@@ -4632,3 +4632,506 @@
 2026-01-29T13:41:42.163Z [ERROR] API error (attempt 9/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012921414104539f6c30384cca"}
 2026-01-29T13:41:50.182Z [ERROR] API error (attempt 9/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292141499ed1646df6c94bdc"}
 2026-01-29T13:41:50.514Z [ERROR] API error (attempt 9/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214150086a763e185e494e"}
+2026-01-29T13:42:16.340Z [ERROR] API error (attempt 10/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292142163bfb9c0c927b4b8d"}
+2026-01-29T13:42:26.518Z [ERROR] API error (attempt 10/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214226b04beb60bf034c4d"}
+2026-01-29T13:42:28.995Z [ERROR] API error (attempt 10/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214228ddb1db95f1664497"}
+2026-01-29T13:42:56.760Z [ERROR] API error (attempt 11/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214256c584cd25274541ca"}
+2026-01-29T13:42:56.760Z [ERROR] Error in non-streaming fallback: 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214256c584cd25274541ca"}
+2026-01-29T13:42:56.760Z [ERROR] Error: Error: 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214256c584cd25274541ca"}
+    at generate (/$bunfs/root/claude:144:37865)
+    at makeRequest (/$bunfs/root/claude:161:5435)
+    at processTicksAndRejections (native:7:39)
+2026-01-29T13:43:03.367Z [ERROR] API error (attempt 11/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292143035adfbb48464b4fab"}
+2026-01-29T13:43:03.367Z [ERROR] Error in non-streaming fallback: 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292143035adfbb48464b4fab"}
+2026-01-29T13:43:03.367Z [ERROR] Error: Error: 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292143035adfbb48464b4fab"}
+    at generate (/$bunfs/root/claude:144:37865)
+    at makeRequest (/$bunfs/root/claude:161:5435)
+    at processTicksAndRejections (native:7:39)
+2026-01-29T13:43:04.272Z [ERROR] API error (attempt 11/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214304201c43286b7f4f54"}
+2026-01-29T13:43:04.272Z [ERROR] Error in non-streaming fallback: 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214304201c43286b7f4f54"}
+2026-01-29T13:43:04.272Z [ERROR] Error: Error: 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214304201c43286b7f4f54"}
+    at generate (/$bunfs/root/claude:144:37865)
+    at makeRequest (/$bunfs/root/claude:161:5435)
+    at processTicksAndRejections (native:7:39)
+2026-01-29T13:43:04.360Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:43:04.360Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:43:04.360Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:43:04.361Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T13:43:04.361Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T13:43:04.361Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T13:43:04.361Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:43:04.371Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T13:43:04.371Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T13:43:04.371Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T13:43:04.371Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T13:43:04.372Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:43:04.376Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:43:04.376Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:43:04.377Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:43:05.187Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214304e04e93fd75324d21"}
+2026-01-29T13:43:05.187Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:43:05.187Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:43:05.187Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:43:06.196Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012921430520d521dfc12a43d0"}
+2026-01-29T13:43:07.700Z [DEBUG] Stream started - received first chunk
+2026-01-29T13:43:07.715Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T13:43:07.715Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T13:43:07.715Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T13:43:07.715Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T13:43:07.824Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:43:07.824Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:43:07.824Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:43:07.825Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T13:43:07.825Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T13:43:07.825Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T13:43:07.825Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:43:07.830Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T13:43:07.830Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T13:43:07.830Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T13:43:07.830Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T13:43:07.831Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:43:07.839Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:43:07.839Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:43:07.840Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:43:08.879Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012921430736950367e36f442c"}
+2026-01-29T13:43:10.898Z [DEBUG] Stream started - received first chunk
+2026-01-29T13:43:10.909Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T13:43:10.909Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T13:43:10.909Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T13:43:10.909Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T13:43:10.936Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:43:10.936Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:43:10.936Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:43:10.936Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:43:10.936Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:43:10.937Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:43:10.937Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:43:10.937Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:43:10.937Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:43:10.943Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:43:10.943Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:43:10.943Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:43:11.106Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214309f31492113af348a9"}
+2026-01-29T13:43:11.106Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:43:11.106Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:43:11.107Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:43:11.309Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292143110f169d386dfb435f"}
+2026-01-29T13:43:11.880Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292143111542bb1b171144a1"}
+2026-01-29T13:43:11.881Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:43:11.881Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:43:11.881Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:43:12.093Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292143114f604e13464c4f06"}
+2026-01-29T13:43:12.093Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:43:12.093Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:43:12.093Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:43:12.114Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292143117fd65f8b31764287"}
+2026-01-29T13:43:12.115Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:43:12.115Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:43:12.115Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:43:12.664Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214312b9c602e3855a42bb"}
+2026-01-29T13:43:12.742Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292143125f37e7cd8c3b4332"}
+2026-01-29T13:43:12.789Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214312166daf80068c449e"}
+2026-01-29T13:43:13.690Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214313fe54fb2c3e0b4c86"}
+2026-01-29T13:43:13.864Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012921431387659be0589949c6"}
+2026-01-29T13:43:14.037Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214313468e1977e3f049fe"}
+2026-01-29T13:43:14.067Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012921431320734929478444d7"}
+2026-01-29T13:43:14.240Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292143131e3438b4900d4f7c"}
+2026-01-29T13:43:15.850Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012921431568f9d79bbebf44f0"}
+2026-01-29T13:43:15.886Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214315f25ed2f29d994eeb"}
+2026-01-29T13:43:15.992Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214315c7b7165d855c4c86"}
+2026-01-29T13:43:16.563Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012921431655d616269d754f70"}
+2026-01-29T13:43:18.486Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292143183c6b383602e141a6"}
+2026-01-29T13:43:18.798Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214318cee8250e9af74f66"}
+2026-01-29T13:43:19.104Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292143180365208bcebb4189"}
+2026-01-29T13:43:19.190Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292143189e01df66d16d49f2"}
+2026-01-29T13:43:19.633Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214319e6b6ecdaba6a44ce"}
+2026-01-29T13:43:21.679Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214321cc826b4a2e1a4bda"}
+2026-01-29T13:43:24.048Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214323c305e31e92ba4748"}
+2026-01-29T13:43:24.135Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214323742817ea9cf242fb"}
+2026-01-29T13:43:24.154Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214323a7aa8d10ecaf4237"}
+2026-01-29T13:43:27.894Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214327c96aab1841bd4b8b"}
+2026-01-29T13:43:30.100Z [ERROR] API error (attempt 6/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292143290cc7062bdc0e4c33"}
+2026-01-29T13:43:33.569Z [ERROR] API error (attempt 6/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214333e9f9f72e2c074c8c"}
+2026-01-29T13:43:34.645Z [ERROR] API error (attempt 6/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214334dd0174d2e02b41d3"}
+2026-01-29T13:43:35.700Z [ERROR] API error (attempt 6/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292143354e4b1a64b50b4002"}
+2026-01-29T13:43:37.158Z [ERROR] API error (attempt 6/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012921433681f03f691eff472e"}
+2026-01-29T13:43:49.889Z [ERROR] API error (attempt 7/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292143488afe6940d2b34b85"}
+2026-01-29T13:43:50.831Z [ERROR] API error (attempt 7/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214350ecb71be2db2b4afa"}
+2026-01-29T13:43:53.252Z [ERROR] API error (attempt 7/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012921435275735e783c644eaf"}
+2026-01-29T13:43:58.063Z [ERROR] API error (attempt 7/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292143573d8bbd8608b549c7"}
+2026-01-29T13:43:58.379Z [ERROR] API error (attempt 7/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214358fd9c2331a9914a82"}
+2026-01-29T13:44:05.771Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-29T13:44:05.771Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-29T13:44:05.771Z [DEBUG] Metrics export disabled by organization setting
+2026-01-29T13:44:24.160Z [ERROR] API error (attempt 8/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012921442304c741a0100e4cfd"}
+2026-01-29T13:44:27.612Z [ERROR] API error (attempt 8/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292144273b4d69262c234a3f"}
+2026-01-29T13:44:31.455Z [ERROR] API error (attempt 8/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214430b95f457bff3a4e84"}
+2026-01-29T13:44:37.415Z [ERROR] API error (attempt 8/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214437b9f93c44a561467c"}
+2026-01-29T13:45:05.855Z [ERROR] API error (attempt 9/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214505becb5d7758394401"}
+2026-01-29T13:45:09.027Z [ERROR] API error (attempt 9/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214508d54c7127a66a444f"}
+2026-01-29T13:45:16.675Z [ERROR] API error (attempt 9/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214516cff10a251dbe4551"}
+2026-01-29T13:45:43.157Z [ERROR] API error (attempt 10/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292145424a8501b17ef84698"}
+2026-01-29T13:45:50.544Z [ERROR] API error (attempt 10/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214550bc7f7758dde44d95"}
+2026-01-29T13:46:21.933Z [ERROR] API error (attempt 11/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214620d539d76ed53340cd"}
+2026-01-29T13:46:21.933Z [ERROR] Error in non-streaming fallback: 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214620d539d76ed53340cd"}
+2026-01-29T13:46:21.933Z [ERROR] Error: Error: 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214620d539d76ed53340cd"}
+    at generate (/$bunfs/root/claude:144:37865)
+    at makeRequest (/$bunfs/root/claude:161:5435)
+    at processTicksAndRejections (native:7:39)
+2026-01-29T13:46:29.142Z [ERROR] API error (attempt 11/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292146288c23436cc402471d"}
+2026-01-29T13:46:29.142Z [ERROR] Error in non-streaming fallback: 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292146288c23436cc402471d"}
+2026-01-29T13:46:29.142Z [ERROR] Error: Error: 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292146288c23436cc402471d"}
+    at generate (/$bunfs/root/claude:144:37865)
+    at makeRequest (/$bunfs/root/claude:161:5435)
+    at processTicksAndRejections (native:7:39)
+2026-01-29T13:46:29.683Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:46:29.685Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:46:29.685Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:46:29.685Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T13:46:29.685Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T13:46:29.685Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T13:46:29.686Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:46:29.695Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T13:46:29.695Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T13:46:29.695Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T13:46:29.695Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T13:46:29.698Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:46:29.703Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:46:29.704Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:46:29.706Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:46:31.523Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292146307673676de28e40ed"}
+2026-01-29T13:46:31.523Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:46:31.523Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:46:31.524Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:46:32.700Z [DEBUG] Stream started - received first chunk
+2026-01-29T13:46:32.705Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T13:46:32.705Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T13:46:32.705Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T13:46:32.705Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T13:46:32.776Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292146328876c4b218f3411b"}
+2026-01-29T13:46:32.789Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:46:32.790Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:46:32.790Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:46:32.790Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T13:46:32.790Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T13:46:32.790Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T13:46:32.791Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:46:32.802Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T13:46:32.802Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T13:46:32.802Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T13:46:32.802Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T13:46:32.803Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:46:32.807Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:46:32.807Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:46:32.807Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:46:33.595Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214633cc08b51c8f8147c2"}
+2026-01-29T13:46:33.595Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:46:33.595Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:46:33.595Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:46:34.502Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214634efe21db15709483e"}
+2026-01-29T13:46:34.589Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292146346968d14b33a042d3"}
+2026-01-29T13:46:35.771Z [DEBUG] Stream started - received first chunk
+2026-01-29T13:46:35.783Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T13:46:35.784Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T13:46:35.784Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T13:46:35.784Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T13:46:35.787Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:46:35.787Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:46:35.787Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:46:35.788Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:46:36.366Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292146365bb38ba1611243ec"}
+2026-01-29T13:46:36.524Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292146366d05130c00ae4ce4"}
+2026-01-29T13:46:36.524Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:46:36.524Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:46:36.524Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:46:36.754Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214636cfa505495b6f4c20"}
+2026-01-29T13:46:37.417Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012921463730766e87d95a4ce9"}
+2026-01-29T13:46:38.520Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214638e3b062696bd842c8"}
+2026-01-29T13:46:38.734Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214638a9a92b7ab7f1495e"}
+2026-01-29T13:46:40.664Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214640178fd64d7a2c4fb7"}
+2026-01-29T13:46:40.766Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292146408f320fd7f4a24bb0"}
+2026-01-29T13:46:42.493Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214642ce0fb2d1e9f04088"}
+2026-01-29T13:46:44.665Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214644d57a9d52a60d42f0"}
+2026-01-29T13:46:47.430Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292146471c9d0efa790b488b"}
+2026-01-29T13:46:50.190Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214649998f91118c3342b4"}
+2026-01-29T13:46:51.354Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012921465091022c3c5a2d4bfd"}
+2026-01-29T13:46:58.165Z [ERROR] API error (attempt 6/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292146578c76eb282a8b4b01"}
+2026-01-29T13:47:00.505Z [ERROR] API error (attempt 6/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292147005d4ffe2d1f2a49df"}
+2026-01-29T13:47:04.702Z [ERROR] API error (attempt 6/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214704e613dc20e6b44efe"}
+2026-01-29T13:47:16.200Z [ERROR] API error (attempt 7/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214715e4f4fbc23ebe453c"}
+2026-01-29T13:47:20.308Z [ERROR] API error (attempt 7/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292147194d0848cf1eba4eb5"}
+2026-01-29T13:47:23.500Z [ERROR] API error (attempt 7/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012921472304b8c5c005b84cb4"}
+2026-01-29T13:47:49.163Z [ERROR] API error (attempt 8/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214748e2c2789450524673"}
+2026-01-29T13:48:00.576Z [ERROR] API error (attempt 8/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214800896ea1ae924e41dd"}
+2026-01-29T13:48:00.969Z [ERROR] API error (attempt 8/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292148009f2415b0901c4d85"}
+2026-01-29T13:48:24.325Z [ERROR] API error (attempt 9/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292148249fe061a46d3f42cb"}
+2026-01-29T13:48:36.127Z [ERROR] API error (attempt 9/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214835b940acb176a94c25"}
+2026-01-29T13:48:38.566Z [ERROR] API error (attempt 9/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214838c714652cfb7f4703"}
+2026-01-29T13:48:59.691Z [ERROR] API error (attempt 10/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214858be5d0f750ebc4143"}
+2026-01-29T13:49:05.772Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-29T13:49:05.772Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-29T13:49:05.772Z [DEBUG] Metrics export disabled by organization setting
+2026-01-29T13:49:11.607Z [ERROR] API error (attempt 10/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292149119b2e066a95384e2a"}
+2026-01-29T13:49:15.391Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:49:15.392Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:15.392Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:15.393Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T13:49:15.393Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T13:49:15.393Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T13:49:15.393Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:15.400Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T13:49:15.400Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T13:49:15.400Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T13:49:15.400Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T13:49:15.402Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:49:15.407Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:15.407Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:15.408Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:16.941Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292149168cb36a7d2f6b4b2e"}
+2026-01-29T13:49:16.941Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:16.941Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:16.941Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:17.839Z [DEBUG] Stream started - received first chunk
+2026-01-29T13:49:17.846Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T13:49:17.847Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T13:49:17.847Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T13:49:17.847Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T13:49:18.214Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:49:18.215Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:18.215Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:18.216Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T13:49:18.216Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T13:49:18.216Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T13:49:18.217Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:18.222Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T13:49:18.222Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T13:49:18.223Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T13:49:18.223Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T13:49:18.224Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:49:18.229Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:18.229Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:18.229Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:18.339Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012921491862c2928aea08420d"}
+2026-01-29T13:49:19.789Z [DEBUG] Stream started - received first chunk
+2026-01-29T13:49:19.844Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214918f1ab91f4d8e84e47"}
+2026-01-29T13:49:19.844Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:19.844Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:19.844Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:19.959Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214919a1da3d144268460f"}
+2026-01-29T13:49:20.481Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292149209b1bfe4319db4036"}
+2026-01-29T13:49:20.711Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T13:49:20.711Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T13:49:20.711Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T13:49:20.711Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T13:49:20.800Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:49:20.801Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:20.801Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:20.801Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T13:49:20.801Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T13:49:20.801Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T13:49:20.802Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:20.806Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T13:49:20.806Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T13:49:20.806Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T13:49:20.806Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T13:49:20.808Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:49:20.811Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:20.811Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:20.811Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:21.359Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292149218c8af245c209403a"}
+2026-01-29T13:49:22.391Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214921f125763bb06e43c5"}
+2026-01-29T13:49:22.729Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214921a5ee2ffa54034e14"}
+2026-01-29T13:49:22.729Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:22.729Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:22.729Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:23.039Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214922de91211d01fc4117"}
+2026-01-29T13:49:23.444Z [DEBUG] Stream started - received first chunk
+2026-01-29T13:49:23.455Z [DEBUG] executePreToolHooks called for tool: Skill
+2026-01-29T13:49:23.455Z [DEBUG] Getting matching hook commands for PreToolUse with query: Skill
+2026-01-29T13:49:23.455Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T13:49:23.455Z [DEBUG] Matched 0 unique hooks for query "Skill" (0 before deduplication)
+2026-01-29T13:49:23.458Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.517488.1769694563457
+2026-01-29T13:49:23.458Z [DEBUG] Preserving file permissions: 100600
+2026-01-29T13:49:23.459Z [DEBUG] Temp file written successfully, size: 14960 bytes
+2026-01-29T13:49:23.459Z [DEBUG] Applied original permissions to temp file
+2026-01-29T13:49:23.459Z [DEBUG] Renaming /home/ken/.claude.json.tmp.517488.1769694563457 to /home/ken/.claude.json
+2026-01-29T13:49:23.459Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-29T13:49:23.460Z [DEBUG] Metadata string for create-story-memory:
+2026-01-29T13:49:23.460Z [DEBUG] <command-message>create-story-memory</command-message>
+<command-name>/create-story-memory</command-name>
+<command-args>/home/ken/docs/prd-auth-user-manager.json US-006</command-args>
+2026-01-29T13:49:23.460Z [DEBUG] command-message tags in metadata: 1
+2026-01-29T13:49:23.460Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T13:49:23.460Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T13:49:23.460Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T13:49:23.460Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T13:49:23.460Z [DEBUG] processPromptSlashCommand creating 3 messages for create-story-memory
+2026-01-29T13:49:23.460Z [DEBUG] Message 1: <command-message>create-story-memory</command-message>
+<command-name>/create-story-memory</command-name>
+<command-args>/home/ken/docs/prd-auth-user-manager.json US-006</command-args>
+2026-01-29T13:49:23.460Z [DEBUG] Message 2 [META]: [{"type":"text","text":"# Create Story Memory - QUICK VERSION\n\n**YOU MUST create a story memory file NOW.**\n\nThis is called after a story is complete. Work FAST - don't over-analyze.\n\n**CRITICAL
+2026-01-29T13:49:23.460Z [DEBUG] Message 3: [ATTACHMENT]
+2026-01-29T13:49:23.461Z [DEBUG] SkillTool returning 2 newMessages for skill create-story-memory
+2026-01-29T13:49:23.461Z [DEBUG] newMessage 1: [{"type":"text","text":"# Create Story Memory - QUICK VERSION\n\n**YOU MUST create a story memory file NOW.**\n\nThis is called after a story is compl...
+2026-01-29T13:49:23.461Z [DEBUG] Getting matching hook commands for PostToolUse with query: Skill
+2026-01-29T13:49:23.461Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T13:49:23.461Z [DEBUG] Matched 0 unique hooks for query "Skill" (0 before deduplication)
+2026-01-29T13:49:23.474Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T13:49:23.474Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T13:49:23.475Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T13:49:23.475Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T13:49:23.476Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:49:23.481Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:23.481Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:23.481Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:23.877Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292149238b0ce3eaa1fd4025"}
+2026-01-29T13:49:24.745Z [DEBUG] Stream started - received first chunk
+2026-01-29T13:49:25.272Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214925cc0e2d70cb89418b"}
+2026-01-29T13:49:25.567Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T13:49:25.567Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T13:49:25.567Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T13:49:25.567Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T13:49:25.681Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:49:25.681Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:25.681Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:25.682Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T13:49:25.682Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T13:49:25.682Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T13:49:25.682Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:25.686Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T13:49:25.686Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T13:49:25.686Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T13:49:25.686Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T13:49:25.687Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:49:25.693Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:25.693Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:25.693Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:26.085Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214925747f8eedf13c41f6"}
+2026-01-29T13:49:26.689Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214926bf8fa945cb2c47fb"}
+2026-01-29T13:49:26.954Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214926b5a04f69b36d4876"}
+2026-01-29T13:49:26.955Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:26.955Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:26.956Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:26.984Z [DEBUG] Stream started - received first chunk
+2026-01-29T13:49:27.591Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T13:49:27.591Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T13:49:27.591Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T13:49:27.591Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T13:49:27.690Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:49:27.690Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:27.690Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:27.691Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T13:49:27.691Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T13:49:27.691Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T13:49:27.691Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:27.696Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T13:49:27.696Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T13:49:27.696Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T13:49:27.696Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T13:49:27.698Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:49:27.703Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:27.703Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:27.704Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:28.089Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214927224f00f185b2408e"}
+2026-01-29T13:49:28.089Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:28.089Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:28.089Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:28.336Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292149285e319d6e48e847cd"}
+2026-01-29T13:49:28.925Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292149284fbb726d7d4f40e5"}
+2026-01-29T13:49:30.189Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214930cd9fdf905a334858"}
+2026-01-29T13:49:31.415Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214931f1154f6c71584f10"}
+2026-01-29T13:49:31.723Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292149308f2c3a6cd4574c20"}
+2026-01-29T13:49:32.593Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292149321cacf563529e4e37"}
+2026-01-29T13:49:32.674Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292149321ff4c7d85f1a4bb2"}
+2026-01-29T13:49:33.876Z [DEBUG] Stream started - received first chunk
+2026-01-29T13:49:33.884Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T13:49:33.884Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T13:49:33.884Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T13:49:33.884Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T13:49:34.005Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:49:34.005Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:34.005Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:34.006Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T13:49:34.006Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T13:49:34.006Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T13:49:34.006Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:34.012Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T13:49:34.012Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T13:49:34.014Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T13:49:34.014Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T13:49:34.015Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:49:34.023Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:34.023Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:34.024Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:35.429Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292149341f0a409004f34b3b"}
+2026-01-29T13:49:35.429Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:35.429Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:35.429Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:35.508Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214935589313cb7cfa4841"}
+2026-01-29T13:49:35.795Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292149350f4898d0fa9148b2"}
+2026-01-29T13:49:36.403Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012921493616f7e71a9aac4ad3"}
+2026-01-29T13:49:39.233Z [DEBUG] Stream started - received first chunk
+2026-01-29T13:49:39.239Z [DEBUG] executePreToolHooks called for tool: Write
+2026-01-29T13:49:39.239Z [DEBUG] Getting matching hook commands for PreToolUse with query: Write
+2026-01-29T13:49:39.239Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T13:49:39.239Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-29T13:49:39.240Z [DEBUG] Writing to temp file: /home/ken/docs/auth-user-manager/story-us-006-implement-reset-password.txt.tmp.517488.1769694579240
+2026-01-29T13:49:39.242Z [DEBUG] Temp file written successfully, size: 1579 bytes
+2026-01-29T13:49:39.242Z [DEBUG] Renaming /home/ken/docs/auth-user-manager/story-us-006-implement-reset-password.txt.tmp.517488.1769694579240 to /home/ken/docs/auth-user-manager/story-us-006-implement-reset-password.txt
+2026-01-29T13:49:39.242Z [DEBUG] File /home/ken/docs/auth-user-manager/story-us-006-implement-reset-password.txt written atomically
+2026-01-29T13:49:39.243Z [DEBUG] Getting matching hook commands for PostToolUse with query: Write
+2026-01-29T13:49:39.243Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T13:49:39.243Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-29T13:49:39.247Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T13:49:39.247Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T13:49:39.247Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T13:49:39.247Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T13:49:39.250Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:49:39.255Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:39.255Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:39.255Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:39.277Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012921493887cc348a89b14d8e"}
+2026-01-29T13:49:39.863Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012921493953610b9b3aa2404a"}
+2026-01-29T13:49:40.628Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292149401fed93db33934168"}
+2026-01-29T13:49:41.553Z [ERROR] API error (attempt 6/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214941c85497737cf24689"}
+2026-01-29T13:49:41.578Z [DEBUG] Stream started - received first chunk
+2026-01-29T13:49:41.606Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T13:49:41.606Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T13:49:41.606Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T13:49:41.606Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T13:49:41.656Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129214941539d77f9dcb04e78"}
+2026-01-29T13:49:41.677Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:49:41.678Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:41.678Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:41.678Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T13:49:41.678Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T13:49:41.678Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T13:49:41.678Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:41.683Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T13:49:41.683Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T13:49:41.683Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T13:49:41.683Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T13:49:41.684Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T13:49:41.697Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:41.697Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:41.698Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:41.831Z [ERROR] API error (attempt 11/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292149412f553979925c4041"}
+2026-01-29T13:49:41.831Z [ERROR] Error in non-streaming fallback: 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292149412f553979925c4041"}
+2026-01-29T13:49:41.831Z [ERROR] Error: Error: 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292149412f553979925c4041"}
+    at generate (/$bunfs/root/claude:144:37865)
+    at makeRequest (/$bunfs/root/claude:161:5435)
+    at processTicksAndRejections (native:7:39)
+2026-01-29T13:49:41.833Z [ERROR] API error (attempt 6/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292149414ad35d14d4554cd0"}
+2026-01-29T13:49:42.491Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012921494237e42264e85f4751"}
+2026-01-29T13:49:42.491Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T13:49:42.491Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T13:49:42.491Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T13:49:43.417Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292149434919846ef78f4f77"}
+2026-01-29T13:49:44.529Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601292149430ea5c7b5a310482d"}
+2026-01-29T13:49:44.833Z [DEBUG] Stream started - received first chunk
+2026-01-29T13:49:44.849Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-29T13:49:44.849Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T13:49:44.849Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-29T13:49:44.850Z [DEBUG] Getting matching hook commands for SessionEnd with query: other
+2026-01-29T13:49:44.850Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T13:49:44.850Z [DEBUG] Matched 0 unique hooks for query "other" (0 before deduplication)

@@ -1,0 +1,42 @@
+[
+  {
+    "content": "Load memory from related PRDs and previous stories",
+    "status": "completed",
+    "activeForm": "Loading memory from related PRDs and previous stories"
+  },
+  {
+    "content": "Process Maven Step 1 - Foundation Setup",
+    "status": "completed",
+    "activeForm": "Processing Maven Step 1"
+  },
+  {
+    "content": "Process Maven Step 2 - Package Manager",
+    "status": "completed",
+    "activeForm": "Processing Maven Step 2"
+  },
+  {
+    "content": "Process Maven Step 7 - Data Layer & Integration",
+    "status": "in_progress",
+    "activeForm": "Processing Maven Step 7"
+  },
+  {
+    "content": "Process Maven Step 10 - Security & Error Handling",
+    "status": "pending",
+    "activeForm": "Processing Maven Step 10"
+  },
+  {
+    "content": "Run typecheck and fix errors",
+    "status": "pending",
+    "activeForm": "Running typecheck"
+  },
+  {
+    "content": "Update PRD and mark story complete",
+    "status": "pending",
+    "activeForm": "Updating PRD"
+  },
+  {
+    "content": "Create story memory file",
+    "status": "pending",
+    "activeForm": "Creating story memory"
+  }
+]

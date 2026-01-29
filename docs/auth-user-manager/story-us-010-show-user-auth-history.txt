@@ -1,0 +1,66 @@
+---
+memoryVersion: 1
+storyId: US-010
+storyTitle: Show User Auth History
+completedDate: 2026-01-29
+---
+
+STORY: US-010 - Show User Auth History
+========================================
+
+DESCRIPTION:
+As a developer, I want to see user auth history so that I can track login patterns.
+
+MAVEN STEPS COMPLETED:
+[5, 10]
+- Step 5: Quality Agent - Created UserAuthHistory component with pagination
+- Step 10: Security Agent - Added authorization, audit logging, security validation
+
+IMPLEMENTATION SUMMARY:
+Created authentication history viewing feature with paginated list showing sign-in/sign-out times, auth method, IP address, and device info. Added API endpoint with proper authentication, authorization (operator/admin only), and audit logging.
+
+KEY FILES:
+- developer-portal/src/features/auth-users/components/UserAuthHistory.tsx - Auth history component with pagination (287 lines)
+- developer-portal/src/app/api/auth/users/[userId]/auth-history/route.ts - API endpoint with auth/authz
+- developer-portal/src/lib/types/auth-user.types.ts - Added AuthMethod, EndUserAuthHistory, AuthHistoryListQuery, AuthHistoryListResponse
+- developer-portal/src/lib/api/auth-service-client.ts - Added getEndUserAuthHistory() method
+- developer-portal/src/features/studio/lib/auth-service-client.ts - Added getEndUserAuthHistory() method
+- developer-portal/src/features/auth-users/components/UserDetail.tsx - Integrated UserAuthHistory component
+
+DECISIONS MADE:
+- Used existing patterns from UserDetailSessions.tsx for consistency
+- Color-coded badges for different auth methods (Email, Google, GitHub, Microsoft)
+- Distinguished successful vs failed authentication attempts
+- Pagination with configurable limit/offset (default 25 per page)
+- Required operator/admin role for viewing auth history (sensitive data)
+
+INTEGRATION POINTS:
+- Uses authServiceClient.getEndUserAuthHistory() API method
+- Integrated into existing UserDetail component
+- Uses requireOperatorOrAdmin() for authorization
+- Uses logAuditEntry() for audit logging
+- Accessible at /dashboard/users/[userId] route
+
+LESSONS LEARNED:
+- Security agent added missing authorization check (requireOperatorOrAdmin)
+- Security agent added audit logging for viewing sensitive auth history
+- Type safety: Zero 'any' types, proper TypeScript interfaces
+- UI consistency: Uses lucide-react icons, solid professional colors
+- Component size: Kept under 300 lines (UserAuthHistory at 287 lines)
+
+SECURITY AUDIT RESULTS (Step 10):
+- Initial Score: 7/10, Final Score: 9/10
+- Fixed: Added authorization check (operator/admin only)
+- Fixed: Added audit logging for auth history access
+- Passed: Authentication, Authorization, XSS Prevention, Type Safety, Input Validation, Error Handling, SQL Injection Prevention
+
+ACCEPTANCE CRITERIA:
+✅ Auth history section in UserDetail
+✅ Shows: sign_in_at, sign_out_at, method, IP
+✅ Paginated list
+✅ Typecheck passes
+
+SECURITY ADDED:
+✅ Authentication required
+✅ Authorization required (operator/admin only)
+✅ Audit logging (complete audit trail)

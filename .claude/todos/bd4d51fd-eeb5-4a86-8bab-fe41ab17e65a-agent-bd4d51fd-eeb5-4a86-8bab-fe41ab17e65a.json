@@ -1,0 +1,32 @@
+[
+  {
+    "content": "Step 1: Create job worker foundation",
+    "status": "completed",
+    "activeForm": "Creating job worker foundation"
+  },
+  {
+    "content": "Step 2: Set up job worker dependencies",
+    "status": "completed",
+    "activeForm": "Setting up job worker dependencies"
+  },
+  {
+    "content": "Step 7: Implement job worker data layer",
+    "status": "completed",
+    "activeForm": "Implementing job worker data layer"
+  },
+  {
+    "content": "Step 10: Security review and validation",
+    "status": "completed",
+    "activeForm": "Reviewing security and validating"
+  },
+  {
+    "content": "Run typecheck and verify",
+    "status": "completed",
+    "activeForm": "Running typecheck and verification"
+  },
+  {
+    "content": "Mark story complete and commit",
+    "status": "in_progress",
+    "activeForm": "Marking story complete and committing"
+  }
+]
