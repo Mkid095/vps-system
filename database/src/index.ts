@@ -346,3 +346,35 @@ export {
   markBackupDeleted,
   cleanupExpiredBackups,
 } from './jobs/backup-history.js';
+
+// ============================================================================
+// ADMIN SESSIONS TYPES EXPORT
+// ============================================================================
+// US-001: Create Admin Sessions Table (Break Glass Mode)
+//
+// Admin session tracking types for break glass emergency access with time-limited
+// sessions and aggressive audit logging. These sessions track when platform
+// operators need emergency access to recover from critical situations.
+//
+// @example
+// ```typescript
+// import { AdminSession, AccessMethod, CreateAdminSessionInput } from '@nextmavens/audit-logs-database';
+//
+// // Create a break glass session
+// const session: CreateAdminSessionInput = {
+//   admin_id: 'admin-uuid-123',
+//   reason: 'Production incident - locked out of project',
+//   access_method: AccessMethod.OTP,
+//   granted_by: 'super-admin-uuid-456',
+// };
+// ```
+export type {
+  AdminSession,
+  CreateAdminSessionInput,
+  AdminSessionQuery,
+  AdminSessionResponse,
+  AdminSessionValidation,
+  AdminSessionStats,
+} from '../types/admin-sessions.types.js';
+
+export { AccessMethod } from '../types/admin-sessions.types.js';
