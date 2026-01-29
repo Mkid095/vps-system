@@ -268,3 +268,81 @@ export type {
 } from '../types/webhooks.types.js';
 
 export { WebhookDeliveryStatus, WebhookDeliveryErrorType } from '../types/webhooks.types.js';
+
+// ============================================================================
+// BACKUP TYPES EXPORT
+// ============================================================================
+// US-003: Create Backup History Table
+//
+// Backup history tracking types for managing database, storage, and logs backups.
+// These types are used to track backup records with retention policy.
+//
+// @example
+// ```typescript
+// import { Backup, BackupType, CreateBackupInput } from '@nextmavens/audit-logs-database';
+//
+// // Create a backup record
+// const backup: CreateBackupInput = {
+//   project_id: 'proj-123',
+//   type: BackupType.DATABASE,
+//   file_id: 'telegram-file-456',
+//   size: 1024000,
+//   expires_at: new Date('2026-02-28'),
+// };
+// ```
+export type {
+  Backup,
+  CreateBackupInput,
+  BackupQuery,
+  BackupResponse,
+  BackupStats,
+  BackupRetentionConfig,
+  BackupFileMetadata,
+  BackupWithMetadata,
+} from '../types/backups.types.js';
+
+export { BackupType } from '../types/backups.types.js';
+
+// ============================================================================
+// BACKUP HISTORY TYPES EXPORT
+// ============================================================================
+// US-004: Record Backup in History
+//
+// Backup history tracking types with status management for recording backup exports.
+// These types provide audit trail for backup operations with 30-day retention.
+//
+// @example
+// ```typescript
+// import { BackupHistory, BackupHistoryStatus, BackupHistoryInput, BackupHistoryType } from '@nextmavens/audit-logs-database';
+//
+// // Create a backup history record
+// const history: BackupHistoryInput = {
+//   project_id: 'proj-123',
+//   type: BackupHistoryType.EXPORT,
+//   file_id: 'telegram-file-456',
+//   size: 1024000,
+// };
+// ```
+export type {
+  BackupHistory,
+  BackupHistoryInput,
+  BackupHistoryQuery,
+  BackupHistoryResponse,
+  BackupHistoryStats,
+  BackupHistoryResult,
+} from './jobs/types.backup.js';
+
+export {
+  BackupHistoryStatus,
+  BackupHistoryType,
+} from './jobs/types.backup.js';
+
+// Export backup history functions
+export {
+  recordBackup,
+  getBackupHistory,
+  getBackupById,
+  markBackupExpired,
+  markBackupDeleted,
+  cleanupExpiredBackups,
+} from './jobs/backup-history.js';
