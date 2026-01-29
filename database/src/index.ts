@@ -141,3 +141,86 @@ export type {
 } from '../types/jobs.types.js';
 
 export { JobStatus, JobType } from '../types/jobs.types.js';
+
+// ============================================================================
+// JOB QUEUE EXPORT
+// ============================================================================
+// US-002: Create Job Queue System
+//
+// Job queue implementation for enqueuing background jobs with support for
+// scheduling, priority, and retry configuration.
+//
+// @example
+// ```typescript
+// import { enqueueJob, scheduleJob, getJob } from '@nextmavens/audit-logs-database';
+//
+// // Enqueue a job to run immediately
+// const result = await enqueueJob('provision_project', {
+//   project_id: 'proj-123',
+//   region: 'us-east-1',
+// });
+//
+// // Enqueue a job with a delay
+// const delayed = await enqueueJob('rotate_key', {
+//   key_id: 'key-456',
+// }, {
+//   delay: 60000, // 1 minute
+//   max_attempts: 5,
+// });
+//
+// // Schedule a job for a specific time
+// const scheduledTime = new Date('2026-01-30T10:00:00Z');
+// const scheduled = await scheduleJob('backup', scheduledTime, {
+//   project_id: 'proj-123',
+// });
+//
+// // Get a job by ID
+// const job = await getJob(result.id);
+// ```
+export {
+  JobQueue,
+  enqueueJob,
+  scheduleJob,
+  getJob,
+} from './jobs/queue.js';
+
+export type {
+  JobQueueOptions,
+  EnqueueJobResult,
+} from './jobs/queue.js';
+
+// ============================================================================
+// JOB HANDLERS EXPORT
+// ============================================================================
+// US-004: Implement Provision Project Job - Step 1: Foundation
+//
+// Job handlers for background task processing. Each handler implements
+// the logic for a specific job type (e.g., provision_project, rotate_key).
+//
+// @example
+// ```typescript
+// import { getJobHandler, provisionProjectHandler } from '@nextmavens/audit-logs-database';
+//
+// // Get a handler dynamically
+// const handler = getJobHandler(JobType.PROVISION_PROJECT);
+// const result = await handler({ project_id: 'proj-123', region: 'us-east-1' });
+//
+// // Use handler directly
+// const result2 = await provisionProjectHandler({ project_id: 'proj-456', region: 'eu-west-1' });
+// ```
+export {
+  provisionProjectHandler,
+  getJobHandler,
+  hasJobHandler,
+  registerJobHandler,
+  getRegisteredJobTypes,
+  validateRequiredHandlers,
+  jobHandlers,
+} from './jobs/index.js';
+
+export type {
+  ProvisionProjectPayload,
+  ProvisionProjectResult,
+} from './jobs/types.js';
+
+export { ProvisionProjectErrorType, ProvisionProjectStage } from './jobs/types.js';

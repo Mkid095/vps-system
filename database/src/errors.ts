@@ -12,7 +12,7 @@
 export class AuditLogError extends Error {
   public readonly code: string;
   public readonly details: Record<string, unknown>;
-  public readonly cause?: unknown;
+  public override cause?: unknown;
 
   constructor(message: string, options?: { code?: string; details?: Record<string, unknown>; cause?: unknown }) {
     super(message);

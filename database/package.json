@@ -21,6 +21,8 @@
     "migrate:status": "tsx migrate.ts status",
     "typecheck": "tsc --noEmit",
     "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "test:integration": "tsx src/test-integration.ts"
   },
   "keywords": [
@@ -31,11 +33,13 @@
     "integration"
   ],
   "dependencies": {
-    "pg": "^8.11.3"
+    "pg": "^8.11.3",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.10.6",
     "@types/pg": "^8.10.9",
+    "@types/uuid": "^11.0.0",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3",
     "vitest": "^4.0.18"
