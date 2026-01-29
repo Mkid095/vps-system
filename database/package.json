@@ -26,7 +26,8 @@
     "test:integration": "tsx src/test-integration.ts",
     "test:jobs": "vitest run src/__tests__/jobs.integration.test.ts",
     "test:queue": "vitest run src/__tests__/queue.test.ts",
-    "test:admin-sessions": "vitest run src/__tests__/admin-sessions.integration.test.ts"
+    "test:admin-sessions": "vitest run src/__tests__/admin-sessions.integration.test.ts",
+    "test:admin-actions": "vitest run src/__tests__/admin-actions.integration.test.ts"
   },
   "keywords": [
     "audit-logs",
