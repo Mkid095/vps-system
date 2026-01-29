@@ -1,5 +1,0 @@
-143-        # Stream output in real-time AND capture it for pattern matching
-144-        $claudeOutput = @()
-145:        & claude --dangerously-skip-permissions -p $PROMPT 2>&1 | ForEach-Object {
-146-            Write-Host $_
-147-            $claudeOutput += $_

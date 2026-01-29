@@ -1,9 +1,0 @@
-{
-  "id": "8",
-  "subject": "Implement Standardized Error System",
-  "description": "Create consistent error format across all services:\n1. Create /home/ken/developer-portal/src/lib/errors.ts\n2. Define standard error shape: {error: {code, message, docs, retryable, project_id}}\n3. Implement error codes: PROJECT_SUSPENDED, RATE_LIMITED, QUOTA_EXCEEDED, KEY_INVALID, SERVICE_DISABLED, PERMISSION_DENIED\n4. Create error factory functions\n5. Add error documentation page\n6. Update all services to use standard format\n7. Include retryable flag for client-side behavior\n\nThis provides DX credibility through predictable, actionable errors.",
-  "activeForm": "Implementing standardized error system",
-  "status": "pending",
-  "blocks": [],
-  "blockedBy": []
-}

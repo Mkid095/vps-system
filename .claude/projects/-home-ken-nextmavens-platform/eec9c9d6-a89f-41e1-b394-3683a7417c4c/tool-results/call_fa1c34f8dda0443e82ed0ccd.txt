@@ -1,7 +1,0 @@
-                    policyname                    | permissive |      roles      |  cmd   
---------------------------------------------------+------------+-----------------+--------
- Organization owners can delete                   | PERMISSIVE | {authenticated} | DELETE
- Organization owners can update                   | PERMISSIVE | {authenticated} | UPDATE
- Users can create organizations                   | PERMISSIVE | {authenticated} | INSERT
- Users can view organizations they are members of | PERMISSIVE | {public}        | SELECT
-(4 rows)

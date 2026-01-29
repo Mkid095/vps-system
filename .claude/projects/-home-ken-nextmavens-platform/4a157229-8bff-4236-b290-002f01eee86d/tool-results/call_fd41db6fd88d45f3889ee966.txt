@@ -1,3 +1,0 @@
-2026/01/25 07:33:32 [debug] 1332#0: *1289 [lua] init.lua:120: No API endpoints loaded for plugin: key-auth
-172.18.0.1 - - [25/Jan/2026:07:37:06 +0000] "GET /auth/v1/settings HTTP/1.1" 404 19 "-" "curl/8.5.0" kong_request_id: "3114af3de85f55039830f87bf932de4b"
-172.18.0.1 - - [25/Jan/2026:07:37:21 +0000] "GET /auth/v1/settings HTTP/1.1" 404 19 "-" "curl/8.5.0" kong_request_id: "633f8d1be7e3b919fd0d0e52b31b177f"

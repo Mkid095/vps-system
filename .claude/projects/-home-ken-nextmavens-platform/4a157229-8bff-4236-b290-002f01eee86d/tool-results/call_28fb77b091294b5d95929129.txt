@@ -1,5 +1,0 @@
- enumlabel 
------------
- totp
- webauthn
-(2 rows)

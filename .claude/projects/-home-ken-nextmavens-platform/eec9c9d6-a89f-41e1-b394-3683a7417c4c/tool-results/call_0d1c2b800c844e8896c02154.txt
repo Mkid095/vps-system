@@ -1,7 +1,0 @@
-nextmavens-kong
-nextmavens-kong
-time="2026-01-25T19:24:42Z" level=warning msg="Found orphan containers ([supabase-mailhog supabase-gotrue supabase-storage supabase-supavisor supabase-rest evolution-db]) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up."
- Container nextmavens-kong Creating 
- Container nextmavens-kong Created 
- Container nextmavens-kong Starting 
- Container nextmavens-kong Started

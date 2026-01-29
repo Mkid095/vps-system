@@ -1,2 +1,0 @@
-# NextMavens Telegram Backup - Daily at 2 AM
-0 2 * * * /usr/bin/python3 /home/ken/nextmavens-platform/scripts/telegram-backup.py --auto >> /home/ken/nextmavens-platform/logs/backup.log 2>&1

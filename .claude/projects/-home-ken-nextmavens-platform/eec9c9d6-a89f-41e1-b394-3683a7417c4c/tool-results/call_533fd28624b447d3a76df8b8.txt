@@ -1,2 +1,0 @@
-/login?redirect=%2F---
-{"cpu":{"usage":15.5,"cores":4,"load":[0.5,0.6,0.4]},"memory":{"used":4509715660.8,"total":17179869184,"percent":26.25},"disk":{"used":48962627174.4,"total":214748364800,"percent":22.8},"network":{"bytes_in":5242880,"bytes_out":2097152}}

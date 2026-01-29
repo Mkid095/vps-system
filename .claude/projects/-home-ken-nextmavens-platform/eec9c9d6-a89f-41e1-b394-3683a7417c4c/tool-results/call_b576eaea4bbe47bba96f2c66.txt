@@ -1,6 +1,0 @@
-Exit code 1
- Image ghcr.io/supabase/postgres-meta:v0.93.0 Pulling 
- Image ghcr.io/supabase/studio:20250115-7a7e3d3 Pulling 
- Image ghcr.io/supabase/studio:20250115-7a7e3d3 Error failed to resolve reference "ghcr.io/supabase/studio:20250115-7a7e3d3": ghcr.io/supabase/studio:20250115-7a7e3d3: not found
- Image ghcr.io/supabase/postgres-meta:v0.93.0 Interrupted 
-Error response from daemon: failed to resolve reference "ghcr.io/supabase/studio:20250115-7a7e3d3": ghcr.io/supabase/studio:20250115-7a7e3d3: not found

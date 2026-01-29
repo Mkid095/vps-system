@@ -1,9 +1,0 @@
-{
-  "id": "3",
-  "subject": "Set up self-hosted Supabase with Docker Compose",
-  "description": "Create and configure docker-compose.yml for self-hosted Supabase including Studio, API, Postgres, Realtime, Supavisor, and Kong services. Pin stable versions and configure networking.",
-  "activeForm": "Setting up self-hosted Supabase",
-  "status": "in_progress",
-  "blocks": [],
-  "blockedBy": []
-}

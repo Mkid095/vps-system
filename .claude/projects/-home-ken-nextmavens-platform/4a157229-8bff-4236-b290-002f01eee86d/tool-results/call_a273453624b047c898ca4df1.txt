@@ -1,1 +1,0 @@
-supabase-gotrue      Restarting (1) 2 seconds ago

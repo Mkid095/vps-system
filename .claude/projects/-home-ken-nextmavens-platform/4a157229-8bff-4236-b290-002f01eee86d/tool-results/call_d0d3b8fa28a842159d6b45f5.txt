@@ -1,2 +1,0 @@
-DATABASE_URL=postgres://postgres:NextMavensSecure2025ChangeMe@db:5432/postgres?search_path=auth,public
-GOTRUE_DB_MIGRATIONS_PATH=/usr/local/etc/auth/migrations

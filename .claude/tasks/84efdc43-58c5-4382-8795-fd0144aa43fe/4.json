@@ -1,9 +1,0 @@
-{
-  "id": "4",
-  "subject": "Build Developer Portal",
-  "description": "Build developer portal with signup/login, project creation, API key generation, DB schema viewer, realtime events viewer, and storage usage stats",
-  "activeForm": "Creating Developer Portal",
-  "status": "completed",
-  "blocks": [],
-  "blockedBy": []
-}

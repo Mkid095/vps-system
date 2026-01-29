@@ -1,9 +1,0 @@
-{
-  "id": "9",
-  "subject": "Create Next.js dashboard application",
-  "description": "Create a Next.js 15 application in the dashboard directory with TypeScript, Tailwind CSS, and shadcn/ui for the platform dashboard.",
-  "activeForm": "Creating Next.js dashboard application",
-  "status": "completed",
-  "blocks": [],
-  "blockedBy": []
-}

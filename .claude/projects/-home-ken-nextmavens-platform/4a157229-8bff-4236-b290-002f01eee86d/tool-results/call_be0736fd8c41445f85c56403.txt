@@ -1,7 +1,0 @@
-   table_name   
-----------------
- refresh_tokens
- sessions
- test_table
- users
-(4 rows)

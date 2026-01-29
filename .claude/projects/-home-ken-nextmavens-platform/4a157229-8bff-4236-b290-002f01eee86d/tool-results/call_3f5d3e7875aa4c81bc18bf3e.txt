@@ -1,2 +1,0 @@
-Exit code 127
-OCI runtime exec failed: exec failed: unable to start container process: exec: "wget": executable file not found in $PATH

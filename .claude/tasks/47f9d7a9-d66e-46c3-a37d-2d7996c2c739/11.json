@@ -1,9 +1,0 @@
-{
-  "id": "11",
-  "subject": "Implement Control Plane Snapshot API",
-  "description": "Create the critical source-of-truth contract for data plane services:\n1. Create /home/ken/control-plane-api/src/app/api/internal/snapshot/route.ts\n2. Return cached view of: project status, enabled services, limits, quotas, environment\n3. Add TTL caching (30-60s)\n4. Include version field for cache invalidation\n5. Fail closed if snapshot unavailable\n6. Data plane services consume this instead of hitting control DB directly\n\nThis is the key architectural separation between control plane and data plane.",
-  "activeForm": "Implementing Control Plane Snapshot API",
-  "status": "pending",
-  "blocks": [],
-  "blockedBy": []
-}

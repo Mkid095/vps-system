@@ -1,2 +1,0 @@
-/login?redirect=%2F---
-/project/default

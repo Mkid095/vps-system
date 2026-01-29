@@ -1,8 +1,0 @@
-/home/ken/next-mavens-flow/.claude/verification-report.json
-/home/ken/next-mavens-flow/.claude/settings.json
-/home/ken/next-mavens-flow/.claude/maven-flow/.claude/settings.json
-/home/ken/next-mavens-flow/flowchart/tsconfig.app.json
-/home/ken/next-mavens-flow/flowchart/tsconfig.json
-/home/ken/next-mavens-flow/flowchart/package-lock.json
-/home/ken/next-mavens-flow/flowchart/tsconfig.node.json
-/home/ken/next-mavens-flow/flowchart/package.json

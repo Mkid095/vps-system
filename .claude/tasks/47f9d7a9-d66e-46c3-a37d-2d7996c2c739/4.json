@@ -1,9 +1,0 @@
-{
-  "id": "4",
-  "subject": "Implement Background Jobs System",
-  "description": "Create job queue and worker system:\n1. Create /home/ken/developer-portal/src/lib/jobs/queue.ts for job queue management\n2. Create /home/ken/developer-portal/src/lib/jobs/worker.ts for background job processing\n3. Implement job types: provision_project, rotate_key, deliver_webhook, export_backup, check_usage_limits, auto_suspend\n4. Add retry logic with exponential backoff\n5. Create API endpoint for job status checking\n6. Add UI for monitoring job progress\n\nJob types should support: pending → running → success/failed states with retry tracking.",
-  "activeForm": "Implementing background jobs system",
-  "status": "pending",
-  "blocks": [],
-  "blockedBy": []
-}

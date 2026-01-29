@@ -1,9 +1,0 @@
-{
-  "id": "12",
-  "subject": "Implement CLI Tool",
-  "description": "Create standalone CLI tool at /home/ken/nextmavens-cli/:\n1. Node.js CLI package with oclif or yargs\n2. Commands: login, project create, project link, db push, functions deploy, secrets set, status\n3. Wrapper around Control Plane API\n4. Config storage in .nextmavens/config.json\n5. Reuse auth tokens from developer portal\n6. Distribute via npm\n7. Add installation and usage documentation\n\nCLI is critical for serious developer adoption and enables automation/CI/CD.",
-  "activeForm": "Implementing CLI tool",
-  "status": "pending",
-  "blocks": [],
-  "blockedBy": []
-}

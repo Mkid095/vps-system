@@ -1,1 +1,0 @@
-supabase-kong        Up About an hour (healthy)

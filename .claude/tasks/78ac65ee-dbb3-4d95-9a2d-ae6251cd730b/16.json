@@ -1,9 +1,0 @@
-{
-  "id": "16",
-  "subject": "Run final typecheck and build verification",
-  "description": "Run typecheck and build verification to ensure all security enhancements don't break the application.",
-  "activeForm": "Running typecheck and build verification",
-  "status": "in_progress",
-  "blocks": [],
-  "blockedBy": []
-}

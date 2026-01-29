@@ -1,2 +1,0 @@
-nextmavens-platform@1.0.0 /home/ken/nextmavens-platform
-└── (empty)

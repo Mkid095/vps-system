@@ -1,2 +1,0 @@
-To https://github.com/Mkid095/nextmavens-platform.git
-   cc9e82e..e6845ea  master -> master

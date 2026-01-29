@@ -1,8 +1,0 @@
-25/Jan/2026:19:39:11 +0000: Starting PostgREST 12.2.0...
-25/Jan/2026:19:39:11 +0000: Listening on port 3000
-25/Jan/2026:19:39:11 +0000: Attempting to connect to the database...
-25/Jan/2026:19:39:11 +0000: Successfully connected to PostgreSQL 16.11 (Debian 16.11-1.pgdg12+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit
-25/Jan/2026:19:39:11 +0000: Listening for notifications on the "pgrst" channel
-25/Jan/2026:19:39:11 +0000: Config reloaded
-25/Jan/2026:19:39:11 +0000: Schema cache queried in 4.1 milliseconds
-25/Jan/2026:19:39:11 +0000: Schema cache loaded 11 Relations, 9 Relationships, 24 Functions, 0 Domain Representations, 4 Media Type Handlers

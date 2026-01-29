@@ -1,9 +1,0 @@
-{
-  "id": "1",
-  "subject": "Build NextMavens MCP Server",
-  "description": "Create MCP server with tools for database operations, deployments, and all NextMavens services (Auth, GraphQL, PostgREST, Realtime, Telegram Storage)",
-  "activeForm": "Building NextMavens MCP server",
-  "status": "pending",
-  "blocks": [],
-  "blockedBy": []
-}

@@ -1,9 +1,0 @@
-{
-  "id": "5",
-  "subject": "Implement Idempotency Middleware",
-  "description": "Create idempotency layer to prevent duplicate operations:\n1. Create /home/ken/developer-portal/src/lib/idempotency.ts middleware\n2. Add idempotency_keys table to database\n3. Implement withIdempotency() helper function\n4. Apply to critical endpoints: provision project, create key, revoke key, send webhook\n5. Support TTL-based expiration (1 hour default)\n6. Return cached response for duplicate requests with same key\n\nPattern: Check existing key → Execute function if not found → Store result with TTL → Return result",
-  "activeForm": "Implementing idempotency middleware",
-  "status": "pending",
-  "blocks": [],
-  "blockedBy": []
-}

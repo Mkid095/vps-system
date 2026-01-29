@@ -1,1 +1,0 @@
-{"code":500,"error_code":"unexpected_failure","msg":"Error sending confirmation email","error_id":"398cc96a-00a7-4d25-b0e4-c095b53ed426"}

@@ -1,9 +1,0 @@
-{
-  "id": "2",
-  "subject": "Build API Gateway / Supervisor Layer",
-  "description": "Create API Gateway service with API key validation, project/tenant resolution, rate limiting, request logging, usage metering, and CORS enforcement for all services (Auth, REST, GraphQL, Realtime, Storage)",
-  "activeForm": "Building API Gateway service",
-  "status": "completed",
-  "blocks": [],
-  "blockedBy": []
-}

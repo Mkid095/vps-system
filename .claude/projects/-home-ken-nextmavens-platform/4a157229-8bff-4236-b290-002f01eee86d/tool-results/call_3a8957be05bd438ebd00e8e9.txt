@@ -1,2 +1,0 @@
-supabase-gotrue
-supabase-gotrue      Up Less than a second

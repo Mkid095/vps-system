@@ -1,9 +1,0 @@
-{
-  "id": "5",
-  "subject": "Create dashboard Next.js application",
-  "description": "Initialize Next.js 15+ TypeScript dashboard with Tailwind CSS, professional styling (Inter font, neutral colors), Supabase Auth integration, and org→project navigation.",
-  "activeForm": "Creating dashboard application",
-  "status": "pending",
-  "blocks": [],
-  "blockedBy": []
-}

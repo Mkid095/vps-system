@@ -1,9 +1,0 @@
-{
-  "id": "6",
-  "subject": "Set up Evolution API for WhatsApp integration",
-  "description": "Deploy Evolution API v2.3.7 via Docker with multi-instance support. Configure webhook handling, QR code generation endpoints, and message sending capabilities.",
-  "activeForm": "Setting up Evolution API",
-  "status": "in_progress",
-  "blocks": [],
-  "blockedBy": []
-}

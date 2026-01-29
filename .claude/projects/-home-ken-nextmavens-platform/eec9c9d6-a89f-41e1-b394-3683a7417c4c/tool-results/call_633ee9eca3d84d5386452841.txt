@@ -1,4 +1,0 @@
-(node:1) ExperimentalWarning: Importing JSON modules is an experimental feature and might change at any time
-(Use `node --trace-warnings ...` to show where the warning was created)
-{"level":"info","time":"2026-01-25T19:27:59.132Z","pid":1,"hostname":"39970347dcbb","msg":"Server listening at http://0.0.0.0:8080"}
-{"level":"info","time":"2026-01-25T19:27:59.137Z","pid":1,"hostname":"39970347dcbb","msg":"Server listening at http://0.0.0.0:8081"}

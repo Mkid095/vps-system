@@ -1,1 +1,0 @@
-531:    local result=$(claude --dangerously-skip-permissions -p "$agent_prompt" 2>&1)

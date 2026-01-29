@@ -1,9 +1,0 @@
-NOTICE:  drop cascades to 4 other objects
-DETAIL:  drop cascades to table auth.test_table
-drop cascades to table auth.users
-drop cascades to table auth.sessions
-drop cascades to table auth.refresh_tokens
-DROP SCHEMA
-CREATE SCHEMA
-GRANT
-GRANT

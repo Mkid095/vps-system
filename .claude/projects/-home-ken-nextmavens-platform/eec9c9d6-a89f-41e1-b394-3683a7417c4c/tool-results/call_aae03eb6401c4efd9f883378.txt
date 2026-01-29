@@ -1,5 +1,0 @@
-Exit code 1
-ERROR:  function pg_get_expr(text, regclass) does not exist
-LINE 2: SELECT pg_get_expr(qual, policyname::regclass) as qual_expr,
-               ^
-HINT:  No function matches the given name and argument types. You might need to add explicit type casts.

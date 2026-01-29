@@ -1,6 +1,0 @@
-Exit code 1
-time="2026-01-25T19:19:52Z" level=warning msg="Found orphan containers ([supabase-mailhog supabase-gotrue supabase-storage supabase-supavisor supabase-rest evolution-db]) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up."
- Container supabase-kong Recreate 
- Container supabase-kong Recreated 
- Container nextmavens-kong Starting 
-Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint nextmavens-kong (f782add6d3c7c53f9ace1b198cf9f21ec5cca445b5f835898f94f3f4963db4a4): Bind for 0.0.0.0:8000 failed: port is already allocated

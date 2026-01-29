@@ -1,9 +1,0 @@
-{
-  "id": "8",
-  "subject": "Create npx CLI tool for platform management",
-  "description": "Build npm package @nextmavens/cli with commands for login, create-project, deploy, logs, db:migrate, and whatsapp-connect. Use oclif or yargs framework.",
-  "activeForm": "Creating CLI tool",
-  "status": "pending",
-  "blocks": [],
-  "blockedBy": []
-}

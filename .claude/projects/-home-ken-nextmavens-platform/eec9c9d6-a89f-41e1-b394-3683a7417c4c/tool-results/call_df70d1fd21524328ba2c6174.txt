@@ -1,3 +1,0 @@
-Service Role Key (first 50 chars): eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL25leHRtY...
-
-Decoded:

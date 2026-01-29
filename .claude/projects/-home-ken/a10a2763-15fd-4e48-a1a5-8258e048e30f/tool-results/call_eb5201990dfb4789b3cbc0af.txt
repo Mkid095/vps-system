@@ -1,2 +1,0 @@
-639:        if claude --prompt "/consolidate-memory $prd_file" --dangerously-skip-permissions 2>&1; then
-697:    if claude --prompt "/create-story-memory $prd_file $story_id" --dangerously-skip-permissions 2>&1; then

@@ -1,6 +1,0 @@
-Already up to date.
-time="2026-01-25T20:30:37Z" level=warning msg="Found orphan containers ([supabase-mailhog supabase-storage supabase-supavisor evolution-db]) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up."
- Container nextmavens-kong Recreate 
- Container nextmavens-kong Recreated 
- Container nextmavens-kong Starting 
- Container nextmavens-kong Started

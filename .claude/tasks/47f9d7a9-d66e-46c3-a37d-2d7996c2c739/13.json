@@ -1,9 +1,0 @@
-{
-  "id": "13",
-  "subject": "Implement Provisioning State Machine",
-  "description": "Replace simple status with step-aware provisioning:\n1. Create /home/ken/control-plane-api/src/lib/provisioning/state-machine.ts\n2. Add provisioning_steps table: step_name, status, error_details, retry_count\n3. Define ordered steps: create_tenant, create_schema, create_storage_namespace, register_auth, register_realtime, generate_keys, verify_services\n4. Implement state transitions: PENDING → RUNNING → SUCCESS/FAILED\n5. Add retry from failed step capability\n6. Create UI showing progress bar with step-by-step status\n7. Update provisioning API to use state machine\n\nThis enables safe retry from failure and better UX.",
-  "activeForm": "Implementing provisioning state machine",
-  "status": "pending",
-  "blocks": [],
-  "blockedBy": []
-}

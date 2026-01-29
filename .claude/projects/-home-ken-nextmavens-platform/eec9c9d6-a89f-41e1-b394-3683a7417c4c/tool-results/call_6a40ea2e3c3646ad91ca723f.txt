@@ -1,4 +1,0 @@
-Exit code 1
- Image supabase/postgres-meta:latest Pulling 
- Image supabase/postgres-meta:latest Error failed to resolve reference "docker.io/supabase/postgres-meta:latest": docker.io/supabase/postgres-meta:latest: not found
-Error response from daemon: failed to resolve reference "docker.io/supabase/postgres-meta:latest": docker.io/supabase/postgres-meta:latest: not found

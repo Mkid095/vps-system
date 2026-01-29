@@ -1,5 +1,0 @@
-43-
-44-$Prompt = "/flow-update $Command"
-45:& claude --dangerously-skip-permissions -p $Prompt
-46-$ExitCode = $LASTEXITCODE
-47-

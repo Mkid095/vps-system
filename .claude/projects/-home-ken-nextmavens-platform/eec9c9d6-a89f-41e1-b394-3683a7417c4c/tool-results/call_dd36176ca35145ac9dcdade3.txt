@@ -1,2 +1,0 @@
- Container supabase-kong Restarting 
- Container supabase-kong Started

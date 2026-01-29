@@ -1,9 +1,0 @@
-{
-  "id": "12",
-  "subject": "Implement rate limiting middleware",
-  "description": "Add rate limiting middleware to prevent abuse of the organization creation endpoint (POST /api/orgs). Use environment variables for configuration.",
-  "activeForm": "Implementing rate limiting middleware",
-  "status": "completed",
-  "blocks": [],
-  "blockedBy": []
-}

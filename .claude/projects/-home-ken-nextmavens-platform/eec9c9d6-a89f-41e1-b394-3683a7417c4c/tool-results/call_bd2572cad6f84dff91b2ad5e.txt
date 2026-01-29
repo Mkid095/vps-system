@@ -1,8 +1,0 @@
-fb432ff954a1   nextmavens-dashboard:latest        "docker-entrypoint.s…"   14 seconds ago   Up 14 seconds (health: starting)   0.0.0.0:3005->3000/tcp, [::]:3005->3000/tcp                                                                                                       nextmavens-dashboard
---- Logs ---
-▲ Next.js 16.1.4
-- Local:         http://nextmavens-dashboard:3000
-- Network:       http://nextmavens-dashboard:3000
-
-✓ Starting...
-✓ Ready in 113ms

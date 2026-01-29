@@ -1,8 +1,0 @@
-{
-  "id": "2",
-  "subject": "Research and document improvements needed",
-  "description": "Research what features are missing compared to Supabase Cloud's organizations → projects flow:\n- Review current implementation gaps\n- Document what's working vs what needs improvement\n- Identify any duplications to avoid\n- Create improvement plan",
-  "status": "pending",
-  "blocks": [],
-  "blockedBy": []
-}

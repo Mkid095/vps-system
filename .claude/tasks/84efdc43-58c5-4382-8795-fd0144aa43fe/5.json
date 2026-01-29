@@ -1,9 +1,0 @@
-{
-  "id": "5",
-  "subject": "Build Supervisor / Observability Layer",
-  "description": "Create observability dashboard with service health monitoring, realtime service status, request counts, error rates, and WebSocket connection tracking",
-  "activeForm": "Building Supervisor dashboard",
-  "status": "pending",
-  "blocks": [],
-  "blockedBy": []
-}

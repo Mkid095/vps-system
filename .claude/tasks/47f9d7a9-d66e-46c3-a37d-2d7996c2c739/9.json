@@ -1,9 +1,0 @@
-{
-  "id": "9",
-  "subject": "Implement Feature Flags System",
-  "description": "Create kill switches for operational control:\n1. Create /home/ken/developer-portal/src/lib/features.ts\n2. Add feature_flags table: name, enabled, scope (global/project/org), metadata\n3. Implement checkFeature() helper\n4. Create admin UI at /admin/feature-flags\n5. Core flags: signups_enabled, provisioning_enabled, storage_enabled, realtime_enabled\n6. Add caching for performance (TTL 60s)\n7. Log all feature flag changes to audit log\n\nThis enables safe rollouts and incident response capabilities.",
-  "activeForm": "Implementing feature flags system",
-  "status": "pending",
-  "blocks": [],
-  "blockedBy": []
-}

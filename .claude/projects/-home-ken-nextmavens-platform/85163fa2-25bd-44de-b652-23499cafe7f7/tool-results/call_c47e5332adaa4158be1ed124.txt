@@ -1,1 +1,0 @@
-The file /home/ken/nextmavens-platform/docker/evolution.yml has been updated successfully.

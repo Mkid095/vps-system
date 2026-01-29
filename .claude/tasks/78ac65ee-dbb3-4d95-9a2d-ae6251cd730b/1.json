@@ -1,9 +1,0 @@
-{
-  "id": "1",
-  "subject": "Set up base project structure and directories",
-  "description": "Create the main project directories for nextmavens-platform including dashboard, docker, scripts, mcp, and docs folders. Create the foundation for the monorepo structure.",
-  "activeForm": "Setting up base project structure",
-  "status": "completed",
-  "blocks": [],
-  "blockedBy": []
-}

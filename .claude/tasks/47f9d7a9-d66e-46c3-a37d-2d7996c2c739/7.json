@@ -1,9 +1,0 @@
-{
-  "id": "7",
-  "subject": "Implement Quotas and Limits System",
-  "description": "Create clear separation between quotas (monthly allowance) and hard caps (abuse prevention):\n1. Create /home/ken/developer-portal/src/app/api/usage/check-quota/route.ts\n2. Add quotas and usage_snapshots tables\n3. Implement quota checking middleware\n4. Add usage tracking endpoint\n5. Create quota warning system (80%, 90%, 100%)\n6. Implement auto-suspend on hard cap exceeded\n7. UX messaging: different messages for quota exceeded vs rate limited vs hard cap\n\nService types: db_queries, storage_mb, realtime_connections, function_invocations",
-  "activeForm": "Implementing quotas and limits system",
-  "status": "pending",
-  "blocks": [],
-  "blockedBy": []
-}

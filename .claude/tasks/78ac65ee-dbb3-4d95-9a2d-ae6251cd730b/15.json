@@ -1,9 +1,0 @@
-{
-  "id": "15",
-  "subject": "Verify RLS policies in db-init.sql",
-  "description": "Use Supabase MCP tools to verify RLS policies are correct for the organizations table and related tables. Ensure proper access controls.",
-  "activeForm": "Verifying RLS policies",
-  "status": "completed",
-  "blocks": [],
-  "blockedBy": []
-}

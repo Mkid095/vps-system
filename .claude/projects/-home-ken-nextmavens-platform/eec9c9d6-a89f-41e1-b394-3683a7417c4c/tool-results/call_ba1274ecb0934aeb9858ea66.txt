@@ -1,1 +1,0 @@
-{"success":true,"data":{"items":[{"id":"f32990d2-e405-48dd-8ac1-4da721a6ee0e","name":"Test Org","slug":"test-org","logo_url":null,"created_at":"2026-01-25T20:42:04.261682+00:00","updated_at":"2026-01-25T20:42:04.261682+00:00","role":"owner"}],"total":1}}

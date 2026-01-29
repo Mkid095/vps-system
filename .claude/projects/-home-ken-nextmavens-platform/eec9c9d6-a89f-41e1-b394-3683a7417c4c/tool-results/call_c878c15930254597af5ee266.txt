@@ -1,3 +1,0 @@
-Exit code 1
-time="2026-01-25T17:58:53Z" level=warning msg="a network with name nextmavens-network exists but was not created by compose.\nSet `external: true` to use an existing network"
-network nextmavens-network was found but has incorrect label com.docker.compose.network set to "" (expected: "nextmavens-network")
