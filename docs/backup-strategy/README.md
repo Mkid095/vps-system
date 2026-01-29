@@ -45,16 +45,21 @@ The platform supports three types of backups, each serving different purposes:
 
 ### Storage Backups
 
-**What's backed up:** Large files stored in Telegram (>2GB automatically handled by Telegram)
+**What's backed up:** Files sent to Telegram for long-term storage
 
 **When to use:**
-- Automatic for files exceeding 2GB
 - Long-term file archival
 - Redundant storage for critical assets
+- Backup of important documents and media
 
-**How it works:** Files >2GB are automatically split and stored via Telegram's built-in backup mechanism
+**How it works:** Files are sent to Telegram via the backup API. The standard Telegram Bot API supports files up to 50MB.
 
-**Typical size:** Large files (GBs)
+**File size limits:**
+- Standard Telegram Bot API: Up to 50MB per file
+- For files >50MB: Consider splitting into smaller parts or using alternative storage
+- Note: Files >2GB require a self-hosted local Telegram Bot API server (not currently implemented)
+
+**Typical size:** Up to 50MB per file
 
 ### Logs Backups
 
@@ -571,9 +576,10 @@ GROUP BY type;
 
 **Telegram Storage Costs:**
 
-- First 2GB: Free
-- Beyond 2GB: Automatic split handling
-- No additional cost for backup storage
+- Standard Bot API: Up to 50MB per file (free)
+- For files >50MB: Requires file splitting or alternative storage solutions
+- Note: To support files up to 2GB, a self-hosted local Telegram Bot API server is required
+- Bot API storage: Generally free within file size limits
 
 **Best Practices:**
 
