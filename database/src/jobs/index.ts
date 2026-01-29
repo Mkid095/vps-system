@@ -52,3 +52,28 @@ export {
   WebhookDeliveryErrorType,
   WebhookRetryConfig,
 } from './types.webhook.js';
+
+// Export backup history types
+export type {
+  BackupHistory,
+  BackupHistoryInput,
+  BackupHistoryQuery,
+  BackupHistoryResponse,
+  BackupHistoryStats,
+  BackupHistoryResult,
+} from './types.backup.js';
+
+export {
+  BackupHistoryStatus,
+  BackupHistoryType,
+} from './types.backup.js';
+
+// Export backup history functions
+export {
+  recordBackup,
+  getBackupHistory,
+  getBackupById,
+  markBackupExpired,
+  markBackupDeleted,
+  cleanupExpiredBackups,
+} from './backup-history.js';
