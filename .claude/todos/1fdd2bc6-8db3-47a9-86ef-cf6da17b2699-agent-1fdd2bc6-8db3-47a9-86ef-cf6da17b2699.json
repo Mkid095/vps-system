@@ -16,17 +16,17 @@
   },
   {
     "content": "Step 10: Security & Auth for US-010 Job Status API",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Step 10: Security & Auth for US-010 Job Status API"
   },
   {
     "content": "Run typecheck",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Running typecheck"
   },
   {
     "content": "Mark US-010 complete and commit",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Marking US-010 complete and committing"
   }
 ]

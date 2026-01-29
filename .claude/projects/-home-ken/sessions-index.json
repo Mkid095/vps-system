@@ -1239,30 +1239,6 @@
       "isSidechain": false
     },
     {
-      "sessionId": "1fdd2bc6-8db3-47a9-86ef-cf6da17b2699",
-      "fullPath": "/home/ken/.claude/projects/-home-ken/1fdd2bc6-8db3-47a9-86ef-cf6da17b2699.jsonl",
-      "fileMtime": 1769699040120,
-      "firstPrompt": "<command-message>flow-work-story</command-message> <command-name>/flow-work-story</command-name> <command-args>docs/prd-background-jobs.json US-010</command-args>",
-      "messageCount": 10,
-      "created": "2026-01-29T14:44:29.818Z",
-      "modified": "2026-01-29T15:04:00.116Z",
-      "gitBranch": "master",
-      "projectPath": "/home/ken",
-      "isSidechain": false
-    },
-    {
-      "sessionId": "623c4ae6-b7b2-4448-929f-06cf1304f66f",
-      "fullPath": "/home/ken/.claude/projects/-home-ken/623c4ae6-b7b2-4448-929f-06cf1304f66f.jsonl",
-      "fileMtime": 1769699375895,
-      "firstPrompt": "<command-message>flow-work-story</command-message> <command-name>/flow-work-story</command-name> <command-args>docs/prd-background-jobs.json US-009</command-args>",
-      "messageCount": 22,
-      "created": "2026-01-29T14:39:10.893Z",
-      "modified": "2026-01-29T15:09:35.894Z",
-      "gitBranch": "master",
-      "projectPath": "/home/ken",
-      "isSidechain": false
-    },
-    {
       "sessionId": "b1f746fd-f14d-4820-b1e4-292697381cf9",
       "fullPath": "/home/ken/.claude/projects/-home-ken/b1f746fd-f14d-4820-b1e4-292697381cf9.jsonl",
       "fileMtime": 1769699070481,
@@ -1275,13 +1251,49 @@
       "isSidechain": false
     },
     {
+      "sessionId": "1fdd2bc6-8db3-47a9-86ef-cf6da17b2699",
+      "fullPath": "/home/ken/.claude/projects/-home-ken/1fdd2bc6-8db3-47a9-86ef-cf6da17b2699.jsonl",
+      "fileMtime": 1769700439683,
+      "firstPrompt": "<command-message>flow-work-story</command-message> <command-name>/flow-work-story</command-name> <command-args>docs/prd-background-jobs.json US-010</command-args>",
+      "messageCount": 15,
+      "created": "2026-01-29T14:44:29.818Z",
+      "modified": "2026-01-29T15:27:19.682Z",
+      "gitBranch": "master",
+      "projectPath": "/home/ken",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "623c4ae6-b7b2-4448-929f-06cf1304f66f",
+      "fullPath": "/home/ken/.claude/projects/-home-ken/623c4ae6-b7b2-4448-929f-06cf1304f66f.jsonl",
+      "fileMtime": 1769700397514,
+      "firstPrompt": "<command-message>flow-work-story</command-message> <command-name>/flow-work-story</command-name> <command-args>docs/prd-background-jobs.json US-009</command-args>",
+      "messageCount": 48,
+      "created": "2026-01-29T14:39:10.893Z",
+      "modified": "2026-01-29T15:26:37.513Z",
+      "gitBranch": "master",
+      "projectPath": "/home/ken",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "14cff4e0-7bca-40fd-bc65-5ffca155c7ee",
+      "fullPath": "/home/ken/.claude/projects/-home-ken/14cff4e0-7bca-40fd-bc65-5ffca155c7ee.jsonl",
+      "fileMtime": 1769700418325,
+      "firstPrompt": "<command-message>flow-work-story</command-message> <command-name>/flow-work-story</command-name> <command-args>docs/prd-background-jobs.json US-012</command-args>",
+      "messageCount": 15,
+      "created": "2026-01-29T15:11:21.708Z",
+      "modified": "2026-01-29T15:26:58.321Z",
+      "gitBranch": "master",
+      "projectPath": "/home/ken",
+      "isSidechain": false
+    },
+    {
       "sessionId": "c5feea86-356c-405d-909a-d9b8c857c880",
       "fullPath": "/home/ken/.claude/projects/-home-ken/c5feea86-356c-405d-909a-d9b8c857c880.jsonl",
-      "fileMtime": 1769699277059,
+      "fileMtime": 1769699808372,
       "firstPrompt": "<command-message>flow-work-story</command-message> <command-name>/flow-work-story</command-name> <command-args>docs/prd-background-jobs.json US-011</command-args>",
       "messageCount": 3,
       "created": "2026-01-29T14:55:25.305Z",
-      "modified": "2026-01-29T15:07:57.041Z",
+      "modified": "2026-01-29T15:16:48.370Z",
       "gitBranch": "master",
       "projectPath": "/home/ken",
       "isSidechain": false

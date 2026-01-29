@@ -1,0 +1,52 @@
+---
+memoryVersion: 1
+storyId: US-012
+storyTitle: Create Job Progress UI
+completedDate: 2026-01-29
+---
+
+STORY: US-012 - Create Job Progress UI
+========================================
+
+DESCRIPTION:
+As a developer, I want to see job progress in the UI so that I can monitor long-running operations like provisioning.
+
+MAVEN STEPS COMPLETED:
+[5, 10] - Quality Agent (Step 5), Security Agent (Step 10)
+
+IMPLEMENTATION SUMMARY:
+Created a comprehensive Job Progress UI component for the developer portal that monitors long-running background jobs in real-time. The implementation includes auto-refresh polling, progress tracking for multi-step jobs (like provision_project), time estimation, error display, and retry functionality.
+
+KEY FILES:
+- developer-portal/src/features/jobs/components/JobProgress.tsx - Main container with auto-refresh (178 lines)
+- developer-portal/src/features/jobs/components/JobProgressHeader.tsx - Status header with badges (56 lines)
+- developer-portal/src/features/jobs/components/JobProgressBar.tsx - Animated progress bar (32 lines)
+- developer-portal/src/features/jobs/components/JobProgressActions.tsx - Retry button and attempts (42 lines)
+- developer-portal/src/features/jobs/components/JobProgressTimestamps.tsx - Timestamps display (26 lines)
+- developer-portal/src/lib/types/job.types.ts - TypeScript interfaces for job status
+- developer-portal/src/lib/api/jobs-client.ts - API client for jobs endpoints
+- developer-portal/src/features/jobs/utils/job-progress.utils.ts - Progress calculation utilities (175 lines)
+
+DECISIONS MADE:
+- Used 2-second polling interval for auto-refresh (configurable)
+- Special handling for provision_project job with 8 known stages
+- Progress calculation based on elapsed time and completion percentage
+- Stop polling when job reaches terminal state (completed/failed)
+- Retry button validates max_attempts before allowing retry
+
+INTEGRATION POINTS:
+- Uses existing Job Status API (GET /api/jobs/:id)
+- Uses existing Job Retry API (POST /api/jobs/:id/retry)
+- Integrates with JWT authentication from localStorage
+- Can be added to any page that needs to monitor job progress
+
+LESSONS LEARNED:
+- Modular component design (5 components) keeps each under 300 lines
+- Time estimation is approximate - better to show "estimating..." initially
+- Platform-wide security issue identified: JWT tokens in localStorage (XSS vulnerability)
+- Consider using httpOnly cookies for token storage in future auth improvements
+
+SECURITY AUDIT RESULTS:
+- Score: 9/10 (Conditional Pass)
+- All job-specific security checks passed
+- Platform-wide token storage issue documented for separate resolution
