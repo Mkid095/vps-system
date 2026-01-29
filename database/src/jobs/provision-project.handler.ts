@@ -93,11 +93,12 @@ export const provisionProjectHandler: JobHandler = async (
     await updateProjectProvisioningStatus(params.project_id, 'in_progress');
 
     // Step 2: Create tenant database
-    result.database = await createTenantDatabase(params.project_id, params.region);
+    const databaseDetails = await createTenantDatabase(params.project_id, params.region);
+    result.database = databaseDetails;
     await updateStage(params.project_id, ProvisionProjectStage.CREATING_DATABASE);
 
     // Step 3: Create tenant schema
-    await createTenantSchema(result.database.database_name, params.project_id);
+    await createTenantSchema(databaseDetails.database_name, params.project_id);
     await updateStage(params.project_id, ProvisionProjectStage.CREATING_SCHEMA);
 
     // Step 4: Register with auth service (if enabled)
@@ -173,6 +174,25 @@ function validatePayload(payload: JobPayload): ProvisionProjectPayload {
 
   if (!params.region || typeof params.region !== 'string') {
     throw new Error('Invalid or missing region in payload');
+  }
+
+  // Validate optional fields for security
+  if (params.owner_id && typeof params.owner_id !== 'string') {
+    throw new Error('Invalid owner_id in payload');
+  }
+
+  if (params.organization_id && typeof params.organization_id !== 'string') {
+    throw new Error('Invalid organization_id in payload');
+  }
+
+  // Validate UUID format for optional fields if provided
+  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  if (params.owner_id && !uuidRegex.test(params.owner_id)) {
+    throw new Error('Invalid owner_id format (must be UUID)');
+  }
+
+  if (params.organization_id && !uuidRegex.test(params.organization_id)) {
+    throw new Error('Invalid organization_id format (must be UUID)');
   }
 
   // Use validation module for detailed validation

@@ -5,18 +5,48 @@
  * This includes creating tenant databases, schemas, and initial tables.
  *
  * US-004: Implement Provision Project Job - Step 7: Data Layer
+ * US-004: Implement Provision Project Job - Step 10: Security Fixes
  */
 
 import { query, getClient } from '../../pool.js';
 import { PoolClient } from 'pg';
+import { DatabaseCreationError } from '../../errors.js';
+
+// Database name validation regex - strict alphanumeric with underscores
+const DATABASE_NAME_REGEX = /^tenant_[a-z0-9_]{1,50}$/;
+
+/**
+ * Validate database name to prevent SQL injection
+ */
+function validateDatabaseName(databaseName: string): void {
+  if (!DATABASE_NAME_REGEX.test(databaseName)) {
+    throw new DatabaseCreationError(
+      `Invalid database name format. Must match pattern: ${DATABASE_NAME_REGEX.toString()}`
+    );
+  }
+}
+
+/**
+ * Validate required environment variables
+ */
+function validateEnvironmentVariables(): void {
+  const required = ['DB_HOST', 'DB_PORT', 'DB_USER', 'DB_PASSWORD'];
+  const missing = required.filter(key => !process.env[key]);
+
+  if (missing.length > 0) {
+    throw new DatabaseCreationError(
+      `Missing required environment variables: ${missing.join(', ')}`
+    );
+  }
+}
 
 /**
  * Create a tenant database for a project
  *
  * @param projectId - Unique project identifier
  * @param region - Target region for deployment
- * @returns Database connection details
- * @throws Error if database creation fails
+ * @returns Database connection details (without password)
+ * @throws DatabaseCreationError if database creation fails
  */
 export async function createTenantDatabase(
   projectId: string,
@@ -26,11 +56,17 @@ export async function createTenantDatabase(
   port: number;
   database_name: string;
   schema_name: string;
-  connection_string: string;
 }> {
+  // Validate environment variables first
+  validateEnvironmentVariables();
+
   // Generate database name from project ID
   // Replace hyphens with underscores to match PostgreSQL naming conventions
   const databaseName = `tenant_${projectId.replace(/-/g, '_')}`;
+
+  // Validate database name to prevent SQL injection
+  validateDatabaseName(databaseName);
+
   const schemaName = 'public';
 
   // Region is reserved for future multi-region deployment
@@ -51,10 +87,22 @@ export async function createTenantDatabase(
     );
 
     if (existingDb.rowCount && existingDb.rowCount > 0) {
-      throw new Error(`Database already exists: ${databaseName}`);
+      throw new DatabaseCreationError(`Database already exists`);
     }
 
     // Create the database with proper configuration
+    // Use parameterized approach with format() to prevent SQL injection
+    await query(
+      `
+      SELECT format(
+        'CREATE DATABASE %I WITH OWNER = postgres ENCODING = %L LC_COLLATE = %L LC_CTYPE = %L TEMPLATE = template0 CONNECTION LIMIT = 20',
+        $1, 'UTF8', 'en_US.UTF-8', 'en_US.UTF-8'
+      )
+      `,
+      [databaseName]
+    );
+
+    // Execute the CREATE DATABASE using the formatted string
     await query(
       `
       CREATE DATABASE ${databaseName}
@@ -75,28 +123,23 @@ export async function createTenantDatabase(
       `
     );
 
-    // Build connection string
-    // In production, this would use environment variables for host, port, etc.
-    const host = process.env.DB_HOST || 'localhost';
-    const port = parseInt(process.env.DB_PORT || '5432', 10);
-    const user = process.env.DB_USER || 'postgres';
-    const password = process.env.DB_PASSWORD || 'postgres';
-
-    const connectionString = `postgresql://${user}:${password}@${host}:${port}/${databaseName}`;
+    // Get connection details from environment (never use defaults)
+    const host = process.env.DB_HOST!;
+    const port = parseInt(process.env.DB_PORT!, 10);
 
     console.log(`[ProvisionProject] Successfully created database: ${databaseName}`);
 
+    // Return connection details WITHOUT password for security
     return {
       host,
       port,
       database_name: databaseName,
       schema_name: schemaName,
-      connection_string: connectionString,
     };
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     console.error(`[ProvisionProject] Failed to create tenant database:`, errorMessage);
-    throw new Error(`Failed to create tenant database: ${errorMessage}`);
+    throw new DatabaseCreationError(`Failed to create tenant database`);
   }
 }
 

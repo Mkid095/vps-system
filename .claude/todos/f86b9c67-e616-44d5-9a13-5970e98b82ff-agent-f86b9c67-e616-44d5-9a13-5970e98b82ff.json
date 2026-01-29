@@ -1,0 +1,32 @@
+[
+  {
+    "content": "Step 1: Foundation - Set up deliver_webhook job handler structure",
+    "status": "completed",
+    "activeForm": "Working on Step 1: Foundation"
+  },
+  {
+    "content": "Step 2: Package Manager - Ensure dependencies are configured",
+    "status": "completed",
+    "activeForm": "Working on Step 2: Package Manager"
+  },
+  {
+    "content": "Step 7: Data Layer - Implement webhook delivery logic",
+    "status": "in_progress",
+    "activeForm": "Working on Step 7: Data Layer"
+  },
+  {
+    "content": "Step 10: Security/Auth - Validate webhook delivery security",
+    "status": "pending",
+    "activeForm": "Working on Step 10: Security/Auth"
+  },
+  {
+    "content": "Run typecheck and fix any errors",
+    "status": "pending",
+    "activeForm": "Running typecheck"
+  },
+  {
+    "content": "Mark story complete and commit changes",
+    "status": "pending",
+    "activeForm": "Completing story"
+  }
+]

@@ -16,6 +16,7 @@
 import type { JobHandler, JobHandlerRegistry } from '../../types/jobs.types.js';
 import { JobType } from '../../types/jobs.types.js';
 import { provisionProjectHandler } from './provision-project.handler.js';
+import { deliverWebhookHandler } from './deliver-webhook.handler.js';
 
 /**
  * Job handler registry
@@ -25,9 +26,11 @@ export const jobHandlers: JobHandlerRegistry = {
   // Project management jobs
   [JobType.PROVISION_PROJECT]: provisionProjectHandler,
 
+  // Webhook jobs
+  [JobType.DELIVER_WEBHOOK]: deliverWebhookHandler,
+
   // Additional handlers will be registered here as they are implemented
   // [JobType.ROTATE_KEY]: rotateKeyHandler,
-  // [JobType.DELIVER_WEBHOOK]: deliverWebhookHandler,
   // [JobType.EXPORT_BACKUP]: exportBackupHandler,
   // etc.
 };

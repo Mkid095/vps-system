@@ -1,0 +1,41 @@
+---
+memoryVersion: 1
+storyId: US-005
+storyTitle: Implement Rotate Key Job
+completedDate: 2026-01-29
+---
+
+STORY: US-005 - Implement Rotate Key Job
+========================
+
+DESCRIPTION: As a platform operator, I want key rotation to run as a background job so that old keys are expired after grace period.
+
+MAVEN STEPS COMPLETED: 1, 2, 7, 10
+
+IMPLEMENTATION SUMMARY:
+Created rotate_key job handler that performs background key rotation. The handler creates a new key version (mock implementation with TODOs for real crypto) and marks the old key as expired after a 24-hour grace period. Implemented as a one-shot job with no retries to prevent accidental multiple rotations.
+
+KEY FILES:
+- src/lib/jobs/handlers/rotate-key.handler.ts - Main job handler (231 lines)
+- src/lib/jobs/__tests__/rotate-key.integration.test.ts - Integration tests (425 lines)
+- src/lib/jobs/__tests__/migrations/create_api_keys_table.sql - Test database schema
+- src/lib/jobs/__tests__/README.md - Integration documentation
+- src/lib/jobs/index.ts - Centralized exports for handlers
+
+DECISIONS MADE:
+- One-shot execution (maxAttempts: 1) to prevent accidental multiple rotations
+- Used existing expires_at column instead of theoretical key_version/is_expired columns
+- Mock implementation for actual key generation with detailed TODOs for future implementation
+- 24-hour grace period implemented as expires_at = NOW() + INTERVAL '24 hours'
+
+INTEGRATION POINTS:
+- Uses JobWorker from US-003 for job execution
+- Uses enqueueJob from US-002 for job scheduling
+- Uses control_plane.api_keys table for key management
+- Can be extended to integrate with @nextmavens/audit-logs-database for centralized audit logging
+
+LESSONS LEARNED:
+- Parameterized queries are essential for SQL injection prevention
+- One-shot jobs need explicit maxAttempts: 1 configuration
+- Job handlers should be exported via centralized index.ts for easy registration
+- Integration tests should include database schema setup for isolated testing

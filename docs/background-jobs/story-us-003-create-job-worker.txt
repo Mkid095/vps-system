@@ -1,0 +1,44 @@
+---
+memoryVersion: 1
+storyId: US-003
+storyTitle: Create Job Worker
+completedDate: 2026-01-29
+---
+
+STORY: US-003 - Create Job Worker
+========================
+
+DESCRIPTION:
+As a platform engineer, I want a job worker process so that background jobs are processed reliably.
+
+MAVEN STEPS COMPLETED:
+[1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Created a complete job worker system that polls for pending jobs, executes handlers based on job type, and manages job lifecycle with exponential backoff for retries. The worker includes graceful shutdown handling and comprehensive integration tests.
+
+KEY FILES:
+- api-gateway/src/lib/jobs/worker.ts - Main JobWorker class (585 lines)
+- api-gateway/src/lib/jobs/index.ts - Central export point for jobs system
+- api-gateway/src/lib/jobs/__tests__/worker.integration.test.ts - Integration tests (400+ lines)
+
+DECISIONS MADE:
+- Use FOR UPDATE SKIP LOCKED to prevent concurrent processing by multiple workers
+- Implement exponential backoff with base 1s, multiplier 2, max 60s
+- Graceful shutdown waits up to 30s for running jobs to complete
+- Timeout protection for each job execution (60s default)
+- Priority-based job ordering (higher priority first)
+
+INTEGRATION POINTS:
+- Integrates with existing job queue at api-gateway/src/lib/jobs/queue.ts
+- Uses query() from @nextmavens/audit-logs-database for database access
+- Reads from control_plane.jobs table (created in US-001)
+- Job types defined in database/types/jobs.types.ts
+
+LESSONS LEARNED:
+- Worker should be started as a separate process for production
+- Handler registration must happen before worker.start()
+- FOR UPDATE SKIP LOCKED is essential for multi-worker deployments
+- Integration tests should cover full lifecycle: enqueue -> poll -> process -> complete
+- Consider adding runtime payload validation with Zod for production
+- Structured logging would be better than console.log for production

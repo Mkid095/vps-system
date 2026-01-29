@@ -1,0 +1,32 @@
+[
+  {
+    "content": "Step 1: Set up foundation for export_backup job handler",
+    "status": "completed",
+    "activeForm": "Setting up foundation for export_backup job handler"
+  },
+  {
+    "content": "Step 2: Implement export_backup job handler with retry logic",
+    "status": "completed",
+    "activeForm": "Implementing export_backup job handler with retry logic"
+  },
+  {
+    "content": "Step 7: Add integration tests for export_backup handler",
+    "status": "in_progress",
+    "activeForm": "Adding integration tests for export_backup handler"
+  },
+  {
+    "content": "Step 10: Security audit for export_backup handler",
+    "status": "pending",
+    "activeForm": "Performing security audit for export_backup handler"
+  },
+  {
+    "content": "Run typecheck and verify all tests pass",
+    "status": "pending",
+    "activeForm": "Running typecheck and verifying tests"
+  },
+  {
+    "content": "Mark US-007 complete and commit changes",
+    "status": "pending",
+    "activeForm": "Marking US-007 complete and committing changes"
+  }
+]

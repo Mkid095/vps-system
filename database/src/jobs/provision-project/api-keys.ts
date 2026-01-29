@@ -4,11 +4,20 @@
  * Handles API key generation and management for projects.
  *
  * US-004: Implement Provision Project Job - Step 7: Data Layer
+ * US-004: Implement Provision Project Job - Step 10: Security Fixes
  */
 
 import { query } from '../../pool.js';
-import { randomBytes } from 'crypto';
+import { randomBytes, scrypt } from 'crypto';
 import type { ProvisionProjectPayload } from '../types.js';
+import { ApiKeyGenerationError } from '../../errors.js';
+import { promisify } from 'util';
+
+const scryptAsync = promisify(scrypt);
+
+// API key hash salt - should be unique per deployment
+// In production, generate a random salt at deployment time
+const API_KEY_SALT = process.env.API_KEY_SALT || 'change-me-in-production-32-bytes-long-salt';
 
 /**
  * Generated API key result
@@ -27,7 +36,7 @@ export interface GeneratedApiKey {
  *
  * @param params - Provisioning parameters
  * @returns Array of generated API keys
- * @throws Error if key generation fails
+ * @throws ApiKeyGenerationError if key generation fails
  */
 export async function generateApiKeys(
   params: ProvisionProjectPayload
@@ -43,8 +52,11 @@ export async function generateApiKeys(
       // Generate unique key ID
       const keyId = `${keyPrefix}_${params.project_id}_${i + 1}`;
 
-      // Generate secure random key value
-      const keyValue = generateSecureApiKey(keyPrefix, 32);
+      // Generate secure random key value (64 bytes for better security)
+      const keyValue = generateSecureApiKey(keyPrefix, 64);
+
+      // Hash the key for secure storage
+      const hashedKey = await hashApiKey(keyValue);
 
       // Insert into database
       await query(
@@ -64,7 +76,7 @@ export async function generateApiKeys(
         [
           keyId,
           params.project_id,
-          hashApiKey(keyValue), // Store hashed value
+          hashedKey, // Store hashed value
           keyPrefix,
           `${keyPrefix}_${params.project_id}_${i + 1}`,
           ['read', 'write'], // Default scopes
@@ -90,7 +102,7 @@ export async function generateApiKeys(
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     console.error(`[ProvisionProject] Failed to generate API keys:`, errorMessage);
-    throw new Error(`Failed to generate API keys: ${errorMessage}`);
+    throw new ApiKeyGenerationError(`Failed to generate API keys`);
   }
 }
 
@@ -103,26 +115,35 @@ export async function generateApiKeys(
  */
 function generateSecureApiKey(prefix: string, bytes: number): string {
   // Generate random bytes and convert to hex
+  // Increased to 64 bytes (512 bits) for stronger security
   const randomValue = randomBytes(bytes).toString('hex');
 
-  // Format: prefix_timestamp_randomvalue
-  const timestamp = Date.now().toString(16);
-  const key = `${prefix}_${timestamp}_${randomValue}`;
+  // Format: prefix_randomvalue only - removed timestamp for better entropy
+  const key = `${prefix}_${randomValue}`;
 
   return key;
 }
 
 /**
- * Hash an API key for secure storage
+ * Hash an API key for secure storage using scrypt
  *
  * @param keyValue - The API key to hash
- * @returns Hashed API key
+ * @returns Hashed API key with salt
  */
-function hashApiKey(keyValue: string): string {
-  // In production, use a proper hashing algorithm like bcrypt or argon2
-  // For now, we'll use a simple SHA-256 hash
-  const crypto = require('crypto');
-  return crypto.createHash('sha256').update(keyValue).digest('hex');
+async function hashApiKey(keyValue: string): Promise<string> {
+  try {
+    // Use scrypt (memory-hard KDF) instead of SHA-256
+    // This is resistant to brute-force attacks
+    const derivedKey = (await scryptAsync(
+      keyValue,
+      API_KEY_SALT,
+      64 // 64 bytes output
+    )) as Buffer;
+
+    return derivedKey.toString('hex');
+  } catch (error) {
+    throw new ApiKeyGenerationError('Failed to hash API key');
+  }
 }
 
 /**
@@ -132,29 +153,23 @@ function hashApiKey(keyValue: string): string {
  * @returns True if valid format, false otherwise
  */
 export function validateApiKeyFormat(keyValue: string): boolean {
-  // API keys should be in format: prefix_timestamp_randomhex
+  // API keys should be in format: prefix_randomhex (timestamp removed for security)
   const parts = keyValue.split('_');
 
-  if (parts.length !== 3) {
+  if (parts.length !== 2) {
     return false;
   }
 
   const prefix = parts[0];
-  const timestamp = parts[1];
-  const randomValue = parts[2];
+  const randomValue = parts[1];
 
   // Validate prefix (alphanumeric, 2-10 chars)
   if (!prefix || !/^[a-z0-9]{2,10}$/i.test(prefix)) {
     return false;
   }
 
-  // Validate timestamp (hex number)
-  if (!timestamp || !/^[0-9a-f]+$/.test(timestamp)) {
-    return false;
-  }
-
-  // Validate random value (hex, at least 32 chars)
-  if (!randomValue || !/^[0-9a-f]{32,}$/i.test(randomValue)) {
+  // Validate random value (hex, at least 64 chars for 32 bytes)
+  if (!randomValue || !/^[0-9a-f]{64,}$/i.test(randomValue)) {
     return false;
   }
 

@@ -224,3 +224,46 @@ export type {
 } from './jobs/types.js';
 
 export { ProvisionProjectErrorType, ProvisionProjectStage } from './jobs/types.js';
+
+// ============================================================================
+// WEBHOOK TYPES EXPORT
+// ============================================================================
+// US-006: Implement Deliver Webhook Job - Step 7: Data Layer
+//
+// Webhook configuration and delivery tracking types for managing webhook
+// notifications to external endpoints.
+//
+// @example
+// ```typescript
+// import { Webhook, WebhookDelivery, WebhookDeliveryStatus } from '@nextmavens/audit-logs-database';
+//
+// // Create a webhook
+// const webhook: Webhook = {
+//   id: 'webhook-123',
+//   project_id: 'proj-456',
+//   event_type: 'user.created',
+//   url: 'https://example.com/webhook',
+//   http_method: 'POST',
+//   headers: { 'Authorization': 'Bearer token123' },
+//   disabled: false,
+//   disabled_at: null,
+//   disabled_reason: null,
+//   consecutive_failures: 0,
+//   last_delivery_at: null,
+//   last_failure_at: null,
+//   created_at: new Date(),
+//   updated_at: new Date(),
+// };
+// ```
+export type {
+  Webhook,
+  CreateWebhookInput,
+  UpdateWebhookInput,
+  WebhookDelivery,
+  CreateWebhookDeliveryInput,
+  WebhookQuery,
+  WebhookDeliveryQuery,
+  WebhookStatistics,
+} from '../types/webhooks.types.js';
+
+export { WebhookDeliveryStatus, WebhookDeliveryErrorType } from '../types/webhooks.types.js';

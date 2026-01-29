@@ -370,7 +370,7 @@ describe('US-002: Job Queue Database Integration Tests', () => {
       await enqueueJob('test-index-status-2');
 
       // Verify index usage
-      const { uses_index, plan } = await verifyIndexUsage(`
+      const { uses_index } = await verifyIndexUsage(`
         SELECT * FROM control_plane.jobs
         WHERE status = 'pending'
         LIMIT 10

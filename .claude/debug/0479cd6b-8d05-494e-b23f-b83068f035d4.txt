@@ -3720,3 +3720,25 @@
 2026-01-29T14:13:39.329Z [DEBUG] Metrics opt-out check failed: No API key available
 2026-01-29T14:13:39.329Z [DEBUG] Metrics check failed, defaulting to disabled
 2026-01-29T14:13:39.329Z [DEBUG] Metrics export disabled by organization setting
+2026-01-29T14:14:34.402Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T14:14:34.403Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T14:14:34.403Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T14:14:34.403Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T14:14:34.403Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T14:14:34.403Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T14:14:34.404Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T14:14:34.409Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T14:14:34.409Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T14:14:34.409Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T14:14:34.409Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T14:14:34.410Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T14:14:34.414Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T14:14:34.414Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T14:14:34.415Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T14:14:41.651Z [DEBUG] Stream started - received first chunk
+2026-01-29T14:14:41.659Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-29T14:14:41.659Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T14:14:41.659Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-29T14:14:41.661Z [DEBUG] Getting matching hook commands for SessionEnd with query: other
+2026-01-29T14:14:41.661Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T14:14:41.661Z [DEBUG] Matched 0 unique hooks for query "other" (0 before deduplication)

@@ -6,32 +6,32 @@
   },
   {
     "content": "Process Step 2 - Package Manager Setup for US-004",
-    "status": "in_progress",
+    "status": "completed",
     "activeForm": "Processing Step 2 - Package Manager Setup"
   },
   {
     "content": "Process Step 7 - Data Layer for US-004",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Processing Step 7 - Data Layer"
   },
   {
     "content": "Process Step 10 - Integration for US-004",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Processing Step 10 - Integration"
   },
   {
     "content": "Run typecheck",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Running typecheck"
   },
   {
     "content": "Mark US-004 complete in PRD",
-    "status": "pending",
+    "status": "completed",
     "activeForm": "Marking US-004 complete"
   },
   {
     "content": "Commit changes",
-    "status": "pending",
+    "status": "in_progress",
     "activeForm": "Committing changes"
   },
   {

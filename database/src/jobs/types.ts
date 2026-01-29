@@ -62,13 +62,12 @@ export interface ProvisionProjectResult {
   /** Successfully provisioned project ID */
   project_id: string;
 
-  /** Provisioned database connection details */
+  /** Provisioned database connection details (without password for security) */
   database: {
     host: string;
     port: number;
     database_name: string;
     schema_name: string;
-    connection_string: string;
   };
 
   /** Registered service details */
