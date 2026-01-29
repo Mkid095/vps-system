@@ -378,3 +378,39 @@ export type {
 } from '../types/admin-sessions.types.js';
 
 export { AccessMethod } from '../types/admin-sessions.types.js';
+
+// ============================================================================
+// ADMIN ACTIONS TYPES EXPORT
+// ============================================================================
+// US-002: Create Admin Actions Table (Break Glass Mode)
+//
+// Admin action tracking types for logging all break glass emergency actions
+// with full before/after state capture. These actions provide aggressive audit
+// logging for all emergency admin operations.
+//
+// @example
+// ```typescript
+// import { AdminAction, AdminActionType, CreateAdminActionInput } from '@nextmavens/audit-logs-database';
+//
+// // Log an admin action
+// const action: CreateAdminActionInput = {
+//   session_id: 'session-uuid-123',
+//   action: AdminActionType.UNLOCK_PROJECT,
+//   target_type: 'project',
+//   target_id: 'project-uuid-456',
+//   before_state: { status: 'SUSPENDED', suspension_reason: 'billing overdue' },
+//   after_state: { status: 'ACTIVE', suspension_reason: null },
+// };
+// ```
+export type {
+  AdminAction,
+  CreateAdminActionInput,
+  AdminActionQuery,
+  AdminActionResponse,
+  AdminActionValidation,
+  AdminActionStats,
+  AdminActionWithSession,
+  TargetHistory,
+} from '../types/admin-actions.types.js';
+
+export { AdminActionType } from '../types/admin-actions.types.js';
