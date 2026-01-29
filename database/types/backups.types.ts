@@ -26,10 +26,15 @@ export interface Backup {
   project_id: string;
   type: BackupType;
   file_id: string;
+  message_id?: number;
   size: number;
   created_at: Date;
   expires_at: Date;
   restore_count?: number;
+  notified_at?: Date;
+  cleanup_status?: 'pending' | 'notified' | 'deleted' | 'failed';
+  cleanup_attempts?: number;
+  cleanup_error?: string;
 }
 
 /**
@@ -40,6 +45,7 @@ export interface CreateBackupInput {
   project_id: string;
   type: BackupType;
   file_id: string;
+  message_id?: number;
   size: number;
   expires_at?: Date; // Optional, defaults to 30 days from creation
 }
