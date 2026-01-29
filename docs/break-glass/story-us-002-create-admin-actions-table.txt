@@ -1,0 +1,41 @@
+---
+memoryVersion: 1
+storyId: US-002
+storyTitle: Create Admin Actions Table
+completedDate: 2026-01-29
+---
+
+STORY: US-002 - Create Admin Actions Table
+========================
+
+DESCRIPTION: As a platform engineer, I want an admin_actions table so that I can track all break glass actions with full context.
+
+MAVEN STEPS COMPLETED: [1, 2, 7]
+
+IMPLEMENTATION SUMMARY:
+Created admin_actions table in control_plane schema with foreign key to admin_sessions. Includes migration script, TypeScript type definitions with AdminActionType enum, and comprehensive integration tests (80 test cases). JSONB columns capture full before/after system state for auditing.
+
+KEY FILES:
+- database/migrations/016_create_admin_actions_table.sql - Table migration with 6 indexes
+- database/types/admin-actions.types.ts - TypeScript interfaces and AdminActionType enum
+- database/src/__tests__/admin-actions.integration.test.ts - 80 integration tests
+- database/package.json - Added test:admin-actions script
+- database/src/index.ts - Exported admin-actions types
+
+DECISIONS MADE:
+- Foreign key to admin_sessions with ON DELETE CASCADE
+- JSONB for before_state/after_state to capture full system state
+- 6 indexes for performance (session, action, target, created_at, composite indexes)
+- AdminActionType enum with all break glass action types
+- target_id nullable to support non-targeted actions
+
+INTEGRATION POINTS:
+- References admin_sessions table (session_id foreign key)
+- Will be used by all break glass power endpoints (US-004, US-005, US-006, US-007, US-008)
+- Supports aggressive audit logging (US-011)
+
+LESSONS LEARNED:
+- JSONB columns provide flexibility for varying state structures
+- Composite indexes improve query performance for common access patterns
+- Integration tests should cover all action types in enum
+- Follow US-001 patterns for consistency in database schema

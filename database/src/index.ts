@@ -379,6 +379,16 @@ export type {
 
 export { AccessMethod } from '../types/admin-sessions.types.js';
 
+// Export admin sessions functions
+export {
+  createAdminSession,
+  validateAdminSession,
+  queryAdminSessions,
+  getAdminSessionStats,
+  deleteAdminSession,
+  cleanupExpiredSessions,
+} from './admin-sessions.js';
+
 // ============================================================================
 // ADMIN ACTIONS TYPES EXPORT
 // ============================================================================
@@ -414,3 +424,12 @@ export type {
 } from '../types/admin-actions.types.js';
 
 export { AdminActionType } from '../types/admin-actions.types.js';
+
+// Export admin actions functions
+export {
+  logAdminAction,
+  queryAdminActions,
+  queryAdminActionsWithSession,
+  getAdminActionStats,
+  getTargetHistory,
+} from './admin-actions.js';

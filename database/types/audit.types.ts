@@ -29,7 +29,8 @@ export enum TargetType {
   SECRET = 'secret',
   JOB = 'job',
   ORGANIZATION = 'organization',
-  TEAM = 'team'
+  TEAM = 'team',
+  ADMIN_SESSION = 'admin_session'
 }
 
 /**

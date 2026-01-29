@@ -198,3 +198,4 @@ cd nextmavens-mcp-server
 claude --dangerously-skip-permissions -r
 claude --dangerously-skip-permissions
 claude --dangerously-skip-permissions -r
+claude --dangerously-skip-permissions -r

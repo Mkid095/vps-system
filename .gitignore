@@ -47,3 +47,22 @@ temp/
 # Flow-specific
 .flow-locks/
 .flow-session
+.flow-heartbeat-pid
+
+# Claude
+.claude/
+.claude.json*
+
+# Cache & Local
+.cache/
+.local/
+.npm/
+.pm2/
+
+# Other backups
+*.backup.*
+
+# Session/Debug files
+.vscode-server/
+.zai/
+bin/

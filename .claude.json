@@ -1,5 +1,5 @@
 {
-  "numStartups": 64,
+  "numStartups": 67,
   "installMethod": "native",
   "autoUpdates": false,
   "hasSeenTasksHint": true,
@@ -419,16 +419,16 @@
       "lastUsedAt": 1769642275115
     },
     "flow": {
-      "usageCount": 4,
-      "lastUsedAt": 1769607304950
+      "usageCount": 5,
+      "lastUsedAt": 1769713824418
     },
     "flow-work-story": {
-      "usageCount": 100,
-      "lastUsedAt": 1769711937630
+      "usageCount": 106,
+      "lastUsedAt": 1769714716512
     },
     "create-story-memory": {
-      "usageCount": 64,
-      "lastUsedAt": 1769711849051
+      "usageCount": 66,
+      "lastUsedAt": 1769715244727
     },
     "consolidate-memory": {
       "usageCount": 1,
