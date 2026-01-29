@@ -1,0 +1,32 @@
+# Story US-001: Create Users Tab in Studio
+
+**Status:** COMPLETE (Already Implemented)
+
+## Summary
+Users tab was already fully implemented in the Studio sidebar navigation.
+
+## What Was Found
+The Users tab exists in `/home/ken/developer-portal/src/app/studio/[slug]/page.tsx`:
+- Line 31: `{ id: 'users', label: 'Users', icon: Users }` in navItems array
+- Lines 21-22: UserList and UserDetail components imported
+- Lines 225-238: Complete rendering logic for user management
+
+## Acceptance Criteria Status
+1. ✅ Users tab added to Studio sidebar - Line 31
+2. ✅ Tab shows user list by default - UserList component rendered by default
+3. ✅ Integrated into Studio navigation - Part of navItems array
+4. ✅ Typecheck passes - Verified with `pnpm run typecheck`
+
+## Key Files
+- `/home/ken/developer-portal/src/app/studio/[slug]/page.tsx` - Main Studio page with sidebar
+- `/home/ken/developer-portal/src/features/auth-users/components/UserList.tsx` - User list component
+- `/home/ken/developer-portal/src/features/auth-users/components/UserDetail.tsx` - User detail view
+
+## Integration Points
+- Sidebar navigation uses `activeNav` state to switch between tabs
+- Users tab is second item in navItems after "Tables"
+- Uses Users icon from lucide-react
+- Connected to UserList/UserDetail components via props
+
+## Notes
+This story was already complete. No implementation was needed.

@@ -1,0 +1,22 @@
+[
+  {
+    "content": "Process Step 5 (Quality Agent) for US-010",
+    "status": "in_progress",
+    "activeForm": "Processing Step 5"
+  },
+  {
+    "content": "Process Step 10 (Security Agent) for US-010",
+    "status": "pending",
+    "activeForm": "Processing Step 10"
+  },
+  {
+    "content": "Run typecheck and verify completion",
+    "status": "pending",
+    "activeForm": "Running typecheck"
+  },
+  {
+    "content": "Mark story complete and create memory",
+    "status": "pending",
+    "activeForm": "Creating story memory"
+  }
+]

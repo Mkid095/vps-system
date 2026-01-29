@@ -1,280 +1,118 @@
-# Step 5 Implementation Summary: US-010 - Abuse Dashboard
+# Step 5 Summary: US-010 - Show User Auth History
 
-**Story:** US-010 - Abuse Dashboard
-**Step:** 5 - UI/Type Safety Implementation
-**Status:** ✅ Complete
+**Status:** ✅ COMPLETE
+**Date:** 2026-01-29
+**Story:** US-010 - Show User Auth History
 
----
+## Acceptance Criteria Status
 
-## What Was Implemented
+1. ✅ **Auth history section in UserDetail** - Added UserAuthHistory component integrated into UserDetail
+2. ✅ **Shows: sign_in_at, sign_out_at, method, IP** - All required fields displayed
+3. ✅ **Paginated list** - Pagination implemented with configurable limit/offset
+4. ✅ **Typecheck passes** - Zero TypeScript errors
 
-### 1. Backend API Endpoints (5 endpoints)
+## Implementation Details
 
-#### Main Dashboard Endpoint
-**File:** `/home/ken/developer-portal/src/app/api/admin/abuse/dashboard/route.ts`
-- **Endpoint:** `GET /api/admin/abuse/dashboard?timeRange={24h|7d|30d}`
-- **Features:**
-  - Aggregates all dashboard data in parallel
-  - Returns suspensions, rate limits, cap violations, approaching caps, and suspicious patterns
-  - Rate limited (10 req/hour per operator)
-  - Requires operator/admin role
-  - Supports time range filtering (24h, 7d, 30d)
+### Files Created
 
-#### Suspensions Endpoint
-**File:** `/home/ken/developer-portal/src/app/api/admin/abuse/dashboard/suspensions/route.ts`
-- **Endpoint:** `GET /api/admin/abuse/dashboard/suspensions?timeRange={24h|7d|30d}`
-- **Features:**
-  - Detailed suspension history with project details
-  - Statistics (total, active, by type)
-  - Join with projects and developers tables
-  - Rate limited and secured
+1. **`/home/ken/developer-portal/src/features/auth-users/components/UserAuthHistory.tsx`** (287 lines)
+   - Displays authentication history for a user
+   - Shows sign-in/sign-out times, method, IP address, device info
+   - Pagination support (20 items per page, configurable)
+   - Distinguishes successful vs failed authentication attempts
+   - Professional color coding for different auth methods (Email, Google, GitHub, Microsoft)
+   - Refresh functionality
 
-#### Rate Limits Endpoint
-**File:** `/home/ken/developer-portal/src/app/api/admin/abuse/dashboard/rate-limits/route.ts`
-- **Endpoint:** `GET /api/admin/abuse/dashboard/rate-limits?timeRange={24h|7d|30d}`
-- **Features:**
-  - Rate limit history with identifiers
-  - Statistics by type and endpoint
-  - Top 10 endpoints by hit count
-  - Rate limited and secured
+2. **`/home/ken/developer-portal/src/app/api/auth/users/[userId]/auth-history/route.ts`**
+   - API endpoint for fetching auth history
+   - Supports limit/offset pagination parameters
+   - Validates input parameters
+   - Error handling for unauthorized/invalid requests
 
-#### Cap Violations Endpoint
-**File:** `/home/ken/developer-portal/src/app/api/admin/abuse/dashboard/cap-violations/route.ts`
-- **Endpoint:** `GET /api/admin/abuse/dashboard/cap-violations?timeRange={24h|7d|30d}`
-- **Features:**
-  - Projects that exceeded caps with details
-  - Statistics by cap type and project
-  - Shows current value, limit exceeded, and status
-  - Rate limited and secured
+### Files Modified
 
-#### Approaching Caps Endpoint
-**File:** `/home/ken/developer-portal/src/app/api/admin/abuse/dashboard/approaching-caps/route.ts`
-- **Endpoint:** `GET /api/admin/abuse/dashboard/approaching-caps`
-- **Features:**
-  - Projects approaching their limits (>80% usage)
-  - Grouped by project with all cap types
-  - Status indicators (ok, warning, critical)
-  - Rate limited and secured
+1. **`/home/ken/developer-portal/src/lib/types/auth-user.types.ts`**
+   - Added `AuthMethod` type ('email' | 'google' | 'github' | 'microsoft')
+   - Added `EndUserAuthHistory` interface with all required fields
+   - Added `AuthHistoryListQuery` interface for pagination
+   - Added `AuthHistoryListResponse` interface
 
-#### Suspicious Patterns Endpoint
-**File:** `/home/ken/developer-portal/src/app/api/admin/abuse/dashboard/patterns/route.ts`
-- **Endpoint:** `GET /api/admin/abuse/dashboard/patterns?timeRange={24h|7d|30d}`
-- **Features:**
-  - Pattern detection history with project details
-  - Statistics by type, severity, and project
-  - Shows evidence and action taken
-  - Rate limited and secured
+2. **`/home/ken/developer-portal/src/lib/api/auth-service-client.ts`**
+   - Added `getEndUserAuthHistory()` method to AuthServiceClient
+   - Added legacy alias `getAuthHistory()` for backward compatibility
 
-### 2. Frontend Dashboard Page
+3. **`/home/ken/developer-portal/src/features/studio/lib/auth-service-client.ts`**
+   - Added `getEndUserAuthHistory()` method to StudioAuthServiceClient
+   - Added legacy alias `getAuthHistory()` for backward compatibility
 
-**File:** `/home/ken/developer-portal/src/app/dashboard/abuse/page.tsx`
+4. **`/home/ken/developer-portal/src/features/auth-users/components/UserDetail.tsx`**
+   - Integrated UserAuthHistory component
+   - Added state management for auth history pagination
+   - Added fetchAuthHistory() function
+   - Displays auth history after user info and sessions sections
 
-**Features:**
-- **Summary Cards:** 4 cards showing key metrics
-  - Suspensions (total/active)
-  - Rate Limits (total hits)
-  - Cap Violations (total)
-  - Suspicious Patterns (total detections)
+## Quality Check Results
 
-- **Time Range Filter:** Toggle between 24h, 7d, and 30d views
+✅ **Type Safety**
+- Zero 'any' types found
+- Proper TypeScript interfaces defined
+- Typecheck passes with zero errors
 
-- **Refresh Button:** Manual refresh with loading state
+✅ **Import Aliases**
+- All imports use @/ aliases
+- No relative imports (../, ./)
 
-- **Recent Cap Violations Section:**
-  - Shows top 5 recent violations
-  - Project name, organization, cap type
-  - Timestamp
+✅ **Component Size**
+- UserAuthHistory.tsx: 287 lines (under 300 line limit)
+- UserDetail.tsx: 252 lines (under 300 line limit)
 
-- **Recent Suspicious Patterns Section:**
-  - Shows top 5 recent pattern detections
-  - Pattern type, severity, description
-  - Color-coded severity badges
+✅ **UI Standards**
+- No gradients (solid professional colors only)
+- No emojis (uses lucide-react icons)
+- Professional color palette (blue, slate, emerald, red)
+- Responsive design
 
-- **Suspensions by Type Section:**
-  - Grid layout showing counts by cap type
-  - Formatted cap type names
+✅ **Icon Library**
+- Uses lucide-react icons: Loader2, LogIn, LogOut, MapPin, Clock, Shield, ChevronLeft, ChevronRight, RefreshCw
+- All icons are professional and consistent
 
-**UI/UX Features:**
-- Professional color palette (emerald, red, orange, amber, purple)
-- Solid colors only (NO gradients)
-- Lucide React icons (professional icon library)
-- Responsive design (mobile, tablet, desktop)
-- Loading states with spinner
-- Error handling with user-friendly messages
-- Empty states with appropriate icons and messages
+## API Integration
 
----
+The component expects the auth service to provide an endpoint at:
+```
+GET /users/{userId}/auth-history?limit=20&offset=0
+```
 
-## Quality Checks Passed
-
-### ✅ Type Safety
-- **No 'any' types** - All types properly defined
-- Proper TypeScript interfaces for all data structures
-- Type-safe API responses
-- Generic error handling with proper type guards
-
-### ✅ Import Aliases
-- All imports use `@/` aliases
-- No relative imports (e.g., `../../../`)
-- Example: `@/features/abuse-controls/lib/authorization`
-
-### ✅ Component Size
-- Dashboard page: ~550 lines (within acceptable range for complex dashboard)
-- API endpoints: ~200-250 lines each (well-organized, single responsibility)
-
-### ✅ No Gradients
-- Only solid professional colors used
-- Color palette: emerald-700, red-700, orange-700, amber-700, purple-700
-- Background: `#F3F5F7` (solid light gray)
-
-### ✅ No Emojis
-- All icons use Lucide React library
-- Professional icon usage throughout
-
-### ✅ Security
-- Rate limiting on all endpoints (10 req/hour)
-- Operator/admin role required
-- Audit logging for failures
-- IP address and user agent tracking
-
----
-
-## API Response Structure
-
-### Main Dashboard Response
+Response format:
 ```typescript
 {
-  success: true
-  data: {
-    time_range: string
-    start_time: Date
-    end_time: Date
-    suspensions: {
-      total: number
-      active: number
-      by_type: Record<string, number>
-    }
-    rate_limits: {
-      total: number
-      by_type: Record<string, number>
-    }
-    cap_violations: {
-      total: number
-      violations: Array<{
-        project_id: string
-        project_name: string
-        organization: string
-        cap_exceeded: string
-        reason: string
-        suspended_at: Date
-      }>
-    }
-    approaching_caps: {
-      total: number
-      projects: Array<{
-        project_id: string
-        project_name: string
-        organization: string
-        cap_type: string
-        cap_value: number
-        current_usage: number
-        usage_percentage: number
-      }>
-    }
-    suspicious_patterns: {
-      total: number
-      by_type: Record<string, number>
-      by_severity: Record<string, number>
-      recent: Array<{
-        project_id: string
-        project_name: string
-        organization: string
-        pattern_type: string
-        severity: string
-        occurrence_count: number
-        description: string
-        detected_at: Date
-      }>
-    }
-  }
+  history: EndUserAuthHistory[],
+  total: number,
+  limit: number,
+  offset: number
 }
 ```
 
----
-
-## Integration with Existing Features
-
-The dashboard integrates with:
-- **QuotaManager** (US-001) - For quota configuration
-- **SuspensionManager** (US-003) - For suspension data
-- **SpikeDetectionManager** (US-004) - For usage spike data
-- **ErrorRateDetectionManager** (US-005) - For error rate data
-- **PatternDetectionManager** (US-006) - For malicious pattern data
-- **Authorization** (US-003) - For operator/admin checks
-- **Rate Limiter** (US-002) - For API rate limiting
-
----
+Note: The actual auth service endpoint may need to be implemented if it doesn't exist yet. The types and client methods are ready to use.
 
 ## Testing Recommendations
 
-1. **Authentication Test:**
-   - Access dashboard without auth → Should redirect to login
-   - Access with regular developer role → Should get 403 error
-   - Access with operator/admin role → Should work
+When the auth service endpoint is available:
+1. Verify pagination works correctly
+2. Test successful vs failed authentication attempts display
+3. Verify different auth methods (email, oauth) show correct badges
+4. Test refresh functionality
+5. Verify error handling when endpoint is unavailable
 
-2. **Time Range Filter:**
-   - Switch between 24h, 7d, 30d
-   - Verify data updates correctly
-   - Check timestamps in response
+## Next Steps
 
-3. **Data Display:**
-   - Verify summary cards show correct counts
-   - Check tables display data properly
-   - Test empty states (when no violations/patterns)
+1. **Step 7:** Integration testing with actual auth service
+2. **Step 10:** Documentation and user guides
 
-4. **Refresh Functionality:**
-   - Click refresh button
-   - Verify loading spinner shows
-   - Confirm data updates
+## Notes
 
-5. **Rate Limiting:**
-   - Make more than 10 requests in an hour
-   - Should receive 429 error with retry-after header
-
----
-
-## Files Created
-
-1. `/home/ken/developer-portal/src/app/api/admin/abuse/dashboard/route.ts` (298 lines)
-2. `/home/ken/developer-portal/src/app/api/admin/abuse/dashboard/suspensions/route.ts` (194 lines)
-3. `/home/ken/developer-portal/src/app/api/admin/abuse/dashboard/rate-limits/route.ts` (201 lines)
-4. `/home/ken/developer-portal/src/app/api/admin/abuse/dashboard/cap-violations/route.ts` (203 lines)
-5. `/home/ken/developer-portal/src/app/api/admin/abuse/dashboard/approaching-caps/route.ts` (186 lines)
-6. `/home/ken/developer-portal/src/app/api/admin/abuse/dashboard/patterns/route.ts` (208 lines)
-7. `/home/ken/developer-portal/src/app/dashboard/abuse/page.tsx` (550 lines)
-
-**Total Lines of Code:** ~1,840 lines
-
----
-
-## Typecheck Result
-
-✅ **PASSED** - No TypeScript errors
-
-```
-pnpm run typecheck
-> tsc --noEmit
-```
-
----
-
-## Next Steps (Step 10)
-
-The abuse dashboard is now complete with:
-- All required API endpoints
-- Frontend dashboard page with filtering
-- Type-safe implementation
-- Professional UI with proper colors and icons
-- Security (rate limiting, authorization)
-
-Ready for Step 10: Final testing and deployment preparation.
+- The auth history component follows the same pattern as UserDetailSessions
+- Pagination state is managed in the parent UserDetail component
+- The component gracefully handles empty states and loading states
+- Failed authentication attempts are highlighted in red
+- Each history entry shows relative time ("2h ago") and absolute time ("Jan 29, 2026, 2:30 PM")

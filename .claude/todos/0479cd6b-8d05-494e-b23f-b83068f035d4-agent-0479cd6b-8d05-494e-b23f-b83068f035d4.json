@@ -1,0 +1,57 @@
+[
+  {
+    "content": "Acquire story lock for US-001",
+    "status": "completed",
+    "activeForm": "Acquiring story lock for US-001"
+  },
+  {
+    "content": "Read story details from PRD",
+    "status": "completed",
+    "activeForm": "Reading story details from PRD"
+  },
+  {
+    "content": "Load memory from related PRDs",
+    "status": "completed",
+    "activeForm": "Loading memory from related PRDs"
+  },
+  {
+    "content": "Load previous story memories",
+    "status": "completed",
+    "activeForm": "Loading previous story memories"
+  },
+  {
+    "content": "Process Maven Step 1",
+    "status": "in_progress",
+    "activeForm": "Processing Maven Step 1"
+  },
+  {
+    "content": "Process Maven Step 2",
+    "status": "pending",
+    "activeForm": "Processing Maven Step 2"
+  },
+  {
+    "content": "Process Maven Step 7",
+    "status": "pending",
+    "activeForm": "Processing Maven Step 7"
+  },
+  {
+    "content": "Run typecheck",
+    "status": "pending",
+    "activeForm": "Running typecheck"
+  },
+  {
+    "content": "Mark story complete in PRD",
+    "status": "pending",
+    "activeForm": "Marking story complete in PRD"
+  },
+  {
+    "content": "Commit changes",
+    "status": "pending",
+    "activeForm": "Committing changes"
+  },
+  {
+    "content": "Create story memory",
+    "status": "pending",
+    "activeForm": "Creating story memory"
+  }
+]

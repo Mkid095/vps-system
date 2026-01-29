@@ -3497,3 +3497,12 @@
     at generate (/$bunfs/root/claude:144:37865)
     at makeRequest (/$bunfs/root/claude:161:5435)
     at processTicksAndRejections (native:7:39)
+2026-01-29T13:02:20.265Z [ERROR] Error: Error: {"message":"Operation timed out.","originalLine":"633","originalColumn":"105851","line":"633","column":"105851","sourceURL":"/$bunfs/root/claude","stack":"Error: Operation timed out.\n    at <anonymous> (/$bunfs/root/claude:633:105851)","name":"Error"}
+    at error (/$bunfs/root/claude:1974:25028)
+    at <anonymous> (/$bunfs/root/claude:633:34986)
+    at mr0 (/$bunfs/root/claude:633:35530)
+    at <anonymous> (/$bunfs/root/claude:634:16930)
+    at processTicksAndRejections (native:7:39)
+2026-01-29T13:03:38.960Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-29T13:03:38.960Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-29T13:03:38.960Z [DEBUG] Metrics export disabled by organization setting

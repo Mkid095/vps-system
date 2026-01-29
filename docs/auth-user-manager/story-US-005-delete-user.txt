@@ -1,0 +1,226 @@
+# US-005: Implement Delete User - Story Memory
+
+**Story ID:** US-005
+**Title:** Implement Delete User
+**Status:** Completed
+**Date:** 2026-01-29
+
+---
+
+## Summary
+
+Implemented the Delete User feature for the Auth User Manager in Studio. This feature allows administrators to permanently delete user accounts with proper safety measures including email confirmation and comprehensive audit logging.
+
+---
+
+## Implementation Details
+
+### Files Created
+
+1. **developer-portal/src/features/users/types.ts**
+   - TypeScript type definitions for delete functionality
+   - `DeleteUserButtonProps`, `DeleteUserConfirmationModalProps`
+   - `DeleteUserState`, `DeleteUserResponse`, `DeleteUserError`
+   - Helper functions: `categorizeDeleteError()`, `getDeleteErrorMessage()`
+
+2. **developer-portal/src/features/users/components/DeleteUserButton.tsx** (98 lines)
+   - Danger button with red-600 styling
+   - Integrates confirmation modal
+   - Calls DELETE /api/admin/users/[userId] endpoint
+   - Handles authentication via localStorage token
+   - Error handling with proper TypeScript types
+
+3. **developer-portal/src/features/users/components/DeleteUserConfirmationModal.tsx** (170 lines)
+   - Modal with backdrop blur and framer-motion animations
+   - Email confirmation input for safety (case-insensitive)
+   - Delete button disabled until email matches
+   - Loading state during deletion
+   - Error message display
+
+### Files Modified
+
+1. **developer-portal/src/features/users/index.ts**
+   - Added component exports
+
+2. **developer-portal/src/features/admin/users/UserDetail.tsx**
+   - Added Danger Zone section with DeleteUserButton
+   - Automatic navigation to /studio/users after deletion
+
+3. **developer-portal/src/app/api/admin/users/[userId]/route.ts**
+   - Fixed: Added `requireAdmin` import
+   - Fixed: Changed `logUserAction.updated()` to `logAction()` for PATCH endpoint
+   - Fixed: Zod schema validation from `z.record(z.unknown())` to `z.record(z.string(), z.unknown())`
+
+### Documentation Created
+
+1. **developer-portal/src/features/users/DELETE-USER-PLAN.md**
+   - Implementation plan with component hierarchy
+   - Data flow documentation
+   - Security considerations
+
+2. **STEP-2-US-005-PACKAGE-MANAGER-SUMMARY.md**
+   - Package manager verification summary
+
+3. **STEP-7-US-005-DATA-LAYER-SUMMARY.md**
+   - Data layer verification summary
+
+4. **STEP-7-US-005-QUICK-REFERENCE.md**
+   - Quick reference guide
+
+5. **developer-portal/src/features/auth-user-manager/SECURITY_AUDIT_US002.md**
+   - Security audit report (Step 10)
+
+---
+
+## Key Decisions
+
+1. **Email Confirmation:** Required users to type their email address to confirm deletion (case-insensitive matching) - prevents accidental deletions
+
+2. **Existing API Endpoint:** Used existing DELETE /api/admin/users/[userId] endpoint which already includes:
+   - Admin-only access control
+   - Self-deletion prevention
+   - Audit logging via `logUserAction.removed()`
+   - Proper error handling
+
+3. **Component Structure:**
+   - DeleteUserButton: Main button component
+   - DeleteUserConfirmationModal: Separate modal component for reusability
+   - Integrated into UserDetail via "Danger Zone" section
+
+4. **Navigation Flow:** After successful deletion, automatically navigate to /studio/users list page
+
+---
+
+## Integration Points
+
+1. **API Integration:**
+   - DELETE /api/admin/users/[userId] - Delete user endpoint
+   - Requires Bearer token from localStorage
+   - Returns 204 on success, 400/401/403/404/500 on errors
+
+2. **Audit Logging:**
+   - Automatic logging via `logUserAction.removed()`
+   - Captures actor (admin), target (deleted user), IP, user-agent
+   - Logs user metadata (email, name, role, organization)
+
+3. **UI Components:**
+   - Integrates with existing UserDetail component
+   - Uses lucide-react icons (Trash2, AlertTriangle, X)
+   - Uses framer-motion for modal animations
+
+---
+
+## Challenges & Solutions
+
+### Challenge 1: Token Storage Security
+**Issue:** localStorage is vulnerable to XSS attacks
+**Solution:** Noted as known issue with TODO comments in code; recommend migrating to httpOnly cookies in future
+
+### Challenge 2: Missing Import in API Route
+**Issue:** DELETE endpoint used `requireAdmin` but wasn't imported
+**Solution:** Added `requireAdmin` to imports
+
+### Challenge 3: Non-existent Audit Log Method
+**Issue:** PATCH endpoint called `logUserAction.updated()` which doesn't exist
+**Solution:** Changed to use generic `logAction()` with action `'user.metadata_updated'`
+
+### Challenge 4: Zod Schema Validation
+**Issue:** `z.record(z.unknown())` expects 2-3 arguments in Zod v4
+**Solution:** Changed to `z.record(z.string(), z.unknown())`
+
+---
+
+## Security Considerations
+
+### Passed Security Checks
+- ✅ Authentication (JWT token validation)
+- ✅ Authorization (admin-only access)
+- ✅ SQL injection prevention (parameterized queries)
+- ✅ Audit logging (comprehensive)
+- ✅ Self-deletion prevention
+- ✅ Generic error messages (no information leakage)
+- ✅ Email confirmation requirement
+- ✅ TypeScript type safety
+
+### Security Recommendations
+1. **Critical:** Remove hardcoded JWT secret fallbacks in auth.ts
+2. **Critical:** Implement rate limiting on DELETE endpoint
+3. **High Priority:** Migrate from localStorage to httpOnly cookies
+4. **Future:** Implement soft delete instead of hard delete
+5. **Future:** Add deletion reason requirement
+
+**Security Score:** 8/10
+
+---
+
+## Testing Notes
+
+- Typecheck passes: `pnpm run typecheck`
+- All components under 300 lines
+- No 'any' types used
+- No gradients (solid professional colors)
+- Proper error handling for network failures, invalid user IDs, unauthorized access
+
+---
+
+## Lessons Learned
+
+1. **Existing Infrastructure:** The DELETE API endpoint already existed and was fully functional, so we only needed to create the UI components
+
+2. **Audit Logging:** The existing API endpoint already handled audit logging automatically, so no additional work was needed
+
+3. **Safety First:** Email confirmation is a critical safety measure for destructive actions
+
+4. **API Fixes:** The implementation process revealed and fixed several issues in the existing API routes
+
+5. **Package Manager:** The project uses pnpm (not npm), confirmed via lock file and commands
+
+---
+
+## Future Enhancements
+
+1. Add rate limiting to prevent bulk deletion attacks
+2. Migrate to httpOnly cookies for token storage
+3. Implement soft delete for recoverability
+4. Add deletion reason requirement
+5. Send email notifications to deleted users
+6. Implement user restoration functionality
+
+---
+
+## Dependencies Used
+
+- lucide-react@0.563.0 - Icons
+- framer-motion@12.29.2 - Modal animations
+- react@18.3.1 - React core
+- next@14.2.35 - Next.js framework
+- tailwindcss@3.4.19 - Styling
+- @nextmavens/audit-logs-database@1.0.0 - Audit logging
+
+---
+
+## Acceptance Criteria - All Met
+
+- ✅ Delete user button in UserDetail
+- ✅ Confirmation modal before deletion
+- ✅ Calls auth service API to delete
+- ✅ User removed from list
+- ✅ Action logged to audit log
+- ✅ Typecheck passes
+
+---
+
+## Related Stories
+
+- **US-003:** Create User Detail View (prerequisite for UI integration)
+- **US-011:** Integrate with Auth Service API (provides API endpoints)
+
+---
+
+## Next Steps
+
+For future user management stories, reference:
+- Component patterns established here (button + modal pattern)
+- API integration patterns (localStorage token, Bearer auth)
+- Error handling patterns (categorizeDeleteError, getDeleteErrorMessage)
+- Safety patterns (email confirmation for destructive actions)
