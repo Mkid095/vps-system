@@ -19,6 +19,7 @@ import type {
 } from '../types/audit.types.js';
 import { auditLogService } from './AuditLogService.js';
 import { AuditLogError } from './errors.js';
+import { extractRequestId } from './helpers.js';
 
 /**
  * Initialize audit logs with database configuration
@@ -52,6 +53,7 @@ export async function logAuditEvent(params: {
   metadata?: AuditLogMetadata;
   ipAddress?: string | null;
   userAgent?: string | null;
+  requestId?: string | null;
 }): Promise<AuditLog> {
   const input: CreateAuditLogInput = {
     actor_id: params.actorId,
@@ -62,6 +64,7 @@ export async function logAuditEvent(params: {
     metadata: params.metadata || {},
     ip_address: params.ipAddress ?? null,
     user_agent: params.userAgent ?? null,
+    request_id: params.requestId ?? null,
   };
 
   return auditLogService.create(input);
@@ -69,7 +72,7 @@ export async function logAuditEvent(params: {
 
 /**
  * Log audit event from HTTP request context
- * Automatically extracts IP and user agent from request
+ * Automatically extracts IP, user agent, and request ID from request
  */
 export async function logAuditEventFromRequest(params: {
   actorId: string;
@@ -89,6 +92,7 @@ export async function logAuditEventFromRequest(params: {
     metadata: params.metadata || {},
     ipAddress: extractRequestIp(params.request) ?? undefined,
     userAgent: extractRequestUserAgent(params.request) ?? undefined,
+    requestId: extractRequestId(params.request) ?? undefined,
   });
 }
 
