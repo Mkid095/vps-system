@@ -2483,3 +2483,559 @@
 2026-01-29T16:37:45.741Z [DEBUG] [API:auth] OAuth token check starting
 2026-01-29T16:37:45.742Z [DEBUG] [API:auth] OAuth token check complete
 2026-01-29T16:37:57.386Z [ERROR] API error (attempt 7/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130003757df991c7a20224baf"}
+2026-01-29T16:38:31.445Z [ERROR] API error (attempt 8/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000383194ab7c6682404412"}
+2026-01-29T16:38:44.552Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:38:44.561Z [DEBUG] executePreToolHooks called for tool: Write
+2026-01-29T16:38:44.561Z [DEBUG] Getting matching hook commands for PreToolUse with query: Write
+2026-01-29T16:38:44.561Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:38:44.561Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-29T16:38:44.562Z [DEBUG] Writing to temp file: /home/ken/api-gateway/src/lib/backups/restore-history.service.ts.tmp.3136385.1769704724562
+2026-01-29T16:38:44.563Z [DEBUG] Temp file written successfully, size: 26527 bytes
+2026-01-29T16:38:44.563Z [DEBUG] Renaming /home/ken/api-gateway/src/lib/backups/restore-history.service.ts.tmp.3136385.1769704724562 to /home/ken/api-gateway/src/lib/backups/restore-history.service.ts
+2026-01-29T16:38:44.563Z [DEBUG] File /home/ken/api-gateway/src/lib/backups/restore-history.service.ts written atomically
+2026-01-29T16:38:44.564Z [DEBUG] Getting matching hook commands for PostToolUse with query: Write
+2026-01-29T16:38:44.564Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:38:44.564Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-29T16:38:44.569Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:38:44.573Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:38:44.573Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:38:44.574Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:38:47.268Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:38:47.276Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:38:47.276Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:38:47.276Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:38:47.276Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:38:47.278Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:38:47.278Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:38:47.278Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:38:47.288Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:38:47.303Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:38:47.303Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:38:47.304Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:38:52.538Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:38:52.546Z [DEBUG] executePreToolHooks called for tool: Edit
+2026-01-29T16:38:52.547Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2026-01-29T16:38:52.547Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:38:52.547Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:38:52.548Z [DEBUG] Writing to temp file: /home/ken/api-gateway/src/lib/backups/restore.service.ts.tmp.3136385.1769704732548
+2026-01-29T16:38:52.548Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:38:52.549Z [DEBUG] Temp file written successfully, size: 15690 bytes
+2026-01-29T16:38:52.550Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:38:52.550Z [DEBUG] Renaming /home/ken/api-gateway/src/lib/backups/restore.service.ts.tmp.3136385.1769704732548 to /home/ken/api-gateway/src/lib/backups/restore.service.ts
+2026-01-29T16:38:52.550Z [DEBUG] File /home/ken/api-gateway/src/lib/backups/restore.service.ts written atomically
+2026-01-29T16:38:52.551Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2026-01-29T16:38:52.551Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:38:52.551Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:38:52.557Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:38:52.560Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:38:52.560Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:38:52.560Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:38:55.209Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:38:55.219Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:38:55.219Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:38:55.219Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:38:55.219Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:38:55.222Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:38:55.222Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:38:55.222Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:38:55.247Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:38:55.253Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:38:55.253Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:38:55.254Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:39:04.249Z [ERROR] API error (attempt 9/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130003904e315ab7630a5443a"}
+2026-01-29T16:39:10.952Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-29T16:39:10.952Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-29T16:39:10.952Z [DEBUG] Metrics export disabled by organization setting
+2026-01-29T16:39:12.924Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:39:12.936Z [DEBUG] executePreToolHooks called for tool: Edit
+2026-01-29T16:39:12.937Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2026-01-29T16:39:12.937Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:39:12.937Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:39:12.943Z [DEBUG] Writing to temp file: /home/ken/api-gateway/src/lib/backups/restore.service.ts.tmp.3136385.1769704752943
+2026-01-29T16:39:12.943Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:39:12.945Z [DEBUG] Temp file written successfully, size: 18299 bytes
+2026-01-29T16:39:12.945Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:39:12.945Z [DEBUG] Renaming /home/ken/api-gateway/src/lib/backups/restore.service.ts.tmp.3136385.1769704752943 to /home/ken/api-gateway/src/lib/backups/restore.service.ts
+2026-01-29T16:39:12.945Z [DEBUG] File /home/ken/api-gateway/src/lib/backups/restore.service.ts written atomically
+2026-01-29T16:39:12.947Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2026-01-29T16:39:12.947Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:39:12.947Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:39:12.958Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:39:12.964Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:39:12.964Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:39:12.965Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:39:34.092Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:39:34.120Z [DEBUG] executePreToolHooks called for tool: Grep
+2026-01-29T16:39:34.120Z [DEBUG] Getting matching hook commands for PreToolUse with query: Grep
+2026-01-29T16:39:34.120Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:39:34.120Z [DEBUG] Matched 0 unique hooks for query "Grep" (0 before deduplication)
+2026-01-29T16:39:36.289Z [DEBUG] Getting matching hook commands for PostToolUse with query: Grep
+2026-01-29T16:39:36.290Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:39:36.290Z [DEBUG] Matched 1 unique hooks for query "Grep" (1 before deduplication)
+2026-01-29T16:39:36.298Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:39:36.302Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:39:36.302Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:39:36.303Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:39:40.075Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:39:40.090Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:39:40.090Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:39:40.090Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:39:40.090Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:39:40.095Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:39:40.095Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:39:40.095Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:39:40.133Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:39:40.138Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:39:40.138Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:39:40.139Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:39:44.293Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:39:44.310Z [DEBUG] executePreToolHooks called for tool: Edit
+2026-01-29T16:39:44.310Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2026-01-29T16:39:44.310Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:39:44.310Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:39:44.314Z [DEBUG] Writing to temp file: /home/ken/database/types/backups.types.ts.tmp.3136385.1769704784314
+2026-01-29T16:39:44.314Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:39:44.316Z [DEBUG] Temp file written successfully, size: 2500 bytes
+2026-01-29T16:39:44.316Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:39:44.316Z [DEBUG] Renaming /home/ken/database/types/backups.types.ts.tmp.3136385.1769704784314 to /home/ken/database/types/backups.types.ts
+2026-01-29T16:39:44.316Z [DEBUG] File /home/ken/database/types/backups.types.ts written atomically
+2026-01-29T16:39:44.318Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2026-01-29T16:39:44.318Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:39:44.318Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:39:44.332Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:39:44.334Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:39:44.334Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:39:44.335Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:39:48.607Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:39:48.616Z [DEBUG] executePreToolHooks called for tool: Write
+2026-01-29T16:39:48.616Z [DEBUG] Getting matching hook commands for PreToolUse with query: Write
+2026-01-29T16:39:48.616Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:39:48.616Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-29T16:39:48.617Z [DEBUG] Writing to temp file: /home/ken/database/migrations/013_add_restore_count_to_backups.sql.tmp.3136385.1769704788617
+2026-01-29T16:39:48.618Z [DEBUG] Temp file written successfully, size: 825 bytes
+2026-01-29T16:39:48.618Z [DEBUG] Renaming /home/ken/database/migrations/013_add_restore_count_to_backups.sql.tmp.3136385.1769704788617 to /home/ken/database/migrations/013_add_restore_count_to_backups.sql
+2026-01-29T16:39:48.618Z [DEBUG] File /home/ken/database/migrations/013_add_restore_count_to_backups.sql written atomically
+2026-01-29T16:39:48.619Z [DEBUG] Getting matching hook commands for PostToolUse with query: Write
+2026-01-29T16:39:48.619Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:39:48.619Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-29T16:39:48.625Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:39:48.630Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:39:48.630Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:39:48.631Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:03.461Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:03.474Z [DEBUG] executePreToolHooks called for tool: Edit
+2026-01-29T16:40:03.475Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2026-01-29T16:40:03.475Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:40:03.475Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:40:03.478Z [DEBUG] Writing to temp file: /home/ken/api-gateway/src/lib/backups/backups.service.ts.tmp.3136385.1769704803478
+2026-01-29T16:40:03.478Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:40:03.483Z [DEBUG] Temp file written successfully, size: 22111 bytes
+2026-01-29T16:40:03.483Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:40:03.483Z [DEBUG] Renaming /home/ken/api-gateway/src/lib/backups/backups.service.ts.tmp.3136385.1769704803478 to /home/ken/api-gateway/src/lib/backups/backups.service.ts
+2026-01-29T16:40:03.483Z [DEBUG] File /home/ken/api-gateway/src/lib/backups/backups.service.ts written atomically
+2026-01-29T16:40:03.484Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2026-01-29T16:40:03.484Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:40:03.484Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:40:03.499Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:03.505Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:03.505Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:03.506Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:07.828Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:07.842Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:40:07.842Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:40:07.842Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:40:07.842Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:40:07.844Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:40:07.844Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:40:07.844Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:40:07.853Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:07.857Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:07.857Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:07.858Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:15.665Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:15.671Z [DEBUG] executePreToolHooks called for tool: Edit
+2026-01-29T16:40:15.671Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2026-01-29T16:40:15.671Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:40:15.671Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:40:15.673Z [DEBUG] Writing to temp file: /home/ken/api-gateway/src/lib/backups/backups.service.ts.tmp.3136385.1769704815673
+2026-01-29T16:40:15.673Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:40:15.674Z [DEBUG] Temp file written successfully, size: 22172 bytes
+2026-01-29T16:40:15.674Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:40:15.674Z [DEBUG] Renaming /home/ken/api-gateway/src/lib/backups/backups.service.ts.tmp.3136385.1769704815673 to /home/ken/api-gateway/src/lib/backups/backups.service.ts
+2026-01-29T16:40:15.674Z [DEBUG] File /home/ken/api-gateway/src/lib/backups/backups.service.ts written atomically
+2026-01-29T16:40:15.675Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2026-01-29T16:40:15.675Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:40:15.675Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:40:15.680Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:15.685Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:15.685Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:15.686Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:22.243Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:22.255Z [DEBUG] executePreToolHooks called for tool: Edit
+2026-01-29T16:40:22.255Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2026-01-29T16:40:22.255Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:40:22.255Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:40:22.257Z [DEBUG] Writing to temp file: /home/ken/api-gateway/src/lib/backups/backups.service.ts.tmp.3136385.1769704822257
+2026-01-29T16:40:22.257Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:40:22.260Z [DEBUG] Temp file written successfully, size: 22193 bytes
+2026-01-29T16:40:22.260Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:40:22.260Z [DEBUG] Renaming /home/ken/api-gateway/src/lib/backups/backups.service.ts.tmp.3136385.1769704822257 to /home/ken/api-gateway/src/lib/backups/backups.service.ts
+2026-01-29T16:40:22.260Z [DEBUG] File /home/ken/api-gateway/src/lib/backups/backups.service.ts written atomically
+2026-01-29T16:40:22.267Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2026-01-29T16:40:22.267Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:40:22.267Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:40:22.278Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:22.283Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:22.283Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:22.283Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:25.953Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:25.967Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:25.976Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:25.976Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:25.979Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:29.996Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:30.003Z [DEBUG] executePreToolHooks called for tool: Edit
+2026-01-29T16:40:30.003Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2026-01-29T16:40:30.003Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:40:30.003Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:40:30.006Z [DEBUG] Writing to temp file: /home/ken/api-gateway/src/lib/backups/backups.service.ts.tmp.3136385.1769704830006
+2026-01-29T16:40:30.006Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:40:30.009Z [DEBUG] Temp file written successfully, size: 22273 bytes
+2026-01-29T16:40:30.009Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:40:30.009Z [DEBUG] Renaming /home/ken/api-gateway/src/lib/backups/backups.service.ts.tmp.3136385.1769704830006 to /home/ken/api-gateway/src/lib/backups/backups.service.ts
+2026-01-29T16:40:30.009Z [DEBUG] File /home/ken/api-gateway/src/lib/backups/backups.service.ts written atomically
+2026-01-29T16:40:30.011Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2026-01-29T16:40:30.011Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:40:30.011Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:40:30.017Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:30.023Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:30.023Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:30.023Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:32.975Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:32.983Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:40:32.983Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:40:32.983Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:40:32.983Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:40:32.985Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:40:32.985Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:40:32.985Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:40:32.994Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:32.998Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:32.998Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:32.998Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:39.163Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:39.169Z [DEBUG] executePreToolHooks called for tool: Edit
+2026-01-29T16:40:39.169Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2026-01-29T16:40:39.169Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:40:39.169Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:40:39.173Z [DEBUG] Writing to temp file: /home/ken/api-gateway/src/lib/backups/backups.service.ts.tmp.3136385.1769704839173
+2026-01-29T16:40:39.173Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:40:39.176Z [DEBUG] Temp file written successfully, size: 22294 bytes
+2026-01-29T16:40:39.176Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:40:39.176Z [DEBUG] Renaming /home/ken/api-gateway/src/lib/backups/backups.service.ts.tmp.3136385.1769704839173 to /home/ken/api-gateway/src/lib/backups/backups.service.ts
+2026-01-29T16:40:39.176Z [DEBUG] File /home/ken/api-gateway/src/lib/backups/backups.service.ts written atomically
+2026-01-29T16:40:39.178Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2026-01-29T16:40:39.178Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:40:39.178Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:40:39.185Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:39.197Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:39.197Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:39.197Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:44.561Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:44.597Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:44.600Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:44.600Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:44.601Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:49.114Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:49.120Z [DEBUG] executePreToolHooks called for tool: Edit
+2026-01-29T16:40:49.120Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2026-01-29T16:40:49.120Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:40:49.120Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:40:49.121Z [DEBUG] Writing to temp file: /home/ken/api-gateway/src/lib/backups/backups.service.ts.tmp.3136385.1769704849121
+2026-01-29T16:40:49.122Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:40:49.124Z [DEBUG] Temp file written successfully, size: 22398 bytes
+2026-01-29T16:40:49.124Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:40:49.124Z [DEBUG] Renaming /home/ken/api-gateway/src/lib/backups/backups.service.ts.tmp.3136385.1769704849121 to /home/ken/api-gateway/src/lib/backups/backups.service.ts
+2026-01-29T16:40:49.124Z [DEBUG] File /home/ken/api-gateway/src/lib/backups/backups.service.ts written atomically
+2026-01-29T16:40:49.126Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2026-01-29T16:40:49.126Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:40:49.126Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:40:49.135Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:49.143Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:49.143Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:49.144Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:51.737Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:51.745Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:40:51.745Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:40:51.745Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:40:51.745Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:40:51.746Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:40:51.746Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:40:51.746Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:40:51.754Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:51.757Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:51.757Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:51.757Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:55.578Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:55.584Z [DEBUG] executePreToolHooks called for tool: Edit
+2026-01-29T16:40:55.584Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2026-01-29T16:40:55.584Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:40:55.584Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:40:55.585Z [DEBUG] Writing to temp file: /home/ken/api-gateway/src/lib/backups/backups.service.ts.tmp.3136385.1769704855585
+2026-01-29T16:40:55.585Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:40:55.586Z [DEBUG] Temp file written successfully, size: 22419 bytes
+2026-01-29T16:40:55.587Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:40:55.587Z [DEBUG] Renaming /home/ken/api-gateway/src/lib/backups/backups.service.ts.tmp.3136385.1769704855585 to /home/ken/api-gateway/src/lib/backups/backups.service.ts
+2026-01-29T16:40:55.587Z [DEBUG] File /home/ken/api-gateway/src/lib/backups/backups.service.ts written atomically
+2026-01-29T16:40:55.588Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2026-01-29T16:40:55.588Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:40:55.588Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:40:55.593Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:55.598Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:55.598Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:55.599Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:41:10.776Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:41:10.783Z [WARN] [PROMPT CACHE BREAK] unknown cause [source=agent:custom, call #85, cache read: 84096 → 3712, creation: 0]
+2026-01-29T16:41:10.784Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:41:10.784Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:41:10.784Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:41:10.784Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:41:10.785Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:41:10.785Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:41:10.785Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:41:10.814Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:41:10.818Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:41:10.818Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:41:10.818Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:41:15.839Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:41:15.844Z [DEBUG] executePreToolHooks called for tool: Edit
+2026-01-29T16:41:15.844Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2026-01-29T16:41:15.844Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:41:15.844Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:41:15.846Z [DEBUG] Writing to temp file: /home/ken/api-gateway/src/lib/backups/backups.service.ts.tmp.3136385.1769704875846
+2026-01-29T16:41:15.846Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:41:15.847Z [DEBUG] Temp file written successfully, size: 22440 bytes
+2026-01-29T16:41:15.847Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:41:15.847Z [DEBUG] Renaming /home/ken/api-gateway/src/lib/backups/backups.service.ts.tmp.3136385.1769704875846 to /home/ken/api-gateway/src/lib/backups/backups.service.ts
+2026-01-29T16:41:15.848Z [DEBUG] File /home/ken/api-gateway/src/lib/backups/backups.service.ts written atomically
+2026-01-29T16:41:15.849Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2026-01-29T16:41:15.849Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:41:15.849Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:41:15.853Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:41:15.856Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:41:15.856Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:41:15.857Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:41:18.704Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:41:18.712Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:41:18.712Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:41:18.712Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:41:18.712Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:41:18.714Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:41:18.714Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:41:18.714Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:41:18.721Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:41:18.725Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:41:18.725Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:41:18.726Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:41:34.298Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:41:34.305Z [DEBUG] executePreToolHooks called for tool: Edit
+2026-01-29T16:41:34.305Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2026-01-29T16:41:34.305Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:41:34.305Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:41:34.307Z [DEBUG] Writing to temp file: /home/ken/api-gateway/src/lib/backups/restore.service.ts.tmp.3136385.1769704894307
+2026-01-29T16:41:34.307Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:41:34.308Z [DEBUG] Temp file written successfully, size: 18322 bytes
+2026-01-29T16:41:34.308Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:41:34.308Z [DEBUG] Renaming /home/ken/api-gateway/src/lib/backups/restore.service.ts.tmp.3136385.1769704894307 to /home/ken/api-gateway/src/lib/backups/restore.service.ts
+2026-01-29T16:41:34.308Z [DEBUG] File /home/ken/api-gateway/src/lib/backups/restore.service.ts written atomically
+2026-01-29T16:41:34.309Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2026-01-29T16:41:34.309Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:41:34.309Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:41:34.319Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:41:34.331Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:41:34.331Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:41:34.332Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:41:36.889Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:41:36.897Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:41:36.897Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:41:36.897Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:41:36.897Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:41:36.898Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:41:36.898Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:41:36.899Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:41:36.906Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:41:36.917Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:41:36.917Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:41:36.918Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:41:59.639Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:41:59.646Z [DEBUG] executePreToolHooks called for tool: Edit
+2026-01-29T16:41:59.646Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2026-01-29T16:41:59.646Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:41:59.646Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:41:59.648Z [DEBUG] Writing to temp file: /home/ken/api-gateway/src/lib/backups/restore.service.ts.tmp.3136385.1769704919648
+2026-01-29T16:41:59.648Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:41:59.649Z [DEBUG] Temp file written successfully, size: 18560 bytes
+2026-01-29T16:41:59.649Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:41:59.649Z [DEBUG] Renaming /home/ken/api-gateway/src/lib/backups/restore.service.ts.tmp.3136385.1769704919648 to /home/ken/api-gateway/src/lib/backups/restore.service.ts
+2026-01-29T16:41:59.649Z [DEBUG] File /home/ken/api-gateway/src/lib/backups/restore.service.ts written atomically
+2026-01-29T16:41:59.651Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2026-01-29T16:41:59.651Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:41:59.651Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:41:59.656Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:41:59.659Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:41:59.659Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:41:59.659Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:42:03.476Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:42:03.486Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:42:03.486Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:42:03.486Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:42:03.486Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:42:03.915Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:42:03.916Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:42:03.916Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:42:03.917Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:42:03.917Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:42:03.917Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:42:03.917Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:42:03.932Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:42:03.948Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:42:03.948Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:42:03.948Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:42:05.058Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300042049fd10b1a9e874099"}
+2026-01-29T16:42:05.059Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:42:05.059Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:42:05.059Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:42:07.849Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:42:07.864Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:42:07.864Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:42:07.864Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:42:07.864Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:42:11.242Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:42:11.243Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:42:11.243Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:42:11.244Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:42:11.244Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:42:11.244Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:42:11.244Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:42:11.252Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:42:11.262Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:42:11.262Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:42:11.263Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:42:13.068Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004212bdccfad906ef497a"}
+2026-01-29T16:42:13.068Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:42:13.068Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:42:13.069Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:42:14.003Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004213b0264c4d67e749fb"}
+2026-01-29T16:42:15.870Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300042151585533d5d9446be"}
+2026-01-29T16:42:16.578Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:42:16.591Z [DEBUG] executePreToolHooks called for tool: Edit
+2026-01-29T16:42:16.591Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2026-01-29T16:42:16.591Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:42:16.591Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:42:16.593Z [DEBUG] Writing to temp file: /home/ken/api-gateway/src/lib/backups/restore-history.service.ts.tmp.3136385.1769704936593
+2026-01-29T16:42:16.593Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:42:16.595Z [DEBUG] Temp file written successfully, size: 26522 bytes
+2026-01-29T16:42:16.595Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:42:16.595Z [DEBUG] Renaming /home/ken/api-gateway/src/lib/backups/restore-history.service.ts.tmp.3136385.1769704936593 to /home/ken/api-gateway/src/lib/backups/restore-history.service.ts
+2026-01-29T16:42:16.595Z [DEBUG] File /home/ken/api-gateway/src/lib/backups/restore-history.service.ts written atomically
+2026-01-29T16:42:16.597Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2026-01-29T16:42:16.597Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:42:16.597Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:42:16.607Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:42:16.610Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:42:16.610Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:42:16.611Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:42:18.116Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000421740f32a7b5ee144ce"}
+2026-01-29T16:42:20.975Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:42:20.987Z [DEBUG] executePreToolHooks called for tool: Edit
+2026-01-29T16:42:20.988Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2026-01-29T16:42:20.988Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:42:20.988Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:42:20.990Z [DEBUG] Writing to temp file: /home/ken/api-gateway/src/lib/backups/restore.service.ts.tmp.3136385.1769704940990
+2026-01-29T16:42:20.990Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:42:20.991Z [DEBUG] Temp file written successfully, size: 18537 bytes
+2026-01-29T16:42:20.991Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:42:20.991Z [DEBUG] Renaming /home/ken/api-gateway/src/lib/backups/restore.service.ts.tmp.3136385.1769704940990 to /home/ken/api-gateway/src/lib/backups/restore.service.ts
+2026-01-29T16:42:20.992Z [DEBUG] File /home/ken/api-gateway/src/lib/backups/restore.service.ts written atomically
+2026-01-29T16:42:20.993Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2026-01-29T16:42:20.993Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:42:20.993Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:42:20.999Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:42:21.002Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:42:21.002Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:42:21.003Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:42:21.496Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000422120adb6fbfef24454"}
+2026-01-29T16:42:27.828Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000422739d966eaaf374a9d"}
+2026-01-29T16:42:39.079Z [ERROR] API error (attempt 6/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300042381c473d7591054e02"}
+2026-01-29T16:42:45.956Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:42:45.962Z [DEBUG] executePreToolHooks called for tool: Edit
+2026-01-29T16:42:45.962Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2026-01-29T16:42:45.962Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:42:45.962Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:42:45.964Z [DEBUG] Writing to temp file: /home/ken/api-gateway/src/lib/backups/restore-history.service.ts.tmp.3136385.1769704965964
+2026-01-29T16:42:45.964Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:42:45.965Z [DEBUG] Temp file written successfully, size: 26592 bytes
+2026-01-29T16:42:45.965Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:42:45.965Z [DEBUG] Renaming /home/ken/api-gateway/src/lib/backups/restore-history.service.ts.tmp.3136385.1769704965964 to /home/ken/api-gateway/src/lib/backups/restore-history.service.ts
+2026-01-29T16:42:45.965Z [DEBUG] File /home/ken/api-gateway/src/lib/backups/restore-history.service.ts written atomically
+2026-01-29T16:42:45.966Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2026-01-29T16:42:45.966Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:42:45.966Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:42:45.971Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:42:45.974Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:42:45.974Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:42:45.974Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:42:49.551Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:42:49.564Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:42:49.564Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:42:49.564Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:42:49.564Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:42:49.566Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:42:49.566Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:42:49.566Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:42:49.582Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:42:49.586Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:42:49.586Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:42:49.587Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:42:55.689Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:42:55.713Z [DEBUG] executePreToolHooks called for tool: Edit
+2026-01-29T16:42:55.713Z [DEBUG] Getting matching hook commands for PreToolUse with query: Edit
+2026-01-29T16:42:55.713Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:42:55.713Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:42:55.715Z [DEBUG] Writing to temp file: /home/ken/api-gateway/src/lib/backups/restore.service.ts.tmp.3136385.1769704975715
+2026-01-29T16:42:55.715Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:42:55.716Z [DEBUG] Temp file written successfully, size: 18551 bytes
+2026-01-29T16:42:55.716Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:42:55.716Z [DEBUG] Renaming /home/ken/api-gateway/src/lib/backups/restore.service.ts.tmp.3136385.1769704975715 to /home/ken/api-gateway/src/lib/backups/restore.service.ts
+2026-01-29T16:42:55.716Z [DEBUG] File /home/ken/api-gateway/src/lib/backups/restore.service.ts written atomically
+2026-01-29T16:42:55.717Z [DEBUG] Getting matching hook commands for PostToolUse with query: Edit
+2026-01-29T16:42:55.717Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:42:55.717Z [DEBUG] Matched 0 unique hooks for query "Edit" (0 before deduplication)
+2026-01-29T16:42:55.730Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:42:55.734Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:42:55.734Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:42:55.735Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:42:59.026Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:42:59.037Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:42:59.037Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:42:59.037Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:42:59.038Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:42:59.039Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:42:59.039Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:42:59.039Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:42:59.056Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:42:59.059Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:42:59.059Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:42:59.059Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:43:01.859Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:43:01.868Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-29T16:43:01.868Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-29T16:43:01.868Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:43:01.869Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-29T16:43:01.871Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-29T16:43:01.871Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:43:01.871Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-29T16:43:01.879Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:43:01.884Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:43:01.884Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:43:01.890Z [DEBUG] [API:auth] OAuth token check complete

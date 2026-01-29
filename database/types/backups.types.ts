@@ -29,6 +29,7 @@ export interface Backup {
   size: number;
   created_at: Date;
   expires_at: Date;
+  restore_count?: number;
 }
 
 /**

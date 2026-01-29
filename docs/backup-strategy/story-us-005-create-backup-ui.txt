@@ -1,0 +1,58 @@
+---
+memoryVersion: 1
+storyId: US-005
+storyTitle: Create Backup UI
+completedDate: 2026-01-29
+---
+
+STORY: US-005 - Create Backup UI
+========================
+
+DESCRIPTION:
+As a developer, I want a backup UI so that I can manage backups easily.
+
+MAVEN STEPS COMPLETED: [5, 10]
+
+IMPLEMENTATION SUMMARY:
+Created comprehensive backup management UI with security controls. Built full feature module with React components, API routes, and custom hooks. Integrated with existing backups data layer and job queue system.
+
+KEY FILES:
+- developer-portal/src/features/backups/types.ts - Type definitions and utilities
+- developer-portal/src/features/backups/api.ts - API client for backup operations
+- developer-portal/src/features/backups/useBackups.ts - React hook for state management
+- developer-portal/src/features/backups/BackupTable.tsx - Backup history table
+- developer-portal/src/features/backups/BackupStatsCards.tsx - Statistics cards
+- developer-portal/src/features/backups/BackupActions.tsx - Export/action buttons
+- developer-portal/src/features/backups/BackupNav.tsx - Navigation component
+- developer-portal/src/app/dashboard/backups/page.tsx - Main backup settings page
+- developer-portal/src/app/api/backups/[projectId]/route.ts - List backups API
+- developer-portal/src/app/api/backups/[projectId]/stats/route.ts - Statistics API
+- developer-portal/src/app/api/backups/[projectId]/export/database/route.ts - Database export
+- developer-portal/src/app/api/backups/[projectId]/export/logs/route.ts - Logs export
+- developer-portal/src/app/api/backups/[projectId]/telegram/[backupId]/route.ts - Telegram send
+- developer-portal/src/app/api/backups/[projectId]/[backupId]/route.ts - Delete backup
+
+DECISIONS MADE:
+- Placed backup UI in developer-portal (not api-gateway) for user-facing interface
+- Used @/ aliases for cross-feature imports, relative paths within feature
+- Implemented authentication/authorization using authenticateRequest middleware
+- Added rate limiting (10 exports/hour) to prevent abuse
+- Project ownership verification prevents horizontal privilege escalation
+- Professional color palette: slate, emerald, blue, amber, red (no gradients)
+- Used lucide-react icons instead of emojis
+
+INTEGRATION POINTS:
+- Uses backups data layer from api-gateway/src/lib/backups/backups.service.ts
+- Connects to control_plane database for backup history
+- Integrates with job queue system for async export operations
+- Uses @nextmavens/audit-logs-database for type sharing
+- Follows same auth pattern as quotas API (authenticateRequest + project ownership)
+
+LESSONS LEARNED:
+- Security audit found critical issues initially (no auth/authorization) - fixed before completion
+- All API routes need both authentication AND project ownership verification
+- Rate limiting essential for export operations to prevent resource exhaustion
+- Input validation needed on query parameters (type, limit, offset)
+- Generic error messages prevent information leakage
+- localStorage token storage is XSS risk but acceptable with proper input sanitization
+- Components must stay under 300 lines - split if larger

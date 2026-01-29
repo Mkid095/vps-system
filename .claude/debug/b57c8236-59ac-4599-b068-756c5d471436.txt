@@ -3490,3 +3490,445 @@
 2026-01-29T16:37:37.969Z [DEBUG] Stream started - received first chunk
 2026-01-29T16:37:37.977Z [DEBUG] Stream started - received first chunk
 2026-01-29T16:37:38.904Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:38:04.601Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:38:04.602Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:38:04.602Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:38:04.603Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:38:04.607Z [DEBUG] Persisted tool result to /home/ken/.claude/projects/-home-ken/b57c8236-59ac-4599-b068-756c5d471436/tool-results/call_5d9208e141c946b2bff89645.txt (94.8KB)
+2026-01-29T16:38:04.608Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:38:04.608Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:38:04.608Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:38:04.622Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:38:04.622Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:38:04.622Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:38:04.622Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:38:04.623Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:38:04.627Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:38:04.627Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:38:04.627Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:38:07.624Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:38:07.637Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:38:07.638Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:38:07.638Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:38:07.638Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:38:08.411Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:38:08.411Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:38:08.411Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:38:08.412Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:38:08.412Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:38:08.412Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:38:08.413Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:38:08.423Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:38:08.423Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:38:08.425Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:38:08.425Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:38:08.426Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:38:08.432Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:38:08.432Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:38:08.434Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:38:12.507Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:38:12.513Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:38:12.514Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:38:12.514Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:38:12.514Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:38:12.612Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:38:12.612Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:38:12.612Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:38:12.612Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:38:12.612Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:38:12.612Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:38:12.613Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:38:12.617Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:38:12.617Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:38:12.617Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:38:12.617Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:38:12.621Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:38:12.626Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:38:12.626Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:38:12.627Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:38:15.982Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:38:15.988Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:38:15.988Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:38:15.988Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:38:15.988Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:38:15.993Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:38:15.993Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:38:15.994Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:38:15.994Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:38:15.994Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:38:15.994Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:38:15.995Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:38:15.995Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:38:16.621Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130003816aecb46e9dc2742de"}
+2026-01-29T16:38:16.621Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:38:16.621Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:38:16.621Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:38:16.625Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000381652b3f08a24b44bf0"}
+2026-01-29T16:38:16.625Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:38:16.625Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:38:16.625Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:38:16.917Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000381639fb85db36014e49"}
+2026-01-29T16:38:17.816Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300038177a84d6a322c14245"}
+2026-01-29T16:38:18.032Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130003817aa307be9e4d84ffd"}
+2026-01-29T16:38:18.966Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000381844f55ab8584f48a2"}
+2026-01-29T16:38:19.377Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300038199f161d5e4d504a90"}
+2026-01-29T16:38:20.292Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000382086f38eab9dfa4069"}
+2026-01-29T16:39:11.691Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-01-29T16:39:11.691Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-01-29T16:39:11.691Z [DEBUG] Metrics export disabled by organization setting
+2026-01-29T16:39:34.753Z [DEBUG] Getting matching hook commands for PostToolUseFailure with query: Bash
+2026-01-29T16:39:34.753Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:39:34.753Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:39:34.778Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:39:34.778Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:39:34.778Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:39:34.778Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:39:34.781Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:39:34.794Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:39:34.794Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:39:34.797Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:39:35.394Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:39:35.396Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:39:35.401Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:39:36.018Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:39:37.540Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:39:37.540Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:39:37.540Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:39:37.540Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:39:37.545Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:39:37.545Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:39:37.545Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:39:37.545Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:39:37.545Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:39:37.545Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:39:37.546Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:39:37.546Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:39:39.380Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:39:39.383Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:39:39.498Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:39:39.498Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:39:39.498Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:39:39.499Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:39:39.499Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:39:39.499Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:39:39.499Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:39:39.504Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:39:39.504Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:39:39.504Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:39:39.504Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:39:39.505Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:39:39.509Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:39:39.509Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:39:39.509Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:39:42.128Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:39:46.610Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:39:46.623Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:39:46.623Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:39:46.623Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:39:46.623Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:39:46.673Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:39:46.673Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:39:46.673Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:39:46.673Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:39:46.673Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:39:46.673Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:39:46.674Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:39:46.674Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:39:49.178Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:39:49.725Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:39:49.864Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:39:49.864Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:39:49.864Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:39:49.865Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:39:49.865Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:39:49.865Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:39:49.865Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:39:49.869Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:39:49.869Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:39:49.870Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:39:49.870Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:39:49.870Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:39:49.874Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:39:49.874Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:39:49.874Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:39:51.933Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:39:53.229Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:39:53.241Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:39:53.241Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:39:53.241Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:39:53.241Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:39:53.251Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:39:53.251Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:39:53.251Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:39:53.251Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:39:53.252Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:39:53.252Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:39:53.252Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:39:53.252Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:39:53.252Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:39:53.252Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:39:53.252Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:39:53.252Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:39:53.254Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:39:53.254Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:39:53.254Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:39:53.254Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:39:54.137Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:39:55.403Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:39:55.412Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:39:55.437Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:39:56.750Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:39:56.751Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:39:56.751Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:39:56.752Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:39:56.754Z [DEBUG] Persisted tool result to /home/ken/.claude/projects/-home-ken/b57c8236-59ac-4599-b068-756c5d471436/tool-results/call_205f56c3c78e4357b7c90607.txt (74.2KB)
+2026-01-29T16:39:56.754Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:39:56.754Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:39:56.754Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:39:56.769Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:39:56.769Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:39:56.770Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:39:56.770Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:39:56.771Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:39:56.776Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:39:56.776Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:39:56.776Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:03.795Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:03.809Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-29T16:40:03.809Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-29T16:40:03.809Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:40:03.809Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-29T16:40:03.810Z [DEBUG] Writing to temp file: /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-b57c8236-59ac-4599-b068-756c5d471436.json.tmp.3124137.1769704803810
+2026-01-29T16:40:03.810Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:40:03.811Z [DEBUG] Temp file written successfully, size: 1277 bytes
+2026-01-29T16:40:03.811Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:40:03.811Z [DEBUG] Renaming /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-b57c8236-59ac-4599-b068-756c5d471436.json.tmp.3124137.1769704803810 to /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-b57c8236-59ac-4599-b068-756c5d471436.json
+2026-01-29T16:40:03.811Z [DEBUG] File /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-b57c8236-59ac-4599-b068-756c5d471436.json written atomically
+2026-01-29T16:40:03.811Z [DEBUG] Writing to temp file: /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-a249f0d.json.tmp.3124137.1769704803811
+2026-01-29T16:40:03.811Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:40:03.814Z [DEBUG] Temp file written successfully, size: 2 bytes
+2026-01-29T16:40:03.814Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:40:03.814Z [DEBUG] Renaming /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-a249f0d.json.tmp.3124137.1769704803811 to /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-a249f0d.json
+2026-01-29T16:40:03.814Z [DEBUG] File /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-a249f0d.json written atomically
+2026-01-29T16:40:03.814Z [DEBUG] Writing to temp file: /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-a406eff.json.tmp.3124137.1769704803814
+2026-01-29T16:40:03.814Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:40:03.815Z [DEBUG] Temp file written successfully, size: 2 bytes
+2026-01-29T16:40:03.815Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:40:03.815Z [DEBUG] Renaming /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-a406eff.json.tmp.3124137.1769704803814 to /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-a406eff.json
+2026-01-29T16:40:03.815Z [DEBUG] File /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-a406eff.json written atomically
+2026-01-29T16:40:03.818Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-29T16:40:03.818Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:40:03.818Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-29T16:40:03.828Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:40:03.828Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:40:03.828Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:40:03.828Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:40:03.829Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:03.835Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:03.835Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:03.836Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:06.596Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:06.605Z [DEBUG] executePreToolHooks called for tool: Skill
+2026-01-29T16:40:06.605Z [DEBUG] Getting matching hook commands for PreToolUse with query: Skill
+2026-01-29T16:40:06.605Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:40:06.605Z [DEBUG] Matched 0 unique hooks for query "Skill" (0 before deduplication)
+2026-01-29T16:40:06.608Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.3124137.1769704806608
+2026-01-29T16:40:06.608Z [DEBUG] Preserving file permissions: 100600
+2026-01-29T16:40:06.609Z [DEBUG] Temp file written successfully, size: 14960 bytes
+2026-01-29T16:40:06.609Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:40:06.609Z [DEBUG] Renaming /home/ken/.claude.json.tmp.3124137.1769704806608 to /home/ken/.claude.json
+2026-01-29T16:40:06.609Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-29T16:40:06.610Z [DEBUG] Metadata string for create-story-memory:
+2026-01-29T16:40:06.610Z [DEBUG] <command-message>create-story-memory</command-message>
+<command-name>/create-story-memory</command-name>
+<command-args>docs/prd-backup-strategy.json US-005</command-args>
+2026-01-29T16:40:06.610Z [DEBUG] command-message tags in metadata: 1
+2026-01-29T16:40:06.611Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:40:06.611Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:40:06.611Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:40:06.611Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:40:06.611Z [DEBUG] processPromptSlashCommand creating 3 messages for create-story-memory
+2026-01-29T16:40:06.611Z [DEBUG] Message 1: <command-message>create-story-memory</command-message>
+<command-name>/create-story-memory</command-name>
+<command-args>docs/prd-backup-strategy.json US-005</command-args>
+2026-01-29T16:40:06.611Z [DEBUG] Message 2 [META]: [{"type":"text","text":"# Create Story Memory - QUICK VERSION\n\n**YOU MUST create a story memory file NOW.**\n\nThis is called after a story is complete. Work FAST - don't over-analyze.\n\n**CRITICAL
+2026-01-29T16:40:06.611Z [DEBUG] Message 3: [ATTACHMENT]
+2026-01-29T16:40:06.612Z [DEBUG] SkillTool returning 2 newMessages for skill create-story-memory
+2026-01-29T16:40:06.612Z [DEBUG] newMessage 1: [{"type":"text","text":"# Create Story Memory - QUICK VERSION\n\n**YOU MUST create a story memory file NOW.**\n\nThis is called after a story is compl...
+2026-01-29T16:40:06.612Z [DEBUG] Getting matching hook commands for PostToolUse with query: Skill
+2026-01-29T16:40:06.612Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:40:06.612Z [DEBUG] Matched 0 unique hooks for query "Skill" (0 before deduplication)
+2026-01-29T16:40:06.625Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:40:06.625Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:40:06.625Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:40:06.625Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:40:06.626Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:06.631Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:06.631Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:06.631Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:10.008Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:10.022Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:40:10.022Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:40:10.022Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:40:10.022Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:40:10.170Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:10.171Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:10.171Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:10.172Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:40:10.172Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:40:10.172Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:40:10.173Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:10.182Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:40:10.182Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:40:10.182Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:40:10.182Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:40:10.185Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:10.190Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:10.190Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:10.192Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:11.242Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000401189accef31c264b09"}
+2026-01-29T16:40:11.242Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:11.242Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:11.242Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:11.878Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000401141da734730f94f71"}
+2026-01-29T16:40:14.309Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:15.930Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:15.937Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:40:15.937Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:40:15.937Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:40:15.937Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:40:16.021Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:16.021Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:16.021Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:16.021Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:40:16.021Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:40:16.021Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:40:16.022Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:16.029Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:40:16.029Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:40:16.029Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:40:16.029Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:40:16.030Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:16.040Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:16.040Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:16.040Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:16.315Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300040161f586f5cecbf4219"}
+2026-01-29T16:40:16.315Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:16.315Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:16.315Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:17.852Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300040171bcc30558b1148e0"}
+2026-01-29T16:40:18.147Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000401744fc6b8ba8ba47b1"}
+2026-01-29T16:40:19.367Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:19.373Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:40:19.373Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:40:19.373Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:40:19.373Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:40:19.448Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:19.448Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:19.448Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:19.449Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:40:19.449Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:40:19.449Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:40:19.449Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:19.463Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:40:19.463Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:40:19.463Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:40:19.463Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:40:19.466Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:19.470Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:19.470Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:19.470Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:19.649Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004019eaed042f65ae462f"}
+2026-01-29T16:40:20.407Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000402084f06fda5b3845f8"}
+2026-01-29T16:40:20.486Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004020fcaf837db5314304"}
+2026-01-29T16:40:20.486Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:20.486Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:20.487Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:22.141Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300040217fa667280921421b"}
+2026-01-29T16:40:23.649Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300040238fea96c307f2434a"}
+2026-01-29T16:40:26.983Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026013000402630ded34d1b8f4052"}
+2026-01-29T16:40:29.489Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004029c3c1219269064bc0"}
+2026-01-29T16:40:30.942Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:30.948Z [DEBUG] executePreToolHooks called for tool: Write
+2026-01-29T16:40:30.948Z [DEBUG] Getting matching hook commands for PreToolUse with query: Write
+2026-01-29T16:40:30.948Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:40:30.948Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-29T16:40:30.949Z [DEBUG] Writing to temp file: /home/ken/docs/backup-strategy/story-us-005-create-backup-ui.txt.tmp.3124137.1769704830949
+2026-01-29T16:40:30.950Z [DEBUG] Temp file written successfully, size: 3103 bytes
+2026-01-29T16:40:30.950Z [DEBUG] Renaming /home/ken/docs/backup-strategy/story-us-005-create-backup-ui.txt.tmp.3124137.1769704830949 to /home/ken/docs/backup-strategy/story-us-005-create-backup-ui.txt
+2026-01-29T16:40:30.950Z [DEBUG] File /home/ken/docs/backup-strategy/story-us-005-create-backup-ui.txt written atomically
+2026-01-29T16:40:30.952Z [DEBUG] Getting matching hook commands for PostToolUse with query: Write
+2026-01-29T16:40:30.952Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:40:30.952Z [DEBUG] Matched 0 unique hooks for query "Write" (0 before deduplication)
+2026-01-29T16:40:30.955Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:40:30.955Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:40:30.955Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:40:30.955Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:40:30.956Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:30.960Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:30.960Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:30.960Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:32.789Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300040327e5095fe1c274ae7"}
+2026-01-29T16:40:35.273Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:35.279Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T16:40:35.279Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T16:40:35.279Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:40:35.279Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:40:35.366Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:35.366Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:35.366Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:35.367Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-29T16:40:35.367Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:40:35.367Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T16:40:35.367Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:35.372Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:40:35.372Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:40:35.372Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:40:35.372Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:40:35.374Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:35.378Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:35.378Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:35.378Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:40.404Z [ERROR] API error (attempt 6/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601300040405216bef88af94abf"}
+2026-01-29T16:40:41.723Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:41.728Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-29T16:40:41.728Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-29T16:40:41.728Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:40:41.728Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-29T16:40:41.728Z [DEBUG] Writing to temp file: /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-b57c8236-59ac-4599-b068-756c5d471436.json.tmp.3124137.1769704841728
+2026-01-29T16:40:41.728Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:40:41.730Z [DEBUG] Temp file written successfully, size: 2 bytes
+2026-01-29T16:40:41.730Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:40:41.730Z [DEBUG] Renaming /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-b57c8236-59ac-4599-b068-756c5d471436.json.tmp.3124137.1769704841728 to /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-b57c8236-59ac-4599-b068-756c5d471436.json
+2026-01-29T16:40:41.730Z [DEBUG] File /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-b57c8236-59ac-4599-b068-756c5d471436.json written atomically
+2026-01-29T16:40:41.730Z [DEBUG] Writing to temp file: /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-a249f0d.json.tmp.3124137.1769704841730
+2026-01-29T16:40:41.730Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:40:41.730Z [DEBUG] Temp file written successfully, size: 2 bytes
+2026-01-29T16:40:41.731Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:40:41.731Z [DEBUG] Renaming /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-a249f0d.json.tmp.3124137.1769704841730 to /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-a249f0d.json
+2026-01-29T16:40:41.731Z [DEBUG] File /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-a249f0d.json written atomically
+2026-01-29T16:40:41.731Z [DEBUG] Writing to temp file: /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-a406eff.json.tmp.3124137.1769704841731
+2026-01-29T16:40:41.731Z [DEBUG] Preserving file permissions: 100664
+2026-01-29T16:40:41.731Z [DEBUG] Temp file written successfully, size: 2 bytes
+2026-01-29T16:40:41.731Z [DEBUG] Applied original permissions to temp file
+2026-01-29T16:40:41.731Z [DEBUG] Renaming /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-a406eff.json.tmp.3124137.1769704841731 to /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-a406eff.json
+2026-01-29T16:40:41.731Z [DEBUG] File /home/ken/.claude/todos/b57c8236-59ac-4599-b068-756c5d471436-agent-a406eff.json written atomically
+2026-01-29T16:40:41.732Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-29T16:40:41.732Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T16:40:41.732Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-29T16:40:41.735Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T16:40:41.735Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T16:40:41.735Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T16:40:41.735Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T16:40:41.736Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T16:40:41.740Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T16:40:41.740Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T16:40:41.740Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T16:40:42.990Z [ERROR] API error (attempt 6/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004042e9de118623ce47e6"}
+2026-01-29T16:40:44.464Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:40:44.478Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-01-29T16:40:44.478Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T16:40:44.478Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-29T16:40:53.800Z [DEBUG] Stream started - received first chunk
+2026-01-29T16:41:00.951Z [ERROR] API error (attempt 7/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004100a74f704303f64646"}
+2026-01-29T16:41:03.381Z [ERROR] API error (attempt 7/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260130004103e439c917f95741fd"}
