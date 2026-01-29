@@ -21,6 +21,7 @@
 
 // Export job handlers
 export { provisionProjectHandler } from './provision-project.handler.js';
+export { deliverWebhookHandler } from './deliver-webhook.handler.js';
 
 // Export job handler registry
 export {
@@ -39,3 +40,15 @@ export type {
 } from './types.js';
 
 export { ProvisionProjectErrorType, ProvisionProjectStage } from './types.js';
+
+// Export webhook-specific types
+export type {
+  DeliverWebhookPayload,
+  WebhookDeliveryResult,
+} from './types.webhook.js';
+
+export {
+  WebhookDeliveryStatus,
+  WebhookDeliveryErrorType,
+  WebhookRetryConfig,
+} from './types.webhook.js';
