@@ -1,0 +1,26 @@
+NAME                              DESCRIPTION                                                                                     STARS     OFFICIAL
+rancher/metadata                                                                                                                  2         
+bitnamicharts/metallb             Bitnami Helm chart for MetalLB                                                                  2         
+bitnami/metallb-speaker           Bitnami Secure Image for metallb-speaker                                                        1         
+newrelic/k8s-metadata-injection                                                                                                   5         
+docker/tuf-metadata               metadata for TUF                                                                                0         
+linuxserver/kometa                                                                                                                5         
+bitnami/metallb-controller        Bitnami Secure Image for metallb-controller                                                     1         
+mirantis/ucp-metallb-speaker                                                                                                      0         
+vmware/volume-metadata-syncer                                                                                                     2         
+linuxserver/plex-meta-manager                                                                                                     56        
+airbyte/source-metabase                                                                                                           1         
+rapidfort/metabase-ib             RapidFort optimized, hardened image for Metabase Iron Bank                                      0         
+docker/tuf-metadata-staging                                                                                                       0         
+cleanstart/metallb-speaker        Secure by Design, Built for Speed, Hardened Container Images on a minimal base CleanStart OS.   0         
+mcp/metabase                      A comprehensive MCP server for Metabase with 70+ tools.                                         2         
+mirantis/ucp-metallb-controller                                                                                                   0         
+rancher/metadata-windows                                                                                                          1         
+grafana/metaconvert               Tool for converting Cortex meta.json files to Grafana Mimir equivalent.                         0         
+concourse/test-image-metadata                                                                                                     0         
+rancher/metadata-syncer                                                                                                           0         
+biocontainers/r-metamix                                                                                                           0         
+acuvity/mcp-server-metatool-app   MetaMCP is the one unified middleware MCP server that manages your MCP connections with GUI.    0         
+cleanstart/metallb-controller     Secure by Design, Built for Speed, Hardened Container Images on a minimal base CleanStart OS.   0         
+vulhub/metabase                                                                                                                   2         
+buildbot/metabbotcfg              buildbot worker for the buildbot CI                                                             0

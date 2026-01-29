@@ -1,0 +1,48 @@
+---
+memoryVersion: 1
+storyId: US-002
+storyTitle: Validate Project Status
+completedDate: 2026-01-28
+---
+
+STORY: US-002 - Validate Project Status
+========================
+
+DESCRIPTION:
+As a gateway engineer, I want to check project status so that suspended projects can't make requests.
+
+MAVEN STEPS COMPLETED:
+[1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Created project status validation middleware that checks project status from snapshot data and blocks requests for non-active projects (SUSPENDED, ARCHIVED, DELETED) with appropriate error codes.
+
+KEY FILES:
+- src/types/snapshot.types.ts - ProjectStatus enum (ACTIVE, SUSPENDED, ARCHIVED, DELETED)
+- src/validation/project-status.validator.ts - Status validation logic with constant-time checks
+- src/validation/middleware/project-status.middleware.ts - Express middleware for request interception
+- src/validation/services/validation-data.service.ts - Data layer with caching (5s TTL)
+- src/validation/integration/snapshot-integration.ts - Orchestration layer
+- src/api/middleware/error.handler.ts - Error codes (PROJECT_SUSPENDED, PROJECT_ARCHIVED, PROJECT_DELETED)
+- src/snapshot/snapshot.fetcher.ts - Enhanced with prototype pollution protection
+- src/snapshot/snapshot.cache.ts - Snapshot caching layer
+- src/snapshot/snapshot.refresh.ts - Background refresh with mutex
+
+DECISIONS MADE:
+- Project ID extracted from x-project-id header only (not query params for security)
+- Constant-time validation to prevent timing attacks
+- Generic error messages to prevent project enumeration
+- Fail-closed architecture (block if snapshot unavailable)
+- 5-second TTL on validation cache for performance
+
+INTEGRATION POINTS:
+- Reads from snapshot service (project.status field)
+- Express middleware chain (applies before protected routes)
+- Error handler returns standardized 403 Forbidden responses
+
+LESSONS LEARNED:
+- Always sanitize project ID input (regex: /^[a-zA-Z0-9_-]{1,100}$/)
+- Prevent ReDoS with max input length checks before regex
+- Timing attack resistance: all code paths should have similar execution time
+- Cache poisoning protection: validate for __proto__, constructor, prototype keys
+- Generic error messages are essential for security (prevent enumeration)

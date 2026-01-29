@@ -1,0 +1,44 @@
+---
+memoryVersion: 1
+storyId: US-008
+storyTitle: Add User Filtering
+completedDate: 2026-01-29
+---
+
+STORY: US-008 - Add User Filtering
+========================
+
+DESCRIPTION:
+As a developer, I want to filter users so that I can find specific accounts.
+
+MAVEN STEPS COMPLETED:
+[5, 10]
+
+IMPLEMENTATION SUMMARY:
+Created comprehensive user filtering UI components with filter bar, date range pickers, dropdowns for status/auth provider, and integrated with existing auth service API client. The users page at /dashboard/users displays paginated, filterable user list.
+
+KEY FILES:
+- developer-portal/src/features/auth-users/components/UserFilterBar.tsx - Collapsible filter bar with all filters (email, status, auth_provider, date ranges)
+- developer-portal/src/features/auth-users/components/UserList.tsx - Paginated user list with filtering integration
+- developer-portal/src/app/dashboard/users/page.tsx - Users management page
+- developer-portal/src/lib/api/auth-service-client.ts - Already existed, has full filtering support
+- developer-portal/src/lib/types/auth-user.types.ts - Already existed, UserListQuery type
+
+DECISIONS MADE:
+- Used existing auth service API client which already had full filtering support
+- Created separate UserFilterBar component for reusability
+- Used lucide-react icons instead of emojis for professional appearance
+- Implemented collapsible filter bar to save screen space
+- Used solid professional colors (emerald, slate, blue, etc.) per quality standards
+
+INTEGRATION POINTS:
+- Uses authServiceClient.listUsers() API with UserListQuery parameters
+- Accessible at /dashboard/users route in developer portal
+- Requires authentication (checks localStorage accessToken)
+- Uses EndUserListQuery, EndUserStatus, EndUserAuthProvider types
+
+LESSONS LEARNED:
+- The auth service API client already had comprehensive filtering support built-in
+- TypeScript union types work well for dropdown options (status, auth_provider)
+- HTML5 date inputs provide browser-level validation for date ranges
+- Component size limits (<300 lines) require careful separation of concerns

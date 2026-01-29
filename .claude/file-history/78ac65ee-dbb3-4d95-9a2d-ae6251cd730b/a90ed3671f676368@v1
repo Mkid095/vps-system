@@ -1,0 +1,18 @@
+# CLI Tool (@nextmavens/cli) - Progress
+
+## Iteration 1
+Date: 2026-01-24
+
+Stories to Process:
+- US-001: CLI Login
+- US-002: Create Project from CLI
+- US-003: Deploy Application
+- US-004: View Logs
+- US-005: Run Database Migrations
+- US-006: WhatsApp Connect
+- US-007: Environment Variable Management
+- US-008: Project Status
+- US-009: CLI Logout
+- US-010: Shell Completion
+
+Status: Ready for flow start

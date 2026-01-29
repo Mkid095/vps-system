@@ -1,0 +1,1 @@
+87:    image: supabase/studio:20250115-7a7e3d3

@@ -1,0 +1,9 @@
+{
+  "id": "4",
+  "subject": "Implement organizations and projects management API",
+  "description": "Create API endpoints for organization and project management with custom database-per-app isolation logic. Implement master database schema for tracking project databases and credentials.",
+  "activeForm": "Implementing orgs/projects API",
+  "status": "pending",
+  "blocks": [],
+  "blockedBy": []
+}

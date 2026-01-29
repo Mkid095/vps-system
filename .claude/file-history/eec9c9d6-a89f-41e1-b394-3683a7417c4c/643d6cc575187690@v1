@@ -1,0 +1,78 @@
+import type { Project } from '@/lib/api';
+
+interface RecentProjectsProps {
+  projects: Project[];
+  organizations: any[];
+}
+
+export function RecentProjects({ projects, organizations }: RecentProjectsProps) {
+  if (projects.length === 0) {
+    return (
+      <div className="bg-white border border-gray-200 rounded-xl p-12 text-center">
+        <p className="text-gray-500">No projects yet</p>
+        <a
+          href="/databases"
+          className="inline-block mt-4 px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors no-underline"
+        >
+          Create your first project
+        </a>
+      </div>
+    );
+  }
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {projects.slice(0, 6).map((project) => {
+        const org = organizations?.find(o => o.id === project.organization_id);
+        // Self-hosted Studio is single-tenant - all projects share the same Studio instance
+        const studioUrl = project.db_name ? `/studio` : '#';
+        return (
+          <a
+            key={project.id}
+            href={studioUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-md hover:border-indigo-300 transition-all duration-200 block no-underline"
+          >
+            <div className="flex items-start justify-between mb-3">
+              <div className="flex-1">
+                <h4 className="font-semibold text-gray-900 mb-1">{project.slug}</h4>
+                <p className="text-sm text-gray-500">{org?.name || 'Unknown Organization'}</p>
+              </div>
+              <ProjectStatus status={project.status} />
+            </div>
+            <div className="flex items-center gap-2 text-xs text-gray-500">
+              <span>→</span>
+              <span>Open Studio</span>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  );
+}
+
+function ProjectStatus({ status }: { status: string }) {
+  const statusConfig: Record<string, { label: string; classes: string }> = {
+    active: {
+      label: 'Active',
+      classes: 'px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full'
+    },
+    provisioning: {
+      label: 'Provisioning',
+      classes: 'px-2 py-1 bg-yellow-100 text-yellow-700 text-xs font-medium rounded-full'
+    },
+    suspended: {
+      label: 'Suspended',
+      classes: 'px-2 py-1 bg-red-100 text-red-700 text-xs font-medium rounded-full'
+    },
+    archived: {
+      label: 'Archived',
+      classes: 'px-2 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full'
+    }
+  };
+
+  const config = statusConfig[status] || statusConfig.active;
+
+  return <span className={config.classes}>{config.label}</span>;
+}

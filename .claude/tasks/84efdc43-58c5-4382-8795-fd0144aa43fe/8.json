@@ -1,0 +1,9 @@
+{
+  "id": "8",
+  "subject": "Build JavaScript/TypeScript SDK",
+  "description": "Create comprehensive JS/TS SDK with auth helpers, database queries, realtime subscriptions, and file management for NextMavens platform",
+  "activeForm": "Building JavaScript/TypeScript SDK",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

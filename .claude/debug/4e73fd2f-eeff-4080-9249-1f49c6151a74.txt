@@ -1,0 +1,1 @@
+2026-01-28T02:53:05.120Z [DEBUG] Failed to check enabledPlatforms: TypeError: undefined is not an object (evaluating 'l7.join')

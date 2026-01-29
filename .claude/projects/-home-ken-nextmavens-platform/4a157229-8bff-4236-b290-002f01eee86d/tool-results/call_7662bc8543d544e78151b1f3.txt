@@ -1,0 +1,6 @@
+Exit code 1
+time="2026-01-25T07:31:00Z" level=warning msg="Found orphan containers ([evolution-api evolution-db evolution-redis]) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up."
+ Container supabase-kong Recreate 
+ Container supabase-kong Recreated 
+ Container supabase-kong Starting 
+Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint supabase-kong (ad042c13623fb9b1fb21ccb72355932ff5ec1c8e3aaed5ae16eb8057e8be82e3): Bind for 0.0.0.0:8000 failed: port is already allocated

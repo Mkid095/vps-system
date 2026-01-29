@@ -1,0 +1,9 @@
+{
+  "id": "16",
+  "subject": "Implement Break Glass Mode",
+  "description": "Create super-admin emergency access:\n1. Create /home/ken/control-plane-api/src/lib/admin/break-glass.ts\n2. Add admin_sessions and admin_actions tables\n3. Require separate auth (TOTP or hardware key)\n4. Enable powers: unlock project, override suspension, force delete, regenerate system keys, disable features\n5. Log all actions aggressively to audit_logs\n6. Add reason justification requirement\n7. Create UI at /admin/break-glass\n8. Time-limited sessions (1 hour max)\n\nEmergency access path when things break.",
+  "activeForm": "Implementing break glass mode",
+  "status": "pending",
+  "blocks": [],
+  "blockedBy": []
+}

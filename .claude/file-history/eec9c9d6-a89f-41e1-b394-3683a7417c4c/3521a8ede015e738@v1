@@ -1,0 +1,144 @@
+'use client';
+
+export default function DeployPage() {
+  return (
+    <div className="placeholder-page">
+      <div className="page-header">
+        <div>
+          <h1 className="page-title">Deploy</h1>
+          <p className="page-subtitle">
+            Deploy websites from GitHub with automatic Docker configuration
+          </p>
+        </div>
+      </div>
+
+      <div className="placeholder-content">
+        <div className="placeholder-icon mono">[P]</div>
+        <h2 className="placeholder-title">GitHub Deployment Coming Soon</h2>
+        <p className="placeholder-description">
+          Deploy your websites directly from GitHub with automatic Docker container creation
+          and public hosting. Custom domain configuration will also be supported.
+        </p>
+
+        <div className="deployment-plan">
+          <h3 className="plan-title">Deployment Pipeline</h3>
+          <div className="plan-steps">
+            <PlanStep step="1" title="Connect Repository">
+              Link your GitHub repository to NextMavens platform
+            </PlanStep>
+            <PlanStep step="2" title="Configure Build">
+              Set build commands, Dockerfile location, and environment variables
+            </PlanStep>
+            <PlanStep step="3" title="Auto Deploy">
+              Automatically deploy on push to main branch
+            </PlanStep>
+            <PlanStep step="4" title="Public URL">
+              Get instant public URL: your-project.nextmavens.cloud
+            </PlanStep>
+            <PlanStep step="5" title="Custom Domain">
+              Configure your own domain with DNS setup guides
+            </PlanStep>
+          </div>
+
+          <div className="tech-stack">
+            <h4 className="tech-title">Technology Stack</h4>
+            <ul className="tech-list mono">
+              <li>[Docker] Containerization</li>
+              <li>[GitHub] Git Integration</li>
+              <li>[Nginx] Reverse Proxy</li>
+              <li>[SSL] Automatic HTTPS</li>
+              <li>[CI/CD] Automated Deployments</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <style>{`
+        .deployment-plan {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: 0.5rem;
+          padding: 2rem;
+          margin-top: 2rem;
+        }
+
+        .plan-title {
+          font-size: 1rem;
+          font-weight: 600;
+          margin: 0 0 1.5rem 0;
+        }
+
+        .plan-steps {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          margin-bottom: 2rem;
+        }
+
+        .plan-step {
+          display: flex;
+          gap: 1rem;
+          padding: 1rem;
+          background: var(--background);
+          border-left: 2px solid var(--primary);
+        }
+
+        .plan-step-number {
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: var(--primary);
+        }
+
+        .plan-step-content {
+          flex: 1;
+        }
+
+        .plan-step-title {
+          font-weight: 600;
+          margin-bottom: 0.25rem;
+        }
+
+        .plan-step-desc {
+          font-size: 0.875rem;
+          color: var(--foreground-muted);
+        }
+
+        .tech-stack {
+          border-top: 1px solid var(--border);
+          padding-top: 1.5rem;
+        }
+
+        .tech-title {
+          font-size: 0.875rem;
+          font-weight: 600;
+          margin: 0 0 1rem 0;
+        }
+
+        .tech-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .tech-list li {
+          font-size: 0.875rem;
+        }
+      `}</style>
+    </div>
+  );
+}
+
+function PlanStep({ step, title, children }: { step: string; title: string; children?: React.ReactNode }) {
+  return (
+    <div className="plan-step">
+      <span className="plan-step-number mono">{step}</span>
+      <div className="plan-step-content">
+        <div className="plan-step-title">{title}</div>
+        {children && <p className="plan-step-desc">{children}</p>}
+      </div>
+    </div>
+  );
+}

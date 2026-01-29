@@ -1,0 +1,313 @@
+2026-01-29T07:45:38.280Z [DEBUG] Failed to check enabledPlatforms: TypeError: undefined is not an object (evaluating 'r7.join')
+2026-01-29T07:45:38.338Z [DEBUG] Watching for changes in setting files /home/ken/.claude, /home/ken/.claude...
+2026-01-29T07:45:38.347Z [DEBUG] [init] configureGlobalMTLS starting
+2026-01-29T07:45:38.347Z [DEBUG] [init] configureGlobalMTLS complete
+2026-01-29T07:45:38.347Z [DEBUG] [init] configureGlobalAgents starting
+2026-01-29T07:45:38.347Z [DEBUG] [init] configureGlobalAgents complete
+2026-01-29T07:45:38.355Z [DEBUG] [STARTUP] Loading MCP configs...
+2026-01-29T07:45:38.372Z [DEBUG] Loading plugin rust-analyzer-lsp from source: "./plugins/rust-analyzer-lsp"
+2026-01-29T07:45:38.372Z [DEBUG] Using provided version for rust-analyzer-lsp@claude-plugins-official: 1.0.0
+2026-01-29T07:45:38.374Z [DEBUG] Plugin rust-analyzer-lsp@claude-plugins-official version 1.0.0 already cached at /home/ken/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0
+2026-01-29T07:45:38.374Z [DEBUG] Copied local plugin rust-analyzer-lsp to versioned cache: /home/ken/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0
+2026-01-29T07:45:38.375Z [DEBUG] Plugin rust-analyzer-lsp has no entry.skills defined
+2026-01-29T07:45:38.375Z [DEBUG] Found 1 plugins (1 enabled, 0 disabled)
+2026-01-29T07:45:38.376Z [DEBUG] [claudeai-mcp] Checking gate (cached)...
+2026-01-29T07:45:38.376Z [DEBUG] [claudeai-mcp] Gate returned: true
+2026-01-29T07:45:38.376Z [DEBUG] [claudeai-mcp] No access token
+2026-01-29T07:45:38.433Z [DEBUG] [ToolSearch:optimistic] mode=standard, ENABLE_TOOL_SEARCH=undefined, result=false
+2026-01-29T07:45:38.436Z [DEBUG] [STARTUP] Running setup()...
+2026-01-29T07:45:38.450Z [DEBUG] Loading skills from: managed=/etc/claude-code/.claude/skills, user=/home/ken/.claude/skills, project=[]
+2026-01-29T07:45:38.462Z [ERROR] Error: Error: ENOENT: no such file or directory, scandir '/etc/claude-code/.claude/skills'
+    at readdirSync (unknown)
+    at <anonymous> (/$bunfs/root/claude:12:2063)
+    at nJ (/$bunfs/root/claude:11:35715)
+    at readdirSync (/$bunfs/root/claude:12:2024)
+    at zZ$ (/$bunfs/root/claude:1781:380)
+    at zZ$ (/$bunfs/root/claude:1781:1350)
+    at <anonymous> (/$bunfs/root/claude:1781:4670)
+    at <anonymous> (/$bunfs/root/claude:1781:5401)
+    at A (/$bunfs/root/claude:11:7259)
+    at ax1 (/$bunfs/root/claude:4791:4342)
+2026-01-29T07:45:38.463Z [DEBUG] Error log sink initialized
+2026-01-29T07:45:38.478Z [DEBUG] getPluginSkills: Processing 1 enabled plugins
+2026-01-29T07:45:38.478Z [DEBUG] Checking plugin rust-analyzer-lsp: skillsPath=none, skillsPaths=0 paths
+2026-01-29T07:45:38.478Z [DEBUG] Total plugin skills loaded: 0
+2026-01-29T07:45:38.478Z [DEBUG] Total plugin commands loaded: 0
+2026-01-29T07:45:38.479Z [DEBUG] Registered 0 hooks from 1 plugins
+2026-01-29T07:45:38.479Z [DEBUG] [STARTUP] setup() completed in 43ms
+2026-01-29T07:45:38.479Z [DEBUG] [STARTUP] Loading commands and agents...
+2026-01-29T07:45:38.490Z [DEBUG] Acquired PID lock for 2.1.23 (PID 450199)
+2026-01-29T07:45:38.490Z [DEBUG] Acquired PID lock on running version: /home/ken/.local/share/claude/versions/2.1.23
+2026-01-29T07:45:38.491Z [DEBUG] Watching for changes in skill/command directories: /home/ken/.claude/skills, /home/ken/.claude/commands, /home/ken/.claude/skills, /home/ken/.claude/commands...
+2026-01-29T07:45:38.513Z [DEBUG] Loaded 10 unique skills (managed: 0, user: 2, project: 0, legacy commands: 8)
+2026-01-29T07:45:38.513Z [DEBUG] getSkills returning: 10 skill dir commands, 0 plugin skills, 1 bundled skills
+2026-01-29T07:45:38.515Z [DEBUG] Total plugin agents loaded: 0
+2026-01-29T07:45:38.515Z [DEBUG] [STARTUP] Commands and agents loaded in 36ms
+2026-01-29T07:45:38.515Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2026-01-29T07:45:38.515Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2026-01-29T07:45:38.515Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2026-01-29T07:45:38.527Z [DEBUG] [STARTUP] MCP configs loaded in 172ms
+2026-01-29T07:45:38.534Z [DEBUG] MCP server "zai-mcp-server": Starting connection with timeout of 30000ms
+2026-01-29T07:45:38.537Z [DEBUG] MCP server "web-search-prime": Initializing HTTP transport to https://api.z.ai/api/mcp/web_search_prime/mcp
+2026-01-29T07:45:38.537Z [DEBUG] MCP server "web-search-prime": Node version: v24.3.0, Platform: linux
+2026-01-29T07:45:38.537Z [DEBUG] MCP server "web-search-prime": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-29T07:45:38.537Z [DEBUG] MCP server "web-reader": Initializing HTTP transport to https://api.z.ai/api/mcp/web_reader/mcp
+2026-01-29T07:45:38.537Z [DEBUG] MCP server "web-reader": Node version: v24.3.0, Platform: linux
+2026-01-29T07:45:38.537Z [DEBUG] MCP server "web-reader": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-29T07:45:38.538Z [DEBUG] MCP server "zread": Initializing HTTP transport to https://api.z.ai/api/mcp/zread/mcp
+2026-01-29T07:45:38.538Z [DEBUG] MCP server "zread": Node version: v24.3.0, Platform: linux
+2026-01-29T07:45:38.538Z [DEBUG] MCP server "zread": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-29T07:45:38.538Z [DEBUG] MCP server "web-search-prime": Proxy options: default
+2026-01-29T07:45:38.538Z [DEBUG] MCP server "web-search-prime": HTTP transport options: {"url":"https://api.z.ai/api/mcp/web_search_prime/mcp","headers":{"User-Agent":"claude-code/2.1.23","Authorization":"[REDACTED]"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-29T07:45:38.538Z [DEBUG] MCP server "web-search-prime": HTTP transport created successfully
+2026-01-29T07:45:38.539Z [DEBUG] MCP server "web-search-prime": Client created, setting up request handler
+2026-01-29T07:45:38.539Z [DEBUG] MCP server "web-search-prime": Starting connection with timeout of 30000ms
+2026-01-29T07:45:38.539Z [DEBUG] MCP server "web-search-prime": Testing basic HTTP connectivity to https://api.z.ai/api/mcp/web_search_prime/mcp
+2026-01-29T07:45:38.539Z [DEBUG] MCP server "web-search-prime": Parsed URL: host=api.z.ai, port=default, protocol=https:
+2026-01-29T07:45:38.540Z [DEBUG] MCP server "web-reader": Proxy options: default
+2026-01-29T07:45:38.540Z [DEBUG] MCP server "web-reader": HTTP transport options: {"url":"https://api.z.ai/api/mcp/web_reader/mcp","headers":{"User-Agent":"claude-code/2.1.23","Authorization":"[REDACTED]"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-29T07:45:38.540Z [DEBUG] MCP server "web-reader": HTTP transport created successfully
+2026-01-29T07:45:38.543Z [DEBUG] MCP server "web-reader": Client created, setting up request handler
+2026-01-29T07:45:38.543Z [DEBUG] MCP server "web-reader": Starting connection with timeout of 30000ms
+2026-01-29T07:45:38.543Z [DEBUG] MCP server "web-reader": Testing basic HTTP connectivity to https://api.z.ai/api/mcp/web_reader/mcp
+2026-01-29T07:45:38.543Z [DEBUG] MCP server "web-reader": Parsed URL: host=api.z.ai, port=default, protocol=https:
+2026-01-29T07:45:38.543Z [DEBUG] MCP server "zread": Proxy options: default
+2026-01-29T07:45:38.543Z [DEBUG] MCP server "zread": HTTP transport options: {"url":"https://api.z.ai/api/mcp/zread/mcp","headers":{"User-Agent":"claude-code/2.1.23","Authorization":"[REDACTED]"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-29T07:45:38.543Z [DEBUG] MCP server "zread": HTTP transport created successfully
+2026-01-29T07:45:38.544Z [DEBUG] MCP server "zread": Client created, setting up request handler
+2026-01-29T07:45:38.544Z [DEBUG] MCP server "zread": Starting connection with timeout of 30000ms
+2026-01-29T07:45:38.544Z [DEBUG] MCP server "zread": Testing basic HTTP connectivity to https://api.z.ai/api/mcp/zread/mcp
+2026-01-29T07:45:38.544Z [DEBUG] MCP server "zread": Parsed URL: host=api.z.ai, port=default, protocol=https:
+2026-01-29T07:45:38.544Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-29T07:45:38.544Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-29T07:45:38.544Z [DEBUG] MCP server "zread": No token data found
+2026-01-29T07:45:38.551Z [DEBUG] Loaded 1 LSP server(s) from plugin: rust-analyzer-lsp
+2026-01-29T07:45:38.551Z [DEBUG] Total LSP servers loaded: 1
+2026-01-29T07:45:38.551Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 1 server(s)
+2026-01-29T07:45:38.551Z [DEBUG] Queued request handler for plugin:rust-analyzer-lsp:rust-analyzer.workspace/configuration (connection not ready)
+2026-01-29T07:45:38.551Z [DEBUG] Starting LSP server instance: plugin:rust-analyzer-lsp:rust-analyzer
+2026-01-29T07:45:38.552Z [DEBUG] LSP manager initialized with 1 servers
+2026-01-29T07:45:38.552Z [DEBUG] LSP server manager initialized successfully
+2026-01-29T07:45:38.552Z [DEBUG] Queued notification handler for plugin:rust-analyzer-lsp:rust-analyzer.textDocument/publishDiagnostics (connection not ready)
+2026-01-29T07:45:38.552Z [DEBUG] Registered diagnostics handler for plugin:rust-analyzer-lsp:rust-analyzer
+2026-01-29T07:45:38.552Z [DEBUG] LSP notification handlers registered successfully for all 1 server(s)
+2026-01-29T07:45:38.552Z [ERROR] Error: Error: LSP server plugin:rust-analyzer-lsp:rust-analyzer failed to start: Executable not found in $PATH: "rust-analyzer"
+    at start (/$bunfs/root/claude:1749:22299)
+    at async f (/$bunfs/root/claude:1749:24751)
+    at processTicksAndRejections (native:7:39)
+2026-01-29T07:45:38.552Z [ERROR] Error: Error: Executable not found in $PATH: "rust-analyzer"
+    at spawn (unknown)
+    at spawn (node:child_process:669:35)
+    at spawn (node:child_process:14:39)
+    at start (/$bunfs/root/claude:1749:20844)
+    at start (/$bunfs/root/claude:1749:22353)
+    at f (/$bunfs/root/claude:1749:24751)
+    at f (/$bunfs/root/claude:1749:25726)
+    at L (/$bunfs/root/claude:1749:32513)
+    at processTicksAndRejections (native:7:39)
+2026-01-29T07:45:38.552Z [ERROR] Error: Error: Failed to start LSP server plugin:rust-analyzer-lsp:rust-analyzer: Executable not found in $PATH: "rust-analyzer"
+    at <anonymous> (/$bunfs/root/claude:1749:32535)
+    at processTicksAndRejections (native:7:39)
+2026-01-29T07:45:39.151Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-29T07:45:39.223Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-29T07:45:39.263Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-29T07:45:39.256Z] INFO: MCP Server Application initialized
+[2026-01-29T07:45:39.257Z] INFO: Starting MCP server...
+[2026-01-29T07:45:39.257Z] INFO: UI to Artifact tool registered successfully
+[2026-01-29T07:45:39.257Z] INFO: Text Extraction tool registered successfully
+[2026-01-29T07:45:39.258Z] INFO: Error Diagnosis tool registered successfully
+[2026-01-29T07:45:39.258Z] INFO: Diagram Analysis tool registered successfully
+[2026-01-29T07:45:39.258Z] INFO: Data Visualization Analysis tool registered successfully
+[2026-01-29T07:45:39.258Z] INFO: UI Diff Check tool registered successfully
+[2026-01-29T07:45:39.258Z] INFO: General Image Analysis tool registered successfully
+[2026-01-29T07:45:39.258Z] INFO: Video analysis tool registered successfully
+[2026-01-29T07:45:39.258Z] INFO: Successfully registered all tools
+[2026-01-29T07:45:39.259Z] INFO: MCP Server started successfully [{"mode":"ZHIPU","name":"zai-mcp-server","version":"0.1.2"}]
+2026-01-29T07:45:39.264Z [DEBUG] MCP server "zai-mcp-server": Successfully connected to stdio server in 735ms
+2026-01-29T07:45:39.264Z [DEBUG] MCP server "zai-mcp-server": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"zai-mcp-server","version":"0.1.2"}}
+2026-01-29T07:45:39.312Z [DEBUG] MCP server "zread": No token data found
+2026-01-29T07:45:39.772Z [DEBUG] MCP server "web-search-prime": Successfully connected to http server in 1235ms
+2026-01-29T07:45:39.772Z [DEBUG] MCP server "web-search-prime": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"mcp-web-search-prime","version":"0.0.1"}}
+2026-01-29T07:45:39.772Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-29T07:45:39.798Z [DEBUG] MCP server "web-reader": Successfully connected to http server in 1261ms
+2026-01-29T07:45:39.799Z [DEBUG] MCP server "web-reader": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"web-reader-server","version":"0.0.1"}}
+2026-01-29T07:45:39.800Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-29T07:45:40.332Z [DEBUG] MCP server "zread": Successfully connected to http server in 1794ms
+2026-01-29T07:45:40.332Z [DEBUG] MCP server "zread": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"zread-server","version":"0.0.1"}}
+2026-01-29T07:45:40.332Z [DEBUG] MCP server "zread": No token data found
+2026-01-29T07:45:41.097Z [DEBUG] All plugins already exist, skipping migration
+2026-01-29T07:45:41.097Z [DEBUG] Loaded 1 installed plugins from /home/ken/.claude/plugins/installed_plugins.json
+2026-01-29T07:45:41.097Z [DEBUG] Initialized versioned plugins system with 1 plugins
+2026-01-29T07:45:41.099Z [DEBUG] [Perfetto] initializePerfettoTracing called, env value: undefined
+2026-01-29T07:45:41.120Z [DEBUG] Writing to temp file: /home/ken/.claude/todos/3888d74f-9013-42d3-ac10-f82343858abe-agent-3888d74f-9013-42d3-ac10-f82343858abe.json.tmp.450199.1769672741120
+2026-01-29T07:45:41.126Z [DEBUG] Temp file written successfully, size: 2 bytes
+2026-01-29T07:45:41.126Z [DEBUG] Renaming /home/ken/.claude/todos/3888d74f-9013-42d3-ac10-f82343858abe-agent-3888d74f-9013-42d3-ac10-f82343858abe.json.tmp.450199.1769672741120 to /home/ken/.claude/todos/3888d74f-9013-42d3-ac10-f82343858abe-agent-3888d74f-9013-42d3-ac10-f82343858abe.json
+2026-01-29T07:45:41.126Z [DEBUG] File /home/ken/.claude/todos/3888d74f-9013-42d3-ac10-f82343858abe-agent-3888d74f-9013-42d3-ac10-f82343858abe.json written atomically
+2026-01-29T07:45:41.357Z [DEBUG] Getting matching hook commands for SessionStart with query: startup
+2026-01-29T07:45:41.357Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T07:45:41.357Z [DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+2026-01-29T07:45:41.357Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:41.357Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:41.357Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:41.357Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:41.357Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:41.357Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:41.357Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:41.357Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:41.357Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:41.357Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:41.357Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:41.357Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:41.357Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:41.357Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:41.357Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:41.357Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:41.357Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:41.357Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:41.357Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:41.357Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:41.357Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:41.357Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:41.357Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:41.357Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:41.357Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:41.357Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:41.365Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:41.366Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:41.366Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:41.366Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:41.366Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:41.367Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:41.367Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:41.367Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:41.367Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:41.367Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:41.367Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:41.367Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:41.367Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:41.392Z [DEBUG] Total plugin output styles loaded: 0
+2026-01-29T07:45:41.426Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T07:45:41.426Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T07:45:41.426Z [DEBUG] Sending 11 skills via attachment (initial, 10 total sent)
+2026-01-29T07:45:41.426Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T07:45:41.426Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T07:45:41.434Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-29T07:45:41.434Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T07:45:41.434Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-29T07:45:41.445Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T07:45:41.460Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:41.460Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:41.463Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:41.482Z [DEBUG] Stats cache is up to date
+2026-01-29T07:45:41.540Z [DEBUG] Session index: added 3, updated 0, removed 0, summaries generated 0 (total: 73)
+2026-01-29T07:45:41.701Z [DEBUG] Successfully refreshed marketplace: claude-plugins-official
+2026-01-29T07:45:41.701Z [DEBUG] Plugin autoupdate: checking installed plugins
+2026-01-29T07:45:41.703Z [DEBUG] Using provided version for rust-analyzer-lsp@claude-plugins-official: 1.0.0
+2026-01-29T07:45:43.337Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T07:45:43.342Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:43.342Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:43.342Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:46.801Z [DEBUG] Stream started - received first chunk
+2026-01-29T07:45:46.825Z [DEBUG] executePreToolHooks called for tool: Skill
+2026-01-29T07:45:46.825Z [DEBUG] Getting matching hook commands for PreToolUse with query: Skill
+2026-01-29T07:45:46.825Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T07:45:46.825Z [DEBUG] Matched 0 unique hooks for query "Skill" (0 before deduplication)
+2026-01-29T07:45:46.830Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.450199.1769672746830
+2026-01-29T07:45:46.830Z [DEBUG] Preserving file permissions: 100600
+2026-01-29T07:45:46.831Z [DEBUG] Temp file written successfully, size: 11625 bytes
+2026-01-29T07:45:46.832Z [DEBUG] Applied original permissions to temp file
+2026-01-29T07:45:46.832Z [DEBUG] Renaming /home/ken/.claude.json.tmp.450199.1769672746830 to /home/ken/.claude.json
+2026-01-29T07:45:46.832Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-29T07:45:46.836Z [DEBUG] Metadata string for flow-prd:
+2026-01-29T07:45:46.836Z [DEBUG] <command-message>flow-prd</command-message>
+<command-name>/flow-prd</command-name>
+<command-args># Test PRD</command-args>
+2026-01-29T07:45:46.836Z [DEBUG] command-message tags in metadata: 1
+2026-01-29T07:45:46.837Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T07:45:46.837Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T07:45:46.837Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T07:45:46.837Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T07:45:46.837Z [DEBUG] processPromptSlashCommand creating 3 messages for flow-prd
+2026-01-29T07:45:46.837Z [DEBUG] Message 1: <command-message>flow-prd</command-message>
+<command-name>/flow-prd</command-name>
+<command-args># Test PRD</command-args>
+2026-01-29T07:45:46.837Z [DEBUG] Message 2 [META]: [{"type":"text","text":"# FLOW-PRD: Generate PRD Markdown with Memory Context\n\n**DO NOT ASK QUESTIONS. EXECUTE STEPS. CREATE FILES. EXIT.**\n\n---\n\n## STEP 1: Determine Input Source\n\n**Check if
+2026-01-29T07:45:46.837Z [DEBUG] Message 3: [ATTACHMENT]
+2026-01-29T07:45:46.838Z [DEBUG] SkillTool returning 2 newMessages for skill flow-prd
+2026-01-29T07:45:46.838Z [DEBUG] newMessage 1: [{"type":"text","text":"# FLOW-PRD: Generate PRD Markdown with Memory Context\n\n**DO NOT ASK QUESTIONS. EXECUTE STEPS. CREATE FILES. EXIT.**\n\n---\n...
+2026-01-29T07:45:46.841Z [DEBUG] Getting matching hook commands for PostToolUse with query: Skill
+2026-01-29T07:45:46.841Z [DEBUG] Found 3 hook matchers in settings
+2026-01-29T07:45:46.842Z [DEBUG] Matched 0 unique hooks for query "Skill" (0 before deduplication)
+2026-01-29T07:45:46.859Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-29T07:45:46.859Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-29T07:45:46.859Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-29T07:45:46.859Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-29T07:45:46.862Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T07:45:46.871Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:46.871Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:46.874Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:55.194Z [DEBUG] Stream started - received first chunk
+2026-01-29T07:45:55.235Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-29T07:45:55.235Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-29T07:45:55.235Z [DEBUG] Found 0 hook matchers in settings
+2026-01-29T07:45:55.235Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-29T07:45:55.289Z [DEBUG] tree-sitter: loaded from embedded
+2026-01-29T07:45:55.353Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T07:45:55.353Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T07:45:55.353Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T07:45:55.353Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-29T07:45:55.359Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:55.359Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:55.360Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:55.360Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:55.360Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:55.360Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:55.361Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:55.361Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:55.401Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:55.401Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:55.401Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:55.401Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:56.143Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012915455543d1d5a83c0d4bb2"}
+2026-01-29T07:45:56.143Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:56.143Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:56.143Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:56.146Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129154555f0447ea16a1c4759"}
+2026-01-29T07:45:56.147Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:56.147Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:56.147Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:56.247Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601291545561761f93cb82b40fd"}
+2026-01-29T07:45:56.247Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:56.247Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:56.247Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:56.364Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129154556a191cc90c2304e92"}
+2026-01-29T07:45:56.364Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-29T07:45:56.364Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-29T07:45:56.365Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-29T07:45:56.816Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129154556fba3afb7ab89455d"}
+2026-01-29T07:45:57.063Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012915455688c4d144ef104e92"}
+2026-01-29T07:45:57.195Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012915455617eca35c7ffb4a67"}
+2026-01-29T07:45:57.223Z [ERROR] API error (attempt 1/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129154556304571baa5654ba6"}
+2026-01-29T07:45:58.387Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012915455861c801fbcd2848f9"}
+2026-01-29T07:45:58.482Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601291545581261815c36d24338"}
+2026-01-29T07:45:58.498Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129154558dfba8b8afaf4482c"}
+2026-01-29T07:45:58.555Z [ERROR] API error (attempt 2/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129154558fed261f33c2145b5"}
+2026-01-29T07:46:00.439Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129154600db63a3d6af3d4130"}
+2026-01-29T07:46:00.501Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601291546007e0463dab9824143"}
+2026-01-29T07:46:00.565Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601291546007203d812674a4359"}
+2026-01-29T07:46:00.597Z [ERROR] API error (attempt 3/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129154600298c4be506f246c6"}
+2026-01-29T07:46:03.229Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129154603409fb00a439941f4"}
+2026-01-29T07:46:03.411Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129154603defda2e2ceef4ac8"}
+2026-01-29T07:46:03.482Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601291546034201bbe4644f487e"}
+2026-01-29T07:46:03.853Z [ERROR] API error (attempt 4/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601291546036a0f2fe73985411a"}
+2026-01-29T07:46:08.402Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601291546081194a68579d74ba6"}
+2026-01-29T07:46:08.976Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129154608b77911d3e2314e3a"}
+2026-01-29T07:46:09.100Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012915460842d40a33609b4889"}
+2026-01-29T07:46:09.190Z [ERROR] API error (attempt 5/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012915460833a8204ff4c94410"}
+2026-01-29T07:46:18.255Z [ERROR] API error (attempt 6/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"2026012915461873951c76cd5a43a9"}
+2026-01-29T07:46:18.613Z [ERROR] API error (attempt 6/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129154618435186f78a124960"}
+2026-01-29T07:46:36.481Z [ERROR] API error (attempt 7/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129154635ef06198f0ff74a16"}
+2026-01-29T07:46:36.827Z [ERROR] API error (attempt 7/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601291546364b8088b0d70d4b61"}
+2026-01-29T07:47:11.178Z [ERROR] API error (attempt 8/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129154710a2d0f5e7bbb04021"}
+2026-01-29T07:47:14.684Z [ERROR] API error (attempt 8/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601291547140330740dc11d4174"}
+2026-01-29T07:47:50.575Z [ERROR] API error (attempt 9/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129154750d6f3330aa3dc482a"}
+2026-01-29T07:47:54.866Z [ERROR] API error (attempt 9/11): 429 429 {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260129154754c72ee6721f1a4b7d"}

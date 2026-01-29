@@ -1,0 +1,17 @@
+Already up to date.
+ Image supabase/gotrue:v2.185.0 Pulling 
+ Image kong:3.7.1 Pulling 
+ Image supabase/gotrue:v2.185.0 Pulled 
+ Image kong:3.7.1 Pulled 
+time="2026-01-25T20:28:37Z" level=warning msg="Found orphan containers ([supabase-mailhog supabase-storage supabase-supavisor evolution-db]) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up."
+ Container nextmavens-kong Recreate 
+ Container nextmavens-db Running 
+ Container nextmavens-gotrue Recreate 
+ Container nextmavens-gotrue Recreated 
+ Container nextmavens-kong Recreated 
+ Container nextmavens-kong Starting 
+ Container nextmavens-db Waiting 
+ Container nextmavens-kong Started 
+ Container nextmavens-db Healthy 
+ Container nextmavens-gotrue Starting 
+ Container nextmavens-gotrue Started

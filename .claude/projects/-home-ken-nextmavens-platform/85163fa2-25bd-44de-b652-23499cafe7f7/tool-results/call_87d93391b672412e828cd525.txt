@@ -1,0 +1,30 @@
+Error: PGRST_JWT_SECRET is undefined
+    at getConfigFromEnv (/app/dist/config.js:58:11)
+    at getConfigFromEnv (/app/dist/config.js:56:14)
+    at getOptionalIfMultitenantConfigFromEnv (/app/dist/config.js:63:124)
+    at getConfig (/app/dist/config.js:112:16)
+    at Object.<anonymous> (/app/dist/internal/monitoring/logger.js:51:33)
+    at Module._compile (node:internal/modules/cjs/loader:1706:14)
+    at Object..js (node:internal/modules/cjs/loader:1839:10)
+    at Module.load (node:internal/modules/cjs/loader:1441:32)
+    at Function._load (node:internal/modules/cjs/loader:1263:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+
+Node.js v22.21.1
+/app/dist/config.js:58
+    throw new Error(`${key} is undefined`);
+    ^
+
+Error: PGRST_JWT_SECRET is undefined
+    at getConfigFromEnv (/app/dist/config.js:58:11)
+    at getConfigFromEnv (/app/dist/config.js:56:14)
+    at getOptionalIfMultitenantConfigFromEnv (/app/dist/config.js:63:124)
+    at getConfig (/app/dist/config.js:112:16)
+    at Object.<anonymous> (/app/dist/internal/monitoring/logger.js:51:33)
+    at Module._compile (node:internal/modules/cjs/loader:1706:14)
+    at Object..js (node:internal/modules/cjs/loader:1839:10)
+    at Module.load (node:internal/modules/cjs/loader:1441:32)
+    at Function._load (node:internal/modules/cjs/loader:1263:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+
+Node.js v22.21.1

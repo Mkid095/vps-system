@@ -1,0 +1,11 @@
+  oid  |    relname    
+-------+---------------
+ 17187 | organizations
+(1 row)
+
+ oid  |             relname              
+------+----------------------------------
+ 3257 | pg_policy_oid_index
+ 3258 | pg_policy_polrelid_polname_index
+ 3256 | pg_policy
+(3 rows)

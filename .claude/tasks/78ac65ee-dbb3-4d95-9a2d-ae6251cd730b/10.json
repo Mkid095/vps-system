@@ -1,0 +1,9 @@
+{
+  "id": "10",
+  "subject": "US-001 Create Organization - Platform Core",
+  "description": "Complete Maven workflow for US-001 Create Organization story",
+  "activeForm": "Implementing US-001 Create Organization",
+  "status": "pending",
+  "blocks": [],
+  "blockedBy": []
+}

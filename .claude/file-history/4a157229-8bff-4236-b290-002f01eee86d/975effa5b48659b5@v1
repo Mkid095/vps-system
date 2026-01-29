@@ -1,0 +1,32 @@
+_format_version: "3.0"
+
+services:
+  # GoTrue Auth Service
+  - name: gotrue
+    url: http://gotrue:9999
+    routes:
+      - name: auth-route
+        paths:
+          - /auth/v1
+        strip_path: false
+        priority: 1
+
+  # PostgREST API
+  - name: postgrest
+    url: http://rest:3000
+    routes:
+      - name: rest-route
+        paths:
+          - /rest/v1
+        strip_path: false
+        priority: 2
+
+  # Supabase Studio
+  - name: studio
+    url: http://studio:3000
+    routes:
+      - name: studio-route
+        paths:
+          - /studio
+        strip_path: true
+        priority: 3

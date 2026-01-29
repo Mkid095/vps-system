@@ -1,0 +1,11 @@
+{
+  "id": "2",
+  "subject": "Fix NextMavens dashboard and services",
+  "description": "Fix all issues: Dashboard showing \"page isn't working\", Supabase Studio 404, Evolution API 404. Research Evolution API docs, fix Supabase configuration, and create proper service management UI.",
+  "activeForm": "Fixing dashboard and services",
+  "status": "in_progress",
+  "blocks": [],
+  "blockedBy": [
+    "1"
+  ]
+}

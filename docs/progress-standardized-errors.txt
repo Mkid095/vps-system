@@ -1,0 +1,27 @@
+# Standardized Errors - Progress Tracker
+
+## Feature: Standardized Errors
+**Branch**: flow/standardized-errors
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (10 total)
+
+| US-001 | Create Error Factory | 1 | Pending | |
+| US-002 | Define Error Codes | 1 | Pending | |
+| US-003 | Add Retryable Flag | 1 | Pending | |
+| US-004 | Add Documentation Links | 2 | Pending | |
+| US-005 | Update API Gateway Errors | 1 | Pending | |
+| US-006 | Update Auth Service Errors | 2 | Pending | |
+| US-007 | Update GraphQL Service Errors | 2 | Pending | |
+| US-008 | Update Realtime Service Errors | 2 | Pending | |
+| US-009 | Update Storage Service Errors | 2 | Pending | |
+| US-010 | Create Error Documentation Page | 2 | Pending | |
+
+## Progress Summary
+- Total Stories: 10
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 10
+
+## Iteration Log

@@ -1,0 +1,1 @@
+27dec9ac125a   c6fb93112c4b                       "docker-entrypoint.s…"   57 minutes ago   Up 57 minutes            0.0.0.0:3005->3000/tcp, [::]:3005->3000/tcp                                                                                                       nextmavens-dashboard

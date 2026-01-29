@@ -1,0 +1,52 @@
+---
+memoryVersion: 1
+storyId: US-004
+storyTitle: Enforce Rate Limits
+completedDate: 2026-01-28
+---
+
+STORY: US-004 - Enforce Rate Limits
+========================
+
+DESCRIPTION:
+As a gateway engineer, I want to enforce rate limits so that projects stay within quotas.
+
+MAVEN STEPS COMPLETED:
+[1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Implemented sliding window rate limiting with dual-window checking (per-minute and per-hour). Created rate limit validator that reads quotas from snapshot data, Express middleware for request interception, and automatic cleanup to prevent memory exhaustion. Security fixes included LRU eviction, tracker limits, and fail-closed behavior.
+
+KEY FILES:
+- /home/ken/api-gateway/src/types/rate-limit.types.ts - Type definitions for rate limiting (145 lines)
+- /home/ken/api-gateway/src/rate-limit/rate-limit.validator.ts - Core validator with sliding window (445 lines)
+- /home/ken/api-gateway/src/rate-limit/middleware/rate-limit.middleware.ts - Express middleware (274 lines)
+- /home/ken/api-gateway/src/rate-limit/middleware/project-id-extractor.ts - Project ID extraction (94 lines)
+- /home/ken/api-gateway/src/rate-limit/middleware/rate-limit-headers.ts - Header formatting (53 lines)
+- /home/ken/api-gateway/src/rate-limit/middleware/rate-limit.types.ts - Middleware types (29 lines)
+- /home/ken/api-gateway/src/rate-limit/middleware/index.ts - Export barrel (39 lines)
+- /home/ken/api-gateway/src/index.ts - Updated with rate limit middleware on protected routes
+
+DECISIONS MADE:
+- Used sliding window algorithm for accurate rate limiting
+- Dual-window checking (minute + hour) for comprehensive protection
+- In-memory storage with automatic cleanup every 60 seconds
+- Max tracker limit of 10,000 with LRU eviction to prevent DoS
+- Fail-closed architecture when snapshot unavailable
+- BURST window not implemented (always allows) - marked as technical debt
+
+INTEGRATION POINTS:
+- Reads rate limit configuration from snapshot service (project.quota.rateLimit)
+- Express middleware chain applied before protected routes
+- Returns RATE_LIMIT_EXCEEDED error code (429) with retry-after header
+- Compatible with existing project-status and service-enablement middleware
+- Will integrate with JWT auth system
+
+LESSONS LEARNED:
+- Automatic cleanup critical for in-memory rate limiting to prevent memory exhaustion
+- LRU eviction necessary when tracking many projects to prevent unbounded growth
+- Fail-closed behavior essential - reject requests when config unavailable
+- Generic error messages prevent quota enumeration attacks
+- Constant-time operations help prevent timing attacks on rate limit checks
+- Race condition risk in high-concurrency - consider Redis with Lua scripts for production
+- Burst limiting implementation was deferred - should be completed or removed from types

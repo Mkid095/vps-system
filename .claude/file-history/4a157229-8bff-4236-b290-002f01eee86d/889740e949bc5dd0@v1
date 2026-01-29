@@ -1,0 +1,49 @@
+// NextMavens Dashboard - Middleware
+// Route protection and authentication checks
+
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+export async function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl;
+
+  // Check for Supabase session cookie (set by the auth client)
+  const hasSession = req.cookies.get('supabase-auth-token')?.value ||
+                     req.cookies.get('sb-access-token')?.value;
+
+  // Protected routes - require authentication
+  const protectedRoutes = ['/'];
+  const isProtectedRoute = protectedRoutes.some(route => pathname === route || pathname.startsWith(route));
+
+  // Public routes that don't require authentication
+  const publicRoutes = ['/login', '/auth/signin', '/auth/signup', '/api'];
+  const isPublicRoute = publicRoutes.some(route => pathname.startsWith(route));
+
+  // Allow access to public routes
+  if (isPublicRoute) {
+    return NextResponse.next();
+  }
+
+  // If trying to access protected route without session, redirect to login
+  if (isProtectedRoute && !hasSession) {
+    const redirectUrl = new URL('/login', req.url);
+    redirectUrl.searchParams.set('redirect', pathname);
+    return NextResponse.redirect(redirectUrl);
+  }
+
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * - public folder
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+  ],
+};

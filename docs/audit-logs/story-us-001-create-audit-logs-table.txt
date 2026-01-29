@@ -1,0 +1,56 @@
+---
+memoryVersion: 1
+storyId: US-001
+storyTitle: Create Audit Logs Table
+completedDate: 2026-01-28
+---
+
+STORY: US-001 - Create Audit Logs Table
+========================
+
+DESCRIPTION:
+As a platform engineer, I want an audit logs table so that I can track all governance operations.
+
+MAVEN STEPS COMPLETED:
+[1, 2, 7]
+
+IMPLEMENTATION SUMMARY:
+Created a complete audit logs database system with PostgreSQL migration, TypeScript types, and integration layer. The system includes connection pooling, service layer with CRUD operations, helper functions for common actions, and middleware/decorator patterns for easy integration with other services.
+
+KEY FILES:
+- database/migrations/001_create_audit_logs_table.sql - Database table with indexes
+- database/types/audit.types.ts - TypeScript type definitions (enums, interfaces)
+- database/migrate.ts - Migration runner script
+- database/src/pool.ts - PostgreSQL connection pooling
+- database/src/AuditLogService.ts - Service implementation
+- database/src/errors.ts - Custom error classes
+- database/src/helpers.ts - Convenience functions
+- database/src/integration.ts - Integration utilities and middleware
+- database/src/index.ts - Unified exports
+- database/package.json - Dependencies (pg, dotenv, tsx)
+- database/tsconfig.json - TypeScript config
+- database/README.md - Usage documentation
+- database/INTEGRATION.md - Integration guide
+
+DECISIONS MADE:
+- Used control_plane schema for audit logs table
+- Added 6 indexes for optimized querying (actor, target, date, composites)
+- JSONB for metadata field to support flexible data
+- CHECK constraints for actor_type and action validation
+- Connection pooling with health checks and statistics
+- Middleware and decorator patterns for easy integration
+- Helper functions for common audit actions
+
+INTEGRATION POINTS:
+- Database: PostgreSQL with control_plane schema
+- Ready for integration with api-gateway, auth-service, graphql-service
+- Provides Express middleware factory
+- Provides class method decorator for auto-logging
+- Simple API: logAuditEvent(), logProjectAction.created(), etc.
+
+LESSONS LEARNED:
+- Type safety is critical - no 'any' types used
+- Indexing strategy should include composite indexes for common query patterns
+- Helper functions significantly reduce boilerplate for other services
+- Connection pooling essential for production performance
+- Transaction-based migration runner prevents partial failures

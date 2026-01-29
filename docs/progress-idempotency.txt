@@ -1,0 +1,25 @@
+# Idempotency - Progress Tracker
+
+## Feature: Idempotency
+**Branch**: flow/idempotency
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (8 total)
+
+| US-001 | Create Idempotency Keys Table | 1 | Pending | |
+| US-002 | Create Idempotency Middleware | 1 | Pending | |
+| US-003 | Add Idempotency to Provision Project | 1 | Pending | |
+| US-004 | Add Idempotency to Create API Key | 1 | Pending | |
+| US-005 | Add Idempotency to Revoke Key | 2 | Pending | |
+| US-006 | Add Idempotency to Send Webhook | 2 | Pending | |
+| US-007 | Implement Idempotency Key Cleanup | 2 | Pending | |
+| US-008 | Add Idempotency Key to Request Headers | 2 | Pending | |
+
+## Progress Summary
+- Total Stories: 8
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 8
+
+## Iteration Log

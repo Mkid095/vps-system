@@ -1,0 +1,614 @@
+     1→import type { Metadata } from "next";
+     2→import { Inter } from "next/font/google";
+     3→import "./globals.css";
+     4→import "./sidebar.css";
+     5→import { Sidebar } from "@/components/sidebar";
+     6→
+     7→const inter = Inter({
+     8→  variable: "--font-inter",
+     9→  subsets: ["latin"],
+    10→});
+    11→
+    12→export const metadata: Metadata = {
+    13→  title: "NEXT MAVENS VPS",
+    14→  description: "Professional VPS management platform",
+    15→};
+    16→
+    17→export default function RootLayout({
+    18→  children,
+    19→}: Readonly<{
+    20→  children: React.ReactNode;
+    21→}>) {
+    22→  return (
+    23→    <html lang="en">
+    24→      <head>
+    25→        <style>{`
+    26→          .main-layout {
+    27→            margin-left: 240px;
+    28→            min-height: 100vh;
+    29→          }
+    30→
+    31→          .main-content {
+    32→            padding: 2rem;
+    33→            max-width: 1400px;
+    34→            margin: 0 auto;
+    35→          }
+    36→
+    37→          /* Page Header */
+    38→          .page-header {
+    39→            display: flex;
+    40→            justify-content: space-between;
+    41→            align-items: center;
+    42→            margin-bottom: 2rem;
+    43→          }
+    44→
+    45→          .page-title {
+    46→            font-size: 1.75rem;
+    47→            font-weight: 600;
+    48→            margin: 0;
+    49→          }
+    50→
+    51→          .page-subtitle {
+    52→            color: var(--foreground-muted);
+    53→            margin: 0.25rem 0 0 0;
+    54→          }
+    55→
+    56→          .header-actions {
+    57→            display: flex;
+    58→            gap: 0.75rem;
+    59→          }
+    60→
+    61→          /* Section */
+    62→          .section {
+    63→            margin-bottom: 3rem;
+    64→          }
+    65→
+    66→          .section-title {
+    67→            font-size: 1rem;
+    68→            font-weight: 600;
+    69→            margin: 0 0 1rem 0;
+    70→          }
+    71→
+    72→          /* Databases Page */
+    73→          .org-grid {
+    74→            display: grid;
+    75→            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    76→            gap: 1rem;
+    77→          }
+    78→
+    79→          .org-card {
+    80→            background: var(--surface);
+    81→            border: 1px solid var(--border);
+    82→            border-radius: 0.5rem;
+    83→            padding: 1.25rem;
+    84→          }
+    85→
+    86→          .org-header {
+    87→            display: flex;
+    88→            justify-content: space-between;
+    89→            align-items: center;
+    90→            margin-bottom: 1rem;
+    91→          }
+    92→
+    93→          .org-name {
+    94→            font-size: 1rem;
+    95→            font-weight: 600;
+    96→            margin: 0;
+    97→          }
+    98→
+    99→          .org-slug {
+   100→            font-size: 0.75rem;
+   101→            margin: 0;
+   102→          }
+   103→
+   104→          .org-projects {
+   105→            font-size: 0.875rem;
+   106→          }
+   107→
+   108→          .mcp-section {
+   109→            background: var(--surface);
+   110→            border: 1px solid var(--border);
+   111→            border-radius: 0.5rem;
+   112→            padding: 1.5rem;
+   113→          }
+   114→
+   115→          .mcp-card {
+   116→            margin-top: 1rem;
+   117→          }
+   118→
+   119→          .mcp-description {
+   120→            margin-bottom: 1.5rem;
+   121→          }
+   122→
+   123→          .mcp-instructions {
+   124→            display: flex;
+   125→            flex-direction: column;
+   126→            gap: 1.5rem;
+   127→          }
+   128→
+   129→          .mcp-step-title {
+   130→            font-size: 0.875rem;
+   131→            font-weight: 600;
+   132→            margin: 0 0 0.5rem 0;
+   133→          }
+   134→
+   135→          .code-block {
+   136→            background: var(--background);
+   137→            border: 1px solid var(--border);
+   138→            padding: 1rem;
+   139→            border-radius: 0.375rem;
+   140→            overflow-x: auto;
+   141→          }
+   142→
+   143→          .mcp-config {
+   144→            margin-top: 1rem;
+   145→            padding-top: 1rem;
+   146→            border-top: 1px solid var(--border);
+   147→          }
+   148→
+   149→          .mcp-desc {
+   150→            font-size: 0.875rem;
+   151→            margin-bottom: 1rem;
+   152→          }
+   153→
+   154→          .project-mcp {
+   155→            background: var(--background);
+   156→            border: 1px solid var(--border);
+   157→            border-radius: 0.375rem;
+   158→            padding: 0.75rem;
+   159→            margin-bottom: 0.75rem;
+   160→          }
+   161→
+   162→          .project-mcp:last-child {
+   163→            margin-bottom: 0;
+   164→          }
+   165→
+   166→          .project-mcp-header {
+   167→            display: flex;
+   168→            justify-content: space-between;
+   169→            align-items: center;
+   170→            margin-bottom: 0.5rem;
+   171→          }
+   172→
+   173→          .mcp-commands {
+   174→            display: flex;
+   175→            flex-direction: column;
+   176→            gap: 0.5rem;
+   177→          }
+   178→
+   179→          .mcp-command {
+   180→            display: flex;
+   181→            flex-direction: column;
+   182→            gap: 0.25rem;
+   183→          }
+   184→
+   185→          .mcp-command code {
+   186→            font-size: 0.75rem;
+   187→            word-break: break-all;
+   188→          }
+   189→
+   190→          /* Modal */
+   191→          .modal-overlay {
+   192→            position: fixed;
+   193→            top: 0;
+   194→            left: 0;
+   195→            right: 0;
+   196→            bottom: 0;
+   197→            background: rgba(0, 0, 0, 0.75);
+   198→            display: flex;
+   199→            align-items: center;
+   200→            justify-content: center;
+   201→            z-index: 100;
+   202→          }
+   203→
+   204→          .modal {
+   205→            background: var(--surface);
+   206→            border: 1px solid var(--border);
+   207→            border-radius: 0.5rem;
+   208→            padding: 1.5rem;
+   209→            min-width: 400px;
+   210→            max-width: 90vw;
+   211→          }
+   212→
+   213→          .modal-title {
+   214→            font-size: 1.125rem;
+   215→            font-weight: 600;
+   216→            margin: 0 0 1.5rem 0;
+   217→          }
+   218→
+   219→          .modal form {
+   220→            display: flex;
+   221→            flex-direction: column;
+   222→            gap: 1rem;
+   223→          }
+   224→
+   225→          .form-group {
+   226→            display: flex;
+   227→            flex-direction: column;
+   228→            gap: 0.5rem;
+   229→          }
+   230→
+   231→          .form-label {
+   232→            font-size: 0.875rem;
+   233→            font-weight: 500;
+   234→          }
+   235→
+   236→          .form-input {
+   237→            width: 100%;
+   238→          }
+   239→
+   240→          .modal-actions {
+   241→            display: flex;
+   242→            justify-content: flex-end;
+   243→            gap: 0.75rem;
+   244→            margin-top: 1rem;
+   245→          }
+   246→
+   247→          .error-message {
+   248→            padding: 0.5rem 0.75rem;
+   249→            background: rgba(239, 68, 68, 0.1);
+   250→            border: 1px solid rgba(239, 68, 68, 0.3);
+   251→            border-radius: 0.375rem;
+   252→            color: var(--error);
+   253→            font-size: 0.875rem;
+   254→          }
+   255→
+   256→          .empty-state {
+   257→            text-align: center;
+   258→            padding: 3rem;
+   259→            background: var(--surface);
+   260→            border: 1px solid var(--border);
+   261→            border-radius: 0.5rem;
+   262→          }
+   263→
+   264→          .btn-sm {
+   265→            padding: 0.375rem 0.75rem;
+   266→            font-size: 0.875rem;
+   267→          }
+   268→
+   269→          /* Placeholder Pages */
+   270→          .placeholder-content {
+   271→            text-align: center;
+   272→            padding: 3rem 1rem;
+   273→          }
+   274→
+   275→          .placeholder-icon {
+   276→            font-size: 4rem;
+   277→            color: var(--primary);
+   278→            margin-bottom: 1rem;
+   279→          }
+   280→
+   281→          .placeholder-title {
+   282→            font-size: 1.5rem;
+   283→            font-weight: 600;
+   284→            margin: 0 0 1rem 0;
+   285→          }
+   286→
+   287→          .placeholder-description {
+   288→            color: var(--foreground-muted);
+   289→            font-size: 1rem;
+   290→            max-width: 600px;
+   291→            margin: 0 auto 2rem;
+   292→          }
+   293→
+   294→          .placeholder-features, .email-features {
+   295→            display: grid;
+   296→            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+   297→            gap: 1rem;
+   298→            text-align: left;
+   299→            max-width: 800px;
+   300→            margin: 0 auto;
+   301→          }
+   302→
+   303→          .feature-item {
+   304→            display: flex;
+   305→            align-items: flex-start;
+   306→            gap: 0.75rem;
+   307→            padding: 1rem;
+   308→            background: var(--surface);
+   309→            border: 1px solid var(--border);
+   310→            border-radius: 0.375rem;
+   311→          }
+   312→
+   313→          .feature-icon {
+   314→            font-size: 0.875rem;
+   315→            color: var(--primary);
+   316→          }
+   317→
+   318→          .feature-title {
+   319→            font-weight: 600;
+   320→            margin-bottom: 0.25rem;
+   321→          }
+   322→
+   323→          .feature-description {
+   324→            font-size: 0.875rem;
+   325→            color: var(--foreground-muted);
+   326→          }
+   327→
+   328→          /* Dashboard Stats Grid */
+   329→          .stats-grid {
+   330→            display: grid;
+   331→            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   332→            gap: 1rem;
+   333→            margin-bottom: 2rem;
+   334→          }
+   335→
+   336→          .stat-card {
+   337→            background: var(--surface);
+   338→            border: 1px solid var(--border);
+   339→            border-radius: 0.5rem;
+   340→            padding: 1.25rem;
+   341→            text-decoration: none;
+   342→            transition: all 0.15s ease;
+   343→          }
+   344→
+   345→          .stat-card:hover {
+   346→            border-color: var(--primary);
+   347→            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
+   348→          }
+   349→
+   350→          .stat-header {
+   351→            display: flex;
+   352→            align-items: center;
+   353→            gap: 0.5rem;
+   354→            margin-bottom: 0.75rem;
+   355→          }
+   356→
+   357→          .stat-icon {
+   358→            font-size: 0.875rem;
+   359→            color: var(--primary);
+   360→          }
+   361→
+   362→          .stat-title {
+   363→            font-size: 0.75rem;
+   364→            color: var(--foreground-muted);
+   365→            text-transform: uppercase;
+   366→            letter-spacing: 0.05em;
+   367→          }
+   368→
+   369→          .stat-value {
+   370→            font-size: 2rem;
+   371→            font-weight: 600;
+   372→          }
+   373→
+   374→          /* VPS Section */
+   375→          .vps-section {
+   376→            margin-bottom: 2rem;
+   377→          }
+   378→
+   379→          .section-title {
+   380→            font-size: 1rem;
+   381→            font-weight: 600;
+   382→            margin: 0 0 1rem 0;
+   383→          }
+   384→
+   385→          .vps-stats-grid {
+   386→            display: grid;
+   387→            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+   388→            gap: 1rem;
+   389→          }
+   390→
+   391→          .vps-card {
+   392→            background: var(--surface);
+   393→            border: 1px solid var(--border);
+   394→            border-radius: 0.5rem;
+   395→            padding: 1rem;
+   396→          }
+   397→
+   398→          .vps-card-header {
+   399→            display: flex;
+   400→            align-items: center;
+   401→            gap: 0.5rem;
+   402→            margin-bottom: 0.75rem;
+   403→          }
+   404→
+   405→          .vps-icon {
+   406→            font-size: 0.875rem;
+   407→            color: var(--foreground-muted);
+   408→          }
+   409→
+   410→          .vps-title {
+   411→            font-size: 0.75rem;
+   412→            color: var(--foreground-muted);
+   413→            text-transform: uppercase;
+   414→            letter-spacing: 0.05em;
+   415→          }
+   416→
+   417→          .vps-values {
+   418→            display: flex;
+   419→            align-items: center;
+   420→            gap: 0.5rem;
+   421→            margin-bottom: 0.75rem;
+   422→          }
+   423→
+   424→          .vps-used, .vps-total {
+   425→            font-size: 0.875rem;
+   426→          }
+   427→
+   428→          .vps-progress {
+   429→            height: 4px;
+   430→            background: var(--background);
+   431→            border-radius: 2px;
+   432→            margin-bottom: 0.5rem;
+   433→            overflow: hidden;
+   434→          }
+   435→
+   436→          .vps-progress-bar {
+   437→            height: 100%;
+   438→            background: var(--primary);
+   439→            border-radius: 2px;
+   440→            transition: width 0.3s ease;
+   441→          }
+   442→
+   443→          .vps-percent {
+   444→            font-size: 0.75rem;
+   445→          }
+   446→
+   447→          .network-card {
+   448→            display: flex;
+   449→            flex-direction: column;
+   450→          }
+   451→
+   452→          .network-values {
+   453→            display: flex;
+   454→            flex-direction: column;
+   455→            gap: 0.5rem;
+   456→          }
+   457→
+   458→          .network-item {
+   459→            display: flex;
+   460→            justify-content: space-between;
+   461→            align-items: center;
+   462→          }
+   463→
+   464→          .network-label {
+   465→            font-size: 0.75rem;
+   466→          }
+   467→
+   468→          .network-value {
+   469→            font-size: 0.875rem;
+   470→          }
+   471→
+   472→          /* Quick Actions */
+   473→          .quick-actions {
+   474→            margin-bottom: 2rem;
+   475→          }
+   476→
+   477→          .actions-grid {
+   478→            display: grid;
+   479→            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+   480→            gap: 1rem;
+   481→          }
+   482→
+   483→          .action-card {
+   484→            display: flex;
+   485→            align-items: center;
+   486→            gap: 0.75rem;
+   487→            background: var(--surface);
+   488→            border: 1px solid var(--border);
+   489→            border-radius: 0.5rem;
+   490→            padding: 1rem;
+   491→            text-decoration: none;
+   492→            transition: all 0.15s ease;
+   493→          }
+   494→
+   495→          .action-card:hover {
+   496→            border-color: var(--primary);
+   497→            background: var(--surface-hover);
+   498→          }
+   499→
+   500→          .action-icon {
+   501→            font-size: 1rem;
+   502→            color: var(--primary);
+   503→          }
+   504→
+   505→          .action-content {
+   506→            flex: 1;
+   507→          }
+   508→
+   509→          .action-title {
+   510→            font-size: 0.875rem;
+   511→            font-weight: 500;
+   512→          }
+   513→
+   514→          .action-description {
+   515→            font-size: 0.75rem;
+   516→          }
+   517→
+   518→          /* Recent Projects */
+   519→          .recent-projects {
+   520→            margin-bottom: 2rem;
+   521→          }
+   522→
+   523→          .projects-list {
+   524→            display: grid;
+   525→            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+   526→            gap: 1rem;
+   527→          }
+   528→
+   529→          .project-card {
+   530→            background: var(--surface);
+   531→            border: 1px solid var(--border);
+   532→            border-radius: 0.5rem;
+   533→            padding: 1rem;
+   534→          }
+   535→
+   536→          .project-header {
+   537→            display: flex;
+   538→            justify-content: space-between;
+   539→            align-items: center;
+   540→            margin-bottom: 0.5rem;
+   541→          }
+   542→
+   543→          .project-name {
+   544→            font-size: 0.875rem;
+   545→            font-weight: 500;
+   546→          }
+   547→
+   548→          .project-org {
+   549→            font-size: 0.75rem;
+   550→          }
+   551→
+   552→          /* Page Loading */
+   553→          .page-loading {
+   554→            display: flex;
+   555→            flex-direction: column;
+   556→            align-items: center;
+   557→            justify-content: center;
+   558→            min-height: 50vh;
+   559→            gap: 1rem;
+   560→          }
+   561→
+   562→          @media (max-width: 768px) {
+   563→            .sidebar {
+   564→              width: 60px;
+   565→            }
+   566→
+   567→            .nav-label, .user-email, .logout-btn span:not(.nav-icon) {
+   568→              display: none;
+   569→            }
+   570→
+   571→            .nav-item {
+   572→              justify-content: center;
+   573→              padding: 0.75rem;
+   574→            }
+   575→
+   576→            .main-layout {
+   577→              margin-left: 60px;
+   578→            }
+   579→
+   580→            .logo-image {
+   581→              width: 24px;
+   582→              height: 24px;
+   583→              margin: 0 auto;
+   584→            }
+   585→
+   586→            .vps-stats {
+   587→              grid-template-columns: 1fr;
+   588→              gap: 0.25rem;
+   589→            }
+   590→
+   591→            .page-header {
+   592→              flex-direction: column;
+   593→              align-items: flex-start;
+   594→              gap: 1rem;
+   595→            }
+   596→          }
+   597→        `}</style>
+   598→      </head>
+   599→      <body className={`${inter.variable} antialiased`}>
+   600→        <Sidebar />
+   601→        <div className="main-layout">
+   602→          <main className="main-content">
+   603→            {children}
+   604→          </main>
+   605→        </div>
+   606→      </body>
+   607→    </html>
+   608→  );
+   609→}
+   610→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

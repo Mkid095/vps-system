@@ -1,0 +1,295 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/lib/store';
+import { api } from '@/lib/api';
+
+interface StudioCredentials {
+  project_id: string;
+  project_name: string;
+  project_slug: string;
+  db_name: string;
+  db_host: string;
+  db_port: number;
+  connection_url: string;
+  anon_key: string;
+  studio_url: string;
+}
+
+interface ErrorResponse {
+  error: string;
+}
+
+export default function StudioPage({ params }: { params: { slug: string } }) {
+  const { user, loading, initialized, initialize } = useAuth();
+  const router = useRouter();
+  const [credentials, setCredentials] = useState<StudioCredentials | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loadingCredentials, setLoadingCredentials] = useState(true);
+  const [openInNewTab, setOpenInNewTab] = useState(false);
+
+  useEffect(() => {
+    if (!initialized) {
+      initialize();
+    }
+  }, [initialize, initialized]);
+
+  useEffect(() => {
+    if (user && params.slug) {
+      fetchStudioCredentials();
+    } else if (!user && !loading) {
+      router.push('/login');
+    }
+  }, [user, params.slug, loading, router]);
+
+  const fetchStudioCredentials = async () => {
+    setLoadingCredentials(true);
+    setError(null);
+
+    try {
+      const response = await fetch(`/api/studio/${params.slug}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        const data: ErrorResponse = await response.json();
+        throw new Error(data.error || 'Failed to access Studio');
+      }
+
+      const data: StudioCredentials = await response.json();
+      setCredentials(data);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+    } finally {
+      setLoadingCredentials(false);
+    }
+  };
+
+  const openStudio = () => {
+    if (credentials) {
+      if (openInNewTab) {
+        window.open(credentials.studio_url, '_blank');
+      } else {
+        window.location.href = credentials.studio_url;
+      }
+    }
+  };
+
+  if (loading || !initialized || loadingCredentials) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="mb-4 h-12 w-12 animate-spin rounded-full border-b-2 border-t-2 border-blue-600 mx-auto"></div>
+          <p className="text-gray-600">Loading Studio...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gray-50">
+        <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
+          <h1 className="mb-6 text-2xl font-bold">Authentication Required</h1>
+          <p className="mb-4 text-gray-600">Please sign in to access Supabase Studio</p>
+          <a
+            href="/login"
+            className="block w-full rounded-md bg-blue-600 px-4 py-2 text-center text-white hover:bg-blue-700"
+          >
+            Sign In
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gray-50">
+        <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
+          <h1 className="mb-4 text-2xl font-bold text-red-600">Access Denied</h1>
+          <p className="mb-6 text-gray-600">{error}</p>
+          <a
+            href="/"
+            className="block w-full rounded-md bg-gray-600 px-4 py-2 text-center text-white hover:bg-gray-700"
+          >
+            Back to Dashboard
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  if (!credentials) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gray-50">
+        <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
+          <h1 className="mb-4 text-2xl font-bold">Project Not Found</h1>
+          <p className="mb-6 text-gray-600">
+            Unable to find project with slug "{params.slug}"
+          </p>
+          <a
+            href="/"
+            className="block w-full rounded-md bg-gray-600 px-4 py-2 text-center text-white hover:bg-gray-700"
+          >
+            Back to Dashboard
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Navigation */}
+      <nav className="border-b bg-white px-6 py-4">
+        <div className="flex items-center justify-between">
+          <h1 className="text-xl font-bold">Supabase Studio - {credentials.project_name}</h1>
+          <a
+            href="/"
+            className="rounded-md px-4 py-2 text-sm text-gray-600 hover:bg-gray-100"
+          >
+            Back to Dashboard
+          </a>
+        </div>
+      </nav>
+
+      <main className="container mx-auto px-6 py-8">
+        <div className="mx-auto max-w-4xl">
+          {/* Project Info */}
+          <div className="mb-6 rounded-lg bg-white p-6 shadow-md">
+            <h2 className="mb-2 text-2xl font-bold">{credentials.project_name}</h2>
+            <p className="text-gray-600">/{credentials.project_slug}</p>
+            <p className="mt-2 text-sm text-gray-500">
+              Database: <span className="font-mono font-semibold">{credentials.db_name}</span>
+            </p>
+          </div>
+
+          {/* Important Notice */}
+          <div className="mb-8 rounded-md bg-yellow-50 border border-yellow-200 p-4">
+            <h3 className="mb-2 font-semibold text-yellow-900">Important: Database Access</h3>
+            <p className="text-sm text-yellow-800">
+              <strong>Note:</strong> This project has its own dedicated database at <code className="bg-yellow-100 px-1 rounded">{credentials.db_name}</code>.
+              The shared Supabase Studio interface connects to the master database by default.
+            </p>
+            <div className="mt-3 text-sm text-yellow-800">
+              <p className="font-semibold mb-1">To access this project's database:</p>
+              <ol className="list-decimal list-inside space-y-1 ml-2">
+                <li>Open Studio using the button below</li>
+                <li>Use SQL with <code className="bg-yellow-100 px-1 rounded">dblink</code> to query this project's database</li>
+                <li>Or connect external tools (pgAdmin, DBeaver) using the connection details below</li>
+              </ol>
+            </div>
+          </div>
+
+          {/* Access Options */}
+          <div className="mb-8 rounded-lg bg-white p-6 shadow-md">
+            <h3 className="mb-4 text-lg font-semibold">Open Supabase Studio</h3>
+            <p className="mb-6 text-gray-600">
+              Supabase Studio is a database management interface. It will open with access to the master database.
+            </p>
+
+            <div className="mb-4 flex items-center gap-2">
+              <input
+                type="checkbox"
+                id="openInNewTab"
+                checked={openInNewTab}
+                onChange={(e) => setOpenInNewTab(e.target.checked)}
+                className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              />
+              <label htmlFor="openInNewTab" className="text-sm text-gray-700">
+                Open in new tab
+              </label>
+            </div>
+
+            <button
+              onClick={openStudio}
+              className="rounded-md bg-blue-600 px-6 py-3 text-white hover:bg-blue-700"
+            >
+              Open Supabase Studio
+            </button>
+          </div>
+
+          {/* Connection Information */}
+          <div className="rounded-lg bg-white p-6 shadow-md">
+            <h3 className="mb-4 text-lg font-semibold">Database Connection Details</h3>
+            <p className="mb-4 text-sm text-gray-600">
+              Use these credentials to connect directly to this project's database from external tools.
+            </p>
+
+            <div className="space-y-4">
+              <div>
+                <label className="mb-1 block text-sm font-medium text-gray-700">
+                  Database Name
+                </label>
+                <div className="rounded-md bg-gray-100 p-3 text-sm font-mono">
+                  {credentials.db_name}
+                </div>
+              </div>
+
+              <div>
+                <label className="mb-1 block text-sm font-medium text-gray-700">
+                  Database Host
+                </label>
+                <div className="rounded-md bg-gray-100 p-3 text-sm font-mono">
+                  {credentials.db_host}:{credentials.db_port}
+                </div>
+              </div>
+
+              <div>
+                <label className="mb-1 block text-sm font-medium text-gray-700">
+                  Connection String (for external tools)
+                </label>
+                <div className="rounded-md bg-gray-100 p-3 text-xs font-mono break-all">
+                  {credentials.connection_url}
+                </div>
+              </div>
+
+              <div>
+                <label className="mb-1 block text-sm font-medium text-gray-700">
+                  Anonymous API Key
+                </label>
+                <div className="rounded-md bg-gray-100 p-3 text-xs font-mono break-all">
+                  {credentials.anon_key}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* SQL Example */}
+          <div className="mt-8 rounded-lg bg-white p-6 shadow-md">
+            <h3 className="mb-4 text-lg font-semibold">Query This Project's Database from Studio</h3>
+            <p className="mb-4 text-sm text-gray-600">
+              You can use PostgreSQL dblink to query this project's database from Studio:
+            </p>
+            <div className="rounded-md bg-gray-900 p-4 overflow-x-auto">
+              <pre className="text-sm text-green-400 font-mono">
+{`-- Query this project's database from Studio
+SELECT * FROM dblink(
+  'dbname=${credentials.db_name} host=${credentials.db_host} user=postgres',
+  'SELECT * FROM your_table LIMIT 10'
+) AS t(column1 text, column2 text);
+
+-- Or create a foreign server for easier access
+CREATE SERVER ${credentials.db_name}
+  FOREIGN DATA WRAPPER postgres_fdw
+  OPTIONS (dbname '${credentials.db_name}', host '${credentials.db_host}');
+
+CREATE USER MAPPING FOR postgres
+  SERVER ${credentials.db_name}
+  OPTIONS (user 'postgres', password 'your_password');
+
+-- Now you can query with:
+SELECT * FROM ${credentials.db_name}.public.your_table;`}
+              </pre>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}

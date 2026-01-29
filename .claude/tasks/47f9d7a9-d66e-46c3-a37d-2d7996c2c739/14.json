@@ -1,0 +1,9 @@
+{
+  "id": "14",
+  "subject": "Implement Secrets Versioning System",
+  "description": "Create versioned secrets with safe rotation:\n1. Create /home/ken/control-plane-api/src/app/api/secrets/route.ts\n2. Add secrets table: project_id, name, value_encrypted, version, active, rotated_from, rotation_reason, created_by\n3. Add secret_consumers table tracking who uses each secret\n4. Implement rotation flow: create v2 → mark v1 inactive → notify consumers → 24h grace → delete v1\n5. Create UI showing secret history and rotation status\n6. Add PGP encryption for values\n7. Audit all secret access and rotations\n\nSecrets are living things, not static values.",
+  "activeForm": "Implementing secrets versioning system",
+  "status": "pending",
+  "blocks": [],
+  "blockedBy": []
+}

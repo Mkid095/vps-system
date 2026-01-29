@@ -1,0 +1,49 @@
+-- Supabase Required Roles
+-- These roles must exist for Supabase Storage, Realtime, and PostgREST to work
+
+-- Create the anon role (public/unauthenticated access)
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'anon') THEN
+        CREATE ROLE anon WITH NOLOGIN;
+    END IF;
+END
+$$;
+
+-- Create the authenticated role (logged-in users)
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'authenticated') THEN
+        CREATE ROLE authenticated WITH NOLOGIN;
+    END IF;
+END
+$$;
+
+-- Create the service_role role (backend services)
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'service_role') THEN
+        CREATE ROLE service_role WITH NOLOGIN;
+    END IF;
+END
+$$;
+
+-- Create the postgres role (should already exist, but ensure)
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'postgres') THEN
+        CREATE ROLE postgres WITH LOGIN SUPERUSER;
+    END IF;
+END
+$$;
+
+-- Grant permissions
+GRANT USAGE ON SCHEMA public TO anon, authenticated, service_role;
+GRANT ALL ON ALL TABLES IN SCHEMA public TO postgres;
+GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO postgres;
+GRANT ALL ON ALL FUNCTIONS IN SCHEMA public TO postgres;
+
+-- Allow anon and authenticated to read data (will be further restricted by RLS)
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO anon;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO authenticated;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO service_role;

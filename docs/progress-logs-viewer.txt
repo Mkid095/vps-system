@@ -1,0 +1,27 @@
+# Logs Viewer - Progress Tracker
+
+## Feature: Logs Viewer
+**Branch**: flow/logs-viewer
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (10 total)
+
+| US-001 | Create Logs Page | 1 | Pending | |
+| US-002 | Create Logs WebSocket Endpoint | 1 | Pending | |
+| US-003 | Implement Log Filtering | 1 | Pending | |
+| US-004 | Implement Log Search | 2 | Pending | |
+| US-005 | Implement Log Pagination | 2 | Pending | |
+| US-006 | Implement Log Download | 2 | Pending | |
+| US-007 | Color Code Log Levels | 2 | Pending | |
+| US-008 | Show Log Details | 2 | Pending | |
+| US-009 | Implement Log Retention | 2 | Pending | |
+| US-010 | Add Log Charts | 3 | Pending | |
+
+## Progress Summary
+- Total Stories: 10
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 10
+
+## Iteration Log

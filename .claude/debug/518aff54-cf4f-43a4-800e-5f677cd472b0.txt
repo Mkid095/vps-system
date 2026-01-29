@@ -1,0 +1,119 @@
+2026-01-25T01:41:18.394Z [DEBUG] Watching for changes in setting files /home/ken/.claude, /home/ken/.claude...
+2026-01-25T01:41:18.399Z [DEBUG] [init] configureGlobalMTLS starting
+2026-01-25T01:41:18.399Z [DEBUG] [init] configureGlobalMTLS complete
+2026-01-25T01:41:18.399Z [DEBUG] [init] configureGlobalAgents starting
+2026-01-25T01:41:18.399Z [DEBUG] [init] configureGlobalAgents complete
+2026-01-25T01:41:18.402Z [DEBUG] [STARTUP] Loading MCP configs...
+2026-01-25T01:41:18.413Z [DEBUG] Loading plugin rust-analyzer-lsp from source: "./plugins/rust-analyzer-lsp"
+2026-01-25T01:41:18.413Z [DEBUG] Using provided version for rust-analyzer-lsp@claude-plugins-official: 1.0.0
+2026-01-25T01:41:18.413Z [DEBUG] [ToolSearch:optimistic] mode=standard, ENABLE_TOOL_SEARCH=undefined, result=false
+2026-01-25T01:41:18.414Z [DEBUG] [STARTUP] Running setup()...
+2026-01-25T01:41:18.414Z [DEBUG] Plugin rust-analyzer-lsp@claude-plugins-official version 1.0.0 already cached at /home/ken/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0
+2026-01-25T01:41:18.424Z [DEBUG] Loading skills from: managed=/etc/claude-code/.claude/skills, user=/home/ken/.claude/skills, project=[]
+2026-01-25T01:41:18.429Z [ERROR] Error: Error: ENOENT: no such file or directory, scandir '/etc/claude-code/.claude/skills'
+    at readdirSync (unknown)
+    at <anonymous> (/$bunfs/root/claude:12:1903)
+    at pJ (/$bunfs/root/claude:11:35427)
+    at readdirSync (/$bunfs/root/claude:12:1864)
+    at XY$ (/$bunfs/root/claude:2213:380)
+    at XY$ (/$bunfs/root/claude:2213:1350)
+    at <anonymous> (/$bunfs/root/claude:2213:4440)
+    at <anonymous> (/$bunfs/root/claude:2213:5171)
+    at A (/$bunfs/root/claude:11:7251)
+    at Z71 (/$bunfs/root/claude:4860:4342)
+2026-01-25T01:41:18.429Z [DEBUG] Error log sink initialized
+2026-01-25T01:41:18.436Z [DEBUG] Copied local plugin rust-analyzer-lsp to versioned cache: /home/ken/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0
+2026-01-25T01:41:18.436Z [DEBUG] Plugin rust-analyzer-lsp has no entry.skills defined
+2026-01-25T01:41:18.437Z [DEBUG] [STARTUP] setup() completed in 23ms
+2026-01-25T01:41:18.437Z [DEBUG] [STARTUP] Loading commands and agents...
+2026-01-25T01:41:18.437Z [DEBUG] Found 1 plugins (1 enabled, 0 disabled)
+2026-01-25T01:41:18.438Z [DEBUG] getPluginSkills: Processing 1 enabled plugins
+2026-01-25T01:41:18.438Z [DEBUG] Checking plugin rust-analyzer-lsp: skillsPath=none, skillsPaths=0 paths
+2026-01-25T01:41:18.438Z [DEBUG] Total plugin skills loaded: 0
+2026-01-25T01:41:18.438Z [DEBUG] Total plugin commands loaded: 0
+2026-01-25T01:41:18.438Z [DEBUG] Registered 0 hooks from 1 plugins
+2026-01-25T01:41:18.441Z [DEBUG] Acquired PID lock for 2.1.19 (PID 147028)
+2026-01-25T01:41:18.441Z [DEBUG] Acquired PID lock on running version: /home/ken/.local/share/claude/versions/2.1.19
+2026-01-25T01:41:18.449Z [DEBUG] Watching for changes in skill/command directories: /home/ken/.claude/skills, /home/ken/.claude/commands, /home/ken/.claude/skills, /home/ken/.claude/commands...
+2026-01-25T01:41:18.453Z [DEBUG] Total plugin agents loaded: 0
+2026-01-25T01:41:18.454Z [DEBUG] Loaded 7 unique skills (managed: 0, user: 2, project: 0, legacy commands: 5)
+2026-01-25T01:41:18.454Z [DEBUG] getSkills returning: 7 skill dir commands, 0 plugin skills, 0 bundled skills
+2026-01-25T01:41:18.455Z [DEBUG] [STARTUP] Commands and agents loaded in 18ms
+2026-01-25T01:41:18.455Z [DEBUG] [STARTUP] Running showSetupScreens()...
+2026-01-25T01:41:18.460Z [DEBUG] [Perfetto] initializePerfettoTracing called, env value: undefined
+2026-01-25T01:41:18.462Z [DEBUG] [STARTUP] showSetupScreens() completed in 7ms
+2026-01-25T01:41:18.462Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2026-01-25T01:41:18.462Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2026-01-25T01:41:18.462Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2026-01-25T01:41:18.464Z [DEBUG] [STARTUP] MCP configs loaded in 62ms
+2026-01-25T01:41:18.466Z [DEBUG] [ToolSearch:optimistic] mode=standard, ENABLE_TOOL_SEARCH=undefined, result=false
+2026-01-25T01:41:18.470Z [DEBUG] All plugins already exist, skipping migration
+2026-01-25T01:41:18.470Z [DEBUG] [Reconnection] computeInitialTeamContext: No teammate context set (not a teammate)
+2026-01-25T01:41:18.472Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.147028.1769305278472
+2026-01-25T01:41:18.472Z [DEBUG] Preserving file permissions: 100600
+2026-01-25T01:41:18.473Z [DEBUG] Temp file written successfully, size: 8638 bytes
+2026-01-25T01:41:18.473Z [DEBUG] Applied original permissions to temp file
+2026-01-25T01:41:18.473Z [DEBUG] Renaming /home/ken/.claude.json.tmp.147028.1769305278472 to /home/ken/.claude.json
+2026-01-25T01:41:18.473Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-25T01:41:18.476Z [DEBUG] Loaded 1 installed plugins from /home/ken/.claude/plugins/installed_plugins.json
+2026-01-25T01:41:18.476Z [DEBUG] Initialized versioned plugins system with 1 plugins
+2026-01-25T01:41:18.480Z [DEBUG] [Claude in Chrome] Extension not found in any browser
+2026-01-25T01:41:18.481Z [DEBUG] Loaded 1 LSP server(s) from plugin: rust-analyzer-lsp
+2026-01-25T01:41:18.481Z [DEBUG] Total LSP servers loaded: 1
+2026-01-25T01:41:18.481Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 1 server(s)
+2026-01-25T01:41:18.481Z [DEBUG] Queued request handler for plugin:rust-analyzer-lsp:rust-analyzer.workspace/configuration (connection not ready)
+2026-01-25T01:41:18.481Z [DEBUG] Starting LSP server instance: plugin:rust-analyzer-lsp:rust-analyzer
+2026-01-25T01:41:18.481Z [DEBUG] LSP manager initialized with 1 servers
+2026-01-25T01:41:18.481Z [DEBUG] LSP server manager initialized successfully
+2026-01-25T01:41:18.481Z [DEBUG] Queued notification handler for plugin:rust-analyzer-lsp:rust-analyzer.textDocument/publishDiagnostics (connection not ready)
+2026-01-25T01:41:18.481Z [DEBUG] Registered diagnostics handler for plugin:rust-analyzer-lsp:rust-analyzer
+2026-01-25T01:41:18.481Z [DEBUG] LSP notification handlers registered successfully for all 1 server(s)
+2026-01-25T01:41:18.482Z [ERROR] Error: Error: LSP server plugin:rust-analyzer-lsp:rust-analyzer failed to start: Executable not found in $PATH: "rust-analyzer"
+    at start (/$bunfs/root/claude:2187:22299)
+    at async f (/$bunfs/root/claude:2187:24751)
+    at processTicksAndRejections (native:7:39)
+2026-01-25T01:41:18.482Z [ERROR] Error: Error: Executable not found in $PATH: "rust-analyzer"
+    at spawn (unknown)
+    at spawn (node:child_process:669:35)
+    at spawn (node:child_process:14:39)
+    at start (/$bunfs/root/claude:2187:20844)
+    at start (/$bunfs/root/claude:2187:22353)
+    at f (/$bunfs/root/claude:2187:24751)
+    at f (/$bunfs/root/claude:2187:25726)
+    at L (/$bunfs/root/claude:2187:32513)
+    at processTicksAndRejections (native:7:39)
+2026-01-25T01:41:18.482Z [ERROR] Error: Error: Failed to start LSP server plugin:rust-analyzer-lsp:rust-analyzer: Executable not found in $PATH: "rust-analyzer"
+    at <anonymous> (/$bunfs/root/claude:2187:32535)
+    at processTicksAndRejections (native:7:39)
+2026-01-25T01:41:18.529Z [DEBUG] Git remote URL: null
+2026-01-25T01:41:18.529Z [DEBUG] No git remote URL found
+2026-01-25T01:41:18.529Z [DEBUG] Not in a GitHub repository, skipping path mapping update
+2026-01-25T01:41:18.530Z [DEBUG] [ToolSearch:optimistic] mode=standard, ENABLE_TOOL_SEARCH=undefined, result=false
+2026-01-25T01:41:18.544Z [DEBUG] Loading skills from: managed=/etc/claude-code/.claude/skills, user=/home/ken/.claude/skills, project=[]
+2026-01-25T01:41:18.544Z [ERROR] Error: Error: ENOENT: no such file or directory, scandir '/etc/claude-code/.claude/skills'
+    at readdirSync (unknown)
+    at <anonymous> (/$bunfs/root/claude:12:1903)
+    at pJ (/$bunfs/root/claude:11:35427)
+    at readdirSync (/$bunfs/root/claude:12:1864)
+    at XY$ (/$bunfs/root/claude:2213:380)
+    at XY$ (/$bunfs/root/claude:2213:1350)
+    at <anonymous> (/$bunfs/root/claude:2213:4440)
+    at <anonymous> (/$bunfs/root/claude:2213:5171)
+    at A (/$bunfs/root/claude:11:7251)
+    at Z71 (/$bunfs/root/claude:4860:4342)
+2026-01-25T01:41:18.546Z [DEBUG] getPluginSkills: Processing 1 enabled plugins
+2026-01-25T01:41:18.546Z [DEBUG] Checking plugin rust-analyzer-lsp: skillsPath=none, skillsPaths=0 paths
+2026-01-25T01:41:18.546Z [DEBUG] Total plugin skills loaded: 0
+2026-01-25T01:41:18.546Z [DEBUG] Total plugin commands loaded: 0
+2026-01-25T01:41:18.549Z [DEBUG] [render] initYoga starting
+2026-01-25T01:41:18.562Z [DEBUG] [render] initYoga complete
+2026-01-25T01:41:18.565Z [DEBUG] [render] first ink render: 566ms since process start
+2026-01-25T01:41:18.584Z [DEBUG] Loaded 7 unique skills (managed: 0, user: 2, project: 0, legacy commands: 5)
+2026-01-25T01:41:18.584Z [DEBUG] getSkills returning: 7 skill dir commands, 0 plugin skills, 0 bundled skills
+2026-01-25T01:41:18.585Z [DEBUG] Skills and commands included in Skill tool: flow-convert, workflow, flow-mobile, flow-convert, flow-update, flow, flow-prd
+2026-01-25T01:41:18.586Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-25T01:41:18.586Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-25T01:41:18.587Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-25T01:41:18.594Z [DEBUG] [keybindings] KeybindingSetup initialized with 99 bindings, 0 warnings
+2026-01-25T01:41:18.619Z [DEBUG] Using cached index entry for session: 7cbd9c93-e176-4184-9d24-e640493ddf6d
+2026-01-25T01:41:18.619Z [DEBUG] [keybindings] Skipping file watcher - user customization disabled

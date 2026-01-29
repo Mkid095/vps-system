@@ -1,0 +1,2 @@
+8d336499b0ae   kong:3.7.1                         "/docker-entrypoint.…"   45 seconds ago   Up 27 seconds (healthy)                                                                                               nextmavens-kong
+---

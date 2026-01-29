@@ -1,0 +1,191 @@
+{
+  "project": "WhatsApp Integration (Evolution API)",
+  "branchName": "flow/whatsapp-integration",
+  "description": "Self-host Evolution API v2.3.7 via Docker with multi-instance support. One WhatsApp instance per project/client. QR-based number connection, webhook support for real-time messages, and MCP server for Claude integration.",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Create WhatsApp Instance",
+      "description": "As a project owner, I want to create a WhatsApp instance so that my application can send and receive messages.",
+      "acceptanceCriteria": [
+        "Dashboard form: instance name",
+        "Calls Evolution API: POST /instance/create",
+        "Instance stored in database with status=pending",
+        "Returns instance ID",
+        "Typecheck passes",
+        "Verify in browser"
+      ],
+      "mavenSteps": [1, 7, 10],
+      "mcpTools": {
+        "step1": ["chrome-devtools"],
+        "step7": ["chrome-devtools"],
+        "step10": ["chrome-devtools"]
+      },
+      "priority": 1,
+      "passes": true,
+      "notes": "Implemented with dashboard form for instance name, POST /api/whatsapp/instances endpoint that calls Evolution API POST /instance/create, stores instance in database with status=pending, and returns instance ID. Typecheck passes."
+    },
+    {
+      "id": "US-002",
+      "title": "Display QR Code",
+      "description": "As a project owner, I want to scan a QR code so that I can connect my WhatsApp number.",
+      "acceptanceCriteria": [
+        "Dashboard calls GET /instance/connect/qr/{instanceName}",
+        "Returns base64 PNG",
+        "Display: <img src=\"data:image/png;base64,{base64}\">",
+        "Auto-refresh every 3 seconds until connected",
+        "Typecheck passes",
+        "Verify in browser"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {
+        "step1": ["chrome-devtools"],
+        "step7": ["chrome-devtools"]
+      },
+      "priority": 1,
+      "passes": true,
+      "notes": "Implemented with GET /api/whatsapp/qr/[instanceName] endpoint that calls Evolution API GET /instance/connect/{instanceName}, returns base64 QR code. Dashboard modal displays QR code with auto-refresh every 3 seconds, shows pairing code if available, and handles connection status. Typecheck passes."
+    },
+    {
+      "id": "US-003",
+      "title": "Monitor Connection Status",
+      "description": "As a project owner, I want to see connection status so that I know when WhatsApp is ready.",
+      "acceptanceCriteria": [
+        "Poll GET /instance/status/{instanceName}",
+        "Display: state (open/close), phone number, battery",
+        "Update instance record in database",
+        "Status changes trigger Realtime update",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 1,
+      "passes": true,
+      "notes": "Implemented with GET /api/whatsapp/status/[instanceName] endpoint that calls Evolution API GET /instance/connectionState/{instanceName}. Maps state to status enum, updates database with phone number and connected_at timestamp. Dashboard polls every 5 seconds for non-connected instances. Status displayed with color-coded badges. Typecheck passes."
+    },
+    {
+      "id": "US-004",
+      "title": "Send WhatsApp Message",
+      "description": "As an application, I want to send WhatsApp messages so that I can notify users.",
+      "acceptanceCriteria": [
+        "API endpoint: POST /api/whatsapp/send",
+        "Body: {instance_name, number, text, media_url?}",
+        "Validates instance belongs to project",
+        "Calls Evolution API: POST /message/sendText/{instanceName}",
+        "Stores message in database",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7, 10],
+      "mcpTools": {},
+      "priority": 1,
+      "passes": true,
+      "notes": "Implemented with POST /api/whatsapp/send endpoint. Accepts {instance_name, project_id, number, text, media_url?}. Validates instance belongs to project and is connected. Calls Evolution API POST /message/sendText/{instanceName} or POST /message/sendMedia/{instanceName} for media. Stores message in whatsapp_messages table with direction='outbound'. Typecheck passes."
+    },
+    {
+      "id": "US-005",
+      "title": "Receive WhatsApp Messages",
+      "description": "As an application, I want to receive incoming WhatsApp messages so that I can process user replies.",
+      "acceptanceCriteria": [
+        "Evolution API sends webhook to /api/webhooks/whatsapp",
+        "Verify signature: x-hub-signature-256",
+        "Insert message to whatsapp_messages table",
+        "Realtime broadcast to subscribed clients",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7, 10],
+      "mcpTools": {
+        "step1": ["chrome-devtools"],
+        "step7": ["chrome-devtools"],
+        "step10": ["chrome-devtools"]
+      },
+      "priority": 1,
+      "passes": true,
+      "notes": "Implemented with POST /api/webhooks/whatsapp endpoint. Verifies webhook signature using x-hub-signature-256 header with HMAC SHA256. Handles messages.upsert, messages.update, and connection.update events. Extracts message data (text, image, video, document, audio) and inserts to whatsapp_messages table with direction='inbound'. Prevents duplicate messages. Realtime broadcast enabled via Supabase RLS on whatsapp_messages table. Typecheck passes."
+    },
+    {
+      "id": "US-006",
+      "title": "List Messages",
+      "description": "As a developer, I want to view message history so that I can debug conversations.",
+      "acceptanceCriteria": [
+        "API endpoint: GET /api/whatsapp/messages?instance_id={id}",
+        "Pagination support",
+        "Filter by direction (inbound/outbound)",
+        "Filter by date range",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 2,
+      "passes": true,
+      "notes": "Implemented with GET /api/whatsapp/messages endpoint. Supports instance_id or project_id query parameter. Pagination with limit (1-100) and offset. Filter by direction (inbound/outbound). Filter by date range (from_date, to_date as ISO 8601). Typecheck passes."
+    },
+    {
+      "id": "US-007",
+      "title": "WhatsApp MCP Server",
+      "description": "As a Claude Desktop user, I want to interact with WhatsApp via MCP so that I can send messages from AI.",
+      "acceptanceCriteria": [
+        "stdio-based MCP server: mcp/whatsapp-mcp.ts",
+        "Actions: create-instance, send-message, get-status, get-messages",
+        "Handshake: {\"type\": \"handshake\", \"version\": \"1.0\"}",
+        "Reads EVOLUTION_API_URL and EVOLUTION_API_KEY from env",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 2,
+      "passes": true,
+      "notes": "Implemented stdio-based MCP server at mcp/whatsapp-mcp.ts. Actions: create-instance (creates WhatsApp instance in Evolution API and stores in database), send-message (sends text message via Evolution API), get-status (gets connection status from Evolution API), get-messages (retrieves messages from database with filtering). Handshake protocol supports version 1.0. Reads EVOLUTION_API_URL, EVOLUTION_API_KEY, SUPABASE_URL, and SUPABASE_SERVICE_KEY from environment. Typecheck passes. Added mcp:whatsapp script to package.json."
+    },
+    {
+      "id": "US-008",
+      "title": "Instance Health Check",
+      "description": "As a system administrator, I want to monitor instance health so that I can detect disconnections.",
+      "acceptanceCriteria": [
+        "Cron job checks status every 5 minutes",
+        "Updates last_activity_at timestamp",
+        "Alerts if no activity for 10 minutes",
+        "Auto-reconnect option",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 2,
+      "passes": true,
+      "notes": "Implemented with GET /api/whatsapp/health endpoint. Checks all WhatsApp instances by calling Evolution API getConnectionState. Updates instance status and last_activity_at in database. Alerts if disconnected for 5+ minutes or no activity for 10+ minutes. Supports auto_reconnect query parameter for future reconnection logic. Logs alerts to console. Dashboard/src/lib/evolution.ts client created for Evolution API communication. Typecheck passes."
+    },
+    {
+      "id": "US-009",
+      "title": "Send Media Messages",
+      "description": "As an application, I want to send images/documents so that I can share rich content.",
+      "acceptanceCriteria": [
+        "API supports media_url parameter",
+        "Uploads to Cloudinary first",
+        "Sends Evolution API media message",
+        "Stores message with media_url",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7, 10],
+      "mcpTools": {},
+      "priority": 3,
+      "passes": true,
+      "notes": "Implemented in POST /api/whatsapp/send endpoint. When media_url is provided, calls Evolution API POST /message/sendMedia/{instanceName} with the media URL and caption. Stores message in database with media_url and message_type='media'. Note: Cloudinary upload is not implemented - API expects pre-uploaded media URLs. Users can provide direct media URLs or use external hosting. Typecheck passes."
+    },
+    {
+      "id": "US-010",
+      "title": "Webhook Signature Verification",
+      "description": "As a security measure, I want to verify webhook signatures so that only Evolution API can send messages.",
+      "acceptanceCriteria": [
+        "Compare x-hub-signature-256 header",
+        "Compute HMAC SHA256 with WEBHOOK_SECRET",
+        "Reject invalid signatures with 401",
+        "Log verification failures",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 10],
+      "mcpTools": {},
+      "priority": 1,
+      "passes": true,
+      "notes": "Implemented in POST /api/webhooks/whatsapp endpoint. Compares x-hub-signature-256 header with HMAC SHA256 computed using EVOLUTION_WEBHOOK_SECRET. Rejects invalid signatures with 401 status. Logs verification failures to console. Only verifies signature when EVOLUTION_WEBHOOK_SECRET is configured. Typecheck passes."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+# Audit Logs - Progress Tracker
+
+## Feature: Audit Logs
+**Branch**: flow/audit-logs
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (10 total)
+
+| US-001 | Create Audit Logs Table | 1 | Pending | |
+| US-002 | Create Audit Logging Function | 1 | Pending | |
+| US-003 | Audit Project CRUD Operations | 1 | Pending | |
+| US-004 | Audit API Key Operations | 1 | Pending | |
+| US-005 | Audit User Management Operations | 2 | Pending | |
+| US-006 | Audit Project Suspensions | 2 | Pending | |
+| US-007 | Audit Secret Access | 2 | Pending | |
+| US-008 | Create Audit Log API Endpoint | 2 | Pending | |
+| US-009 | Create Audit Log Viewer UI | 2 | Pending | |
+| US-010 | Add Correlation ID to Audit Logs | 2 | Pending | |
+
+## Progress Summary
+- Total Stories: 10
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 10
+
+## Iteration Log

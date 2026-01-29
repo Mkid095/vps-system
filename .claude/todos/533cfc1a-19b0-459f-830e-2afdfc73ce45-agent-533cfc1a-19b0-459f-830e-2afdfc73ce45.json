@@ -1,0 +1,47 @@
+[
+  {
+    "content": "Process Step 1 (Foundation) for US-011",
+    "status": "completed",
+    "activeForm": "Processing Step 1 (Foundation) for US-011"
+  },
+  {
+    "content": "Process Step 2 (Package Manager) for US-011",
+    "status": "in_progress",
+    "activeForm": "Processing Step 2 (Package Manager) for US-011"
+  },
+  {
+    "content": "Process Step 5 (Quality/Type Safety) for US-011",
+    "status": "pending",
+    "activeForm": "Processing Step 5 (Quality/Type Safety) for US-011"
+  },
+  {
+    "content": "Process Step 7 (Integration) for US-011",
+    "status": "pending",
+    "activeForm": "Processing Step 7 (Integration) for US-011"
+  },
+  {
+    "content": "Process Step 10 (Security/Auth) for US-011",
+    "status": "pending",
+    "activeForm": "Processing Step 10 (Security/Auth) for US-011"
+  },
+  {
+    "content": "Run typecheck",
+    "status": "pending",
+    "activeForm": "Running typecheck"
+  },
+  {
+    "content": "Mark US-011 complete in PRD",
+    "status": "pending",
+    "activeForm": "Marking US-011 complete in PRD"
+  },
+  {
+    "content": "Commit changes",
+    "status": "pending",
+    "activeForm": "Committing changes"
+  },
+  {
+    "content": "Create story memory",
+    "status": "pending",
+    "activeForm": "Creating story memory"
+  }
+]

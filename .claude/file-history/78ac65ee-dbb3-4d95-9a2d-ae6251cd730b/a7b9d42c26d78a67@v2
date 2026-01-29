@@ -1,0 +1,174 @@
+// NextMavens Platform API - Organizations Endpoint
+// POST /api/orgs - Create organization
+// GET /api/orgs - List user's organizations
+
+import { NextRequest, NextResponse } from 'next/server';
+import { withAuth, withAuthAndError, validators, errorToResponse } from '../lib/middleware';
+import { RateLimitError, rateLimitToResponse, orgCreationRateLimit } from '../lib/rate-limit';
+import {
+  getUserOrganizations,
+  createOrganization,
+  getUserOrganizationsPaginated,
+} from '../lib/db/organizations';
+import {
+  DuplicateSlugError,
+  OrganizationCreationError,
+  validateOrganizationInput,
+} from '../lib/db/organizations-enhanced';
+import { logOrganizationCreated, logAuditEvent, AuditAction, AuditResourceType } from '../lib/audit';
+import type { CreateOrganizationInput } from '../lib/types';
+
+// GET /api/orgs - List organizations
+export async function GET(req: NextRequest) {
+  return withAuthAndError(async (user) => {
+    const url = new URL(req.url);
+    const page = parseInt(url.searchParams.get('page') || '1', 10);
+    const perPage = parseInt(url.searchParams.get('per_page') || '10', 10);
+
+    if (page > 1 || perPage !== 10) {
+      // Use pagination
+      const result = await getUserOrganizationsPaginated(user.id, { page, perPage });
+      return {
+        items: result.items,
+        total: result.total,
+        page: result.page,
+        per_page: result.perPage,
+        total_pages: result.totalPages,
+      };
+    }
+
+    // Use simple list
+    const organizations = await getUserOrganizations(user.id);
+    return {
+      items: organizations,
+      total: organizations.length,
+    };
+  })(req);
+}
+
+// POST /api/orgs - Create organization with rate limiting and audit logging
+export async function POST(req: NextRequest) {
+  return withAuth(async (user, req) => {
+    try {
+      // Check rate limit
+      const rateLimitResult = orgCreationRateLimit(req);
+      if (!rateLimitResult.success) {
+        // Log rate limit exceeded
+        await logAuditEvent({
+          user_id: user.id,
+          action: AuditAction.RATE_LIMIT_EXCEEDED,
+          resource_type: AuditResourceType.ORGANIZATION,
+          metadata: {
+            email: user.email,
+            limit: rateLimitResult.limit,
+          },
+        });
+
+        return rateLimitToResponse(rateLimitResult);
+      }
+
+      // Parse and validate body
+      const body = await req.json();
+
+      // Validate name
+      if (!body.name || typeof body.name !== 'string') {
+        throw new Error('Name is required');
+      }
+
+      const name = body.name.trim();
+      if (name.length < 2) {
+        throw new Error('Name must be at least 2 characters');
+      }
+
+      if (name.length > 100) {
+        throw new Error('Name must be less than 100 characters');
+      }
+
+      // Validate slug if provided
+      let slug: string | undefined;
+      if (body.slug) {
+        if (!validators.slug(body.slug)) {
+          throw new Error('Slug must contain only lowercase letters, numbers, and hyphens');
+        }
+        slug = body.slug;
+      }
+
+      // Validate logo_url if provided
+      let logo_url: string | undefined;
+      if (body.logo_url) {
+        if (!validators.url(body.logo_url)) {
+          throw new Error('logo_url must be a valid URL');
+        }
+        logo_url = body.logo_url;
+      }
+
+      const input: CreateOrganizationInput = {
+        name,
+        slug,
+        logo_url,
+      };
+
+      // Create organization
+      const org = await createOrganization(input, user.id);
+
+      // Log audit event
+      await logOrganizationCreated(org.id, user, req, {
+        organization_name: org.name,
+        organization_slug: org.slug,
+      });
+
+      return Response.json(
+        {
+          success: true,
+          data: org,
+        },
+        {
+          status: 201,
+          headers: {
+            'X-RateLimit-Limit': rateLimitResult.limit.toString(),
+            'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
+            'X-RateLimit-Reset': rateLimitResult.resetAt.toISOString(),
+          },
+        }
+      );
+    } catch (error) {
+      // Handle specific error types
+      if (error instanceof DuplicateSlugError) {
+        return Response.json(
+          {
+            error: {
+              code: 'DUPLICATE_SLUG',
+              message: error.message,
+            },
+          },
+          { status: 409 }
+        );
+      }
+
+      if (error instanceof OrganizationCreationError) {
+        // Log creation failure
+        await logAuditEvent({
+          user_id: user.id,
+          action: AuditAction.ORG_CREATED,
+          resource_type: AuditResourceType.ORGANIZATION,
+          metadata: {
+            success: false,
+            error: error.message,
+          },
+        });
+
+        return Response.json(
+          {
+            error: {
+              code: 'CREATION_FAILED',
+              message: 'Failed to create organization. Please try again.',
+            },
+          },
+          { status: 500 }
+        );
+      }
+
+      return errorToResponse(error);
+    }
+  })(req);
+}

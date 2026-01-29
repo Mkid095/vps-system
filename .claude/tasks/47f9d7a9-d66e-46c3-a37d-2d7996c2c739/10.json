@@ -1,0 +1,9 @@
+{
+  "id": "10",
+  "subject": "Implement Environment Parity System",
+  "description": "Create environment-aware behavior for dev vs prod:\n1. Create /home/ken/developer-portal/src/lib/environment.ts\n2. Add environment field to projects and api_keys tables\n3. Define behavioral differences: rate limits (10x in dev), auto-suspend (no in dev), logging (verbose in dev), webhook retries (infinite in dev)\n4. Implement getEnvironmentConfig() helper\n5. Add environment selector in UI\n6. Show clear environment indicators in project UI\n\nEnvironments: prod, dev, staging with different rulesets.",
+  "activeForm": "Implementing environment parity system",
+  "status": "pending",
+  "blocks": [],
+  "blockedBy": []
+}

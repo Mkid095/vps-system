@@ -1,0 +1,4 @@
+ dashboard/src/app/layout.tsx         |   4 +-
+ dashboard/src/app/page.tsx           |   4 +-
+ dashboard/src/components/sidebar.tsx | 170 +++++------------------------------
+ 3 files changed, 28 insertions(+), 150 deletions(-)

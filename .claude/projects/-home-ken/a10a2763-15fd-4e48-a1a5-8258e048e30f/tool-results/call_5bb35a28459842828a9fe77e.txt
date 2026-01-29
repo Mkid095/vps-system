@@ -1,0 +1,104 @@
+   405→    dry_run_preview
+   406→    exit 0
+   407→fi
+   408→
+   409→# ============================================================================
+   410→# Load plan.md context if available
+   411→# ============================================================================
+   412→PLAN_CONTEXT=""
+   413→if [ -f "plan.md" ]; then
+   414→    echo -e "${CYAN}Found plan.md - loading as project context${NC}"
+   415→    PLAN_MD_CONTENT=$(cat plan.md)
+   416→    PLAN_CONTEXT="
+   417→
+   418→*** PROJECT PLAN CONTEXT ***
+   419→The user has a plan.md file with the overall project direction:
+   420→${PLAN_MD_CONTENT}
+   421→"
+   422→    echo -e "${GRAY}Loaded plan.md (${#PLAN_MD_CONTENT} bytes)${NC}"
+   423→    echo ""
+   424→fi
+   425→
+   426→# ============================================================================
+   427→# Function to get first incomplete story
+   428→# ============================================================================
+   429→get_first_incomplete_story() {
+   430→    local prd_files=($(find docs -name "prd-*.json" -type f 2>/dev/null | sort))
+   431→
+   432→    for prd in "${prd_files[@]}"; do
+   433→        local story=$(jq -r '.userStories[] | select(.passes == false) | "\(.id)|\(.title)|\(.description)"' "$prd" 2>/dev/null | head -1)
+   434→        if [ -n "$story" ]; then
+   435→            echo "$prd|$story"
+   436→            return 0
+   437→        fi
+   438→    done
+   439→
+   440→    return 1
+   441→}
+   442→
+   443→# ============================================================================
+   444→# Function to spawn specialist agent for a story step
+   445→# ============================================================================
+   446→spawn_agent_for_step() {
+   447→    local story_data="$1"
+   448→    local step="$2"
+   449→    local prd_file="$3"
+   450→
+   451→    IFS='|' read -r story_id story_title story_description <<< "$story_data"
+   452→
+   453→    # Get story details
+   454→    local mcp_tools=$(jq -r ".userStories[] | select(.id == \"$story_id\") | .mcpTools.step$step // empty" "$prd_file" 2>/dev/null)
+   455→
+   456→    # Determine agent type based on step
+   457→    local agent_type=""
+   458→    local agent_name=""
+   459→    case $step in
+   460→        1|2|7|9)
+   461→            agent_type="development-agent"
+   462→            agent_name="Development"
+   463→            ;;
+   464→        3|4|6)
+   465→            agent_type="refactor-agent"
+   466→            agent_name="Refactor"
+   467→            ;;
+   468→        5)
+   469→            agent_type="quality-agent"
+   470→            agent_name="Quality"
+   471→            ;;
+   472→        8|10)
+   473→            agent_type="security-agent"
+   474→            agent_name="Security"
+   475→            ;;
+   476→        11)
+   477→            agent_type="design-agent"
+   478→            agent_name="Design"
+   479→            ;;
+   480→        *)
+   481→            agent_type="development-agent"
+   482→            agent_name="Development"
+   483→            ;;
+   484→    esac
+   485→
+   486→    # Build MCP instruction
+   487→    local mcp_instruction=""
+   488→    if [ "$mcp_tools" != "null" ] && [ "$mcp_tools" != "empty" ]; then
+   489→        mcp_instruction="
+   490→
+   491→*** CRITICAL: MCP TOOLS INSTRUCTION ***
+   492→You MUST use these MCP tools for this step:
+   493→$mcp_tools
+   494→Use these MCP tools to complete your work. DO NOT read files or make assumptions - CHECK FIRST using the MCP.
+   495→"
+   496→    fi
+   497→
+   498→    # Generate agent prompt
+   499→    local agent_prompt="You are the Maven $agent_name Agent (Step $step of Maven Workflow).
+   500→
+   501→STORY: $story_id - $story_title
+   502→
+   503→DESCRIPTION:
+   504→$story_description
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

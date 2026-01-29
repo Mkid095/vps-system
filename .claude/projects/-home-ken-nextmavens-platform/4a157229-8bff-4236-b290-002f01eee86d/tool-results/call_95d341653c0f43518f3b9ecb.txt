@@ -1,0 +1,54 @@
+     1→// NextMavens Dashboard - Middleware
+     2→// Route protection and authentication checks
+     3→
+     4→import { NextResponse } from 'next/server';
+     5→import type { NextRequest } from 'next/server';
+     6→
+     7→export async function middleware(req: NextRequest) {
+     8→  const { pathname } = req.nextUrl;
+     9→
+    10→  // Check for Supabase session cookie (set by the auth client)
+    11→  const hasSession = req.cookies.get('supabase-auth-token')?.value ||
+    12→                     req.cookies.get('sb-access-token')?.value;
+    13→
+    14→  // Protected routes - require authentication
+    15→  const protectedRoutes = ['/'];
+    16→  const isProtectedRoute = protectedRoutes.some(route => pathname === route || pathname.startsWith(route));
+    17→
+    18→  // Public routes that don't require authentication
+    19→  const publicRoutes = ['/login', '/auth/signin', '/auth/signup', '/api'];
+    20→  const isPublicRoute = publicRoutes.some(route => pathname.startsWith(route));
+    21→
+    22→  // Allow access to public routes
+    23→  if (isPublicRoute) {
+    24→    return NextResponse.next();
+    25→  }
+    26→
+    27→  // If trying to access protected route without session, redirect to login
+    28→  if (isProtectedRoute && !hasSession) {
+    29→    const redirectUrl = new URL('/login', req.url);
+    30→    redirectUrl.searchParams.set('redirect', pathname);
+    31→    return NextResponse.redirect(redirectUrl);
+    32→  }
+    33→
+    34→  return NextResponse.next();
+    35→}
+    36→
+    37→export const config = {
+    38→  matcher: [
+    39→    /*
+    40→     * Match all request paths except for the ones starting with:
+    41→     * - api (API routes)
+    42→     * - _next/static (static files)
+    43→     * - _next/image (image optimization files)
+    44→     * - favicon.ico (favicon file)
+    45→     * - public folder
+    46→     */
+    47→    '/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    48→  ],
+    49→};
+    50→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

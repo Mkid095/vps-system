@@ -1,0 +1,65 @@
+import Link from 'next/link';
+
+interface StatsCardProps {
+  title: string;
+  value: number | string;
+  icon: string;
+  href: string;
+  color: 'blue' | 'green' | 'purple' | 'orange';
+  subtitle?: string;
+}
+
+const colorStyles = {
+  blue: {
+    bg: 'bg-blue-50',
+    border: 'border-blue-200',
+    iconBg: 'bg-blue-100',
+    iconText: 'text-blue-600',
+    hover: 'hover:bg-blue-100 hover:border-blue-300'
+  },
+  green: {
+    bg: 'bg-green-50',
+    border: 'border-green-200',
+    iconBg: 'bg-green-100',
+    iconText: 'text-green-600',
+    hover: 'hover:bg-green-100 hover:border-green-300'
+  },
+  purple: {
+    bg: 'bg-purple-50',
+    border: 'border-purple-200',
+    iconBg: 'bg-purple-100',
+    iconText: 'text-purple-600',
+    hover: 'hover:bg-purple-100 hover:border-purple-300'
+  },
+  orange: {
+    bg: 'bg-orange-50',
+    border: 'border-orange-200',
+    iconBg: 'bg-orange-100',
+    iconText: 'text-orange-600',
+    hover: 'hover:bg-orange-100 hover:border-orange-300'
+  }
+};
+
+export function StatsCard({ title, value, icon, href, color, subtitle }: StatsCardProps) {
+  const style = colorStyles[color];
+
+  return (
+    <Link
+      href={href}
+      className={`${style.bg} ${style.border} ${style.hover} border-2 rounded-xl p-6 transition-all duration-200 block no-underline group`}
+    >
+      <div className="flex items-start justify-between mb-4">
+        <div className={`${style.iconBg} ${style.iconText} p-3 rounded-lg`}>
+          <span className="text-2xl">{icon}</span>
+        </div>
+      </div>
+      <div>
+        <p className="text-gray-600 text-sm font-medium mb-1">{title}</p>
+        <p className={`text-3xl font-bold ${style.iconText}`}>{value}</p>
+        {subtitle && (
+          <p className="text-gray-500 text-xs mt-1">{subtitle}</p>
+        )}
+      </div>
+    </Link>
+  );
+}

@@ -1,0 +1,1 @@
+/home/ken/nextmavens-platform/scripts/db-init.sql

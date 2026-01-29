@@ -1,0 +1,2 @@
+GOTRUE_EXTERNAL_HOSTS=nextmavens.cloud,www.nextmavens.cloud,localhost,localhost:3005
+API_EXTERNAL_URL=https://nextmavens.cloud

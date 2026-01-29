@@ -1,0 +1,32 @@
+[
+  {
+    "content": "Step 1: Set up correlation ID foundation (development-agent)",
+    "status": "completed",
+    "activeForm": "Setting up correlation ID foundation"
+  },
+  {
+    "content": "Step 2: Install dependencies if needed (development-agent)",
+    "status": "completed",
+    "activeForm": "Installing dependencies"
+  },
+  {
+    "content": "Step 7: Implement correlation ID integration (development-agent)",
+    "status": "in_progress",
+    "activeForm": "Implementing correlation ID integration"
+  },
+  {
+    "content": "Step 10: Add security and error handling (security-agent)",
+    "status": "pending",
+    "activeForm": "Adding security and error handling"
+  },
+  {
+    "content": "Run typecheck and fix any errors",
+    "status": "pending",
+    "activeForm": "Running typecheck"
+  },
+  {
+    "content": "Mark US-006 complete and commit changes",
+    "status": "pending",
+    "activeForm": "Marking story complete and committing"
+  }
+]

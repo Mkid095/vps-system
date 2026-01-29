@@ -1,0 +1,27 @@
+[
+  {
+    "content": "Create database migration for usage_metrics table",
+    "status": "completed",
+    "activeForm": "Creating database migration for usage_metrics table"
+  },
+  {
+    "content": "Add missing spike detection types to types/index.ts",
+    "status": "completed",
+    "activeForm": "Adding missing spike detection types to types/index.ts"
+  },
+  {
+    "content": "Create spike-config.ts with configuration validation",
+    "status": "completed",
+    "activeForm": "Creating spike-config.ts with configuration validation"
+  },
+  {
+    "content": "Update index.ts exports for new types",
+    "status": "in_progress",
+    "activeForm": "Updating index.ts exports for new types"
+  },
+  {
+    "content": "Run typecheck and fix any errors",
+    "status": "pending",
+    "activeForm": "Running typecheck and fixing errors"
+  }
+]

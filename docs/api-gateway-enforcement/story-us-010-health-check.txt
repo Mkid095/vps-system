@@ -1,0 +1,51 @@
+---
+memoryVersion: 1
+storyId: US-010
+storyTitle: Health Check
+completedDate: 2026-01-28
+---
+
+STORY: US-010 - Health Check
+========================
+
+DESCRIPTION:
+As a gateway engineer, I want a health check endpoint so that I can monitor gateway status.
+
+MAVEN STEPS COMPLETED: [1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Created a comprehensive health check endpoint at GET /health that returns service status, version, uptime, and dependency health. Includes rate limiting (60 req/min), timeout protection (5s), security headers, and generic error messages. Returns 503 when dependencies are unhealthy.
+
+KEY FILES:
+- src/index.ts (lines 90-123) - Health check endpoint with rate limiting
+- src/health/services/health-check.service.ts - Core health check logic (242 lines)
+- src/health/types/health.types.ts - TypeScript type definitions
+- src/health/index.ts - Module exports
+- src/health/__tests__/health-check.service.test.ts - 18 comprehensive tests
+
+DECISIONS MADE:
+- Used dedicated rate limiter for /health endpoint (60 req/min) to prevent abuse
+- Implemented 5-second timeout for all dependency checks
+- Returns generic error messages to prevent information leakage
+- Database marked healthy since rate limiting uses in-memory storage (not Redis)
+- Control plane API checks snapshot service availability via cache stats
+- Fail-closed approach: returns 503 when any dependency is unhealthy
+
+INTEGRATION POINTS:
+- Monitors snapshot service availability (from US-001)
+- Uses rate limiter infrastructure (from US-004)
+- Follows standard error format (from US-007)
+- Returns correlation ID in response headers (from US-006)
+
+LESSONS LEARNED:
+- Health checks need their own rate limit to prevent DoS
+- Error messages must be generic to avoid leaking internal details
+- Timeout protection is critical - use Promise.race with timeout
+- Security headers (Cache-Control, Pragma, X-Content-Type-Options) prevent caching
+- Caching health responses (10s TTL) reduces dependency load
+- Always log detailed errors internally while returning generic messages to clients
+
+TEST RESULTS:
+- 18/18 tests passing
+- Typecheck passes with zero errors
+- Security audit score: 10/10

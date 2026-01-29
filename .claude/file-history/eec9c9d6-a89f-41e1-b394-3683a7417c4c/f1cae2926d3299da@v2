@@ -1,0 +1,268 @@
+// NextMavens Dashboard - API Client
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
+
+export class ApiError extends Error {
+  constructor(
+    public statusCode: number,
+    public code: string,
+    message: string,
+    public details?: Record<string, unknown>
+  ) {
+    super(message);
+    this.name = 'ApiError';
+  }
+}
+
+async function handleResponse<T>(response: Response): Promise<T> {
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({
+      error: { code: 'UNKNOWN_ERROR', message: 'An unknown error occurred' }
+    }));
+    throw new ApiError(
+      response.status,
+      error.error?.code || 'UNKNOWN_ERROR',
+      error.error?.message || 'An error occurred',
+      error.error?.details
+    );
+  }
+  const json = await response.json();
+
+  // Unwrap { success: true, data: ... } format if present
+  if (json && typeof json === 'object' && 'success' in json && 'data' in json) {
+    return json.data as T;
+  }
+
+  return json;
+}
+
+export const api = {
+  // Get auth token from session
+  getAuthHeader(): HeadersInit {
+    if (typeof window === 'undefined') return {};
+    // Token will be stored by auth state management
+    const token = localStorage.getItem('supabase_access_token');
+    return token ? { Authorization: `Bearer ${token}` } : {};
+  },
+
+  // Organizations
+  async createOrganization(data: { name: string; slug?: string }) {
+    const response = await fetch(`${API_URL}/orgs`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...this.getAuthHeader(),
+      },
+      body: JSON.stringify(data),
+    });
+    return handleResponse<Organization & { role: string }>(response);
+  },
+
+  async getOrganizations() {
+    const response = await fetch(`${API_URL}/orgs`, {
+      headers: this.getAuthHeader(),
+    });
+    return handleResponse<{ items: Array<Organization & { role: string }>; total: number }>(response);
+  },
+
+  async getOrganization(id: string) {
+    const response = await fetch(`${API_URL}/orgs/${id}`, {
+      headers: this.getAuthHeader(),
+    });
+    return handleResponse<Organization>(response);
+  },
+
+  async updateOrganization(id: string, data: { name?: string; logo_url?: string }) {
+    const response = await fetch(`${API_URL}/orgs/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        ...this.getAuthHeader(),
+      },
+      body: JSON.stringify(data),
+    });
+    return handleResponse<Organization>(response);
+  },
+
+  async deleteOrganization(id: string) {
+    const response = await fetch(`${API_URL}/orgs/${id}`, {
+      method: 'DELETE',
+      headers: this.getAuthHeader(),
+    });
+    return handleResponse<void>(response);
+  },
+
+  // Projects
+  async createProject(organizationId: string, data: { name: string; slug?: string; description?: string }) {
+    const response = await fetch(`${API_URL}/projects`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...this.getAuthHeader(),
+      },
+      body: JSON.stringify({ organization_id: organizationId, ...data }),
+    });
+    return handleResponse<Project & { api_keys?: { anon: string; service_role: string }; connection_string?: string }>(response);
+  },
+
+  async getProjects(organizationId?: string) {
+    const url = organizationId
+      ? `${API_URL}/projects?organization_id=${organizationId}`
+      : `${API_URL}/projects`;
+    const response = await fetch(url, {
+      headers: this.getAuthHeader(),
+    });
+    return handleResponse<{ items: Project[]; total: number }>(response);
+  },
+
+  async getProject(id: string) {
+    const response = await fetch(`${API_URL}/projects/${id}`, {
+      headers: this.getAuthHeader(),
+    });
+    return handleResponse<Project>(response);
+  },
+
+  async updateProject(id: string, data: { name?: string; description?: string; status?: string }) {
+    const response = await fetch(`${API_URL}/projects/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        ...this.getAuthHeader(),
+      },
+      body: JSON.stringify(data),
+    });
+    return handleResponse<Project>(response);
+  },
+
+  async deleteProject(id: string) {
+    const response = await fetch(`${API_URL}/projects/${id}`, {
+      method: 'DELETE',
+      headers: this.getAuthHeader(),
+    });
+    return handleResponse<void>(response);
+  },
+
+  // WhatsApp Instances
+  async createWhatsappInstance(projectId: string, data: { instance_name: string; webhook_url?: string }) {
+    const response = await fetch(`${API_URL}/whatsapp/instances`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...this.getAuthHeader(),
+      },
+      body: JSON.stringify({ project_id: projectId, ...data }),
+    });
+    return handleResponse<WhatsappInstance>(response);
+  },
+
+  async getWhatsappInstances(projectId?: string) {
+    const url = projectId
+      ? `${API_URL}/whatsapp/instances?project_id=${projectId}`
+      : `${API_URL}/whatsapp/instances`;
+    const response = await fetch(url, {
+      headers: this.getAuthHeader(),
+    });
+    return handleResponse<WhatsappInstance[]>(response);
+  },
+
+  async getWhatsappQrCode(instanceName: string, projectId: string) {
+    const response = await fetch(`${API_URL}/whatsapp/qr/${instanceName}?project_id=${projectId}`, {
+      headers: this.getAuthHeader(),
+    });
+    return handleResponse<{ qr_code_base64?: string; code?: string; pairing_code?: string; already_connected?: boolean; phone_number?: string }>(response);
+  },
+
+  async getWhatsappInstanceStatus(instanceName: string, projectId: string) {
+    const response = await fetch(`${API_URL}/whatsapp/status/${instanceName}?project_id=${projectId}`, {
+      headers: this.getAuthHeader(),
+    });
+    return handleResponse<{ state: string; status?: string; phone_number?: string; battery?: number }>(response);
+  },
+
+  // API Keys
+  async getProjectApiKeys(projectId: string) {
+    const response = await fetch(`${API_URL}/projects/${projectId}/keys`, {
+      headers: this.getAuthHeader(),
+    });
+    return handleResponse<{ items: ApiKey[]; total: number }>(response);
+  },
+
+  async createProjectApiKey(projectId: string, data: { name: string; scopes: string[]; expires_at?: string }) {
+    const response = await fetch(`${API_URL}/projects/${projectId}/keys`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...this.getAuthHeader(),
+      },
+      body: JSON.stringify(data),
+    });
+    return handleResponse<ApiKey & { key: string }>(response);
+  },
+
+  async revokeProjectApiKey(projectId: string, keyId: string) {
+    const response = await fetch(`${API_URL}/projects/${projectId}/keys/${keyId}`, {
+      method: 'DELETE',
+      headers: this.getAuthHeader(),
+    });
+    return handleResponse<void>(response);
+  },
+};
+
+// Types
+export type ApiKeyScope = 'read' | 'write' | 'admin';
+
+export interface ApiKey {
+  id: string;
+  project_id: string;
+  name: string;
+  key_hash: string;
+  key_prefix: string;
+  scopes: ApiKeyScope[];
+  is_active: boolean;
+  last_used_at: string | null;
+  expires_at: string | null;
+  created_by: string | null;
+  created_at: string;
+}
+
+export interface Organization {
+  id: string;
+  name: string;
+  slug: string;
+  logo_url?: string;
+  created_at: string;
+  updated_at: string;
+  role?: string;
+}
+
+export interface Project {
+  id: string;
+  organization_id: string;
+  name: string;
+  slug: string;
+  description?: string;
+  status: 'provisioning' | 'active' | 'suspended' | 'archived';
+  db_name?: string;
+  db_user?: string;
+  anon_key?: string;
+  service_role_key?: string;
+  jwt_secret?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface WhatsappInstance {
+  id: string;
+  project_id: string;
+  instance_name: string;
+  instance_id?: string;
+  status: 'pending' | 'connecting' | 'connected' | 'disconnected' | 'error';
+  phone_number?: string;
+  qr_code_base64?: string;
+  webhook_url?: string;
+  webhook_secret?: string;
+  settings: Record<string, unknown>;
+  created_at: string;
+  connected_at?: string;
+  last_activity_at: string;
+}

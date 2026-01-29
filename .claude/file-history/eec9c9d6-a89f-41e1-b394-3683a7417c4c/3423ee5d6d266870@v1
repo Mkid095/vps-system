@@ -1,0 +1,72 @@
+// NextMavens Platform API - Studio Access Endpoint
+// GET /api/studio/:slug - Get Studio connection credentials for a project
+
+import { NextRequest } from 'next/server';
+import { withAuthAndError } from '@/lib/middleware';
+import { getAdminClient } from '@/lib/supabase-client';
+
+// GET /api/studio/:slug - Get Studio connection credentials
+export async function GET(
+  req: NextRequest,
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  const { slug } = await params;
+  return withAuthAndError(async (user) => {
+    const supabase = getAdminClient();
+
+    // Find project by slug - need to check all projects user has access to
+    const { data: memberships } = await supabase
+      .from('organization_members')
+      .select('organization_id')
+      .eq('user_id', user.id);
+
+    if (!memberships || memberships.length === 0) {
+      throw new Error('No organization membership found');
+    }
+
+    const orgIds = memberships.map(m => m.organization_id);
+
+    // Find project by slug within user's organizations
+    const { data: project, error: projectError } = await supabase
+      .from('projects')
+      .select('*')
+      .in('organization_id', orgIds)
+      .eq('slug', slug)
+      .single();
+
+    if (projectError || !project) {
+      throw new Error('Project not found or access denied');
+    }
+
+    // Get database credentials
+    const { data: dbCredentials, error: dbError } = await supabase
+      .from('project_databases')
+      .select('*')
+      .eq('project_id', project.id)
+      .single();
+
+    if (dbError || !dbCredentials) {
+      throw new Error('Database credentials not found. Project may not be fully provisioned.');
+    }
+
+    // Build connection URL
+    const connectionUrl = `postgres://${encodeURIComponent(dbCredentials.db_user)}:${encodeURIComponent(dbCredentials.db_password)}@${dbCredentials.db_host}:${dbCredentials.db_port}/${dbCredentials.db_name}`;
+
+    // Build project-specific Studio URL
+    // Use the base URL from environment and append the project slug
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.SUPABASE_URL || 'https://nextmavens.cloud';
+    const studioUrl = `${baseUrl}/studio/${slug}`;
+
+    return {
+      project_id: project.id,
+      project_name: project.name,
+      project_slug: project.slug,
+      db_name: dbCredentials.db_name,
+      db_host: dbCredentials.db_host,
+      db_port: dbCredentials.db_port,
+      connection_url: connectionUrl,
+      anon_key: project.anon_key || '',
+      studio_url: studioUrl,
+    };
+  })(req);
+}

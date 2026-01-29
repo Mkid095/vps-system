@@ -1,0 +1,221 @@
+---
+description: Generate PRD from user message or plan.md - NO QUESTIONS
+argument-hint: "[message describing what to build]"
+---
+
+# FLOW-PRD: Generate PRD from Message or Plan
+
+**DO NOT ASK QUESTIONS. EXECUTE STEPS. CREATE FILES. EXIT.**
+
+---
+
+## STEP 1: Determine Input Source
+
+**Check if plan.md exists:**
+
+Execute: `test -f plan.md && echo "EXISTS" || echo "NOT_FOUND"`
+
+**IF plan.md EXISTS:**
+- Use plan.md as input source
+- Skip to STEP 3
+
+**IF plan.md DOES NOT EXIST:**
+- Check if a message was provided with the command
+- Extract features from the message
+- Proceed to STEP 2
+
+---
+
+## STEP 2: Extract Features from Message (if no plan.md)
+
+**Analyze the user's message** to identify:
+- Main feature/application being described
+- Key components or modules mentioned
+- User roles or use cases
+- Technical requirements or constraints
+
+**Generate a structured feature breakdown:**
+1. Main application/feature name
+2. Key sub-features (3-8 items)
+3. Technical approach overview
+4. Target platform (web/mobile/desktop)
+
+**Example message analysis:**
+- "I want to build a task management app with real-time updates"
+  → Feature: Task Management System
+  → Sub-features: Dashboard, Task List, Real-time Updates, User Authentication
+
+---
+
+## STEP 3: Generate PRD JSON
+
+**Create PRD in JSON format** (not markdown) at: `docs/prd-[feature-name].json`
+
+**Use this exact JSON structure:**
+
+```json
+{
+  "project": "[Feature Name]",
+  "branchName": "flow/[feature-name-kebab-case]",
+  "description": "[One-line description of what this feature does]",
+  "memorialFile": "docs/consolidated-[feature-name].txt",
+  "relatedMemorials": [],
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "[Story title - what user wants]",
+      "description": "As a [user role], I want to [action] so that [benefit]",
+      "acceptanceCriteria": [
+        "[Specific requirement 1]",
+        "[Specific requirement 2]",
+        "[Specific requirement 3]",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 3, 5, 7],
+      "mcpTools": {
+        "step1": ["supabase"],
+        "step7": ["supabase", "chrome-devtools"]
+      },
+      "priority": 1,
+      "passes": false,
+      "notes": "Initial implementation with core functionality"
+    },
+    {
+      "id": "US-002",
+      "title": "[Second story]",
+      "description": "As a [user role], I want to [action] so that [benefit]",
+      "acceptanceCriteria": [
+        "[Specific requirement 1]",
+        "[Specific requirement 2]",
+        "Tests pass"
+      ],
+      "mavenSteps": [1, 3],
+      "mcpTools": {},
+      "priority": 2,
+      "passes": false,
+      "notes": "Implementation notes"
+    }
+  ]
+}
+```
+
+**Rules for mavenSteps:**
+- Step 1: Foundation/UI from scratch → development-agent
+- Step 2: Package manager changes → development-agent
+- Step 3: Feature structure changes → refactor-agent
+- Step 4: Component modularization (>300 lines) → refactor-agent
+- Step 5: Type safety enforcement → quality-agent
+- Step 6: UI centralization → refactor-agent
+- Step 7: Data layer/backend → development-agent
+- Step 8: Auth/integration → security-agent
+- Step 9: MCP integration → development-agent
+- Step 10: Security hardening → security-agent
+- Step 11: Mobile UI design → design-agent
+
+**Rules for mcpTools:**
+- Only specify MCP server names (e.g., "supabase", "chrome-devtools")
+- Use empty object `{}` if no MCPs needed
+- Only include MCPs that are actually available in the environment
+- Common MCPs: supabase, chrome-devtools, web-search-prime, web-reader
+
+**Rules for priority:**
+- Lower number = higher priority (executed first)
+- Start priority at 1 for first story
+- Increment for subsequent stories
+
+---
+
+## STEP 4: Create Consolidated Memory File
+
+**Create:** `docs/consolidated-[feature-name].txt`
+
+```markdown
+---
+memoryVersion: 1
+schemaVersion: 1
+feature: [Feature Name]
+consolidatedDate: [Current Date in ISO format]
+totalStories: [Number of stories in PRD]
+completedStories: 0
+status: initialized
+---
+
+# [Feature Name] - Consolidated Implementation Memory
+
+## System Overview
+[Brief description of what this feature does]
+
+## Key Architectural Decisions
+- Initial setup and architecture decisions will be documented here as stories complete
+
+## Public Interfaces
+- API endpoints, UI components, and integration points will be listed here
+
+## Integration Patterns
+- How this feature connects to other PRDs
+
+## Related PRDs
+[None initially - will be updated as related features are added]
+
+## Consolidated From Stories
+Stories will be listed here as they complete
+```
+
+---
+
+## STEP 5: Display Summary
+
+```
+==============================================================================
+PRD Generation Complete
+==============================================================================
+
+Working Directory: [from pwd]
+
+Input Source: [plan.md OR user message]
+
+Created PRD:
+- docs/prd-[feature-name].json
+
+Memory File:
+- docs/consolidated-[feature-name].txt
+
+Total Stories: [number]
+
+Next Steps:
+1. Review the PRD: cat docs/prd-[feature-name].json
+2. Start development: flow start
+==============================================================================
+```
+
+---
+
+## STEP 6: Run flow-convert
+
+**Convert PRD to JSON (if not already JSON):**
+
+Execute: `flow-convert docs/prd-[feature-name].json`
+
+---
+
+## STEP 7: EXIT
+
+**DO NOT ASK QUESTIONS. DO NOT REQUEST INPUT. EXIT IMMEDIATELY.**
+
+---
+
+## EXECUTION RULES
+
+1. Accept user message OR read plan.md
+2. Extract main feature and sub-features
+3. Generate PRD in JSON format
+4. Generate consolidated memory file
+5. Display summary
+6. Run flow-convert
+7. EXIT
+
+---
+
+**CRITICAL: Always generate JSON PRDs, not markdown.**
+
+**EXECUTE NOW.**

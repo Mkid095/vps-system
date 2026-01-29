@@ -1,0 +1,152 @@
+### Rephrased Project Overview
+
+After researching Supabase self-hosting documentation, Evolution API GitHub, Docker best practices for shared layers, Telegram backup automation scripts (e.g., via Python and bot APIs), Cloudinary SDK integrations, and Next.js tutorials for custom dashboards (including RBAC and service management), here's a refined version of your project. This setup creates a centralized, self-hosted platform on your Hostinger KVM2 VPS (Ubuntu with user 'ken') for deploying and managing multiple low-traffic SaaS applications. It leverages Docker for orchestration, enabling shared base images to cache common dependencies (e.g., Node.js packages) across containers, avoiding reinstalls during builds. Supabase will be self-hosted in a single instance with schema-based isolation for multi-app databases, as native "organizations → projects" is not supported— you'll build a custom layer in your Next.js dashboard using Supabase's pg_meta API, Supavisor for tenant routing, and Kong for custom routing. This simulates the proprietary flow, with npx-style CLI tools and access tokens for project management.
+
+Evolution API integrates centrally via Docker for shared WhatsApp automation, supporting multi-instances for seamless use across apps/clients without manual setups. Real-time features (e.g., WebSockets for notifications/chat) use Supabase Realtime, keeping overhead low. Storage optimization offloads media to Cloudinary (free tier) automatically, replacing uploads with links to fit your 100GB limit—no direct user exposure to file storage. Backups automate daily via a Telegram bot to a private channel (up to 2GB/file), with server cleanup. MCPs (interpreting as "Management Control Panels" for AI like Claude to access/interact with Supabase projects via APIs) will be implemented as dashboard modules with API endpoints, npx commands, and tokens—allowing AI-driven code interactions similar to Supabase's web interface.
+
+The nextmavens.cloud dashboard (built with Next.js) provides a professional, consistent UI (neutral colors, sans-serif fonts, no emojis/gradients except in external tools like Supabase Studio) for redirects to services, org/project flows, and MCPs. Domains use subdomains/custom setups via Nginx. This unified platform minimizes costs (VPS + free tiers), automates integrations, and supports shared infrastructure for multiple apps without complexity.
+
+### Implementation Guide
+
+This guide is based on the latest research (e.g., Supabase Docker v2025+, Evolution API multi-instance, Docker caching via base images). Assume SSH as 'ken'; use `sudo` for system commands. Focus on automation with Docker Compose. Estimated time: 5-7 hours.
+
+#### Prerequisites
+- VPS IP/domain (nextmavens.cloud A record to IP).
+- Free accounts: Cloudinary (API keys), Telegram (bot/channel), GitHub.
+- Tools: Docker, Node.js, Postgres basics.
+
+#### Step 1: System Setup
+Update and install essentials:
+```
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y curl git vim ca-certificates gnupg python3 python3-pip
+```
+
+#### Step 2: Install Docker and Compose
+For shared layers: Use base images (e.g., `node:20`) in Dockerfiles to cache deps.
+```
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo usermod -aG docker ken
+newgrp docker
+```
+
+#### Step 3: Self-Host Supabase
+Single instance with schema isolation for multi-app.
+1. Setup:
+   ```
+   git clone --depth 1 https://github.com/supabase/supabase
+   mkdir supabase-master && cd supabase-master
+   cp -rf ../supabase/docker/* .
+   cp ../supabase/docker/.env.example .env
+   ```
+2. Edit `.env` (generate keys with `openssl rand -base64 32`):
+   - `POSTGRES_PASSWORD`, `JWT_SECRET`, `ANON_KEY`, `SERVICE_ROLE_KEY`.
+   - `SUPABASE_PUBLIC_URL=https://nextmavens.cloud/supabase`.
+   - `DASHBOARD_USERNAME=admin`, `DASHBOARD_PASSWORD=strongpass`.
+   - Disable unused (e.g., remove `analytics` from `docker-compose.yml`).
+3. Start:
+   ```
+   docker compose pull
+   docker compose up -d
+   ```
+4. Health: `docker compose ps`. Access Studio: `http://your-ip:8000`.
+
+#### Step 4: Custom Management Layer for Orgs/Projects
+No native support; use schemas/RLS.
+1. In Studio or psql: Create schemas (`CREATE SCHEMA app1;`), enable RLS.
+2. pg_meta API: For project management (e.g., list tables/roles).
+3. Supavisor: Set `POOLER_TENANT_ID` per app for routing.
+4. Kong: Edit `docker-compose.yml` for custom routes (e.g., subdomain-based).
+5. npx CLI: Create npm package (`npm init -y; npm install supabase`).
+   - Script: `npx nextmavens create-project --org=1 --token=token` calls psql to create schema/role.
+6. MCPs for AI (Claude): Build API endpoints in dashboard (Step 8) using Supabase JS client. Expose as REST API for AI interaction (e.g., `/mcp/claude?token=...` queries DB). Use Anthropic SDK if integrating Claude for code gen.
+
+#### Step 5: Integrate Evolution API
+Multi-instance for shared WhatsApp.
+1. Clone: `git clone https://github.com/EvolutionAPI/evolution-api && cd evolution-api`
+2. Edit `docker-compose.yml`: Set `AUTHENTICATION_API_KEY`, add to network (`nextmavens-net`).
+3. Start: `docker compose up -d`
+4. Instances: POST to `/instance/create` for multi-app. Share via API keys.
+5. Network: `docker network create nextmavens-net && docker network connect nextmavens-net supabase-master_kong_1`
+
+#### Step 6: Storage Optimization with Cloudinary
+1. Install SDK in apps: `npm install cloudinary`
+2. Handler example (Node.js):
+   ```
+   const cloudinary = require('cloudinary').v2;
+   cloudinary.config({ cloud_name: 'yourname', api_key: 'key', api_secret: 'secret' });
+   // On upload (e.g., email attachment):
+   cloudinary.uploader.upload('path/to/file', { resource_type: 'auto' }, (err, res) => {
+     if (res) {
+       // Save res.secure_url to DB/email
+       require('fs').unlinkSync('path/to/file');
+     }
+   });
+   ```
+3. Cron cleanup: `crontab -e` add `0 * * * * find /uploads -type f -delete`
+
+#### Step 7: Automated Backups to Telegram
+Use Python script (from azerothcore repo).
+1. Bot: Create via @BotFather; get token. Add to private channel as admin (get chat_id via `/getupdates`).
+2. Script (`backup.py`):
+   ```
+   import os
+   import requests
+   TOKEN = 'your_token'
+   CHAT_ID = 'your_chat_id'
+   os.system('docker exec supabase-master_db_1 pg_dump -U postgres > backup.sql')
+   files = {'document': open('backup.sql', 'rb')}
+   requests.post(f'https://api.telegram.org/bot{TOKEN}/sendDocument?chat_id={CHAT_ID}', files=files)
+   os.remove('backup.sql')
+   ```
+3. Install deps: `pip3 install requests`
+4. Schedule: `crontab -e` add `0 0 * * * python3 /path/to/backup.py`
+
+#### Step 8: Build Next.js Dashboard
+For redirects, orgs/projects, MCPs. RBAC via Supabase Auth.
+1. Node: `curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - && sudo apt install -y nodejs`
+2. App: `npx create-next-app@latest nextmavens-dashboard --ts --eslint --tailwind`
+3. Features:
+   - Auth: `@supabase/supabase-js` for login.
+   - Pages: `/dashboard` redirects (e.g., to Supabase `/supabase`, Evolution `/whatsapp`).
+   - Orgs/Projects: Forms to create (call psql/scripts).
+   - MCPs: Module for AI API (e.g., query DB, generate tokens).
+   - Style: Tailwind – neutral, professional (e.g., font-family: 'Inter').
+4. Deploy: `npm run build; npm i -g pm2; pm2 start npm --name dashboard -- run start`
+5. Nginx: `sudo apt install nginx`
+   ```
+   server {
+       listen 80;
+       server_name nextmavens.cloud;
+       location / { proxy_pass http://localhost:3000; }
+   }
+   ```
+   `sudo nginx -t && sudo systemctl reload nginx`
+6. HTTPS: `sudo apt install certbot python3-certbot-nginx; sudo certbot --nginx`
+
+#### Step 9: Real-Time and Domains
+- Realtime: Use Supabase client for WebSockets.
+- Domains: Nginx blocks for subdomains (e.g., `app1.nextmavens.cloud`). Custom: CNAME to your domain.
+
+#### Step 10: Shared Dependencies
+In app Dockerfiles: Use multi-stage/base images.
+Example:
+```
+FROM node:20 AS base
+WORKDIR /app
+COPY package*.json .
+RUN npm ci  # Cached layer
+COPY . .
+FROM base AS prod
+RUN npm run build
+```
+Reuse `base` across apps.
+
+#### Step 11: Testing/Security
+- Test: Deploy sample app, integrate WhatsApp, backup.
+- Security: `sudo ufw allow 80,443,8000,8080; sudo ufw enable`. Monitor with `docker stats`.

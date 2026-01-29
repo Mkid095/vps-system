@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "subject": "Create Platform Invariants Document",
+  "description": "Create the PLATFORM_INVARIANTS.md file at /home/ken/PLATFORM_INVARIANTS.md documenting the core architectural principles that will prevent drift. This includes:\n1. Control Plane as source of truth\n2. Idempotent destructive actions\n3. Every request attributable to a project\n4. Data plane never talks directly to control DB\n5. Isolation enforcement rules\n6. Universal observability\n7. Fail closed security principle\n8. Secrets never logged\n9. MCP read-only by default\n10. Soft delete first principle\n\nAlso create symlink in developer-portal directory.",
+  "activeForm": "Creating Platform Invariants document",
+  "status": "pending",
+  "blocks": [],
+  "blockedBy": []
+}

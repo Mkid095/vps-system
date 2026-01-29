@@ -1,0 +1,37 @@
+Web search results for query: "Evolution API docker image name Docker Hub v2 2025"
+
+I'll search for information about the Evolution API Docker image on Docker Hub.
+
+Links: [{"title":"Generate official docker image for the latest API version ...","url":"https://github.com/EvolutionAPI/evolution-api/issues/1902"},{"title":"atendai/evolution-api - Docker Image","url":"https://hub.docker.com/r/atendai/evolution-api/tags"},{"title":"Image Layer Details - atendai/evolution-api:v2.2.0","url":"https://hub.docker.com/layers/atendai/evolution-api/v2.2.0/images/sha256-6bc4bbfdde60c2d8f3c86500d8af5c66ddfce9312227b3806023d513e684be50"},{"title":"evoapicloud/evolution-api - Docker Image","url":"https://hub.docker.com/r/evoapicloud/evolution-api/tags"},{"title":"Docker image · Issue #1724 · EvolutionAPI/evolution-api","url":"https://github.com/EvolutionAPI/evolution-api/issues/1724"},{"title":"Docker - Evolution API Documentation","url":"https://doc.evolution-api.com/v2/pt/install/docker"},{"title":"Image Layer Details - atendai/evolution-api:v2.0.8-rc","url":"https://hub.docker.com/layers/atendai/evolution-api/v2.0.8-rc/images/sha256-8d0b5d16a5e68bf13fc7a09cea0df6ec9e41d8753ce18d35e355b40e91a8e69c"},{"title":"Thousands of Exposed Secrets Found on Docker Hub","url":"https://fr.flare.io/en-apprendre/num%25C3%25A9riques/docker-hub-secrets-exposed/"},{"title":"InterPro: the protein sequence classification resource in 2025","url":"https://academic.oup.com/nar/article/53/D1/D444/7905301"},{"title":"16 posts tagged with \"nydus-snapshotter\"","url":"https://d7y.io/blog/tags/nydus-snapshotter/"}]
+
+## Search Results: Evolution API Docker Images (v2)
+
+Based on the search results, here are the Docker image names for Evolution API v2 on Docker Hub:
+
+### **Primary Docker Images:**
+
+1. **`evoapicloud/evolution-api`** (Recommended/Newer)
+   - **Latest version:** v2.3.7
+   - **Architectures:** linux/amd64, linux/arm64
+   - **Size:** 370.04 MB
+   - **Pull command:** `docker pull evoapicloud/evolution-api:v2.3.7`
+   - **Docker Hub:** https://hub.docker.com/r/evoapicloud/evolution-api/tags
+
+2. **`atendai/evolution-api`** (Older/Legacy)
+   - **Latest version:** v2.2.3
+   - **Last pushed:** 12 months ago
+   - **Pull command:** `docker pull atendai/evolution-api:v2.2.3`
+   - **Docker Hub:** https://hub.docker.com/r/atendai/evolution-api/tags
+
+### **Key Findings:**
+
+- **Official Documentation:** Available at https://doc.evolution-api.com/v2/pt/install/docker
+- There is an active GitHub issue (#1902) requesting publication of an official Docker image for Evolution API v2.3.2
+- GitHub issue (#1724) discusses changing the official repository from `atendai/evolution-api` to a newer one
+
+### **Recommendation:**
+
+For **2025 deployments**, use **`evoapicloud/evolution-api:v2.3.7`** as it's more recently maintained and supports multiple architectures.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.

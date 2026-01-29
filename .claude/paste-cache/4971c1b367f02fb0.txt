@@ -1,0 +1,256 @@
+I’m going to be very direct. This is **mostly solid**, but it is **too large, slightly inconsistent in a few places, and has 3–4 real risks that will bite you if you implement it exactly as written**. None of them are fatal, but they must be corrected **before** you code.
+
+I’ll structure this as: **Verdict → What’s right → What’s wrong → Required fixes → What I would simplify → Go / No-Go decision**.
+
+---
+
+## Executive Verdict
+
+**This design is viable and production-grade for a filesystem-coordinated scheduler.**
+You are not hand-waving. You’re applying real OS primitives correctly.
+
+However:
+
+* You **over-designed Phase 1** (duplicate lock functions, redundant logic)
+* You have **one serious consistency violation**
+* You have **two operational risks**
+* You mixed **status semantics** in one place (minor but dangerous)
+
+Fix those and this becomes clean, deterministic, and fast.
+
+---
+
+## What You Got Right (No Debate)
+
+### 1. `flock` discipline
+
+Correct:
+
+* Lock before read
+* Mutate under lock
+* Replace via `mv`
+* Never delete `.lock` files
+* Per-PRD locking (not global)
+
+This is textbook Unix concurrency. Approved.
+
+### 2. Single-writer rule
+
+This is the most important decision you made:
+
+> **Only `flow.sh` mutates PRDs**
+
+That is non-negotiable, and you enforced it everywhere. Good.
+
+### 3. PID + heartbeat liveness model
+
+Also correct:
+
+* PID alone is insufficient
+* Heartbeat alone is insufficient
+* AND logic is correct
+* Power loss self-heals automatically
+
+This is exactly how real schedulers avoid split-brain.
+
+### 4. Stdout capture instead of temp files
+
+You explicitly called this out, and you’re right.
+
+Anyone who uses temp files inside subshell locks gets race conditions. You avoided that. Good.
+
+### 5. Session-scoped memory
+
+Mandatory. You did it. No objections.
+
+---
+
+## What Is Wrong (And Must Be Fixed)
+
+### ❌ 1. You contradict yourself about `lock_story()` / `unlock_story()`
+
+You say:
+
+> DELETE lock_story() and unlock_story()
+
+But earlier phases **define and depend on them conceptually**. This creates confusion and implementation drift.
+
+#### Why this is a problem
+
+Engineers will:
+
+* Half-use `lock_story`
+* Accidentally reintroduce multiple lock paths
+* Break the “single authority” rule
+
+#### Required fix
+
+**Do not implement `lock_story()` and `unlock_story()` at all.**
+
+Only expose:
+
+* `find_and_lock_story()`
+* `clear_all_session_locks()`
+* Completion handler under `flow.sh`
+
+Delete the other functions from the plan entirely. Don’t even document them.
+
+---
+
+### ❌ 2. You accidentally reintroduced time-based lock semantics in `flow-status`
+
+You say:
+
+> Heartbeat is source of truth, NOT time-based expiry
+
+But in `flow-status` you show:
+
+```
+🔒 US-005 (...) - stale (95m old)
+```
+
+That implies **time-based lock staleness**, which contradicts your rules.
+
+#### Why this matters
+
+This causes operator confusion:
+
+* A lock can be “old” but valid
+* A slow agent is not a dead agent
+* UI must not imply unlockability based on age alone
+
+#### Required fix
+
+In `flow-status`:
+
+* Show **age**
+* Show **alive/dead**
+* Never label a lock “stale” unless:
+
+  * PID is dead OR
+  * Heartbeat exceeded threshold
+
+Language matters.
+
+Correct wording:
+
+* “Locked – owner alive”
+* “Locked – owner dead (reclaimable)”
+
+---
+
+### ❌ 3. Heartbeat update strategy is still risky
+
+You say:
+
+> Update heartbeat before each agent spawn OR background loop
+
+“OR” is not acceptable here.
+
+#### Why this is dangerous
+
+* A single mavenStep can run 20–40 minutes
+* If you rely only on “before spawn”, heartbeat goes stale
+* Other sessions will steal the lock mid-step
+
+#### Required fix
+
+**Heartbeat loop is mandatory**, not optional.
+
+Rules:
+
+* Start background heartbeat loop at session start
+* Kill it in cleanup
+* Manual updates are optional optimizations, not the core mechanism
+
+No background loop = race risk.
+
+---
+
+### ❌ 4. Session registry write frequency is higher than necessary
+
+Right now:
+
+* Heartbeat updates rewrite the entire JSON
+* Every 60s, across N sessions
+* Under flock
+
+This will scale poorly past ~5–6 sessions.
+
+#### Required fix (lightweight)
+
+Do NOT refactor to a DB. Just:
+
+* Accept it for now
+* But throttle heartbeat to **60–90 seconds**
+* Never faster
+
+Document this explicitly.
+
+---
+
+## What I Would Simplify (Strong Recommendation)
+
+This system is correct but **too heavy for v1**. You can cut ~20% complexity safely.
+
+### Simplification 1: Remove `completedBy` / `completedAt` (for now)
+
+They are nice-to-have, not core.
+
+You already have:
+
+* Story memory
+* Git history
+* Session registry
+
+You can add these later without breaking anything.
+
+### Simplification 2: Drop `flow unlock` in v1
+
+This is operator-heavy and dangerous.
+
+For v1:
+
+* `flow reset` clears all locks
+* Stale locks auto-heal anyway
+
+Manual unlock increases footguns.
+
+---
+
+## Things You Must NOT Change
+
+These are load-bearing. Touch them and the system degrades.
+
+* Do NOT let workers write PRDs
+* Do NOT delete `.lock` files
+* Do NOT use time-based lock expiry
+* Do NOT add “status” fields to sessions
+* Do NOT add global locks
+
+---
+
+## Final Go / No-Go Decision
+
+### Go — with conditions
+
+You can implement this **if and only if** you:
+
+1. Remove `lock_story()` / `unlock_story()` completely
+2. Make heartbeat loop mandatory
+3. Fix `flow-status` language (no time-based “stale” labels)
+4. Keep `find_and_lock_story()` as the **only** lock path
+5. Enforce single-writer PRD mutation in `flow.sh`
+
+If you ship it as written **without those fixes**, you’ll get:
+
+* Confusing ops output
+* Rare but catastrophic duplicate work
+* Hard-to-debug race conditions
+
+If you want, next step I recommend is:
+
+* A **condensed v1 spec (50% shorter)** suitable for implementation
+* Or a **failure-mode table** (“what happens if X dies at Y step”)
+
+Say which one.

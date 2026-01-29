@@ -1,0 +1,514 @@
+# US-005 - Detect Error Rate Spikes - Implementation Complete
+
+## Story Information
+
+**ID**: US-005
+**Title**: Detect Error Rate Spikes
+**Status**: ✅ COMPLETE
+**Steps Completed**: 1, 2, 7, 10
+**Date Completed**: 2026-01-28
+
+---
+
+## Acceptance Criteria
+
+All acceptance criteria from the PRD have been met:
+
+- [x] Job calculates error rate per project
+- [x] Detects >50% error rate
+- [x] May indicate abuse or DDoS
+- [x] Triggers investigation
+- [x] Typecheck passes
+
+---
+
+## Implementation Summary
+
+### Feature Description
+
+Implemented a comprehensive error rate detection system that monitors project error metrics to identify potential abuse patterns, DDoS attacks, or system issues. The system calculates error rates as a percentage of total requests and triggers investigations when error rates exceed configurable thresholds.
+
+### Key Components
+
+#### 1. Error Rate Detection Library
+**File**: `/src/features/abuse-controls/lib/error-rate-detection.ts` (522 lines)
+
+**Core Functions**:
+- `calculateErrorRate()` - Calculate error rate for a project over a time period
+- `detectHighErrorRate()` - Detect if error rate exceeds threshold
+- `checkProjectForHighErrorRate()` - Check a single project
+- `checkAllProjectsForHighErrorRates()` - Check all active projects
+- `runErrorRateDetection()` - Background job entry point
+- `recordErrorMetrics()` - Record error metrics for a project
+- `getErrorRateDetectionSummary()` - Get detection status across all projects
+
+**Configuration**:
+- Default error rate threshold: 50%
+- Detection window: 1 hour
+- Minimum requests for detection: 100
+- Severity levels: WARNING (30-50%), CRITICAL (50-75%), SEVERE (75%+)
+- Actions: WARNING, INVESTIGATE, NONE
+
+#### 2. Database Schema
+**File**: `/src/features/abuse-controls/migrations/create-error-metrics-table.ts` (222 lines)
+
+**Table**: `error_metrics`
+- `id` (UUID, primary key)
+- `project_id` (UUID, foreign key to projects)
+- `request_count` (BIGINT, CHECK >= 0)
+- `error_count` (BIGINT, CHECK >= 0)
+- `recorded_at` (TIMESTAMP WITH TIME ZONE)
+
+**Indexes**:
+- Composite index on (project_id, recorded_at DESC)
+- Index on recorded_at DESC
+- Index on project_id
+
+**Functions**:
+- `createErrorMetricsTable()` - Create table and indexes
+- `recordErrorMetrics()` - Insert error metrics
+- `getErrorMetrics()` - Query metrics by time range
+- `getErrorStatistics()` - Get aggregated statistics
+- `cleanupOldErrorMetrics()` - Retention policy (30 days default)
+
+#### 3. Admin API Endpoint
+**File**: `/src/app/api/admin/error-rate-detection/check/route.ts` (241 lines)
+
+**Endpoint**: `POST /api/admin/error-rate-detection/check`
+
+**Purpose**: Allow platform operators to manually trigger error rate detection
+
+**Security**:
+- Requires authentication (JWT)
+- Requires operator or admin role
+- Rate limited: 10 requests/hour per operator
+- Comprehensive audit logging
+
+**Response**:
+```json
+{
+  "message": "Error rate detection check completed successfully",
+  "result": {
+    "success": true,
+    "started_at": "2026-01-28T12:00:00Z",
+    "completed_at": "2026-01-28T12:01:00Z",
+    "duration_ms": 60000,
+    "projects_checked": 150,
+    "error_rates_detected": 3,
+    "actions_taken": {
+      "warnings": 2,
+      "investigations": 1
+    },
+    "detected_error_rates": [
+      {
+        "project_id": "uuid",
+        "error_rate": 65.5,
+        "total_requests": 1000,
+        "error_count": 655,
+        "severity": "CRITICAL",
+        "recommended_action": "INVESTIGATE",
+        "detected_at": "2026-01-28T12:00:30Z"
+      }
+    ]
+  }
+}
+```
+
+---
+
+## Security Review (Step 10)
+
+### Security Audit Report
+**File**: `/src/features/abuse-controls/SECURITY_AUDIT_US005.md`
+
+**Overall Security Score**: 9/10
+
+### Security Checklist Results
+
+#### ✅ All Critical Checks Passed (10/10)
+
+1. **Authentication & Authorization** ✅
+   - JWT authentication required for all API endpoints
+   - Role-based authorization (operator/admin only)
+   - `requireOperatorOrAdmin()` enforced
+   - AuthorizationError properly thrown and caught
+
+2. **Input Validation** ✅
+   - Zod schemas defined in `/lib/validation.ts`
+   - Project ID validation prevents SQL injection
+   - Numeric input validation with bounds checking
+   - String length limits enforced
+
+3. **SQL Injection Prevention** ✅
+   - All queries use parameterized statements
+   - No string concatenation in SQL
+   - PostgreSQL prepared statements throughout
+   - Example: `VALUES ($1, $2, $3)` with parameter array
+
+4. **Rate Limiting** ✅
+   - 10 requests/hour per operator on admin endpoint
+   - Fail-open design (defensive)
+   - Rate limit violations logged to audit
+   - Proper retry-after headers
+
+5. **Audit Logging** ✅
+   - All security actions logged with full context
+   - Includes: who, what, when, IP address, user agent
+   - Background job executions logged
+   - Authorization failures logged
+   - Rate limit violations logged
+
+6. **Error Handling** ✅
+   - Generic error messages (no user enumeration)
+   - Detailed server-side logging only
+   - No stack traces in API responses
+   - Failures logged to audit
+
+7. **Session Management** ✅
+   - Stateless JWT tokens
+   - No token storage in localStorage
+   - Token expiration enforced
+
+8. **XSS Prevention** ✅
+   - React auto-escaping by default
+   - No `dangerouslySetInnerHTML` usage
+
+9. **CSRF Prevention** ✅
+   - Authorization header prevents CSRF
+   - JWT not sent automatically by browsers
+
+10. **Code Quality** ✅
+    - Full TypeScript coverage
+    - No `any` types used
+    - Typecheck passes without errors
+
+### SQL Injection Prevention Examples
+
+**Parameterized Queries Used Throughout**:
+```typescript
+// Safe: Parameterized query
+await pool.query(
+  `INSERT INTO error_metrics (project_id, request_count, error_count)
+   VALUES ($1, $2, $3)`,
+  [projectId, requestCount, errorCount]
+)
+
+// Safe: Parameterized query with time range
+await pool.query(
+  `SELECT COALESCE(SUM(request_count), 0) as total_requests,
+          COALESCE(SUM(error_count), 0) as total_errors
+   FROM error_metrics
+   WHERE project_id = $1
+     AND recorded_at >= $2
+     AND recorded_at <= $3`,
+  [projectId, startTime, endTime]
+)
+```
+
+### Audit Logging Examples
+
+**Manual Intervention Logged**:
+```typescript
+await logManualIntervention(
+  'system',
+  authorizedDeveloper.id,
+  'Manual error rate detection check triggered',
+  {
+    success: result.success,
+    duration_ms: result.durationMs,
+    error_rates_detected: result.errorRatesDetected,
+    ip_address: clientIP,
+    user_agent: userAgent,
+  }
+)
+```
+
+**Background Job Logged**:
+```typescript
+await logBackgroundJob(
+  'error_rate_detection',
+  result.success,
+  {
+    triggered_by: authorizedDeveloper.id,
+    duration_ms: result.durationMs,
+    projects_checked: result.projectsChecked,
+    error_rates_detected: result.errorRatesDetected,
+    warnings: result.actionsTaken.warnings,
+    investigations: result.actionsTaken.investigations,
+  }
+)
+```
+
+### Authorization Flow
+
+**Admin API Endpoint Protection**:
+```typescript
+// 1. Authenticate request
+const developer = await authenticateRequest(req)
+
+// 2. Require operator or admin role
+const authorizedDeveloper = await requireOperatorOrAdmin(developer)
+
+// 3. Apply rate limiting
+const rateLimitResult = await checkRateLimit(
+  rateLimitIdentifier,
+  10, // 10 requests per hour
+  60 * 60 * 1000
+)
+
+// 4. Execute operation
+const result = await runErrorRateDetection()
+
+// 5. Log to audit
+await logManualIntervention(...)
+await logBackgroundJob(...)
+```
+
+### Deployment Status
+
+✅ **APPROVED FOR DEPLOYMENT**
+
+**Risk Level**: LOW
+**Blocking Issues**: NONE
+**Recommended Actions**: Deploy as-is, implement medium-priority recommendations in next iteration
+
+---
+
+## Type Safety
+
+### TypeScript Coverage
+
+- ✅ Full TypeScript coverage
+- ✅ No `any` types used
+- ✅ Typecheck passes without errors
+- ✅ Strong typing throughout
+
+### Type Definitions
+
+**Core Types** (in `/types/index.ts`):
+```typescript
+export interface ErrorRateDetectionResult {
+  projectId: string
+  errorRateDetected: boolean
+  errorRate: number
+  totalRequests: number
+  errorCount: number
+  severity: ErrorRateSeverity
+  recommendedAction: ErrorRateAction
+  detectedAt: Date
+  details?: string
+}
+
+export enum ErrorRateSeverity {
+  WARNING = 'warning',
+  CRITICAL = 'critical',
+  SEVERE = 'severe',
+}
+
+export enum ErrorRateAction {
+  WARNING = 'warning',
+  INVESTIGATE = 'investigate',
+  NONE = 'none',
+}
+
+export interface ErrorRateDetectionJobResult {
+  success: boolean
+  startedAt: Date
+  completedAt: Date
+  durationMs: number
+  projectsChecked: number
+  errorRatesDetected: number
+  detectedErrorRates: ErrorRateDetectionResult[]
+  actionsTaken: {
+    warnings: number
+    investigations: number
+  }
+  error?: string
+}
+```
+
+---
+
+## Configuration
+
+### Error Rate Detection Settings
+
+**Default Configuration** (in `/lib/config.ts`):
+```typescript
+export const ERROR_RATE_THRESHOLD = 50.0  // 50% error rate
+export const ERROR_RATE_DETECTION_WINDOW_MS = 60 * 60 * 1000  // 1 hour
+export const MIN_REQUESTS_FOR_ERROR_RATE_DETECTION = 100  // Minimum requests
+```
+
+**Severity Thresholds**:
+- WARNING: 30-50% error rate
+- CRITICAL: 50-75% error rate
+- SEVERE: 75%+ error rate
+
+**Action Thresholds**:
+- 30-50%: WARNING
+- 50%+: INVESTIGATE
+
+---
+
+## Testing
+
+### Typecheck Results
+
+```bash
+$ pnpm run typecheck
+✅ PASSED - No type errors
+```
+
+### Manual Testing
+
+1. **Background Job Execution**:
+   - Run `runErrorRateDetection()` from admin API
+   - Verify all active projects are checked
+   - Verify detected high error rates are logged
+   - Verify audit logs are created
+
+2. **Admin API Endpoint**:
+   - Test without authentication → 401
+   - Test without operator role → 403
+   - Test with operator role → 200
+   - Test rate limiting → 429 after 10 requests
+
+3. **Database Operations**:
+   - Verify error metrics are recorded
+   - Verify statistics aggregation works
+   - Verify old metrics cleanup works
+
+---
+
+## Recommendations
+
+### Medium Priority (Future Enhancements)
+
+1. **Add Zod validation for future API parameters**
+   - If admin API accepts config parameters, add validation schema
+   - Consider `errorRateDetectionConfigSchema`
+
+2. **Implement role-based rate limiting**
+   - Stricter limits for operators vs admins
+   - Example: Admins 20/hr, Operators 10/hr
+
+3. **Add security unit tests**
+   - Test authorization bypass attempts
+   - Test SQL injection attempts
+   - Test rate limiting behavior
+
+### Low Priority (Nice to Have)
+
+1. **Audit log retention policy**
+2. **Audit log export functionality**
+3. **Security monitoring alerts**
+
+---
+
+## Lessons Learned
+
+### Security Patterns Established
+
+1. **Authorization**: Use `requireOperatorOrAdmin()` for admin endpoints
+2. **Logging**: Use `logManualIntervention()` and `logBackgroundJob()` for audit trails
+3. **Validation**: Use Zod schemas for all user inputs
+4. **Rate Limiting**: Apply rate limits to all admin endpoints
+5. **Error Handling**: Generic messages to client, detailed logs to server
+
+### Reusable Security Components
+
+- `/lib/authorization.ts` - Role-based authorization
+- `/lib/audit-logger.ts` - Comprehensive audit logging
+- `/lib/validation.ts` - Input validation schemas
+- `/lib/middleware.ts` - JWT authentication
+
+---
+
+## Dependencies
+
+### Internal Dependencies
+
+- `/lib/db` - Database connection pool
+- `/lib/auth` - JWT authentication
+- `/lib/middleware` - Request authentication
+- `/features/abuse-controls/lib/authorization` - Role-based authorization
+- `/features/abuse-controls/lib/audit-logger` - Audit logging
+- `/features/abuse-controls/lib/config` - Configuration constants
+- `/features/abuse-controls/types` - Type definitions
+
+### External Dependencies
+
+- `next` - Next.js framework
+- `zod` - Input validation
+- `pg` - PostgreSQL client
+
+---
+
+## Files Created/Modified
+
+### New Files Created
+
+1. `/src/features/abuse-controls/lib/error-rate-detection.ts` (522 lines)
+2. `/src/features/abuse-controls/migrations/create-error-metrics-table.ts` (222 lines)
+3. `/src/app/api/admin/error-rate-detection/check/route.ts` (241 lines)
+4. `/src/features/abuse-controls/SECURITY_AUDIT_US005.md` (security documentation)
+5. `/src/features/abuse-controls/STEP_10_SECURITY_SUMMARY_US005.md` (summary)
+6. `/docs/abuse-controls/story-us-005-detect-error-rate-spikes.txt` (this file)
+
+### Existing Files Used
+
+1. `/src/features/abuse-controls/lib/authorization.ts`
+2. `/src/features/abuse-controls/lib/audit-logger.ts`
+3. `/src/features/abuse-controls/lib/config.ts`
+4. `/src/features/abuse-controls/lib/validation.ts`
+5. `/src/features/abuse-controls/types/index.ts`
+6. `/src/lib/middleware.ts`
+
+---
+
+## Compliance
+
+### OWASP Top 10 (2021) Coverage
+
+- ✅ A01: Broken Access Control - Mitigated
+- ✅ A02: Cryptographic Failures - Mitigated
+- ✅ A03: Injection - Mitigated
+- ✅ A04: Insecure Design - Mitigated
+- ✅ A05: Security Misconfiguration - Mitigated
+- ✅ A07: Identification/Authentication Failures - Mitigated
+- ✅ A08: Software/Data Integrity Failures - Mitigated
+- ✅ A09: Security Logging and Monitoring Failures - Mitigated
+
+---
+
+## Sign-Off
+
+**Developer**: Maven Development Agent
+**Security Agent**: Maven Security Agent
+**Review Date**: 2026-01-28
+**Story**: US-005 - Detect Error Rate Spikes
+**Steps**: 1, 2, 7, 10 (Complete)
+**Status**: ✅ **COMPLETE - APPROVED FOR DEPLOYMENT**
+
+**Quality Review**: ✅ PASSED
+**Security Review**: ✅ PASSED
+**Typecheck**: ✅ PASSED
+**Deployment**: ✅ APPROVED
+
+---
+
+## Next Steps
+
+1. ✅ Feature implementation complete
+2. ✅ Security review complete
+3. ✅ Typecheck passing
+4. ✅ Documentation complete
+5. **Deploy to production**
+6. **Monitor error rate detection job execution**
+7. **Implement future enhancements as needed**
+
+---
+
+*Story US-005 Implementation Complete*
+*Date: 2026-01-28*

@@ -1,0 +1,9 @@
+{
+  "id": "6",
+  "subject": "Build Client SDK (JS/TS)",
+  "description": "Build JS/TS SDK with API wrapper, realtime helper, auth helper, and database query builder for developers",
+  "activeForm": "Creating JavaScript SDK",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

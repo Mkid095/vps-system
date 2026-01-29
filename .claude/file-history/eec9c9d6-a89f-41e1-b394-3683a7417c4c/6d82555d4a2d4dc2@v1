@@ -1,0 +1,79 @@
+import { useState, useEffect, useCallback } from 'react';
+import {
+  getWhatsAppInstances,
+  createWhatsAppInstance,
+  getInstanceQR,
+  getInstanceStatus,
+  sendWhatsAppMessage,
+  type WhatsAppInstance
+} from '@/lib/api-vps/vps';
+
+export function useWhatsApp() {
+  const [instances, setInstances] = useState<WhatsAppInstance[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchInstances = useCallback(async () => {
+    try {
+      setError(null);
+      setLoading(true);
+      const data = await getWhatsAppInstances();
+      setInstances(data);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to fetch instances');
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  const createInstance = useCallback(async (name: string) => {
+    try {
+      const instance = await createWhatsAppInstance(name);
+      setInstances(prev => [...prev, instance]);
+      return instance;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to create instance');
+      throw err;
+    }
+  }, []);
+
+  const getQR = useCallback(async (instanceName: string) => {
+    return await getInstanceQR(instanceName);
+  }, []);
+
+  const getStatus = useCallback(async (instanceName: string) => {
+    const status = await getInstanceStatus(instanceName);
+    setInstances(prev =>
+      prev.map(inst =>
+        inst.name === instanceName ? { ...inst, status } : inst
+      )
+    );
+    return status;
+  }, []);
+
+  const sendMessage = useCallback(async (
+    instanceName: string,
+    number: string,
+    message: string
+  ) => {
+    await sendWhatsAppMessage(instanceName, number, message);
+  }, []);
+
+  useEffect(() => {
+    fetchInstances();
+    // Refresh instances every 10 seconds
+    const interval = setInterval(fetchInstances, 10000);
+    return () => clearInterval(interval);
+  }, [fetchInstances]);
+
+  return {
+    instances,
+    loading,
+    error,
+    createInstance,
+    getQR,
+    getStatus,
+    sendMessage,
+    refetch: fetchInstances
+  };
+}

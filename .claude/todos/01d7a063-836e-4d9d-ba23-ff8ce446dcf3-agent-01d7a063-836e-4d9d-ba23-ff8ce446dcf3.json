@@ -1,0 +1,22 @@
+[
+  {
+    "content": "Process US-003: Create User Detail View - Step 5 (Quality Agent)",
+    "status": "completed",
+    "activeForm": "Processing US-003 Step 5 with quality-agent"
+  },
+  {
+    "content": "Process US-003: Create User Detail View - Step 10 (Security Agent)",
+    "status": "completed",
+    "activeForm": "Processing US-003 Step 10 with security-agent"
+  },
+  {
+    "content": "Run typecheck and verify implementation",
+    "status": "completed",
+    "activeForm": "Running typecheck and verifying"
+  },
+  {
+    "content": "Mark story complete and commit changes",
+    "status": "in_progress",
+    "activeForm": "Marking story complete and committing"
+  }
+]

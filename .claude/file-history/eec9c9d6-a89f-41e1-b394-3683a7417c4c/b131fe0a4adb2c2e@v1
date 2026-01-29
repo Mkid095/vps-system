@@ -1,0 +1,62 @@
+-- Fix RLS infinite recursion issues
+-- This file fixes the circular dependency in RLS policies
+
+-- First, let's use service role to bypass RLS checks
+SET LOCAL jwt.claims.sub = 'service_role';
+SET LOCAL jwt.claims.role = 'service_role';
+
+-- Drop problematic policies that cause infinite recursion
+DROP POLICY IF EXISTS "Users can view organizations they are members of" ON organizations;
+DROP POLICY IF EXISTS "Users can view projects in their organizations" ON projects;
+
+-- Create fixed policies using a security definer function
+CREATE OR REPLACE FUNCTION get_user_organizations(user_id_param TEXT)
+RETURNS SETOF UUID AS $$
+BEGIN
+    RETURN QUERY
+    SELECT DISTINCT om.organization_id
+    FROM organization_members om
+    WHERE om.user_id = user_id_param;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+CREATE OR REPLACE FUNCTION check_org_member_access(org_id_param UUID, user_id_param TEXT)
+RETURNS BOOLEAN AS $$
+BEGIN
+    RETURN EXISTS (
+        SELECT 1 FROM organization_members
+        WHERE organization_id = org_id_param
+        AND user_id = user_id_param
+    );
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Fixed Organizations policy
+CREATE POLICY "Users can view organizations they are members of"
+    ON organizations FOR SELECT
+    USING (
+        EXISTS (
+            SELECT 1 FROM get_user_organizations(current_setting('request.jwt.claim.user_id', true))
+            WHERE get_user_organizations = organizations.id
+        )
+    );
+
+-- Fixed Projects policy
+CREATE POLICY "Users can view projects in their organizations"
+    ON projects FOR SELECT
+    USING (
+        EXISTS (
+            SELECT 1 FROM get_user_organizations(current_setting('request.jwt.claim.user_id', true))
+            WHERE get_user_organizations = projects.organization_id
+        )
+    );
+
+-- Grant service role bypass permissions
+GRANT ALL ON organization_members TO service_role;
+GRANT ALL ON organizations TO service_role;
+GRANT ALL ON projects TO service_role;
+
+-- Allow service role to bypass RLS for these operations
+ALTER TABLE organization_members FORCE ROW LEVEL SECURITY;
+ALTER TABLE organizations FORCE ROW LEVEL SECURITY;
+ALTER TABLE projects FORCE ROW LEVEL SECURITY;

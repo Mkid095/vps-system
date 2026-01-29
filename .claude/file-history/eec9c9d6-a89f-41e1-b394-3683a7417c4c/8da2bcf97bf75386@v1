@@ -1,0 +1,140 @@
+// Generate MCP access token for an organization
+
+import { NextRequest, NextResponse } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
+import { generateOrganizationToken } from '@/lib/mcp/tokens';
+
+const SUPABASE_URL = process.env.SUPABASE_URL || 'http://localhost:8000';
+const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+
+export async function POST(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
+
+    // Get organization
+    const { data: organization, error: orgError } = await supabase
+      .from('organizations')
+      .select('*')
+      .eq('id', params.id)
+      .single();
+
+    if (orgError || !organization) {
+      return NextResponse.json(
+        { error: 'Organization not found' },
+        { status: 404 }
+      );
+    }
+
+    // Get user ID from auth header
+    const authHeader = request.headers.get('authorization');
+    if (!authHeader?.startsWith('Bearer ')) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
+
+    const token = authHeader.substring(7);
+
+    // Verify user is member of organization
+    const { data: { user } } = await supabase.auth.getUser(token);
+    if (!user) {
+      return NextResponse.json(
+        { error: 'Invalid authentication' },
+        { status: 401 }
+      );
+    }
+
+    const { data: member } = await supabase
+      .from('organization_members')
+      .select('*')
+      .eq('organization_id', params.id)
+      .eq('user_id', user.id)
+      .single();
+
+    if (!member) {
+      return NextResponse.json(
+        { error: 'Not a member of this organization' },
+        { status: 403 }
+      );
+    }
+
+    // Generate MCP token
+    const mcpToken = await generateOrganizationToken(
+      params.id,
+      user.id,
+      member.role
+    );
+
+    // Return token and MCP configuration
+    const mcpUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3005'}/api/mcp`;
+
+    return NextResponse.json({
+      access_token: mcpToken,
+      organization_id: params.id,
+      mcp_url: mcpUrl,
+      mcp_config: {
+        mcpServers: {
+          nextmavens: {
+            type: 'http',
+            url: mcpUrl,
+            headers: {
+              Authorization: `Bearer ${mcpToken}`,
+            },
+          },
+        },
+      },
+      claude_desktop_config: {
+        mcpServers: {
+          nextmavens: {
+            command: 'node',
+            args: [
+              '-e',
+              `require('http').request('${mcpUrl}', {method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer ${mcpToken}'},body:JSON.stringify(${JSON.stringify({jsonrpc:'2.0',id:1,method:'initialize',params:{protocolVersion:'2025-06-18',capabilities:{},clientInfo:{name:'claude-code',version:'1.0.0'}}})})},(res)=>{let data='';res.on('data',d=>data+=d);res.on('end',()=>console.log(data));})`
+            ],
+          },
+        },
+      },
+      install_command: `claude mcp add nextmavens -- npx -y @nextmavens/mcp-server --url ${mcpUrl} --token ${mcpToken}`,
+    });
+  } catch (error) {
+    console.error('Error generating MCP token:', error);
+    return NextResponse.json(
+      { error: 'Failed to generate token' },
+      { status: 500 }
+    );
+  }
+}
+
+// GET current token status
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const authHeader = request.headers.get('authorization');
+    if (!authHeader?.startsWith('Bearer ')) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
+
+    const mcpUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3005'}/api/mcp`;
+
+    return NextResponse.json({
+      organization_id: params.id,
+      mcp_url: mcpUrl,
+      has_token: false,
+      instructions: 'Use POST to generate a new MCP access token',
+    });
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Failed to get token status' },
+      { status: 500 }
+    );
+  }
+}

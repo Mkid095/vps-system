@@ -1,0 +1,20 @@
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"recovery","msg":"mailer: reloaded template type: recovery","time":"2026-01-25T20:26:32Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"email_change","msg":"mailer: reloaded template type: email_change","time":"2026-01-25T20:26:32Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"magic_link","msg":"mailer: reloaded template type: magic_link","time":"2026-01-25T20:26:32Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"reauthentication","msg":"mailer: reloaded template type: reauthentication","time":"2026-01-25T20:26:32Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"password_changed_notification","msg":"mailer: reloaded template type: password_changed_notification","time":"2026-01-25T20:26:32Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"email_changed_notification","msg":"mailer: reloaded template type: email_changed_notification","time":"2026-01-25T20:26:32Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"phone_changed_notification","msg":"mailer: reloaded template type: phone_changed_notification","time":"2026-01-25T20:26:32Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"identity_linked_notification","msg":"mailer: reloaded template type: identity_linked_notification","time":"2026-01-25T20:26:32Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"identity_unlinked_notification","msg":"mailer: reloaded template type: identity_unlinked_notification","time":"2026-01-25T20:26:32Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"mfa_factor_enrolled_notification","msg":"mailer: reloaded template type: mfa_factor_enrolled_notification","time":"2026-01-25T20:26:32Z"}
+{"component":"api","level":"warning","msg":"DEPRECATION NOTICE: GOTRUE_JWT_ADMIN_GROUP_NAME not supported by Supabase's GoTrue, will be removed soon","time":"2026-01-25T20:26:32Z"}
+{"component":"api","level":"warning","msg":"DEPRECATION NOTICE: GOTRUE_JWT_DEFAULT_GROUP_NAME not supported by Supabase's GoTrue, will be removed soon","time":"2026-01-25T20:26:32Z"}
+{"level":"info","msg":"GoTrue API started on: 0.0.0.0:9999","time":"2026-01-25T20:26:32Z","version":"v2.185.0"}
+{"component":"apiworker","level":"info","msg":"apiworker: index worker started","time":"2026-01-25T20:26:32Z","worker_type":"apiworker_index_worker"}
+{"component":"apiworker","level":"info","msg":"apiworker: config notifier started","time":"2026-01-25T20:26:32Z","worker_type":"apiworker_config_notifier"}
+{"component":"apiworker","level":"info","msg":"apiworker: template cache worker started","time":"2026-01-25T20:26:32Z","worker_type":"apiworker_template_cache"}
+{"component":"apiworker","level":"info","msg":"apiworker: db worker started","time":"2026-01-25T20:26:32Z","worker_type":"apiworker_db_worker"}
+{"component":"apiworker","config_conn_max_idle_time":"0s","config_conn_max_lifetime":"0s","config_conn_percentage":0,"config_max_idle_pool_size":0,"config_max_pool_size":0,"level":"info","limit_conn_max_idle_time":"0s","limit_conn_max_lifetime":"0s","limit_max_idle_conns":0,"limit_max_open_conns":0,"limit_strategy":"fixed","msg":"applying connection limits to db using the \"fixed\" strategy","server_max_conns":100,"time":"2026-01-25T20:26:32Z","worker_type":"apiworker_db_worker"}
+{"component":"api","duration":83014,"level":"info","method":"GET","msg":"request completed","path":"/","referer":"https://nextmavens.cloud","remote_addr":"::1","request_id":"4778a05a-4656-4b14-a96e-265331717448","status":404,"time":"2026-01-25T20:26:37Z"}
+{"component":"api","duration":61822,"level":"info","method":"GET","msg":"request completed","path":"/","referer":"https://nextmavens.cloud","remote_addr":"::1","request_id":"a7d1cfc8-3490-4d84-9c9c-91759b972397","status":404,"time":"2026-01-25T20:26:43Z"}

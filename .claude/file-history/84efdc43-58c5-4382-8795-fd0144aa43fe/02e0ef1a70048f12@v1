@@ -1,0 +1,119 @@
+const TelegramBot = require('node-telegram-bot-api');
+const express = require('express');
+require('dotenv').config();
+
+const app = express();
+app.use(express.json());
+
+// Telegram Bot Configuration
+const botToken = process.env.TELEGRAM_BOT_TOKEN;
+const chatId = process.env.TELEGRAM_CHAT_ID;
+const channelId = process.env.TELEGRAM_CHANNEL_ID;
+
+const bot = new TelegramBot(botToken, { polling: false });
+
+// Helper: Format deployment message
+const formatDeploymentMessage = (data) => {
+  const { status, projectName, repository, branch, commit, error, deployUrl, startTime, endTime } = data;
+
+  const emoji = status === 'success' ? '✅' : status === 'failure' ? '❌' : '🔄';
+  const statusText = status === 'success' ? 'Successfully Deployed' : status === 'failure' ? 'Deployment Failed' : 'Deployment Started';
+
+  let message = `${emoji} *${statusText}*\n\n`;
+  message += `📦 *Project:* ${projectName || 'N/A'}\n`;
+  message += `📂 *Repository:* ${repository || 'N/A'}\n`;
+  message += `🌿 *Branch:* ${branch || 'main'}\n`;
+
+  if (commit) {
+    message += `🔖 *Commit:* \`${commit.substring(0, 7)}\`\n`;
+  }
+
+  if (deployUrl) {
+    message += `🔗 *URL:* ${deployUrl}\n`;
+  }
+
+  if (error && status === 'failure') {
+    message += `\n🚨 *Error:*\n\`\`\`\n${error}\n\`\`\`\n`;
+  }
+
+  if (startTime) {
+    message += `\n⏰ *Started:* ${new Date(startTime).toLocaleString()}\n`;
+  }
+
+  if (endTime) {
+    const duration = Math.round((new Date(endTime) - new Date(startTime)) / 1000);
+    message += `⏱️ *Duration:* ${duration}s\n`;
+  }
+
+  return message;
+};
+
+// Send deployment notification
+const sendNotification = async (data) => {
+  try {
+    const message = formatDeploymentMessage(data);
+    const target = channelId || chatId;
+
+    await bot.sendMessage(target, message, { parse_mode: 'Markdown' });
+    console.log('Notification sent successfully');
+    return { success: true };
+  } catch (error) {
+    console.error('Error sending notification:', error.message);
+    return { success: false, error: error.message };
+  }
+};
+
+// Webhook endpoint for Dokploy
+app.post('/webhook/deployment', async (req, res) => {
+  const { status, projectName, repository, branch, commit, error, deployUrl, startTime, endTime } = req.body;
+
+  // Send notification for all deployment events
+  await sendNotification({
+    status: status || 'unknown',
+    projectName,
+    repository,
+    branch,
+    commit,
+    error,
+    deployUrl,
+    startTime,
+    endTime
+  });
+
+  res.json({ received: true });
+});
+
+// Manual notification endpoint
+app.post('/notify', async (req, res) => {
+  const result = await sendNotification(req.body);
+  res.json(result);
+});
+
+// Health check
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', service: 'telegram-deployment-bot', timestamp: new Date().toISOString() });
+});
+
+// Test endpoint
+app.get('/test', async (req, res) => {
+  const result = await sendNotification({
+    status: 'success',
+    projectName: 'Test Project',
+    repository: 'test/repo',
+    branch: 'main',
+    commit: 'abc123def456',
+    deployUrl: 'https://example.com',
+    startTime: new Date().toISOString(),
+    endTime: new Date().toISOString()
+  });
+  res.json(result);
+});
+
+const PORT = process.env.PORT || 3002;
+app.listen(PORT, () => {
+  console.log(`Telegram Deployment Bot running on port ${PORT}`);
+  console.log(`Chat ID: ${chatId}`);
+  console.log(`Channel ID: ${channelId}`);
+});
+
+module.exports = { sendNotification };

@@ -1,0 +1,26 @@
+# Usage Tracking - Progress Tracker
+
+## Feature: Usage Tracking
+**Branch**: flow/usage-tracking
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (9 total)
+
+| US-001 | Create Usage Metrics Table | 1 | Pending | |
+| US-002 | Track Database Usage | 1 | Pending | |
+| US-003 | Track Realtime Usage | 1 | Pending | |
+| US-004 | Track Storage Usage | 1 | Pending | |
+| US-005 | Track Auth Usage | 2 | Pending | |
+| US-006 | Create Usage Aggregation API | 1 | Pending | |
+| US-007 | Create Usage Dashboard | 2 | Pending | |
+| US-008 | Export Usage Data | 2 | Pending | |
+| US-009 | Implement Usage Sampling | 3 | Pending | |
+
+## Progress Summary
+- Total Stories: 9
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 9
+
+## Iteration Log

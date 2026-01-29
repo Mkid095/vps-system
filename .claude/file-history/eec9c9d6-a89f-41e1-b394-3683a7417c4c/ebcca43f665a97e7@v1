@@ -1,0 +1,254 @@
+'use client';
+
+import { useState } from 'react';
+
+export default function BackupPage() {
+  const [activeTab, setActiveTab] = useState<'cloudinary' | 'telegram'>('cloudinary');
+
+  return (
+    <div className="backup-page">
+      <div className="page-header">
+        <div>
+          <h1 className="page-title">Backup & Restore</h1>
+          <p className="page-subtitle">
+            Manage system backups with Cloudinary and Telegram integration
+          </p>
+        </div>
+      </div>
+
+      {/* Tabs */}
+      <div className="tabs">
+        <button
+          className={`tab ${activeTab === 'cloudinary' ? 'active' : ''}`}
+          onClick={() => setActiveTab('cloudinary')}
+        >
+          <span className="mono">[C]</span>
+          Cloudinary
+        </button>
+        <button
+          className={`tab ${activeTab === 'telegram' ? 'active' : ''}`}
+          onClick={() => setActiveTab('telegram')}
+        >
+          <span className="mono">[T]</span>
+          Telegram
+        </button>
+      </div>
+
+      {/* Cloudinary Backup */}
+      {activeTab === 'cloudinary' && (
+        <div className="backup-section">
+          <div className="backup-card">
+            <h2 className="card-title">Cloudinary Image Backup</h2>
+            <p className="card-desc">
+              Automatically upload and backup images to Cloudinary storage.
+            </p>
+            <div className="backup-status">
+              <span className="status-indicator status-success mono">[ACTIVE]</span>
+              <span className="status-text">Connected to Cloudinary</span>
+            </div>
+            <div className="backup-stats">
+              <Stat label="Images Backed Up" value="0" />
+              <Stat label="Storage Used" value="0 MB" />
+              <Stat label="Last Backup" value="Never" />
+            </div>
+            <button className="btn btn-primary">
+              <span className="mono">[↑]</span>
+              Backup Now
+            </button>
+          </div>
+
+          <div className="settings-card">
+            <h3 className="settings-title">Cloudinary Settings</h3>
+            <div className="setting-item">
+              <label className="setting-label">Cloud Name</label>
+              <input
+                type="text"
+                defaultValue="nextmavens"
+                className="form-input"
+              />
+            </div>
+            <div className="setting-item">
+              <label className="setting-label">Upload Preset</label>
+              <input
+                type="text"
+                defaultValue="nextmavens-backup"
+                className="form-input"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Telegram Backup */}
+      {activeTab === 'telegram' && (
+        <div className="backup-section">
+          <div className="backup-card">
+            <h2 className="card-title">Telegram Bot Backup</h2>
+            <p className="card-desc">
+              Send database backups and important files to Telegram for secure off-site storage.
+            </p>
+            <div className="backup-status">
+              <span className="status-indicator status-success mono">[ACTIVE]</span>
+              <span className="status-text">Bot configured and ready</span>
+            </div>
+            <div className="backup-stats">
+              <Stat label="Backups Sent" value="0" />
+              <Stat label="Last Backup" value="Never" />
+              <Stat label="Chat ID" value="Configured" />
+            </div>
+            <button className="btn btn-primary">
+              <span className="mono">[↑]</span>
+              Send Backup Now
+            </button>
+          </div>
+
+          <div className="settings-card">
+            <h3 className="settings-title">Telegram Settings</h3>
+            <div className="setting-item">
+              <label className="setting-label">Bot Token</label>
+              <input
+                type="password"
+                defaultValue="************************"
+                className="form-input"
+              />
+            </div>
+            <div className="setting-item">
+              <label className="setting-label">Chat ID</label>
+              <input
+                type="text"
+                defaultValue="********"
+                className="form-input"
+              />
+            </div>
+            <div className="setting-item">
+              <label className="setting-label">Backup Schedule</label>
+              <select className="form-input">
+                <option value="">Manual only</option>
+                <option value="daily">Daily at 2 AM</option>
+                <option value="weekly">Weekly on Sunday</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <style>{`
+        .tabs {
+          display: flex;
+          gap: 0.5rem;
+          margin-bottom: 2rem;
+        }
+
+        .tab {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.625rem 1rem;
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: 0.375rem;
+          color: var(--foreground-muted);
+          font-size: 0.875rem;
+          cursor: pointer;
+          transition: all 0.15s ease;
+        }
+
+        .tab:hover {
+          background: var(--surface-hover);
+        }
+
+        .tab.active {
+          background: var(--primary);
+          border-color: var(--primary);
+          color: white;
+        }
+
+        .backup-section {
+          display: grid;
+          grid-template-columns: 2fr 1fr;
+          gap: 1rem;
+        }
+
+        @media (max-width: 1024px) {
+          .backup-section {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        .backup-card, .settings-card {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: 0.5rem;
+          padding: 1.5rem;
+        }
+
+        .card-title {
+          font-size: 1rem;
+          font-weight: 600;
+          margin: 0 0 0.5rem 0;
+        }
+
+        .card-desc {
+          color: var(--foreground-muted);
+          font-size: 0.875rem;
+          margin: 0 0 1rem 0;
+        }
+
+        .backup-status {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.75rem 1rem;
+          background: var(--background);
+          border-radius: 0.375rem;
+          margin-bottom: 1rem;
+        }
+
+        .status-indicator {
+          font-size: 0.75rem;
+        }
+
+        .status-success {
+          color: var(--success);
+        }
+
+        .status-text {
+          font-size: 0.875rem;
+        }
+
+        .backup-stats {
+          display: flex;
+          gap: 2rem;
+          margin-bottom: 1rem;
+        }
+
+        .setting-item {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          margin-bottom: 1rem;
+        }
+
+        .setting-label {
+          font-size: 0.875rem;
+          font-weight: 500;
+        }
+
+        .settings-title {
+          font-size: 0.875rem;
+          font-weight: 600;
+          margin: 0 0 1rem 0;
+        }
+      `}</style>
+    </div>
+  );
+}
+
+function Stat({ label, value }: { label: string; value: string | number }) {
+  return (
+    <div className="backup-stat">
+      <div className="backup-stat-label text-muted">{label}</div>
+      <div className="backup-stat-value mono">{value}</div>
+    </div>
+  );
+}

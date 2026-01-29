@@ -1,0 +1,43 @@
+---
+memoryVersion: 1
+storyId: US-006
+storyTitle: Audit Project Suspensions
+completedDate: 2026-01-28
+---
+
+STORY: US-006 - Audit Project Suspensions
+========================
+
+DESCRIPTION:
+As a platform operator, I want all project suspensions logged so that I can understand why projects were suspended.
+
+MAVEN STEPS COMPLETED:
+[1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Integrated audit logging for all project suspension operations. Manual suspensions (via API endpoint) and automatic suspensions (background job, spike detection, pattern detection) now create comprehensive audit logs. The implementation uses existing logProjectAction helper functions and includes proper actor identification (authenticated user for manual, 'system' for automatic), project targeting, and rich metadata including reason and hard_cap_exceeded flags.
+
+KEY FILES:
+- developer-portal/src/app/api/projects/[projectId]/suspensions/route.ts - Manual suspension/unsuspension with audit logging
+- developer-portal/src/features/abuse-controls/lib/suspensions.ts - Auto-suspension audit logging
+- database/src/helpers.ts - logProjectAction.suspended() and logProjectAction.autoSuspended() helpers
+
+DECISIONS MADE:
+- Used existing logProjectAction helper functions (suspended, autoSuspended) from US-001
+- Manual suspensions use blocking audit logging (wait for confirmation)
+- Auto-suspensions use non-blocking audit logging (don't fail suspension if audit fails)
+- Actor is 'system' for automatic suspensions, authenticated user for manual
+
+INTEGRATION POINTS:
+- Uses @nextmavens/audit-logs-database package (from US-001, US-002)
+- Integrates with authenticateRequest middleware for actor identification
+- Uses control_plane.audit_logs table (created in US-001)
+- Suspensions route: POST /api/projects/[projectId]/suspensions
+
+LESSONS LEARNED:
+- All suspension paths must be covered: manual API, background job, spike detection, pattern detection
+- System actor should only be used for automatic operations (enforced by helper function)
+- Non-blocking audit logging for async operations prevents cascading failures
+- Manual operations should use blocking audit logging for confirmation
+- Security: Never log Authorization headers or cookies - only IP and user agent
+- Type safety: All new code uses proper TypeScript types (no 'any')

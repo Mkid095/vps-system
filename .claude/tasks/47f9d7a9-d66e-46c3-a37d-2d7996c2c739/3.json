@@ -1,0 +1,9 @@
+{
+  "id": "3",
+  "subject": "Create Control Plane Database Schema",
+  "description": "Create comprehensive database migration script for control_plane schema including:\n- projects table (with org_id, status, environment)\n- project_services (service enablement)\n- organizations table\n- organization_members (with roles)\n- Enhanced api_keys (key_type, scopes, environment, usage tracking)\n- quotas table (monthly limits vs hard caps)\n- usage_snapshots (metrics tracking)\n- jobs table (background job queue)\n- idempotency_keys (duplicate protection)\n- audit_logs (who did what when)\n- feature_flags (kill switches)\n- secrets (versioned with rotation)\n- And all other Phase 0 tables\n\nScript should be idempotent and support rollback.",
+  "activeForm": "Creating control plane database schema",
+  "status": "pending",
+  "blocks": [],
+  "blockedBy": []
+}

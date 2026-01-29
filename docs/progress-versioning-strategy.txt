@@ -1,0 +1,27 @@
+# Versioning Strategy - Progress Tracker
+
+## Feature: Versioning Strategy
+**Branch**: flow/versioning-strategy
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (10 total)
+
+| US-001 | Document API Versioning | 1 | Pending | |
+| US-002 | Document SDK Semantic Versioning | 1 | Pending | |
+| US-003 | Define Deprecation Timeline | 1 | Pending | |
+| US-004 | Document Breaking Change Policy | 1 | Pending | |
+| US-005 | Create Migration Guides | 2 | Pending | |
+| US-006 | Document Version Discovery | 2 | Pending | |
+| US-007 | Add Version Headers | 2 | Pending | |
+| US-008 | Document Client Compatibility | 2 | Pending | |
+| US-009 | Document Sunset Policy | 3 | Pending | |
+| US-010 | Add Version Changelog | 2 | Pending | |
+
+## Progress Summary
+- Total Stories: 10
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 10
+
+## Iteration Log

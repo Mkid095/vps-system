@@ -1,0 +1,9 @@
+✓ Starting...
+✓ Ready in 111ms
+Unexpected error: Error: Failed to create organization: new row violates row-level security policy for table "organizations"
+    at i (.next/server/chunks/[root-of-the-server]__7a9aa6cb._.js:1:2725)
+    at async (.next/server/chunks/[root-of-the-server]__cf9c0be2._.js:1:6230)
+    at async (.next/server/chunks/[root-of-the-server]__ee0f78f4._.js:139:97618)
+    at async d (.next/server/chunks/[root-of-the-server]__cf9c0be2._.js:1:9247)
+    at async l (.next/server/chunks/[root-of-the-server]__cf9c0be2._.js:1:10288)
+    at async Module.P (.next/server/chunks/[root-of-the-server]__cf9c0be2._.js:1:11366)

@@ -1,0 +1,185 @@
+---
+project: CLI Tool
+branch: flow/cli-tool
+availableMCPs:
+  - supabase
+  - chrome-devtools
+  - web-search-prime
+---
+
+# CLI Tool (@nextmavens/cli)
+
+## Overview
+Build an npm package `@nextmavens/cli` with commands for platform management: login, create-project, deploy, logs, db:migrate, whatsapp-connect. Token and API key authentication. Works with local dev and VPS deploy.
+
+## Technical Approach
+- oclif or yargs framework
+- Config file: ~/.nextmavens/config.json
+- Token stored securely
+- API communication via platform endpoints
+- Docker commands for VPS interaction
+- pnpm workspace integration
+
+## User Stories
+
+### US-001: CLI Login
+**Priority:** 1
+**Maven Steps:** [1, 7, 10]
+**MCP Tools:** ["chrome-devtools"]
+
+As a developer, I want to authenticate via CLI so that I can manage projects from my terminal.
+
+**Acceptance Criteria:**
+- Command: `npx nextmavens login`
+- Prompts for email/password or token
+- Stores credentials in ~/.nextmavens/config.json
+- Verifies authentication
+- Typecheck passes
+
+**Status:** false
+
+### US-002: Create Project from CLI
+**Priority:** 1
+**Maven Steps:** [1, 7, 10]
+**MCP Tools:** ["supabase"]
+
+As a developer, I want to create a project from CLI so that I can quickly set up new applications.
+
+**Acceptance Criteria:**
+- Command: `npx nextmavens create-project`
+- Prompts: org selection, name, description
+- Calls API: POST /api/projects
+- Displays API keys and connection string
+- Typecheck passes
+
+**Status:** false
+
+### US-003: Deploy Application
+**Priority:** 1
+**Maven Steps:** [1, 7, 10]
+**MCP Tools:** ["chrome-devtools"]
+
+As a developer, I want to deploy my app via CLI so that I can push updates to the platform.
+
+**Acceptance Criteria:**
+- Command: `npx nextmavens deploy --project=xxx`
+- Detects framework (Next.js, Express, etc.)
+- Builds application
+- Uploads to VPS via rsync or git
+- Restarts service
+- Shows deployment URL
+- Typecheck passes
+
+**Status:** false
+
+### US-004: View Logs
+**Priority:** 1
+**Maven Steps:** [1, 7]
+**MCP Tools:** []
+
+As a developer, I want to stream logs via CLI so that I can debug issues.
+
+**Acceptance Criteria:**
+- Command: `npx nextmavens logs --project=xxx --service=api`
+- Streams Docker container logs
+- Follow mode with --follow flag
+- Color-coded output
+- Typecheck passes
+
+**Status:** false
+
+### US-005: Run Database Migrations
+**Priority:** 2
+**Maven Steps:** [1, 7, 10]
+**MCP Tools:** ["supabase"]
+
+As a developer, I want to run migrations via CLI so that I can update my database schema.
+
+**Acceptance Criteria:**
+- Command: `npx nextmavens db:migrate --project=xxx`
+- Reads migrations from ./migrations folder
+- Runs migrations against project database
+- Tracks migration state
+- Rollback support
+- Typecheck passes
+
+**Status:** false
+
+### US-006: WhatsApp Connect
+**Priority:** 2
+**Maven Steps:** [1, 7]
+**MCP Tools**: ["chrome-devtools"]
+
+As a developer, I want to connect WhatsApp via CLI so that I can set up instances from terminal.
+
+**Acceptance Criteria:**
+- Command: `npx nextmavens whatsapp-connect --project=xxx --instance=name`
+- Creates instance via API
+- Fetches and displays QR code (ASCII or base64)
+- Waits for connection
+- Shows connected phone number
+- Typecheck passes
+
+**Status:** false
+
+### US-007: Environment Variable Management
+**Priority:** 2
+**Maven Steps:** [1, 7]
+**MCP Tools:** []
+
+As a developer, I want to manage env vars via CLI so that I can configure my application.
+
+**Acceptance Criteria:**
+- Command: `npx nextmavens env:set KEY=value --project=xxx`
+- Command: `npx nextmavens env:get KEY --project=xxx`
+- Command: `npx nextmavens env:list --project=xxx`
+- Stores encrypted in database
+- Typecheck passes
+
+**Status:** false
+
+### US-008: Project Status
+**Priority:** 3
+**Maven Steps:** [1, 7]
+**MCP Tools:** []
+
+As a developer, I want to check project status so that I can see health and metrics.
+
+**Acceptance Criteria:**
+- Command: `npx nextmavens status --project=xxx`
+- Shows: status, database size, WhatsApp instances, API usage
+- Storage usage with warnings
+- Typecheck passes
+
+**Status:** false
+
+### US-009: CLI Logout
+**Priority:** 3
+**Maven Steps:** [1, 7]
+**MCP Tools:** []
+
+As a developer, I want to logout from CLI so that I can clear my credentials.
+
+**Acceptance Criteria:**
+- Command: `npx nextmavens logout`
+- Removes stored credentials
+- Confirms action
+- Typecheck passes
+
+**Status:** false
+
+### US-010: Shell Completion
+**Priority:** 3
+**Maven Steps:** [1, 7]
+**MCP Tools:** []
+
+As a developer, I want tab completion so that I can use the CLI more efficiently.
+
+**Acceptance Criteria:**
+- Bash completion script
+- Zsh completion script
+- Completes commands, flags, project names
+- Installation command to enable
+- Typecheck passes
+
+**Status:** false

@@ -1,0 +1,162 @@
+// NextMavens Platform API - Projects Endpoint
+// POST /api/projects - Create project (with database)
+// GET /api/projects - List user's projects
+
+import { NextRequest } from 'next/server';
+import { withAuthAndError } from '@/lib/middleware';
+import {
+  getUserProjects,
+  canUserAccessProject,
+  isProjectSlugAvailable,
+} from '@/lib/db/projects';
+import {
+  getOrganizationRole,
+} from '@/lib/db/organizations';
+import { getAdminClient } from '@/lib/supabase-client';
+import { slugify, generateApiKey, hashApiKey, buildConnectionString } from '@/lib/utils';
+import type { CreateProjectInput, Project } from '@/lib/types';
+
+// GET /api/projects - List projects
+export async function GET(req: NextRequest) {
+  return withAuthAndError(async (user) => {
+    const { searchParams } = new URL(req.url);
+    const orgId = searchParams.get('org_id') || undefined;
+    const status = searchParams.get('status') as Project['status'] || undefined;
+
+    const projects = await getUserProjects(user.id, {
+      organizationId: orgId,
+      status,
+    });
+
+    return {
+      items: projects,
+      total: projects.length,
+    };
+  })(req);
+}
+
+// POST /api/projects - Create project with database
+export async function POST(req: NextRequest) {
+  return withAuthAndError(async (user, req) => {
+    const body = await req.json() as CreateProjectInput;
+
+    // Validate input
+    if (!body.name || body.name.trim().length < 2) {
+      throw new Error('Name must be at least 2 characters');
+    }
+
+    if (!body.organization_id) {
+      throw new Error('Organization ID is required');
+    }
+
+    // Verify user is member of the organization (at least member role)
+    const role = await getOrganizationRole(body.organization_id, user.id);
+    if (!role) {
+      throw new Error('Not a member of this organization');
+    }
+
+    const slug = body.slug || slugify(body.name);
+
+    // Validate slug format
+    if (!/^[a-z0-9-]+$/.test(slug)) {
+      throw new Error('Slug must contain only lowercase letters, numbers, and hyphens');
+    }
+
+    // Check if slug is already taken in this org
+    const slugAvailable = await isProjectSlugAvailable(body.organization_id, slug);
+    if (!slugAvailable) {
+      throw new Error('A project with this slug already exists in this organization');
+    }
+
+    const supabase = getAdminClient();
+
+    // Generate API keys and secrets
+    const anonKey = generateApiKey();
+    const serviceRoleKey = generateApiKey();
+    const jwtSecret = generateApiKey().key;
+
+    // Create project record with status 'provisioning'
+    const { data: project, error: projectError } = await supabase
+      .from('projects')
+      .insert({
+        organization_id: body.organization_id,
+        name: body.name.trim(),
+        slug,
+        description: body.description,
+        status: 'provisioning',
+        anon_key: hashApiKey(anonKey.key),
+        service_role_key: hashApiKey(serviceRoleKey.key),
+        jwt_secret: jwtSecret,
+      })
+      .select()
+      .single();
+
+    if (projectError) {
+      throw new Error(`Failed to create project: ${projectError.message}`);
+    }
+
+    // Generate database name and role
+    const projectId = project.id;
+    const dbName = `project_${projectId.replace(/-/g, '_')}`;
+    const roleName = `app_${projectId.replace(/-/g, '_')}`;
+    const dbPassword = generateApiKey().key;
+
+    // Call the database creation function
+    const { data: dbResult, error: dbError } = await supabase.rpc('create_project_database', {
+      project_id: projectId,
+    });
+
+    if (dbError) {
+      // Rollback project creation
+      await supabase.from('projects').delete().eq('id', projectId);
+      throw new Error(`Failed to create database: ${dbError.message}`);
+    }
+
+    // Update project with database info
+    const { data: updatedProject, error: updateError } = await supabase
+      .from('projects')
+      .update({
+        status: 'active',
+        db_name: dbName,
+        db_user: roleName,
+      })
+      .eq('id', projectId)
+      .select()
+      .single();
+
+    if (updateError) {
+      throw new Error(`Failed to update project: ${updateError.message}`);
+    }
+
+    // Provision complete Supabase stack (Studio, PostgREST, GoTrue, Kong)
+    // This is done asynchronously to not block the response
+    provisionStackAsync(projectId, slug, body.name.trim(), dbName, anonKey.key, serviceRoleKey.key, jwtSecret);
+
+    // Get the connection string from project_databases
+    const { data: dbCreds } = await supabase
+      .from('project_databases')
+      .select('*')
+      .eq('project_id', projectId)
+      .single();
+
+    const connectionString = dbCreds
+      ? buildConnectionString({
+          db_name: dbCreds.db_name,
+          db_user: dbCreds.db_user,
+          db_password: dbCreds.db_password,
+          db_host: dbCreds.db_host,
+          db_port: dbCreds.db_port,
+        })
+      : '';
+
+    // Return project with API keys (only show keys once on creation)
+    return {
+      ...updatedProject,
+      api_keys: {
+        anon: anonKey.key,
+        service_role: serviceRoleKey.key,
+      },
+      connection_string: connectionString,
+    };
+  })(req);
+}

@@ -1,0 +1,27 @@
+# Project Lifecycle - Progress Tracker
+
+## Feature: Project Lifecycle
+**Branch**: flow/project-lifecycle
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (10 total)
+
+| US-001 | Add Project Status Column | 1 | Pending | |
+| US-002 | Define State Behaviors | 1 | Pending | |
+| US-003 | Implement Activate Project | 1 | Pending | |
+| US-004 | Implement Suspend Project | 1 | Pending | |
+| US-005 | Implement Archive Project | 2 | Pending | |
+| US-006 | Implement Status Change API | 1 | Pending | |
+| US-007 | Enforce Status Checks at Gateway | 1 | Pending | |
+| US-008 | Create Status Badge UI | 2 | Pending | |
+| US-009 | Show Status Change History | 2 | Pending | |
+| US-010 | Implement Auto-Status Transitions | 2 | Pending | |
+
+## Progress Summary
+- Total Stories: 10
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 10
+
+## Iteration Log

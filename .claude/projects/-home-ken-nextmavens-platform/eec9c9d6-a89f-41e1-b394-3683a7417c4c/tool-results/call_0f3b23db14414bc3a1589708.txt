@@ -1,0 +1,6 @@
+OCI runtime exec failed: exec failed: unable to start container process: exec: "wget": executable file not found in $PATH
+PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"
+NAME="Debian GNU/Linux"
+VERSION_ID="12"
+VERSION="12 (bookworm)"
+VERSION_CODENAME=bookworm

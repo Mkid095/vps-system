@@ -1,0 +1,341 @@
+Initializing deployment
+Cloning Repo github.com/Mkid095/nextmavens-developer-portal.git to /etc/dokploy/compose/nextmavens-developerportal-pfxse0/code: ✅
+Cloning into '/etc/dokploy/compose/nextmavens-developerportal-pfxse0/code'...
+remote: Enumerating objects: 75, done.
+remote: Counting objects:   1% (1/75)        
+remote: Counting objects:   2% (2/75)        
+remote: Counting objects:   4% (3/75)        
+remote: Counting objects:   5% (4/75)        
+remote: Counting objects:   6% (5/75)        
+remote: Counting objects:   8% (6/75)        
+remote: Counting objects:   9% (7/75)        
+remote: Counting objects:  10% (8/75)        
+remote: Counting objects:  12% (9/75)        
+remote: Counting objects:  13% (10/75)        
+remote: Counting objects:  14% (11/75)        
+remote: Counting objects:  16% (12/75)        
+remote: Counting objects:  17% (13/75)        
+remote: Counting objects:  18% (14/75)        
+remote: Counting objects:  20% (15/75)        
+remote: Counting objects:  21% (16/75)        
+remote: Counting objects:  22% (17/75)        
+remote: Counting objects:  24% (18/75)        
+remote: Counting objects:  25% (19/75)        
+remote: Counting objects:  26% (20/75)        
+remote: Counting objects:  28% (21/75)        
+remote: Counting objects:  29% (22/75)        
+remote: Counting objects:  30% (23/75)        
+remote: Counting objects:  32% (24/75)        
+remote: Counting objects:  33% (25/75)        
+remote: Counting objects:  34% (26/75)        
+remote: Counting objects:  36% (27/75)        
+remote: Counting objects:  37% (28/75)        
+remote: Counting objects:  38% (29/75)        
+remote: Counting objects:  40% (30/75)        
+remote: Counting objects:  41% (31/75)        
+remote: Counting objects:  42% (32/75)        
+remote: Counting objects:  44% (33/75)        
+remote: Counting objects:  45% (34/75)        
+remote: Counting objects:  46% (35/75)        
+remote: Counting objects:  48% (36/75)        
+remote: Counting objects:  49% (37/75)        
+remote: Counting objects:  50% (38/75)        
+remote: Counting objects:  52% (39/75)        
+remote: Counting objects:  53% (40/75)        
+remote: Counting objects:  54% (41/75)        
+remote: Counting objects:  56% (42/75)        
+remote: Counting objects:  57% (43/75)        
+remote: Counting objects:  58% (44/75)        
+remote: Counting objects:  60% (45/75)        
+remote: Counting objects:  61% (46/75)        
+remote: Counting objects:  62% (47/75)        
+remote: Counting objects:  64% (48/75)        
+remote: Counting objects:  65% (49/75)        
+remote: Counting objects:  66% (50/75)        
+remote: Counting objects:  68% (51/75)        
+remote: Counting objects:  69% (52/75)        
+remote: Counting objects:  70% (53/75)        
+remote: Counting objects:  72% (54/75)        
+remote: Counting objects:  73% (55/75)        
+remote: Counting objects:  74% (56/75)        
+remote: Counting objects:  76% (57/75)        
+remote: Counting objects:  77% (58/75)        
+remote: Counting objects:  78% (59/75)        
+remote: Counting objects:  80% (60/75)        
+remote: Counting objects:  81% (61/75)        
+remote: Counting objects:  82% (62/75)        
+remote: Counting objects:  84% (63/75)        
+remote: Counting objects:  85% (64/75)        
+remote: Counting objects:  86% (65/75)        
+remote: Counting objects:  88% (66/75)        
+remote: Counting objects:  89% (67/75)        
+remote: Counting objects:  90% (68/75)        
+remote: Counting objects:  92% (69/75)        
+remote: Counting objects:  93% (70/75)        
+remote: Counting objects:  94% (71/75)        
+remote: Counting objects:  96% (72/75)        
+remote: Counting objects:  97% (73/75)        
+remote: Counting objects:  98% (74/75)        
+remote: Counting objects: 100% (75/75)        
+remote: Counting objects: 100% (75/75), done.
+remote: Compressing objects:   1% (1/52)        
+remote: Compressing objects:   3% (2/52)        
+remote: Compressing objects:   5% (3/52)        
+remote: Compressing objects:   7% (4/52)        
+remote: Compressing objects:   9% (5/52)        
+remote: Compressing objects:  11% (6/52)        
+remote: Compressing objects:  13% (7/52)        
+remote: Compressing objects:  15% (8/52)        
+remote: Compressing objects:  17% (9/52)        
+remote: Compressing objects:  19% (10/52)        
+remote: Compressing objects:  21% (11/52)        
+remote: Compressing objects:  23% (12/52)        
+remote: Compressing objects:  25% (13/52)        
+remote: Compressing objects:  26% (14/52)        
+remote: Compressing objects:  28% (15/52)        
+remote: Compressing objects:  30% (16/52)        
+remote: Compressing objects:  32% (17/52)        
+remote: Compressing objects:  34% (18/52)        
+remote: Compressing objects:  36% (19/52)        
+remote: Compressing objects:  38% (20/52)        
+remote: Compressing objects:  40% (21/52)        
+remote: Compressing objects:  42% (22/52)        
+remote: Compressing objects:  44% (23/52)        
+remote: Compressing objects:  46% (24/52)        
+remote: Compressing objects:  48% (25/52)        
+remote: Compressing objects:  50% (26/52)        
+remote: Compressing objects:  51% (27/52)        
+remote: Compressing objects:  53% (28/52)        
+remote: Compressing objects:  55% (29/52)        
+remote: Compressing objects:  57% (30/52)        
+remote: Compressing objects:  59% (31/52)        
+remote: Compressing objects:  61% (32/52)        
+remote: Compressing objects:  63% (33/52)        
+remote: Compressing objects:  65% (34/52)        
+remote: Compressing objects:  67% (35/52)        
+remote: Compressing objects:  69% (36/52)        
+remote: Compressing objects:  71% (37/52)        
+remote: Compressing objects:  73% (38/52)        
+remote: Compressing objects:  75% (39/52)        
+remote: Compressing objects:  76% (40/52)        
+remote: Compressing objects:  78% (41/52)        
+remote: Compressing objects:  80% (42/52)        
+remote: Compressing objects:  82% (43/52)        
+remote: Compressing objects:  84% (44/52)        
+remote: Compressing objects:  86% (45/52)        
+remote: Compressing objects:  88% (46/52)        
+remote: Compressing objects:  90% (47/52)        
+remote: Compressing objects:  92% (48/52)        
+remote: Compressing objects:  94% (49/52)        
+remote: Compressing objects:  96% (50/52)        
+remote: Compressing objects:  98% (51/52)        
+remote: Compressing objects: 100% (52/52)        
+remote: Compressing objects: 100% (52/52), done.
+Receiving objects:   1% (1/75)
+Receiving objects:   2% (2/75)
+Receiving objects:   4% (3/75)
+Receiving objects:   5% (4/75)
+Receiving objects:   6% (5/75)
+Receiving objects:   8% (6/75)
+Receiving objects:   9% (7/75)
+Receiving objects:  10% (8/75)
+Receiving objects:  12% (9/75)
+Receiving objects:  13% (10/75)
+Receiving objects:  14% (11/75)
+Receiving objects:  16% (12/75)
+Receiving objects:  17% (13/75)
+Receiving objects:  18% (14/75)
+Receiving objects:  20% (15/75)
+Receiving objects:  21% (16/75)
+Receiving objects:  22% (17/75)
+Receiving objects:  24% (18/75)
+Receiving objects:  25% (19/75)
+Receiving objects:  26% (20/75)
+Receiving objects:  28% (21/75)
+Receiving objects:  29% (22/75)
+Receiving objects:  30% (23/75)
+Receiving objects:  32% (24/75)
+Receiving objects:  33% (25/75)
+Receiving objects:  34% (26/75)
+Receiving objects:  36% (27/75)
+Receiving objects:  37% (28/75)
+Receiving objects:  38% (29/75)
+Receiving objects:  40% (30/75)
+Receiving objects:  41% (31/75)
+Receiving objects:  42% (32/75)
+Receiving objects:  44% (33/75)
+Receiving objects:  45% (34/75)
+Receiving objects:  46% (35/75)
+Receiving objects:  48% (36/75)
+Receiving objects:  49% (37/75)
+Receiving objects:  50% (38/75)
+Receiving objects:  52% (39/75)
+Receiving objects:  53% (40/75)
+Receiving objects:  54% (41/75)
+Receiving objects:  56% (42/75)
+Receiving objects:  57% (43/75)
+Receiving objects:  58% (44/75)
+Receiving objects:  60% (45/75)
+Receiving objects:  61% (46/75)
+Receiving objects:  62% (47/75)
+Receiving objects:  64% (48/75)
+Receiving objects:  65% (49/75)
+Receiving objects:  66% (50/75)
+Receiving objects:  68% (51/75)
+Receiving objects:  69% (52/75)
+Receiving objects:  70% (53/75)
+Receiving objects:  72% (54/75)
+Receiving objects:  73% (55/75)
+Receiving objects:  74% (56/75)
+Receiving objects:  76% (57/75)
+Receiving objects:  77% (58/75)
+Receiving objects:  78% (59/75)
+Receiving objects:  80% (60/75)
+Receiving objects:  81% (61/75)
+Receiving objects:  82% (62/75)
+Receiving objects:  84% (63/75)
+Receiving objects:  85% (64/75)
+Receiving objects:  86% (65/75)
+Receiving objects:  88% (66/75)
+Receiving objects:  89% (67/75)
+Receiving objects:  90% (68/75)
+Receiving objects:  92% (69/75)
+remote: Total 75 (delta 9), reused 58 (delta 5), pack-reused 0 (from 0)
+Receiving objects:  93% (70/75)
+Receiving objects:  94% (71/75)
+Receiving objects:  96% (72/75)
+Receiving objects:  97% (73/75)
+Receiving objects:  98% (74/75)
+Receiving objects: 100% (75/75)
+Receiving objects: 100% (75/75), 73.71 KiB | 12.28 MiB/s, done.
+Resolving deltas:   0% (0/9)
+Resolving deltas:  11% (1/9)
+Resolving deltas:  22% (2/9)
+Resolving deltas:  33% (3/9)
+Resolving deltas:  44% (4/9)
+Resolving deltas:  55% (5/9)
+Resolving deltas:  66% (6/9)
+Resolving deltas:  77% (7/9)
+Resolving deltas:  88% (8/9)
+Resolving deltas: 100% (9/9)
+Resolving deltas: 100% (9/9), done.
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║ App Name: nextmavens-developerportal-pfxse0                                  ║
+║ Build Compose 🐳                                                             ║
+║ Detected: 0 mounts 📂                                                        ║
+║ Command: docker compose -p nextmavens-developerportal-pfxse0 -f              ║
+║ ./docker-compose.yml up -d --build --remove-orphans                          ║
+║ Source Type: docker github ✅                                                ║
+║ Compose Type: docker-compose ✅                                              ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+Image nextmavens-developerportal-pfxse0-developer-portal Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 662B done
+#1 DONE 0.0s
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.14kB done
+#2 DONE 0.0s
+#3 [internal] load metadata for docker.io/library/node:18-alpine
+#3 DONE 0.7s
+#4 [internal] load .dockerignore
+#4 transferring context: 79B done
+#4 DONE 0.0s
+#5 [base 1/1] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+#5 resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e 0.0s done
+#5 DONE 0.0s
+#6 [internal] load build context
+#6 transferring context: 287.98kB 0.0s done
+#6 DONE 0.0s
+#7 [deps 2/5] WORKDIR /app
+#7 CACHED
+#8 [deps 4/5] COPY package.json ./
+#8 CACHED
+#9 [deps 5/5] RUN pnpm install
+#9 CACHED
+#10 [builder 1/5] WORKDIR /app
+#10 CACHED
+#11 [deps 1/5] RUN apk add --no-cache libc6-compat
+#11 CACHED
+#12 [deps 3/5] RUN npm install -g pnpm
+#12 CACHED
+#13 [builder 2/5] COPY --from=deps /app/node_modules ./node_modules
+#13 CACHED
+#14 [builder 3/5] COPY . .
+#14 DONE 0.0s
+#15 [builder 4/5] RUN npm install -g pnpm
+#15 1.526
+#15 1.526 added 1 package in 1s
+#15 1.528
+#15 1.528 1 package is looking for funding
+#15 1.528   run `npm fund` for details
+#15 1.529 npm notice
+#15 1.529 npm notice New major version of npm available! 10.8.2 -> 11.8.0
+#15 1.529 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.8.0
+#15 1.529 npm notice To update run: npm install -g npm@11.8.0
+#15 1.529 npm notice
+#15 DONE 1.6s
+#16 [builder 5/5] RUN pnpm build
+#16 0.584
+#16 0.584 > nextmavens-developer-portal@1.0.0 build /app
+#16 0.584 > next build
+#16 0.584
+#16 1.291 Attention: Next.js now collects completely anonymous telemetry regarding usage.
+#16 1.292 This information is used to shape Next.js' roadmap and prioritize features.
+#16 1.293 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+#16 1.293 https://nextjs.org/telemetry
+#16 1.293
+#16 1.357   ▲ Next.js 14.2.35
+#16 1.358
+#16 1.433    Creating an optimized production build ...
+#16 12.45 Failed to compile.
+#16 12.45
+#16 12.46 ./src/app/dashboard/projects/[slug]/page.tsx
+#16 12.46 Error:
+#16 12.46   [31mx[0m Unexpected token `div`. Expected jsx identifier
+#16 12.46      ,-[[36;1;4m/app/src/app/dashboard/projects/[slug]/page.tsx[0m:155:1]
+#16 12.46  [2m155[0m |   const databaseUrl = `postgresql://nextmavens:Elishiba@95@nextmavens-db-m4sxnf.1.mvuvh68efk7jnvynmv8r2jm2u:5432/nextmavens?options=--search_path=tenant_${project.slug}`
+#16 12.46  [2m156[0m |
+#16 12.46  [2m157[0m |   return (
+#16 12.46  [2m158[0m |     <div className="min-h-screen bg-[#F3F5F7]">
+#16 12.46      : [31;1m     ^^^[0m
+#16 12.46  [2m159[0m |       <nav className="bg-white border-b border-slate-200 sticky top-0 z-10">
+#16 12.46  [2m160[0m |         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+#16 12.46  [2m161[0m |           <div className="flex items-center justify-between h-16">
+#16 12.46      `----
+#16 12.46
+#16 12.46 Caused by:
+#16 12.46     Syntax Error
+#16 12.46
+#16 12.46 Import trace for requested module:
+#16 12.46 ./src/app/dashboard/projects/[slug]/page.tsx
+#16 12.46
+#16 12.47
+#16 12.47 > Build failed because of webpack errors
+#16 12.51  ELIFECYCLE  Command failed with exit code 1.
+#16 ERROR: process "/bin/sh -c pnpm build" did not complete successfully: exit code: 1
+------
+> [builder 5/5] RUN pnpm build:
+12.46
+12.46 Caused by:
+12.46     Syntax Error
+12.46
+12.46 Import trace for requested module:
+12.46 ./src/app/dashboard/projects/[slug]/page.tsx
+12.46
+12.47
+12.47 > Build failed because of webpack errors
+12.51  ELIFECYCLE  Command failed with exit code 1.
+------
+Dockerfile:27
+--------------------
+|
+|     # Build Next.js
+| >>> RUN pnpm build
+|
+|     # Production image, copy all the files and run next
+--------------------
+failed to solve: process "/bin/sh -c pnpm build" did not complete successfully: exit code: 1
+Error: ❌ Docker command failed
+Error occurred ❌, check the logs for details.

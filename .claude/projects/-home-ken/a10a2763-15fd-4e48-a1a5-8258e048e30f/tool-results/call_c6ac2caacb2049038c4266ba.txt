@@ -1,0 +1,26 @@
+total 196
+drwxrwxr-x  8 ken ken  4096 Jan 28 02:34 .
+drwxr-x--- 24 ken ken  4096 Jan 28 02:34 ..
+drwxrwxr-x 10 ken ken  4096 Jan 28 02:34 .claude
+drwxrwxr-x  8 ken ken  4096 Jan 28 02:34 .git
+-rw-rw-r--  1 ken ken    66 Jan 28 02:34 .gitattributes
+drwxrwxr-x  3 ken ken  4096 Jan 28 02:34 .github
+-rw-rw-r--  1 ken ken   147 Jan 28 02:34 .gitignore
+-rw-rw-r--  1 ken ken  1200 Jan 28 02:34 AGENTS.md
+-rw-rw-r--  1 ken ken  3192 Jan 28 02:34 CHANGELOG.md
+-rw-rw-r--  1 ken ken  7082 Jan 28 02:34 CONTRIBUTING.md
+-rw-rw-r--  1 ken ken  1072 Jan 28 02:34 LICENSE
+-rw-rw-r--  1 ken ken 76181 Jan 28 02:34 README.md
+drwxrwxr-x  2 ken ken  4096 Jan 28 02:34 bin
+-rw-rw-r--  1 ken ken   690 Jan 28 02:34 convert-all-prds.sh
+-rw-rw-r--  1 ken ken  4194 Jan 28 02:34 convert-prd-mcp.js
+drwxrwxr-x  4 ken ken  4096 Jan 28 02:34 flowchart
+drwxrwxr-x  2 ken ken  4096 Jan 28 02:34 install
+-rw-rw-r--  1 ken ken   917 Jan 28 02:34 install.bat
+-rw-rw-r--  1 ken ken  8295 Jan 28 02:34 install.ps1
+-rw-rw-r--  1 ken ken  5323 Jan 28 02:34 install.sh
+-rw-rw-r--  1 ken ken  1440 Jan 28 02:34 sync-global-claude.ps1
+-rw-rw-r--  1 ken ken  1252 Jan 28 02:34 sync-global-claude.sh
+-rw-rw-r--  1 ken ken  1866 Jan 28 02:34 sync-to-global.sh
+-rw-rw-r--  1 ken ken  1394 Jan 28 02:34 uninstall.bat
+-rw-rw-r--  1 ken ken  7273 Jan 28 02:34 uninstall.ps1

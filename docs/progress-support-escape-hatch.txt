@@ -1,0 +1,27 @@
+# Support Escape Hatch - Progress Tracker
+
+## Feature: Support Escape Hatch
+**Branch**: flow/support-escape-hatch
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (10 total)
+
+| US-001 | Create Support Requests Table | 1 | Pending | |
+| US-002 | Create Support Request API | 1 | Pending | |
+| US-003 | Auto-Attach Request Context | 1 | Pending | |
+| US-004 | Add Support Button to UI | 2 | Pending | |
+| US-005 | Create Support Request Modal | 2 | Pending | |
+| US-006 | Create Support Request List UI | 2 | Pending | |
+| US-007 | Create Incident Status Page | 2 | Pending | |
+| US-008 | Update Incident Status | 3 | Pending | |
+| US-009 | Send Support Notifications | 2 | Pending | |
+| US-010 | Create Admin Support UI | 3 | Pending | |
+
+## Progress Summary
+- Total Stories: 10
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 10
+
+## Iteration Log

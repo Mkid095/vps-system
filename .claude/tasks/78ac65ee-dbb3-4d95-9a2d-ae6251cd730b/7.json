@@ -1,0 +1,9 @@
+{
+  "id": "7",
+  "subject": "Implement MCP servers for Claude integration",
+  "description": "Create stdio-based MCP servers for Supabase, WhatsApp (Evolution API), and Email (Resend). Implement handshake protocol, action handlers, and secure connection management.",
+  "activeForm": "Implementing MCP servers",
+  "status": "pending",
+  "blocks": [],
+  "blockedBy": []
+}

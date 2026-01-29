@@ -1,0 +1,9 @@
+{
+  "id": "14",
+  "subject": "Add audit logging for organization creation",
+  "description": "Implement audit logging to track organization creation events including who created what, when, IP addresses, and user agents. Store in audit_logs table.",
+  "activeForm": "Adding audit logging",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

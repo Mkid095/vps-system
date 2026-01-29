@@ -1,0 +1,27 @@
+# Backup Strategy - Progress Tracker
+
+## Feature: Backup Strategy
+**Branch**: flow/backup-strategy
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (10 total)
+
+| US-001 | Create Manual Export API | 1 | Pending | |
+| US-002 | Send Backup to Telegram | 1 | Pending | |
+| US-003 | Create Backup History Table | 1 | Pending | |
+| US-004 | Record Backup in History | 1 | Pending | |
+| US-005 | Create Backup UI | 2 | Pending | |
+| US-006 | Implement Restore from Backup | 2 | Pending | |
+| US-007 | Document Backup Strategy | 2 | Pending | |
+| US-008 | Export Logs | 2 | Pending | |
+| US-009 | Automatic Storage Backup | 3 | Pending | |
+| US-010 | Backup Retention Policy | 2 | Pending | |
+
+## Progress Summary
+- Total Stories: 10
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 10
+
+## Iteration Log

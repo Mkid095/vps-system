@@ -1,0 +1,84 @@
+     1→#!/bin/bash
+     2→
+     3→##############################################################################
+     4→# Maven Flow Wrapper Script Template
+     5→#
+     6→# This script runs Maven Flow autonomous development using Claude Code CLI.
+     7→# It iterates through incomplete PRD stories and executes them.
+     8→#
+     9→# This file is a template. The flow command copies this to maven-flow.sh
+    10→# when running Maven Flow in a project directory.
+    11→#
+    12→##############################################################################
+    13→
+    14→set -e
+    15→
+    16→# Color codes
+    17→RED=$'\033[0;31m'
+    18→GREEN=$'\033[0;32m'
+    19→YELLOW=$'\033[1;33m'
+    20→BLUE=$'\033[0;34m'
+    21→CYAN=$'\033[0;36m'
+    22→MAGENTA=$'\033[0;35m'
+    23→GRAY=$'\033[0;90m'
+    24→BOLD=$'\033[1m'
+    25→NC=$'\033[0m' # No Color
+    26→
+    27→# Parse arguments
+    28→MAX_ITERATIONS=${1:-100}
+    29→SLEEP_SECONDS=${2:-2}
+    30→
+    31→# Timing variables
+    32→SCRIPT_START_TIME=$(date +%s)
+    33→TOTAL_STORIES_COMPLETED=0
+    34→TOTAL_STORIES_FAILED=0
+    35→
+    36→##############################################################################
+    37→# UI Helper Functions
+    38→##############################################################################
+    39→
+    40→# Spinner animation
+    41→spinner() {
+    42→    local pid=$1
+    43→    local message="$2"
+    44→    local delay=0.1
+    45→    local spinstr='|/-\'
+    46→    local start_time=$(date +%s)
+    47→
+    48→    while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
+    49→        local current_time=$(date +%s)
+    50→        local elapsed=$((current_time - start_time))
+    51→        local temp=${spinstr#?}
+    52→        printf "\r${CYAN}[${spinstr:0:1}]${NC} ${message} ${GRAY}(${elapsed}s)${NC}" 2>/dev/null || true
+    53→        local spinstr=$temp${spinstr%"$temp"}
+    54→        sleep $delay
+    55→    done
+    56→    printf "\r${GREEN}[✓]${NC} ${message} ${GRAY}($(($(date +%s) - start_time))s)${NC}\n"
+    57→}
+    58→
+    59→# Format duration
+    60→format_duration() {
+    61→    local seconds=$1
+    62→    if [ $seconds -lt 60 ]; then
+    63→        echo "${seconds}s"
+    64→    elif [ $seconds -lt 3600 ]; then
+    65→        echo "$((seconds / 60))m $((seconds % 60))s"
+    66→    else
+    67→        echo "$((seconds / 3600))h $((seconds % 3600 / 60))m"
+    68→    fi
+    69→}
+    70→
+    71→# Print section header
+    72→print_header() {
+    73→    local title="$1"
+    74→    echo ""
+    75→    echo -e "${MAGENTA}╔════════════════════════════════════════════════════════════╗${NC}"
+    76→    printf "${MAGENTA}║${NC}  ${BOLD}%-60s${NC} ${MAGENTA}║${NC}\n" "$title"
+    77→    echo -e "${MAGENTA}╚════════════════════════════════════════════════════════════╝${NC}"
+    78→}
+    79→
+    80→# Print info line
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

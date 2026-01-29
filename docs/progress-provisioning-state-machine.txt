@@ -1,0 +1,27 @@
+# Provisioning State Machine - Progress Tracker
+
+## Feature: Provisioning State Machine
+**Branch**: flow/provisioning-state-machine
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (10 total)
+
+| US-001 | Create Provisioning Steps Table | 1 | Pending | |
+| US-002 | Define Provisioning Steps | 1 | Pending | |
+| US-003 | Implement State Machine Logic | 1 | Pending | |
+| US-004 | Implement Step Retry Logic | 1 | Pending | |
+| US-005 | Implement Error Capture | 1 | Pending | |
+| US-006 | Create Provisioning Progress API | 2 | Pending | |
+| US-007 | Create Provisioning Progress UI | 2 | Pending | |
+| US-008 | Implement Verify Services Step | 2 | Pending | |
+| US-009 | Handle Partial Failures | 1 | Pending | |
+| US-010 | Update Provisioning API | 1 | Pending | |
+
+## Progress Summary
+- Total Stories: 10
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 10
+
+## Iteration Log

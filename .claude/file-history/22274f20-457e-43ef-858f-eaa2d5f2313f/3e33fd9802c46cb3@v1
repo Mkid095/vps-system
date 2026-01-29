@@ -1,0 +1,199 @@
+{
+  "project": "API Keys and Authentication",
+  "branchName": "flow/api-keys-auth",
+  "description": "Implement secure API key management for project access. Role-based permissions, rate limiting, and key rotation. Integration with Supabase Auth for dashboard users.",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Generate API Key",
+      "description": "As a project owner, I want to generate API keys so that my applications can authenticate.",
+      "acceptanceCriteria": [
+        "Key format: nm_{32-char-base64}",
+        "Hash stored: SHA256(key)",
+        "Prefix stored: first 8 chars",
+        "Full key shown only once on creation",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7, 10],
+      "mcpTools": {
+        "step1": ["supabase"],
+        "step7": ["supabase"],
+        "step10": ["supabase"]
+      },
+      "priority": 1,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-002",
+      "title": "Validate API Key",
+      "description": "As the API middleware, I want to validate incoming keys so that unauthorized requests are rejected.",
+      "acceptanceCriteria": [
+        "Middleware extracts Bearer token",
+        "Hashes token and compares to database",
+        "Checks key is_active",
+        "Checks expiration",
+        "Returns 401 if invalid",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7, 10],
+      "mcpTools": {
+        "step1": ["supabase"],
+        "step7": ["supabase"],
+        "step10": ["supabase"]
+      },
+      "priority": 1,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-003",
+      "title": "List API Keys",
+      "description": "As a project owner, I want to see all API keys so that I can manage access.",
+      "acceptanceCriteria": [
+        "Shows name, prefix, scopes, last_used",
+        "Does NOT show full keys",
+        "Shows active/inactive status",
+        "Revoke action available",
+        "Typecheck passes",
+        "Verify in browser"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 2,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-004",
+      "title": "Revoke API Key",
+      "description": "As a project owner, I want to revoke keys so that I can disable compromised access.",
+      "acceptanceCriteria": [
+        "Sets is_active = false",
+        "Cannot be undone",
+        "Revoked keys immediately invalid",
+        "Audit log entry created",
+        "Typecheck passes",
+        "Verify in browser"
+      ],
+      "mavenSteps": [1, 7, 10],
+      "mcpTools": {
+        "step1": ["supabase"],
+        "step7": ["supabase"],
+        "step10": ["supabase"]
+      },
+      "priority": 2,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-005",
+      "title": "Key Scopes",
+      "description": "As a project owner, I want to limit key scopes so that keys have minimal permissions.",
+      "acceptanceCriteria": [
+        "Scopes: read, write, admin",
+        "Keys checked against scope",
+        "Admin required for key management",
+        "Write required for mutations",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7, 10],
+      "mcpTools": {},
+      "priority": 2,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-006",
+      "title": "Key Expiration",
+      "description": "As a project owner, I want to set expiration so that keys automatically expire.",
+      "acceptanceCriteria": [
+        "expires_at timestamp",
+        "Expired keys rejected",
+        "Optional (null = no expiration)",
+        "Dashboard shows expiration",
+        "Typecheck passes",
+        "Verify in browser"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 2,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-007",
+      "title": "Rate Limiting by Key",
+      "description": "As the platform, I want to rate limit by key so that one application cannot abuse resources.",
+      "acceptanceCriteria": [
+        "Per-key rate limits",
+        "Redis-based counter",
+        "Configurable: requests per minute",
+        "Returns 429 when exceeded",
+        "Retry-After header",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7, 10],
+      "mcpTools": {},
+      "priority": 2,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-008",
+      "title": "Supabase Auth Integration",
+      "description": "As a dashboard user, I want to log in with Supabase Auth so that I can access the UI.",
+      "acceptanceCriteria": [
+        "Email/password login",
+        "Session stored in cookie",
+        "Protected routes check session",
+        "Logout clears session",
+        "Typecheck passes",
+        "Verify in browser"
+      ],
+      "mavenSteps": [1, 7, 10],
+      "mcpTools": {
+        "step1": ["supabase"],
+        "step7": ["supabase"],
+        "step10": ["supabase"]
+      },
+      "priority": 1,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-009",
+      "title": "Project JWT Signing",
+      "description": "As the platform, I want to issue project-scoped JWTs so that external services can authenticate.",
+      "acceptanceCriteria": [
+        "JWT contains project_id and scopes",
+        "Signed with project JWT secret",
+        "Verification endpoint",
+        "Short expiration (1 hour)",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 3,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-010",
+      "title": "Audit Logging",
+      "description": "As a security measure, I want to log key usage so that I can detect anomalies.",
+      "acceptanceCriteria": [
+        "Log every API request",
+        "Record: key_id, endpoint, ip, user_agent",
+        "Store in audit_logs table",
+        "Queryable by project owner",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 3,
+      "passes": false,
+      "notes": ""
+    }
+  ]
+}

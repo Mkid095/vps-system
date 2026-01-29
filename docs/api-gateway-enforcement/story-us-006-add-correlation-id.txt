@@ -1,0 +1,38 @@
+---
+memoryVersion: 1
+storyId: US-006
+storyTitle: Add Correlation ID
+completedDate: 2026-01-28
+---
+
+STORY: US-006 - Add Correlation ID
+========================
+
+DESCRIPTION: As a gateway engineer, I want to add correlation IDs so that requests are traceable.
+
+MAVEN STEPS COMPLETED: [1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Created correlation ID middleware that generates UUID v4 for request tracking. Middleware extracts existing x-request-id header if present, or generates a new UUID. Stores correlation ID on request object for downstream use, sets request header for downstream services, and returns correlation ID in response header.
+
+KEY FILES:
+- src/api/middleware/correlation.middleware.ts - Main correlation middleware implementation
+- src/api/middleware/__tests__/correlation.middleware.test.ts - Unit tests
+- src/api/middleware/__tests__/correlation-integration.test.ts - Integration tests
+- src/index.ts - Integration into middleware chain (line 64-66)
+
+DECISIONS MADE:
+- Used x-request-id as header name (industry standard)
+- Used Node.js crypto.randomUUID() for secure UUID v4 generation
+- Middleware applied early in chain to ensure all requests have correlation ID
+- Added helper functions: getCorrelationId() and formatLogWithCorrelation()
+
+INTEGRATION POINTS:
+- Integrated into main middleware chain before logging
+- Used by request logging middleware (line 68-80 in src/index.ts)
+- Error handler uses formatLogWithCorrelation() for consistent logging
+
+LESSONS LEARNED:
+- Correlation middleware must be applied early to capture all requests
+- Helper functions make it easy for other middleware to use correlation IDs
+- Type extension on Express.Request needed for TypeScript support

@@ -1,0 +1,9 @@
+{
+  "id": "9",
+  "subject": "Test MCP server and enhance dashboard",
+  "description": "Test MCP server functionality and enhance developer dashboard with service management and key generation for DB, MCP, and all services",
+  "activeForm": "Testing and enhancing MCP server",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

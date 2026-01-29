@@ -1,0 +1,58 @@
+// NextMavens Dashboard - Middleware
+// Route protection and authentication checks
+
+import { NextResponse, type NextRequest } from 'next/server'
+import { createServerClient } from '@supabase/ssr'
+
+export async function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl
+
+  // Create a Supabase client for middleware
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return req.cookies.getAll()
+        },
+        setAll() {
+          // Middleware is read-only for cookies
+        },
+      },
+    }
+  )
+
+  // Public routes that don't require authentication
+  const publicRoutes = ['/login', '/auth/signin', '/auth/signup', '/api']
+  const isPublicRoute = publicRoutes.some(route => pathname.startsWith(route))
+
+  // Allow access to public routes
+  if (isPublicRoute) {
+    return NextResponse.next()
+  }
+
+  // Check for valid session
+  const { data: { session } } = await supabase.auth.getSession()
+
+  // Protected routes - require authentication
+  const protectedRoutes = ['/', '/organizations', '/projects', '/services']
+  const isProtectedRoute = protectedRoutes.some(
+    route => pathname === route || pathname.startsWith(route)
+  )
+
+  // If trying to access protected route without session, redirect to login
+  if (isProtectedRoute && !session) {
+    const redirectUrl = new URL('/login', req.url)
+    redirectUrl.searchParams.set('redirect', pathname)
+    return NextResponse.redirect(redirectUrl)
+  }
+
+  return NextResponse.next()
+}
+
+export const config = {
+  matcher: [
+    '/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+  ],
+}

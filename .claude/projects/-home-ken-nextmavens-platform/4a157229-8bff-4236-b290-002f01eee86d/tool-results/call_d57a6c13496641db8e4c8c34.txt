@@ -1,0 +1,23 @@
+      table_name      
+----------------------
+ audit_log_entries
+ flow_state
+ identities
+ instances
+ mfa_amr_claims
+ mfa_challenges
+ mfa_factors
+ oauth_authorizations
+ oauth_client_states
+ oauth_clients
+ oauth_consents
+ one_time_tokens
+ refresh_tokens
+ saml_providers
+ saml_relay_states
+ schema_migrations
+ sessions
+ sso_domains
+ sso_providers
+ users
+(20 rows)

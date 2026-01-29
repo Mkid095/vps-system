@@ -1,0 +1,2 @@
+{"component":"pop","level":"info","msg":"Migrations already up to date, nothing to apply","time":"2026-01-25T08:06:54Z"}
+{"count":0,"level":"info","msg":"GoTrue migrations applied successfully","time":"2026-01-25T08:06:54Z"}

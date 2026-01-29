@@ -1,0 +1,94 @@
+Initializing deployment
+Cloning Repo github.com/Mkid095/nextmavens-auth-service.git to /etc/dokploy/compose/nextmavens-authservice-tsh7tv/code: ✅
+Cloning into '/etc/dokploy/compose/nextmavens-authservice-tsh7tv/code'...
+remote: Enumerating objects: 11, done.
+remote: Counting objects:   9% (1/11)        
+remote: Counting objects:  18% (2/11)        
+remote: Counting objects:  27% (3/11)        
+remote: Counting objects:  36% (4/11)        
+remote: Counting objects:  45% (5/11)        
+remote: Counting objects:  54% (6/11)        
+remote: Counting objects:  63% (7/11)        
+remote: Counting objects:  72% (8/11)        
+remote: Counting objects:  81% (9/11)        
+remote: Counting objects:  90% (10/11)        
+remote: Counting objects: 100% (11/11)        
+remote: Counting objects: 100% (11/11), done.
+remote: Compressing objects:  10% (1/10)        
+remote: Compressing objects:  20% (2/10)        
+remote: Compressing objects:  30% (3/10)        
+remote: Compressing objects:  40% (4/10)        
+remote: Compressing objects:  50% (5/10)        
+remote: Compressing objects:  60% (6/10)        
+remote: Compressing objects:  70% (7/10)        
+remote: Compressing objects:  80% (8/10)        
+remote: Compressing objects:  90% (9/10)        
+remote: Compressing objects: 100% (10/10)        
+remote: Compressing objects: 100% (10/10), done.
+Receiving objects:   9% (1/11)
+Receiving objects:  18% (2/11)
+Receiving objects:  27% (3/11)
+Receiving objects:  36% (4/11)
+Receiving objects:  45% (5/11)
+Receiving objects:  54% (6/11)
+Receiving objects:  63% (7/11)
+Receiving objects:  72% (8/11)
+Receiving objects:  81% (9/11)
+Receiving objects:  90% (10/11)
+Receiving objects: 100% (11/11)
+Receiving objects: 100% (11/11), 23.47 KiB | 23.47 MiB/s, done.
+remote: Total 11 (delta 0), reused 7 (delta 0), pack-reused 0 (from 0)
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║ App Name: nextmavens-authservice-tsh7tv                                      ║
+║ Build Compose 🐳                                                             ║
+║ Detected: 0 mounts 📂                                                        ║
+║ Command: docker compose -p nextmavens-authservice-tsh7tv -f                  ║
+║ ./docker-compose.yml up -d --build --remove-orphans                          ║
+║ Source Type: docker github ✅                                                ║
+║ Compose Type: docker-compose ✅                                              ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+Image nextmavens-authservice-tsh7tv-auth-service Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 630B done
+#1 DONE 0.0s
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 170B done
+#2 DONE 0.0s
+#3 [internal] load metadata for docker.io/library/node:18-alpine
+#3 DONE 0.4s
+#4 [internal] load .dockerignore
+#4 transferring context: 82B done
+#4 DONE 0.0s
+#5 [internal] load build context
+#5 transferring context: 86.80kB 0.0s done
+#5 DONE 0.0s
+#6 [1/5] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+#6 resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e 0.0s done
+#6 DONE 0.0s
+#7 [2/5] WORKDIR /app
+#7 CACHED
+#8 [3/5] COPY package*.json ./
+#8 CACHED
+#9 [4/5] RUN npm install --production
+#9 CACHED
+#10 [5/5] COPY . .
+#10 DONE 0.0s
+#11 exporting to image
+#11 exporting layers 0.0s done
+#11 exporting manifest sha256:4a32a1316d2563bc0aaefbc379100ac6782879bdd2a6ce3446f10ed162583f43 done
+#11 exporting config sha256:facd8224cd3e6068f2c4f9b437a1551feaca096d1a9881304fb1ec6bfa654708 done
+#11 exporting attestation manifest sha256:a1fb6157b10f943127faac4f8d6089261a383eb36632b878e4dcfcaf2f3b81ff done
+#11 exporting manifest list sha256:24642d5369d4a8932103c42039117f6c952276d6c39c206d56d40ead001e76a0 done
+#11 naming to docker.io/library/nextmavens-authservice-tsh7tv-auth-service:latest done
+#11 unpacking to docker.io/library/nextmavens-authservice-tsh7tv-auth-service:latest 0.0s done
+#11 DONE 0.1s
+#12 resolving provenance for metadata file
+#12 DONE 0.0s
+Image nextmavens-authservice-tsh7tv-auth-service Built
+Container auth-service Recreate
+Container auth-service Recreated
+Container auth-service Starting
+Container auth-service Started
+Docker Compose Deployed: ✅

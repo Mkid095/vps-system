@@ -1,0 +1,9 @@
+{
+  "id": "6",
+  "subject": "Implement Audit Logging System",
+  "description": "Create comprehensive audit logging for compliance and forensics:\n1. Create /home/ken/developer-portal/src/lib/audit.ts\n2. Add audit_logs table with: actor_id, actor_type, action, target_type, target_id, metadata, ip_address, user_agent\n3. Create logAction() helper function\n4. Add middleware to auto-log all mutations\n5. Actions to audit: project CRUD, key CRUD/rotate, user invites, role changes, suspensions, secret access\n6. Create audit log viewer UI at /dashboard/projects/[slug]/audit\n7. Add filtering and export capabilities",
+  "activeForm": "Implementing audit logging system",
+  "status": "pending",
+  "blocks": [],
+  "blockedBy": []
+}

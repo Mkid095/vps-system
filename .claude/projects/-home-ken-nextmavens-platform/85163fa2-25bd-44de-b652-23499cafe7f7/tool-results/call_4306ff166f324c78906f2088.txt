@@ -1,0 +1,6 @@
+Exit code 1
+ Image redis:7-alpine Pulling 
+ Image evolutionapi/evolution-api:v2.3.7 Pulling 
+ Image evolutionapi/evolution-api:v2.3.7 Error pull access denied for evolutionapi/evolution-api, repository does not exist or may require 'docker login'
+ Image redis:7-alpine Interrupted 
+Error response from daemon: pull access denied for evolutionapi/evolution-api, repository does not exist or may require 'docker login'

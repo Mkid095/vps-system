@@ -1,0 +1,19 @@
+     1→#!/bin/bash
+     2→# ============================================================================
+     3→# Maven Flow - Linux Native Bash Implementation
+     4→# ============================================================================
+     5→
+     6→set -e
+     7→
+     8→# Get script directory FIRST (needed by status command)
+     9→SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    10→
+    11→# Default parameters
+    12→MAX_ITERATIONS=100
+    13→SLEEP_SECONDS=2
+    14→DRY_RUN=false
+    15→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

@@ -1,0 +1,124 @@
+'use client';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
+
+interface NavItem {
+  href: string;
+  label: string;
+  icon: string;
+}
+
+const navItems: NavItem[] = [
+  { href: '/', label: 'Home', icon: '[H]' },
+  { href: '/databases', label: 'Databases', icon: '[D]' },
+  { href: '/whatsapp', label: 'WhatsApp', icon: '[W]' },
+  { href: '/deploy', label: 'Deploy', icon: '[P]' },
+  { href: '/backup', label: 'Backup', icon: '[B]' },
+  { href: '/emails', label: 'Emails', icon: '[E]' },
+];
+
+export function Sidebar() {
+  const pathname = usePathname();
+  const [user, setUser] = useState<{ email: string } | null>(null);
+
+  useEffect(() => {
+    // Get user from localStorage
+    const token = localStorage.getItem('supabase_access_token');
+    if (token) {
+      // Decode JWT to get user email (simple parsing)
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        setUser({ email: payload.email || '' });
+      } catch (error) {
+        console.error('Failed to decode token:', error);
+      }
+    }
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/signout', { method: 'POST' });
+      localStorage.removeItem('supabase_access_token');
+      window.location.href = '/auth/signin';
+    } catch (error) {
+      console.error('Logout failed:', error);
+      window.location.href = '/auth/signin';
+    }
+  };
+
+  return (
+    <aside className="fixed top-0 left-0 w-[240px] max-md:w-[60px] h-screen bg-sidebar-bg border-r border-sidebar-border flex flex-col z-50">
+      {/* Logo */}
+      <div className="p-4 border-b border-sidebar-border">
+        <Link href="/" className="flex items-center no-underline">
+          <img
+            src="https://www.nextmavens.com/logo-colored.png"
+            alt="NextMavens"
+            className="w-8 h-8 max-md:w-6 max-md:h-6 max-md:mx-auto object-contain"
+          />
+        </Link>
+      </div>
+
+      {/* VPS Stats */}
+      <div className="grid grid-cols-2 max-md:grid-cols-1 gap-2 p-4 border-b border-sidebar-border">
+        <VPSStat label="DISK" value="--" />
+        <VPSStat label="CPU" value="--" />
+        <VPSStat label="RAM" value="--" />
+        <VPSStat label="NET" value="--" />
+      </div>
+
+      {/* Navigation */}
+      <nav className="flex-1 overflow-y-auto py-2">
+        <ul className="list-none m-0 p-0">
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className={`flex items-center gap-3 py-2.5 px-4 my-0.5 mx-2 rounded-md text-sm transition-all duration-150 max-md:justify-center max-md:py-3 ${
+                    isActive
+                      ? 'bg-sidebar-active text-primary'
+                      : 'text-foreground-muted hover:bg-sidebar-hover hover:text-foreground'
+                  }`}
+                >
+                  <span className="mono text-xs opacity-80">{item.icon}</span>
+                  <span className="font-medium max-md:hidden">{item.label}</span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+
+      {/* User section */}
+      {user && (
+        <div className="p-4 border-t border-sidebar-border">
+          <div className="mb-3">
+            <span className="mono block text-xs text-foreground-muted overflow-hidden text-ellipsis whitespace-nowrap max-md:hidden">
+              {user.email}
+            </span>
+          </div>
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-2 w-full py-2 px-3 text-sm text-foreground-muted bg-transparent border border-transparent rounded-md cursor-pointer transition-all duration-150 hover:bg-sidebar-hover hover:text-error"
+          >
+            <span className="mono">[X]</span>
+            <span className="max-md:hidden">Logout</span>
+          </button>
+        </div>
+      )}
+    </aside>
+  );
+}
+
+function VPSStat({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex flex-col gap-0.5">
+      <span className="mono text-[10px] tracking-widest text-foreground-muted">{label}</span>
+      <span className="mono text-xs text-primary">{value}</span>
+    </div>
+  );
+}

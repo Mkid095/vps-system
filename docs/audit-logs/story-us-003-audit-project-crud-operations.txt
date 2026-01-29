@@ -1,0 +1,47 @@
+---
+memoryVersion: 1
+storyId: US-003
+storyTitle: Audit Project CRUD Operations
+completedDate: 2026-01-28
+---
+
+STORY: US-003 - Audit Project CRUD Operations
+========================
+
+DESCRIPTION:
+As a platform operator, I want all project create/update/delete operations logged so that I can investigate project lifecycle changes.
+
+MAVEN STEPS COMPLETED:
+[1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Integrated audit logging into the developer-portal project CRUD endpoints. The audit infrastructure from US-001 and US-002 already provided all necessary helper functions. This story focused on integrating logProjectAction.created(), logProjectAction.updated(), and logProjectAction.deleted() into the actual API endpoints.
+
+KEY FILES:
+- database/package.json - Fixed exports to point to dist/src/
+- database/docs/US-003-project-crud-audit.md - Integration documentation
+- database/docs/US-003-step2-package-manager.md - Package manager documentation
+- database/docs/US-003-integration-summary.md - Integration summary
+- database/examples/project-crud-audit.example.ts - Usage examples
+- api-gateway/package.json - Added audit-logs-database dependency
+- developer-portal/package.json - Added audit-logs-database dependency
+- developer-portal/src/app/api/projects/route.ts - Project creation audit logging
+- developer-portal/src/app/api/projects/[projectId]/route.ts - Update/delete audit logging
+
+DECISIONS MADE:
+- Integrated audit logging into developer-portal (not graphql-service) as it handles the project CRUD REST API
+- Used existing helper functions from database package (no new functions needed)
+- Captured changes metadata for updates using the changes parameter in logProjectAction.updated()
+- Actor captured from authenticated user via JWT token in authenticateRequest middleware
+
+INTEGRATION POINTS:
+- Uses @nextmavens/audit-logs-database package (from US-001, US-002)
+- Integrates with existing authenticateRequest middleware for actor identification
+- Uses control_plane.audit_logs table (created in US-001)
+- Helper functions: logProjectAction.created(), logProjectAction.updated(), logProjectAction.deleted()
+
+LESSONS LEARNED:
+- The audit infrastructure was already complete from US-001/US-002 - this story was pure integration
+- Developer-portal uses the REST API pattern for project management, making it the ideal place for audit integration
+- The changes parameter in logProjectAction.updated() automatically tracks old/new values
+- GraphQL Service has CommonJS/ESM incompatibility with the audit-logs-database package - would need different approach

@@ -1,0 +1,190 @@
+     1→# NextMavens Self-Hosted Supabase
+     2→# Version-pinned for stability - update monthly
+     3→networks:
+     4→  supabase-network:
+     5→    driver: bridge
+     6→    name: supabase-network
+     7→
+     8→volumes:
+     9→  supabase-db-data:
+    10→    name: supabase-db-data
+    11→  supabase-storage:
+    12→    name: supabase-storage
+    13→
+    14→services:
+    15→  # PostgreSQL Database (Master DB + Project DBs)
+    16→  db:
+    17→    image: pgvector/pgvector:pg16
+    18→    container_name: supabase-db
+    19→    hostname: db
+    20→    ports:
+    21→      - "5432:5432"
+    22→    environment:
+    23→      POSTGRES_USER: postgres
+    24→      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    25→      POSTGRES_DB: postgres
+    26→    volumes:
+    27→      - supabase-db-data:/var/lib/postgresql/data
+    28→      - ./scripts/db-init.sql:/docker-entrypoint-initdb.d/init.sql
+    29→    networks:
+    30→      - supabase-network
+    31→    restart: unless-stopped
+    32→    healthcheck:
+    33→      test: ["CMD-SHELL", "pg_isready -U postgres -h localhost"]
+    34→      interval: 10s
+    35→      timeout: 5s
+    36→      retries: 5
+    37→
+    38→  # Supabase Studio (Admin UI)
+    39→  studio:
+    40→    image: supabase/studio:20250115-7a7e3d3
+    41→    container_name: supabase-studio
+    42→    ports:
+    43→      - "8000:3000"
+    44→    environment:
+    45→      STUDIO_PG_META_URL: http://meta:8080
+    46→      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    47→      DEFAULT_ORGANIZATION_NAME: NextMavens
+    48→      DEFAULT_PROJECT_NAME: Master
+    49→    networks:
+    50→      - supabase-network
+    51→    restart: unless-stopped
+    52→    depends_on:
+    53→      db:
+    54→        condition: service_healthy
+    55→
+    56→  # Supavisor (Connection Pooling)
+    57→  supavisor:
+    58→    image: supabase/supavisor:1.1.51
+    59→    container_name: supabase-supavisor
+    60→    ports:
+    61→      - "4000:4000"
+    62→    environment:
+    63→      PORT: 4000
+    64→      DB_HOST: db
+    65→      DB_PORT: 5432
+    66→      DB_USER: postgres
+    67→      DB_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    68→      DB_NAME: postgres
+    69→      POOL_MODE: transaction
+    70→      POOLER_DEFAULT_POOL_SIZE: 15
+    71→      POOLER_MAX_CLIENT_CONN: 100
+    72→      TENANT_ID: nextmavens_master
+    73→      SECRET_KEY_BASE: ${SUPAVISOR_SECRET_KEY:-change-me-in-production}
+    74→      API_JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
+    75→    networks:
+    76→      - supabase-network
+    77→    restart: unless-stopped
+    78→    depends_on:
+    79→      db:
+    80→        condition: service_healthy
+    81→
+    82→  # pg-meta (Database introspection for Studio)
+    83→  meta:
+    84→    image: supabase/pg-meta:v0.79.0
+    85→    container_name: supabase-meta
+    86→    environment:
+    87→      PG_META_PORT: 8080
+    88→      PG_META_DB_HOST: db
+    89→      PG_META_DB_PORT: 5432
+    90→      PG_META_DB_NAME: postgres
+    91→      PG_META_DB_USER: postgres
+    92→      PG_META_DB_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    93→    networks:
+    94→      - supabase-network
+    95→    restart: unless-stopped
+    96→    depends_on:
+    97→      db:
+    98→        condition: service_healthy
+    99→
+   100→  # Realtime (WebSocket subscriptions)
+   101→  realtime:
+   102→    image: supabase/realtime:v2.31.4
+   103→    container_name: supabase-realtime
+   104→    ports:
+   105→      - "4001:4000"
+   106→    environment:
+   107→      PORT: 4000
+   108→      DB_HOST: db
+   109→      DB_PORT: 5432
+   110→      DB_USER: postgres
+   111→      DB_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+   112→      DB_NAME: postgres
+   113→      DB_AFTER_CONNECT_QUERY: 'SET search_path TO _realtime'
+   114→      API_JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
+   115→      SECRET_KEY_BASE: ${REALTIME_SECRET_KEY:-change-me-in-production}
+   116→    networks:
+   117→      - supabase-network
+   118→    restart: unless-stopped
+   119→    depends_on:
+   120→      db:
+   121→        condition: service_healthy
+   122→
+   123→  # Storage API
+   124→  storage:
+   125→    image: supabase/storage-api:v1.14.2
+   126→    container_name: supabase-storage
+   127→    ports:
+   128→      - "4002:5000"
+   129→    environment:
+   130→      ANON_KEY: ${ANON_KEY:-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.anon}
+   131→      SERVICE_KEY: ${SERVICE_KEY:-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.service}
+   132→      POSTGREST_URL: http://rest:3000
+   133→      DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD:-postgres}@db:5432/postgres
+   134→      FILE_SIZE_LIMIT: 52428800
+   135→      STORAGE_BACKEND: file
+   136→      FILE_STORAGE_BACKEND_PATH: /var/lib/storage
+   137→      TENANT_ID: stub
+   138→      REGION: stub
+   139→      GLOBAL_S3_BUCKET: stub
+   140→    volumes:
+   141→      - supabase-storage:/var/lib/storage
+   142→    networks:
+   143→      - supabase-network
+   144→    restart: unless-stopped
+   145→    depends_on:
+   146→      db:
+   147→        condition: service_healthy
+   148→
+   149→  # PostgREST (REST API)
+   150→  rest:
+   151→    image: postgrest/postgrest:v12.2.0
+   152→    container_name: supabase-rest
+   153→    ports:
+   154→      - "4003:3000"
+   155→    environment:
+   156→      PGRST_DB_URI: postgres://postgres:${POSTGRES_PASSWORD:-postgres}@db:5432/postgres
+   157→      PGRST_DB_SCHEMAS: public
+   158→      PGRST_DB_ANON_ROLE: anon
+   159→      PGRST_JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
+   160→      PGRST_SERVER_TRACE_ENABLED: false
+   161→    networks:
+   162→      - supabase-network
+   163→    restart: unless-stopped
+   164→    depends_on:
+   165→      db:
+   166→        condition: service_healthy
+   167→
+   168→  # Kong API Gateway
+   169→  kong:
+   170→    image: kong:3.7.1
+   171→    container_name: supabase-kong
+   172→    ports:
+   173→      - "8001:8001"
+   174→      - "8443:8443"
+   175→    environment:
+   176→      KONG_DATABASE: "off"
+   177→      KONG_PROXY_ACCESS_LOG: /dev/stdout
+   178→      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+   179→      KONG_PROXY_ERROR_LOG: /dev/stderr
+   180→      KONG_ADMIN_ERROR_LOG: /dev/stderr
+   181→      KONG_LOG_LEVEL: warn
+   182→      KONG_PLUGINS: session,rate-limiting
+   183→    networks:
+   184→      - supabase-network
+   185→    restart: unless-stopped
+   186→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

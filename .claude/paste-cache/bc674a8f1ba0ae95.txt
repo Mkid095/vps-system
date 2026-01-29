@@ -1,0 +1,100 @@
+Initializing deployment
+Cloning Repo github.com/Mkid095/nextmavens-realtime.git to /etc/dokploy/compose/nextmavens-realtime-0x4tt8/code: ✅
+Cloning into '/etc/dokploy/compose/nextmavens-realtime-0x4tt8/code'...
+remote: Enumerating objects: 8, done.
+remote: Counting objects:  12% (1/8)        
+remote: Counting objects:  25% (2/8)        
+remote: Counting objects:  37% (3/8)        
+remote: Counting objects:  50% (4/8)        
+remote: Counting objects:  62% (5/8)        
+remote: Counting objects:  75% (6/8)        
+remote: Counting objects:  87% (7/8)        
+remote: Counting objects: 100% (8/8)        
+remote: Counting objects: 100% (8/8), done.
+remote: Compressing objects:  14% (1/7)        
+remote: Compressing objects:  28% (2/7)        
+remote: Compressing objects:  42% (3/7)        
+remote: Compressing objects:  57% (4/7)        
+remote: Compressing objects:  71% (5/7)        
+remote: Compressing objects:  85% (6/7)        
+remote: Compressing objects: 100% (7/7)        
+remote: Compressing objects: 100% (7/7), done.
+remote: Total 8 (delta 0), reused 5 (delta 0), pack-reused 0 (from 0)
+Receiving objects:  12% (1/8)
+Receiving objects:  25% (2/8)
+Receiving objects:  37% (3/8)
+Receiving objects:  50% (4/8)
+Receiving objects:  62% (5/8)
+Receiving objects:  75% (6/8)
+Receiving objects:  87% (7/8)
+Receiving objects: 100% (8/8)
+Receiving objects: 100% (8/8), 6.52 KiB | 6.52 MiB/s, done.
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║ App Name: nextmavens-realtime-0x4tt8                                         ║
+║ Build Compose 🐳                                                             ║
+║ Detected: 0 mounts 📂                                                        ║
+║ Command: docker compose -p nextmavens-realtime-0x4tt8 -f                     ║
+║ ./docker-compose.yml up -d --build --remove-orphans                          ║
+║ Source Type: docker github ✅                                                ║
+║ Compose Type: docker-compose ✅                                              ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+Image nextmavens-realtime-0x4tt8-realtime Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 602B done
+#1 DONE 0.0s
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 170B done
+#2 DONE 0.0s
+#3 [internal] load metadata for docker.io/library/node:18-alpine
+#3 DONE 0.4s
+#4 [internal] load .dockerignore
+#4 transferring context: 79B done
+#4 DONE 0.0s
+#5 [internal] load build context
+#5 transferring context: 20.86kB done
+#5 DONE 0.0s
+#6 [1/5] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+#6 resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e 0.0s done
+#6 DONE 0.0s
+#7 [2/5] WORKDIR /app
+#7 CACHED
+#8 [3/5] COPY package*.json ./
+#8 DONE 0.0s
+#9 [4/5] RUN npm install --production
+#9 0.293 npm warn config production Use `--omit=dev` instead.
+#9 5.410
+#9 5.410 added 104 packages, and audited 105 packages in 5s
+#9 5.412
+#9 5.412 17 packages are looking for funding
+#9 5.412   run `npm fund` for details
+#9 5.412
+#9 5.412 found 0 vulnerabilities
+#9 5.413 npm notice
+#9 5.413 npm notice New major version of npm available! 10.8.2 -> 11.8.0
+#9 5.413 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.8.0
+#9 5.413 npm notice To update run: npm install -g npm@11.8.0
+#9 5.413 npm notice
+#9 DONE 5.5s
+#10 [5/5] COPY . .
+#10 DONE 0.1s
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 0.4s done
+#11 exporting manifest sha256:e86635eac967816024586b079569c22228e2b544dac7170691d4ff8a120b1508 done
+#11 exporting config sha256:8a31f8ce47384cce572f330f5e0f813029d370562bf0e86f7d6fcdf3dd058867 done
+#11 exporting attestation manifest sha256:32fec06e0fa4953ccf26ac34a849f3bce2e2e95c0fe07f79bb23776a18288984 0.0s done
+#11 exporting manifest list sha256:0e68ad2dc104578f283606d9c3f5a88d6e96a153cffe973335eee6caaf374ad8 done
+#11 naming to docker.io/library/nextmavens-realtime-0x4tt8-realtime:latest done
+#11 unpacking to docker.io/library/nextmavens-realtime-0x4tt8-realtime:latest
+#11 unpacking to docker.io/library/nextmavens-realtime-0x4tt8-realtime:latest 0.5s done
+#11 DONE 1.0s
+#12 resolving provenance for metadata file
+#12 DONE 0.0s
+Image nextmavens-realtime-0x4tt8-realtime Built
+Container nextmavens-realtime Creating
+Container nextmavens-realtime Created
+Container nextmavens-realtime Starting
+Container nextmavens-realtime Started
+Docker Compose Deployed: ✅

@@ -1,0 +1,27 @@
+# Infrastructure Docs - Progress Tracker
+
+## Feature: Infrastructure Docs
+**Branch**: flow/infrastructure-docs
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (10 total)
+
+| US-001 | Document Current Deployment | 1 | Pending | |
+| US-002 | Define Scaling Phases | 1 | Pending | |
+| US-003 | Document Regional Data Isolation | 2 | Pending | |
+| US-004 | Document Disaster Recovery | 2 | Pending | |
+| US-005 | Document Monitoring Approach | 2 | Pending | |
+| US-006 | Document Service Dependencies | 2 | Pending | |
+| US-007 | Document Current Limitations | 2 | Pending | |
+| US-008 | Document Security Architecture | 2 | Pending | |
+| US-009 | Add Infrastructure FAQ | 3 | Pending | |
+| US-010 | Document SLA Targets | 3 | Pending | |
+
+## Progress Summary
+- Total Stories: 10
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 10
+
+## Iteration Log

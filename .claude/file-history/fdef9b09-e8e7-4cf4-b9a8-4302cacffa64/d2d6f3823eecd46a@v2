@@ -1,0 +1,315 @@
+#!/usr/bin/env python3
+"""
+NextMavens Telegram Backup Script
+Backs up PostgreSQL database and uploads to Telegram channel
+
+Usage:
+    python3 telegram-backup.py              # Interactive mode
+    python3 telegram-backup.py --auto       # Auto mode (for cron)
+    python3 telegram-backup.py --db-only    # Database backup only
+    python3 telegram-backup.py --restore    # Restore latest backup
+
+Cron (daily at 2 AM):
+    0 2 * * * cd /home/ken/nextmavens-platform && /usr/bin/python3 scripts/telegram-backup.py --auto >> logs/backup.log 2>&1
+"""
+
+import os
+import sys
+import gzip
+import shutil
+import subprocess
+import requests
+from datetime import datetime
+from pathlib import Path
+import argparse
+
+# ============================================
+# CONFIGURATION
+# ============================================
+
+# Load from environment or use defaults
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "8311565035:AAEMMAmLAHM8L7zCnx42F3J3W4mcUfw4yhQ")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "7809186882")
+TELEGRAM_BACKUP_CHANNEL_ID = os.getenv("TELEGRAM_BACKUP_CHANNEL_ID", "-3876778158")
+
+# Docker settings
+DB_CONTAINER = "supabase-db"
+DB_USER = "postgres"
+DB_NAME = "postgres"
+DB_PASSWORD = os.getenv("POSTGRES_PASSWORD", "NextMavensSecure2025ChangeMe")
+
+# Backup settings
+BACKUP_DIR = Path("/home/ken/nextmavens-platform/backups")
+BACKUP_DIR.mkdir(parents=True, exist_ok=True)
+MAX_LOCAL_BACKUPS = 3  # Keep only 3 local backups
+COMPRESS_BACKUP = True  # Compress with gzip
+
+# ============================================
+# TELEGRAM FUNCTIONS
+# ============================================
+
+def send_telegram_message(message: str, channel_id: str = None) -> bool:
+    """Send a message to Telegram chat/channel"""
+    chat_id = channel_id or TELEGRAM_BACKUP_CHANNEL_ID
+    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+
+    try:
+        response = requests.post(url, json={
+            "chat_id": chat_id,
+            "text": message,
+            "parse_mode": "HTML"
+        }, timeout=30)
+        return response.json().get("ok", False)
+    except Exception as e:
+        print(f"Failed to send message: {e}")
+        return False
+
+
+def send_telegram_document(file_path: str, caption: str = "", channel_id: str = None) -> bool:
+    """Upload a file to Telegram chat/channel"""
+    chat_id = channel_id or TELEGRAM_BACKUP_CHANNEL_ID
+    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendDocument"
+
+    try:
+        with open(file_path, 'rb') as f:
+            files = {'document': f}
+            data = {
+                'chat_id': chat_id,
+                'caption': caption[:1024]  # Telegram caption limit
+            }
+            response = requests.post(url, data=data, files=files, timeout=300)
+            return response.json().get("ok", False)
+    except Exception as e:
+        print(f"Failed to upload document: {e}")
+        return False
+
+
+# ============================================
+# BACKUP FUNCTIONS
+# ============================================
+
+def backup_database() -> Path:
+    """Create a PostgreSQL database backup"""
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"nextmavens_backup_{timestamp}.sql"
+    filepath = BACKUP_DIR / filename
+
+    print(f"Creating database backup: {filename}")
+
+    # Use docker exec to run pg_dump
+    cmd = [
+        "docker", "exec", DB_CONTAINER,
+        "pg_dump", "-U", DB_USER, "-d", DB_NAME,
+        "--no-owner", "--no-acl", "--verbose"
+    ]
+
+    try:
+        with open(filepath, 'w') as f:
+            result = subprocess.run(cmd, stdout=f, stderr=subprocess.PIPE, text=True)
+
+        if result.returncode != 0:
+            raise Exception(f"pg_dump failed: {result.stderr}")
+
+        # Compress if enabled
+        if COMPRESS_BACKUP:
+            print("Compressing backup...")
+            compressed_path = filepath.with_suffix('.sql.gz')
+            with open(filepath, 'rb') as f_in:
+                with gzip.open(compressed_path, 'wb') as f_out:
+                    shutil.copyfileobj(f_in, f_out)
+            filepath.unlink()  # Remove uncompressed
+            filepath = compressed_path
+            filename = filepath.name
+
+        print(f"Backup created: {filepath} ({filepath.stat().st_size / 1024 / 1024:.2f} MB)")
+        return filepath
+
+    except Exception as e:
+        print(f"Database backup failed: {e}")
+        raise
+
+
+def backup_storage() -> Path:
+    """Create a backup of storage volume (tar.gz)"""
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"nextmavens_storage_{timestamp}.tar.gz"
+    filepath = BACKUP_DIR / filename
+
+    print(f"Creating storage backup: {filename}")
+
+    try:
+        # Backup Docker volume
+        cmd = [
+            "docker", "run", "--rm",
+            "-v", "supabase-storage:/data",
+            "-v", str(BACKUP_DIR):/backup",
+            "alpine", "tar", "czf", f"/backup/{filename}", "-C", "/data", "."
+        ]
+        subprocess.run(cmd, check=True)
+
+        print(f"Storage backup created: {filepath} ({filepath.stat().st_size / 1024 / 1024:.2f} MB)")
+        return filepath
+
+    except Exception as e:
+        print(f"Storage backup failed: {e}")
+        return None
+
+
+def cleanup_old_backups():
+    """Remove old local backups, keeping only the most recent ones"""
+    print("Cleaning up old local backups...")
+
+    # List all backup files sorted by modification time
+    backups = sorted(BACKUP_DIR.glob("nextmavens_*.sql*"), key=lambda p: p.stat().st_mtime, reverse=True)
+
+    for old_backup in backups[MAX_LOCAL_BACKUPS:]:
+        print(f"Removing old backup: {old_backup.name}")
+        old_backup.unlink()
+
+
+def get_disk_usage() -> dict:
+    """Get current disk usage statistics"""
+    try:
+        result = subprocess.run(['df', '-h', '/'], capture_output=True, text=True)
+        lines = result.stdout.split('\n')
+        if len(lines) > 1:
+            parts = lines[1].split()
+            return {
+                'total': parts[1],
+                'used': parts[2],
+                'available': parts[3],
+                'percent': parts[4]
+            }
+    except:
+        pass
+    return {'percent': 'unknown'}
+
+
+# ============================================
+# MAIN FUNCTIONS
+# ============================================
+
+def run_backup(auto_mode=False):
+    """Run complete backup process"""
+    start_time = datetime.now()
+    print(f"\n{'='*50}")
+    print(f"NextMavens Backup Started: {start_time.strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"{'='*50}\n")
+
+    disk_info = get_disk_usage()
+    print(f"Disk Usage: {disk_info['used']} / {disk_info['total']} ({disk_info['percent']})\n")
+
+    success = False
+    backup_files = []
+
+    try:
+        # Database backup
+        db_backup = backup_database()
+        backup_files.append(('Database', db_backup))
+
+        # Storage backup (only for weekly full backup)
+        if start_time.weekday() == 6:  # Sunday
+            storage_backup = backup_storage()
+            if storage_backup:
+                backup_files.append(('Storage', storage_backup))
+
+        # Upload to Telegram
+        print("\nUploading to Telegram...")
+        for backup_type, backup_path in backup_files:
+            size_mb = backup_path.stat().st_size / 1024 / 1024
+            caption = f"""
+<b>NextMavens {backup_type} Backup</b>
+Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+Size: {size_mb:.2f} MB
+Disk Usage: {disk_info['percent']}
+"""
+            print(f"Uploading {backup_type} backup ({size_mb:.2f} MB)...")
+            if send_telegram_document(str(backup_path), caption.strip()):
+                print(f"Uploaded {backup_type} backup successfully!")
+            else:
+                print(f"Failed to upload {backup_type} backup")
+                if not auto_mode:
+                    send_telegram_message(f"Failed to upload {backup_type} backup to Telegram")
+
+        success = True
+
+        # Cleanup old backups
+        cleanup_old_backups()
+
+    except Exception as e:
+        print(f"\nBackup failed: {e}")
+        if not auto_mode:
+            send_telegram_message(f"Backup failed: {str(e)[:500]}")
+
+    # Summary
+    end_time = datetime.now()
+    duration = (end_time - start_time).total_seconds()
+
+    print(f"\n{'='*50}")
+    if success:
+        print(f"Backup Completed Successfully in {duration:.1f} seconds")
+        if not auto_mode:
+            send_telegram_message(
+                f"✅ NextMavens backup completed\n"
+                f"Duration: {duration:.1f}s\n"
+                f"Disk Usage: {disk_info['percent']}"
+            )
+    else:
+        print(f"Backup Failed after {duration:.1f} seconds")
+    print(f"{'='*50}\n")
+
+    return success
+
+
+def restore_from_telegram():
+    """List recent backups from Telegram and restore"""
+    print("Fetching recent backups from Telegram...")
+
+    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/getUpdates"
+    response = requests.get(url, timeout=30)
+
+    if not response.json().get("ok"):
+        print("Failed to fetch updates from Telegram")
+        return
+
+    # Find backup files
+    backups = []
+    for update in response.json().get("result", []):
+        if "message" in update and "document" in update["message"]:
+            doc = update["message"]["document"]
+            if "backup" in doc.get("file_name", "").lower():
+                backups.append({
+                    "file_id": doc["file_id"],
+                    "name": doc["file_name"],
+                    "date": datetime.fromtimestamp(update["message"]["date"]).strftime("%Y-%m-%d %H:%M"),
+                    "size": doc.get("file_size", 0) / 1024 / 1024
+                })
+
+    if not backups:
+        print("No backup files found in Telegram")
+        return
+
+    print("\nRecent backups:")
+    for i, b in enumerate(backups[-10:], 1):  # Show last 10
+        print(f"{i}. {b['name']} ({b['size']:.2f} MB) - {b['date']}")
+
+    print("\nNote: To restore, download the file and use:")
+    print("  docker exec -i supabase-db psql -U postgres < backup.sql")
+
+
+# ============================================
+# ENTRY POINT
+# ============================================
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="NextMavens Telegram Backup")
+    parser.add_argument("--auto", action="store_true", help="Auto mode for cron (no interactive prompts)")
+    parser.add_argument("--db-only", action="store_true", help="Backup database only")
+    parser.add_argument("--restore", action="store_true", help="Restore mode")
+
+    args = parser.parse_args()
+
+    if args.restore:
+        restore_from_telegram()
+    else:
+        run_backup(auto_mode=args.auto)

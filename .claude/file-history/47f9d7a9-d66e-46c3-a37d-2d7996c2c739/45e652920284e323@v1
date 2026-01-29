@@ -1,0 +1,40 @@
+---
+memoryVersion: 1
+schemaVersion: 1
+feature: CLI Tool
+consolidatedDate: 2026-01-28
+totalStories: 11
+completedStories: 0
+status: initialized
+---
+
+# CLI Tool - Consolidated Implementation Memory
+
+## System Overview
+Standalone CLI tool that provides terminal-based workflows for developers who prefer command-line interfaces over UI. Serious developers don't click UI for everything - CLI is essential for team adoption and CI/CD integration.
+
+## Current Status
+PRD created, waiting for execution.
+
+## Technical Approach
+Create Node.js CLI package at `/home/ken/nextmavens-cli/` using oclif or yargs framework. CLI acts as a thin wrapper around the Control Plane API, storing authentication tokens and project configuration locally. Distribute via npm for easy installation.
+
+## Related PRDs
+- Control Plane API Service (consumes)
+- Control Plane Snapshot Contract (indirect)
+
+## Stories to Implement
+- US-001: Create CLI Project Structure
+- US-002: Implement Authentication Commands
+- US-003: Implement Project Commands
+- US-004: Implement Database Commands
+- US-005: Implement Functions Commands
+- US-006: Implement Secrets Commands
+- US-007: Implement Status Command
+- US-008: Implement API Client Library
+- US-009: Implement Config Management
+- US-010: Publish to NPM
+- US-011: Create Documentation
+
+## Memory Structure
+This file will be updated as stories complete.

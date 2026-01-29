@@ -1,0 +1,5 @@
+ALTER ROLE
+   rolname    | rolbypassrls 
+--------------+--------------
+ service_role | t
+(1 row)

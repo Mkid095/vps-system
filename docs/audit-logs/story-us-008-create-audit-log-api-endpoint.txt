@@ -1,0 +1,45 @@
+---
+memoryVersion: 1
+storyId: US-008
+storyTitle: Create Audit Log API Endpoint
+completedDate: 2026-01-28
+---
+
+STORY: US-008 - Create Audit Log API Endpoint
+========================
+
+DESCRIPTION:
+As a platform operator, I want to query audit logs via API so that I can investigate actions programmatically.
+
+MAVEN STEPS COMPLETED:
+[1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Created GET /api/audit endpoint with query parameters for filtering (actor_id, action, target_type, target_id, start_date, end_date), pagination support, JWT authentication, and SQL injection protection. Integrated with @nextmavens/audit-logs-database package for centralized data access.
+
+KEY FILES:
+- src/api/routes/audit/audit.types.ts - Type definitions for queries and responses
+- src/api/routes/audit/audit.controller.ts - Main controller with validation and project scoping
+- src/api/routes/audit/index.ts - Route configuration with rate limiting
+- src/index.ts - Added audit routes and database initialization
+- src/api/middleware/error.handler.ts - Added VALIDATION_ERROR code
+- .env.example - Added DATABASE_URL configuration
+
+DECISIONS MADE:
+- Rate limiting set to 60 requests/minute per IP
+- Project-level authorization: users can only query logs where actor_id = their project_id (JWT project_id)
+- Parameterized queries for SQL injection protection
+- Generic error messages to prevent information leakage
+- Pagination defaults: limit=100 (max 1000), offset=0
+
+INTEGRATION POINTS:
+- Uses @nextmavens/audit-logs-database package (queryAuditLogs function)
+- JWT middleware for authentication (requireJwtAuth)
+- Database initialization during gateway startup
+- Error handler for consistent error responses
+
+LESSONS LEARNED:
+- Critical security fix: initially allowed cross-project data access, fixed by scoping queries to JWT project_id
+- Type definitions must align between API controller and database package
+- Graceful shutdown handlers needed for database connections
+- Environment variables should support both DATABASE_URL and individual params

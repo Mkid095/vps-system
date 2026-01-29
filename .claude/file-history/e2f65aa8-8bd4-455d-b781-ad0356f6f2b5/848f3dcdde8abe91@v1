@@ -1,0 +1,201 @@
+{
+  "project": "Dashboard UI",
+  "branchName": "flow/dashboard-ui",
+  "description": "Build a Next.js 15+ TypeScript dashboard with Tailwind CSS for managing NextMavens Platform. Professional design with Inter font, neutral colors, no emojis/gradients. Integrate Supabase Auth, provide organizations to projects navigation, service redirects, and real-time notifications.",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "User Authentication",
+      "description": "As a user, I want to log in with email/password so that I can access my organizations and projects.",
+      "acceptanceCriteria": [
+        "Login page at /login",
+        "Email/password form with validation",
+        "Session persisted",
+        "Redirect to dashboard after login",
+        "Logout functionality",
+        "Typecheck passes",
+        "Verify in browser"
+      ],
+      "mavenSteps": [1, 7, 10],
+      "mcpTools": {
+        "step1": ["supabase", "chrome-devtools"],
+        "step7": ["supabase", "chrome-devtools"],
+        "step10": ["supabase", "chrome-devtools"]
+      },
+      "priority": 1,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-002",
+      "title": "Dashboard Home",
+      "description": "As a logged-in user, I want to see my organizations and projects on the dashboard so that I can navigate to my applications.",
+      "acceptanceCriteria": [
+        "Display all organizations",
+        "Display projects grouped by organization",
+        "Quick actions (new project, new org)",
+        "Statistics (total projects, active instances)",
+        "Typecheck passes",
+        "Verify in browser"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 1,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-003",
+      "title": "Organization Switcher",
+      "description": "As a user with multiple organizations, I want to switch between organizations so that I can focus on one context.",
+      "acceptanceCriteria": [
+        "Dropdown or sidebar selector",
+        "Shows current organization",
+        "Lists all accessible organizations",
+        "Updates context on selection",
+        "Typecheck passes",
+        "Verify in browser"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 1,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-004",
+      "title": "Project List View",
+      "description": "As a user, I want to see all projects in an organization with status indicators so that I can identify active/provisioning/suspended projects.",
+      "acceptanceCriteria": [
+        "Table or card layout",
+        "Status badges (active/provisioning/suspended)",
+        "Quick links to Studio, logs, settings",
+        "Filter by status",
+        "Typecheck passes",
+        "Verify in browser"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 1,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-005",
+      "title": "Create Project Modal",
+      "description": "As an organization member, I want to create a new project so that I can deploy a new application.",
+      "acceptanceCriteria": [
+        "Modal form with name, description, slug",
+        "Slug auto-generated from name",
+        "Validation for slug uniqueness",
+        "Shows API keys after creation (one-time display)",
+        "Typecheck passes",
+        "Verify in browser"
+      ],
+      "mavenSteps": [1, 7, 10],
+      "mcpTools": {
+        "step1": ["chrome-devtools"],
+        "step7": ["chrome-devtools"],
+        "step10": ["chrome-devtools"]
+      },
+      "priority": 1,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-006",
+      "title": "Service Redirects",
+      "description": "As a developer, I want quick links to external services so that I can access Studio, Evolution API, and other tools.",
+      "acceptanceCriteria": [
+        "Links to Supabase Studio (per project)",
+        "Links to Evolution API console",
+        "Links to logs/monitoring",
+        "Opens in new tab",
+        "Typecheck passes",
+        "Verify in browser"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 2,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-007",
+      "title": "API Key Management",
+      "description": "As a developer, I want to manage API keys so that I can rotate credentials and control access.",
+      "acceptanceCriteria": [
+        "List active API keys",
+        "Show key prefix and last used",
+        "Create new key (shows full value once)",
+        "Revoke key",
+        "Set expiration",
+        "Typecheck passes",
+        "Verify in browser"
+      ],
+      "mavenSteps": [1, 7, 10],
+      "mcpTools": {},
+      "priority": 2,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-008",
+      "title": "Real-time Notifications",
+      "description": "As a user, I want to receive real-time notifications so that I know about events affecting my projects.",
+      "acceptanceCriteria": [
+        "Supabase Realtime subscription",
+        "Toast notifications for events",
+        "Events: deployment status, WhatsApp connect, errors",
+        "Notification center history",
+        "Typecheck passes",
+        "Verify in browser"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 2,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-009",
+      "title": "Project Settings Page",
+      "description": "As a project owner, I want to configure project settings so that I can customize behavior.",
+      "acceptanceCriteria": [
+        "Edit project name/description",
+        "Configure storage quota",
+        "Set rate limits",
+        "Danger zone: delete project",
+        "Typecheck passes",
+        "Verify in browser"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 3,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-010",
+      "title": "Team Management Page",
+      "description": "As an organization owner, I want to manage team members so that I can control access.",
+      "acceptanceCriteria": [
+        "List members with roles",
+        "Invite new members",
+        "Change member roles",
+        "Remove members",
+        "Typecheck passes",
+        "Verify in browser"
+      ],
+      "mavenSteps": [1, 7, 10],
+      "mcpTools": {
+        "step1": ["supabase"],
+        "step7": ["supabase"],
+        "step10": ["supabase"]
+      },
+      "priority": 3,
+      "passes": false,
+      "notes": ""
+    }
+  ]
+}

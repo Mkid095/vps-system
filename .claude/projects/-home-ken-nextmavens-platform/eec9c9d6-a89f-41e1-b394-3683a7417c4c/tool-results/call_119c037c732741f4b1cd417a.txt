@@ -1,0 +1,9 @@
+ column_name |        data_type         | is_nullable |   column_default   
+-------------+--------------------------+-------------+--------------------
+ id          | uuid                     | NO          | uuid_generate_v4()
+ name        | text                     | NO          | 
+ slug        | text                     | NO          | 
+ logo_url    | text                     | YES         | 
+ created_at  | timestamp with time zone | YES         | now()
+ updated_at  | timestamp with time zone | YES         | now()
+(6 rows)

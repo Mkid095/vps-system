@@ -1,0 +1,11 @@
+        proname         |                 prosrc                 
+------------------------+----------------------------------------
+ get_user_organizations |                                       +
+                        | BEGIN                                 +
+                        |     RETURN QUERY                      +
+                        |     SELECT DISTINCT om.organization_id+
+                        |     FROM organization_members om      +
+                        |     WHERE om.user_id = user_id_param; +
+                        | END;                                  +
+                        | 
+(1 row)

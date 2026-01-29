@@ -1,0 +1,51 @@
+---
+memoryVersion: 1
+storyId: US-005
+storyTitle: Audit User Management Operations
+completedDate: 2026-01-28
+---
+
+STORY: US-005 - Audit User Management Operations
+========================
+
+DESCRIPTION:
+As a platform operator, I want all user invite/remove operations logged so that I can track team membership changes.
+
+MAVEN STEPS COMPLETED:
+[1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+User management endpoints did not exist in the codebase, so I created 4 new admin API endpoints with full audit logging integration. The logUserAction helper functions (invited, removed, roleChanged) were already implemented from US-001. This story focused on creating the user management CRUD endpoints and integrating audit logging following the pattern from US-003 and US-004.
+
+KEY FILES:
+- developer-portal/src/app/api/admin/users/invite/route.ts - User invitation endpoint with audit logging (user.invited)
+- developer-portal/src/app/api/admin/users/[userId]/route.ts - User deletion endpoint with audit logging (user.removed)
+- developer-portal/src/app/api/admin/users/[userId]/role/route.ts - Role change endpoint with audit logging (user.role_changed)
+- developer-portal/src/app/api/admin/users/route.ts - User list endpoint for admin UI
+- database/src/helpers.ts - logUserAction helper functions (already existed from US-001, lines 195-253)
+- database/src/index.ts - Exports logUserAction
+
+DECISIONS MADE:
+- Created new admin endpoints as user management CRUD didn't exist
+- Used requireAdmin() middleware for invite/delete/role endpoints (admin-only)
+- Used requireOperatorOrAdmin() for list endpoint (read access for operators)
+- Followed US-003/US-004 pattern for audit integration
+- Self-modification prevention (can't delete own account or change own role)
+- Only log safe headers (x-forwarded-for, x-real-ip, user-agent) - never Authorization or cookies
+
+INTEGRATION POINTS:
+- Uses @nextmavens/audit-logs-database package (from US-001, US-002)
+- Integrates with existing authenticateRequest middleware for actor identification
+- Uses control_plane.audit_logs table (created in US-001)
+- Helper functions: logUserAction.invited(), logUserAction.removed(), logUserAction.roleChanged()
+- Admin/Operator role system via requireAdmin() and requireOperatorOrAdmin()
+
+LESSONS LEARNED:
+- The audit infrastructure from US-001/US-002 made this straightforward - logUserAction helpers already existed
+- User management endpoints didn't exist - needed to create full CRUD API
+- Security: Always prevent self-modification (self-deletion, self-role-change)
+- Security: Never log request headers directly - only extract IP and user agent
+- Business logic: Check if user exists before operations (404 for non-existent users)
+- Business logic: Prevent duplicate operations (idempotency check for role changes)
+- Type safety: All new code uses proper TypeScript types (no 'any')
+- Error handling: Audit logging failures don't fail main operation (try-catch with console.error)

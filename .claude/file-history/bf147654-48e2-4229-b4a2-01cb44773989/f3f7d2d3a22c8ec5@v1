@@ -1,0 +1,18 @@
+# API Keys and Authentication - Progress
+
+## Iteration 1
+Date: 2026-01-24
+
+Stories to Process:
+- US-001: Generate API Key
+- US-002: Validate API Key
+- US-003: List API Keys
+- US-004: Revoke API Key
+- US-005: Key Scopes
+- US-006: Key Expiration
+- US-007: Rate Limiting by Key
+- US-008: Supabase Auth Integration
+- US-009: Project JWT Signing
+- US-010: Audit Logging
+
+Status: Ready for flow start

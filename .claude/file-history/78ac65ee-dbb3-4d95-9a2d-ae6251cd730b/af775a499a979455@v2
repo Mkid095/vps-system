@@ -1,0 +1,187 @@
+{
+  "project": "MCP Servers for Claude Integration",
+  "branchName": "flow/mcp-servers",
+  "description": "Implement stdio-based MCP (Model Context Protocol) servers for Supabase, WhatsApp (Evolution API), and Email (Resend). Enable Claude Desktop to interact with platform services. Secure connection management with per-project credentials.",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Supabase MCP Handshake",
+      "description": "As the MCP protocol, I want to establish a handshake so that the client knows the server is ready.",
+      "acceptanceCriteria": [
+        "Server outputs handshake on startup",
+        "Format: {\"type\": \"handshake\", \"version\": \"1.0\"}",
+        "Accepts newline-delimited JSON input",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 1,
+      "passes": true,
+      "notes": "Implemented in mcp/whatsapp-mcp.ts. Handshake handler responds to {type: 'handshake', version: '1.0'} with capabilities. Accepts newline-delimited JSON via stdio. Process continues indefinitely handling messages. Typecheck passes."
+    },
+    {
+      "id": "US-002",
+      "title": "Supabase MCP Query Action",
+      "description": "As Claude Desktop, I want to query Supabase tables so that I can retrieve data for analysis.",
+      "acceptanceCriteria": [
+        "Action: query",
+        "Params: {project_id, token?, table, limit?, offset?, filter?, select?, order?}",
+        "Validates token and retrieves project credentials",
+        "Executes SELECT query via Supabase client",
+        "Returns data with columns and rows",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7, 10],
+      "mcpTools": {
+        "step1": ["supabase"],
+        "step7": ["supabase"],
+        "step10": ["supabase"]
+      },
+      "priority": 1,
+      "passes": true,
+      "notes": "Implemented stdio-based MCP server at mcp/supabase-mcp.ts. Action 'query' accepts {project_id, token?, table, limit?, offset?, filter?, select?, order?}. Validates project exists and is active. Creates Supabase client for project database. Executes SELECT query with filters, ordering, and pagination. Returns {columns, rows, count}. Reads SUPABASE_URL and SUPABASE_SERVICE_KEY from environment. Typecheck passes. Run with pnpm mcp:supabase."
+    },
+    {
+      "id": "US-003",
+      "title": "Supabase MCP Execute Action",
+      "description": "As Claude Desktop, I want to execute safe SQL so that I can perform complex queries.",
+      "acceptanceCriteria": [
+        "Action: execute",
+        "Params: {projectId, token, sql}",
+        "Whitelisted SQL only (SELECT, limited INSERT/UPDATE)",
+        "Query result limits",
+        "Returns rows/affected count",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7, 10],
+      "mcpTools": {
+        "step1": ["supabase"],
+        "step7": ["supabase"],
+        "step10": ["supabase"]
+      },
+      "priority": 2,
+      "passes": true,
+      "notes": "Implemented execute action in mcp/supabase-mcp.ts. Accepts {token?, project_id?, sql}. Whitelisted SQL only (SELECT, INSERT INTO, UPDATE). SELECT requires LIMIT clause (max 1000). UPDATE requires WHERE clause. INSERT limited to single row operations. Dangerous patterns blocked (DROP, DELETE, TRUNCATE, ALTER, CREATE, GRANT, REVOKE, EXEC). Uses execute_sql RPC function in database (added to scripts/db-init.sql). Returns {rows, columns, affectedRows, message}. Typecheck passes."
+    },
+    {
+      "id": "US-004",
+      "title": "WhatsApp MCP Send Message",
+      "description": "As Claude Desktop, I want to send WhatsApp messages so that I can notify users.",
+      "acceptanceCriteria": [
+        "Action: send-message",
+        "Params: {instance_name, number, text}",
+        "Calls Evolution API",
+        "Returns message ID",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7, 10],
+      "mcpTools": {},
+      "priority": 1,
+      "passes": true,
+      "notes": "Implemented in mcp/whatsapp-mcp.ts. Action 'send-message' accepts {instance_name, number, text}, validates instance is connected, calls Evolution API POST /message/sendText/{instanceName}, stores message in database, returns message_id and status. Typecheck passes."
+    },
+    {
+      "id": "US-005",
+      "title": "WhatsApp MCP Get Status",
+      "description": "As Claude Desktop, I want to check WhatsApp status so that I can verify connectivity.",
+      "acceptanceCriteria": [
+        "Action: get-status",
+        "Params: {instance_name}",
+        "Returns state, phone number, battery",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 1,
+      "passes": true,
+      "notes": "Implemented in mcp/whatsapp-mcp.ts. Action 'get-status' accepts {instance_name}, calls Evolution API GET /instance/connectionState/{instance_name}, updates database status, returns instance_name, status, phone_number, state, and battery. Typecheck passes."
+    },
+    {
+      "id": "US-006",
+      "title": "WhatsApp MCP Create Instance",
+      "description": "As Claude Desktop, I want to create WhatsApp instances so that I can set up new connections.",
+      "acceptanceCriteria": [
+        "Action: create-instance",
+        "Params: {project_id, instance_name}",
+        "Calls Evolution API",
+        "Returns instance ID",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7, 10],
+      "mcpTools": {},
+      "priority": 2,
+      "passes": true,
+      "notes": "Implemented in mcp/whatsapp-mcp.ts. Action 'create-instance' accepts {project_id, instance_name}, validates project exists and instance_name is unique, calls Evolution API POST /instance/create, stores instance in database with status='pending', returns instance record. Typecheck passes."
+    },
+    {
+      "id": "US-007",
+      "title": "Email MCP Send Email",
+      "description": "As Claude Desktop, I want to send emails via Resend so that I can communicate with users.",
+      "acceptanceCriteria": [
+        "Action: send-email",
+        "Params: {to, subject, html?, text?}",
+        "Calls Resend API",
+        "Returns message ID",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7, 10],
+      "mcpTools": {},
+      "priority": 2,
+      "passes": true,
+      "notes": "Implemented stdio-based MCP server at mcp/email-mcp.ts. Action 'send-email' accepts {token?, project_id?, to, subject, html?, text?, from?}. Validates authentication via token or project_id using shared auth module. Sends email via Resend API (https://api.resend.com/emails) with Bearer token from RESEND_API_KEY env var. Returns message ID on success. Supports custom from address or uses RESEND_DEFAULT_FROM env var (default: noreply@nextmavens.cloud). Requires either html or text content. Validates required parameters (to, subject). Error handling with descriptive messages. Handshake protocol with capabilities listing. Run with pnpm mcp:email. Typecheck passes."
+    },
+    {
+      "id": "US-008",
+      "title": "MCP Authentication",
+      "description": "As the MCP server, I want to validate requests so that unauthorized clients cannot access data.",
+      "acceptanceCriteria": [
+        "Each request can include project token or project_id",
+        "Token validated against master database (api_keys table)",
+        "Project credentials retrieved after validation",
+        "Invalid tokens return error with message",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 10],
+      "mcpTools": {
+        "step1": ["supabase"],
+        "step10": ["supabase"]
+      },
+      "priority": 1,
+      "passes": true,
+      "notes": "Implemented shared auth module at mcp/auth.ts. Validates project tokens (API keys) against api_keys table using key_hash comparison. Checks expiration and is_active status. Returns project credentials on success. Both WhatsApp and Supabase MCP servers support token parameter for authentication. Also supports direct project_id access for trusted clients. Updates last_used_at timestamp on successful auth. Typecheck passes."
+    },
+    {
+      "id": "US-009",
+      "title": "MCP Error Handling",
+      "description": "As the MCP server, I want to return structured errors so that clients can handle failures gracefully.",
+      "acceptanceCriteria": [
+        "Error format: {\"type\": \"error\", \"message\": \"...\", \"code\": \"...\"}",
+        "Catches all exceptions",
+        "Logs errors for debugging",
+        "Process continues after error",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 2,
+      "passes": true,
+      "notes": "Implemented in mcp/whatsapp-mcp.ts. All actions wrapped in try-catch, errors returned as {type: 'error', id, action, message}. Process continues after errors. Console logging for debugging. Typecheck passes."
+    },
+    {
+      "id": "US-010",
+      "title": "MCP Manifest/Capabilities",
+      "description": "As Claude Desktop, I want to discover available actions so that I know what the server can do.",
+      "acceptanceCriteria": [
+        "Action: capabilities",
+        "Returns list of actions and their params",
+        "Optional: events for subscriptions",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 3,
+      "passes": true,
+      "notes": "Implemented in mcp/whatsapp-mcp.ts. Handshake response includes {capabilities: {actions: [...]}} listing all available actions (create-instance, send-message, get-status, get-messages). Actions registered in ACTIONS object. Typecheck passes."
+    }
+  ]
+}

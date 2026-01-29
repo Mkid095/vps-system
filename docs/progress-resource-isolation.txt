@@ -1,0 +1,28 @@
+# Resource Isolation - Progress Tracker
+
+## Feature: Resource Isolation
+**Branch**: flow/resource-isolation
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (11 total)
+
+| US-001 | Require project_id in JWT | 1 | Pending | |
+| US-002 | Scope Database Queries | 1 | Pending | |
+| US-003 | Prefix Realtime Channels | 1 | Pending | |
+| US-004 | Prefix Storage Paths | 1 | Pending | |
+| US-005 | Return 403 Not 404 | 1 | Pending | |
+| US-006 | Enforce Isolation in API Gateway | 1 | Pending | |
+| US-007 | Enforce Isolation in Auth Service | 2 | Pending | |
+| US-008 | Enforce Isolation in GraphQL Service | 2 | Pending | |
+| US-009 | Enforce Isolation in Realtime Service | 2 | Pending | |
+| US-010 | Enforce Isolation in Storage Service | 2 | Pending | |
+| US-011 | Isolation Testing | 3 | Pending | |
+
+## Progress Summary
+- Total Stories: 11
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 11
+
+## Iteration Log

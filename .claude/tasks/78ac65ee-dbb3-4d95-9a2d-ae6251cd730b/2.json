@@ -1,0 +1,9 @@
+{
+  "id": "2",
+  "subject": "Create PRD 1: Platform Core with Supabase Foundation",
+  "description": "Create the first PRD document for Platform Core including self-hosted Supabase setup, organizations→projects flow, database-per-app isolation, Supavisor configuration, and Kong API gateway routing.",
+  "activeForm": "Creating PRD 1: Platform Core",
+  "status": "pending",
+  "blocks": [],
+  "blockedBy": []
+}

@@ -1,0 +1,9 @@
+{
+  "id": "2",
+  "subject": "Create Control Plane API Service",
+  "description": "Create standalone Control Plane API service at /home/ken/control-plane-api/ as the authoritative API for all governance. Structure:\n- Next.js API routes project\n- /projects - Project CRUD, lifecycle\n- /orgs - Organization management  \n- /keys - API key CRUD, rotation, MCP types\n- /usage - Usage tracking, quotas\n- /jobs - Job management\n- /audit - Audit log access\n- /webhooks - Webhook management\n- /internal/snapshot - Source of truth contract (CRITICAL)\n- /internal/health - Service health reporting\n\nIncludes shared auth.ts and db.ts libraries.",
+  "activeForm": "Creating Control Plane API service",
+  "status": "pending",
+  "blocks": [],
+  "blockedBy": []
+}

@@ -1,0 +1,2 @@
+Exit code 144
+pkill: killing pid 503002 failed: Operation not permitted

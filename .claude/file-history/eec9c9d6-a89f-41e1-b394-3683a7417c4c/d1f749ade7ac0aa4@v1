@@ -1,0 +1,78 @@
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { Sidebar, sidebarStyles } from "@/components/sidebar";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "NEXT MAVENS VPS",
+  description: "Professional VPS management platform",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <head>
+        {sidebarStyles()}
+        <style>{`
+          .main-layout {
+            margin-left: 240px;
+            min-height: 100vh;
+          }
+
+          .main-content {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+          }
+
+          @media (max-width: 768px) {
+            .sidebar {
+              width: 60px;
+            }
+
+            .nav-label, .user-email, .logout-btn span:not(.nav-icon) {
+              display: none;
+            }
+
+            .nav-item {
+              justify-content: center;
+              padding: 0.75rem;
+            }
+
+            .main-layout {
+              margin-left: 60px;
+            }
+
+            .logo-image {
+              width: 24px;
+              height: 24px;
+              margin: 0 auto;
+            }
+
+            .vps-stats {
+              grid-template-columns: 1fr;
+              gap: 0.25rem;
+            }
+          }
+        `}</style>
+      </head>
+      <body className={`${inter.variable} antialiased`}>
+        <Sidebar />
+        <div className="main-layout">
+          <main className="main-content">
+            {children}
+          </main>
+        </div>
+      </body>
+    </html>
+  );
+}

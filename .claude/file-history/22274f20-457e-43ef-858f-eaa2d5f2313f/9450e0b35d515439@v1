@@ -1,0 +1,43 @@
+---
+memoryVersion: 1
+schemaVersion: 1
+feature: Platform Core (Supabase Foundation)
+consolidatedDate: 2026-01-24
+totalStories: 8
+completedStories: 0
+status: initialized
+---
+
+# Platform Core (Supabase Foundation) - Consolidated Implementation Memory
+
+## System Overview
+Self-host Supabase with Docker for the NextMavens Platform. Implement custom organizations→projects flow with database-per-app isolation (NOT schema-based). Configure Supavisor for connection pooling and Kong API gateway for routing.
+
+## Current Status
+PRD created, waiting for execution.
+
+## Technical Approach
+- Single Supabase instance with separate databases per project
+- Supavisor config: `POOLER_TENANT_ID=nextmavens_master`, `pool_mode=transaction`
+- Connection string format: `postgres://postgres.${tenant_id}:${password}@db:5432/${db_name}`
+- Custom API layer uses postgres client to run `CREATE DATABASE "project_${id}"; CREATE ROLE ...; GRANT ...;` transactionally
+- Project-scoped JWTs via Supabase Auth admin API or custom signing with project-specific secrets
+- Studio access via Kong proxy: path `/studio/{project}` → upstream to Studio container
+
+## Related PRDs
+- Dashboard UI (consumes these APIs)
+- WhatsApp Integration (uses project databases)
+- MCP Servers (connects to project databases)
+
+## Stories to Implement
+- US-001: Create Organization
+- US-002: Create Project with Database
+- US-003: List Organizations
+- US-004: List Projects
+- US-005: Get Project Details
+- US-006: Supabase Studio Access
+- US-007: Invite Organization Member
+- US-008: Update Project Status
+
+## Memory Structure
+This file will be updated as stories complete.

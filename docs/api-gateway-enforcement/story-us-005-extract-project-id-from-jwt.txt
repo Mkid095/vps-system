@@ -1,0 +1,49 @@
+---
+memoryVersion: 1
+storyId: US-005
+storyTitle: Extract Project ID from JWT
+completedDate: 2026-01-28
+---
+
+STORY: US-005 - Extract Project ID from JWT
+========================
+
+DESCRIPTION:
+As a gateway engineer, I want to extract project_id from JWT so that I can scope requests.
+
+MAVEN STEPS COMPLETED:
+[1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Created JWT authentication middleware that validates JWT signatures, extracts project_id claim, and rejects invalid tokens with KEY_INVALID error. Integrated with existing middleware chain for comprehensive request validation.
+
+KEY FILES:
+- /home/ken/api-gateway/src/api/middleware/jwt.middleware.ts - JWT middleware (299 lines)
+- /home/ken/api-gateway/src/api/middleware/__tests__/jwt.middleware.test.ts - Unit tests
+- /home/ken/api-gateway/src/api/middleware/error.handler.ts - Added KEY_INVALID error code
+- /home/ken/api-gateway/src/index.ts - JWT-protected routes and middleware integration
+- /home/ken/docs/jwt-authentication.md - Full documentation
+- /home/ken/docs/jwt-quick-start.md - Quick start guide
+
+DECISIONS MADE:
+- Used jsonwebtoken library with HS256 algorithm
+- Explicit algorithm whitelist to prevent algorithm confusion attacks
+- Bearer-only authentication (no cookies, no query params)
+- Minimum JWT secret length: 32 characters enforced
+- Generic KEY_INVALID error for all JWT failures (prevents enumeration)
+- Fail-closed architecture - rejects on missing/invalid configuration
+
+INTEGRATION POINTS:
+- Reads project_id from JWT payload (extracted by requireJwtAuth)
+- Works with project-status middleware (US-002) for validation
+- Compatible with service-enablement middleware (US-003)
+- Works with rate-limiting middleware (US-004) for quota enforcement
+- JWT middleware runs BEFORE project/service validation (correct order)
+
+LESSONS LEARNED:
+- JWT middleware must run before project validation to provide project_id
+- Generic error messages critical - prevent token validity enumeration
+- Algorithm whitelist prevents "none" algorithm attacks
+- Minimum secret length enforcement prevents weak deployments
+- Optional JWT auth useful for public endpoints with optional enhancement
+- Token length limits (4096 chars) prevent DoS via oversized tokens

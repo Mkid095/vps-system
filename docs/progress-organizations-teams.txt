@@ -1,0 +1,29 @@
+# Organizations Teams - Progress Tracker
+
+## Feature: Organizations Teams
+**Branch**: flow/organizations-teams
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (12 total)
+
+| US-001 | Create Organizations Table | 1 | Pending | |
+| US-002 | Create Organization Members Table | 1 | Pending | |
+| US-003 | Add Organization to Projects | 1 | Pending | |
+| US-004 | Define Permission Matrix | 1 | Pending | |
+| US-005 | Implement Create Organization | 1 | Pending | |
+| US-006 | Implement Invite Member | 1 | Pending | |
+| US-007 | Implement Accept Invitation | 2 | Pending | |
+| US-008 | Implement Remove Member | 2 | Pending | |
+| US-009 | Implement Update Member Role | 2 | Pending | |
+| US-010 | Create Organizations List UI | 2 | Pending | |
+| US-011 | Create Team Management UI | 2 | Pending | |
+| US-012 | Enforce Organization Scoping | 2 | Pending | |
+
+## Progress Summary
+- Total Stories: 12
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 12
+
+## Iteration Log

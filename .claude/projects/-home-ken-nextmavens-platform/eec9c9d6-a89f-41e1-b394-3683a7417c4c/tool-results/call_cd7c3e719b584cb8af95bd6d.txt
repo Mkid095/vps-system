@@ -1,0 +1,50 @@
+  kong:
+    container_name: nextmavens-kong
+    deploy:
+      resources:
+        limits:
+          memory: "536870912"
+        reservations:
+          memory: "268435456"
+    environment:
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+      KONG_ADMIN_ERROR_LOG: /dev/stderr
+      KONG_DATABASE: "off"
+      KONG_DECLARATIVE_CONFIG: /kong/declarative/kong.yml
+      KONG_LOG_LEVEL: info
+      KONG_PLUGINS: bundled,cors
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+    healthcheck:
+      test:
+        - CMD
+        - kong
+        - health
+      timeout: 10s
+      interval: 30s
+      retries: 3
+      start_period: 40s
+    image: kong:3.7.1
+    logging:
+      driver: json-file
+      options:
+        max-file: "3"
+        max-size: 10m
+    networks:
+      nextmavens-network: null
+    ports:
+      - mode: ingress
+        target: 8000
+        published: "8000"
+        protocol: tcp
+      - mode: ingress
+        target: 8443
+        published: "8443"
+        protocol: tcp
+      - mode: ingress
+        target: 8001
+        published: "8001"
+        protocol: tcp
+    restart: unless-stopped
+    volumes:
+      - type: bind

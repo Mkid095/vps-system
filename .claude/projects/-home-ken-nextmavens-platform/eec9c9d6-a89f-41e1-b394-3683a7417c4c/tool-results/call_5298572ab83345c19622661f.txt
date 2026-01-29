@@ -1,0 +1,6 @@
+Exit code 1
+ Image supabase/studio:20250115-7a7e3d3 Pulling 
+ Image supabase/pg-meta:v0.79.0 Pulling 
+ Image supabase/studio:20250115-7a7e3d3 Error failed to resolve reference "docker.io/supabase/studio:20250115-7a7e3d3": docker.io/supabase/studio:20250115-7a7e3d3: not found
+ Image supabase/pg-meta:v0.79.0 Interrupted 
+Error response from daemon: failed to resolve reference "docker.io/supabase/studio:20250115-7a7e3d3": docker.io/supabase/studio:20250115-7a7e3d3: not found

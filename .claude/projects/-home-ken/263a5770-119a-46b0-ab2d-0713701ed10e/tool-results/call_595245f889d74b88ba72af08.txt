@@ -1,0 +1,250 @@
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-21-  determineErrorRateSeverity,
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-22-} from './config'
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-23-import { getErrorStatistics as getErrorStatsFromDb } from '../migrations/create-error-metrics-table'
+developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts:24:import { logBackgroundJob } from './audit-logger'
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-25-
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-26-/**
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-27- * Calculate error rate for a project over a time period
+--
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-315-
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-316-    console.log('='.repeat(60))
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-317-
+developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts:318:    // Log the background job execution to audit logs
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-319-    await logBackgroundJob(
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-320-      'error_rate_detection',
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-321-      true,
+--
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-335-      }
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-336-    ).catch((error) => {
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-337-      // Don't fail the job if logging fails
+developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts:338:      console.error('[Error Rate Detection] Failed to log to audit:', error)
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-339-    })
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-340-
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-341-    return result
+--
+developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-351-    console.error(`[Error Rate Detection] Error: ${errorMessage}`)
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-352-    console.error('='.repeat(60))
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-353-
+developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts:354:    // Log the failed background job execution to audit logs
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-355-    await logBackgroundJob(
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-356-      'error_rate_detection',
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-357-      false,
+--
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-361-      }
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-362-    ).catch((logError) => {
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-363-      // Don't fail if logging fails
+developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts:364:      console.error('[Error Rate Detection] Failed to log to audit:', logError)
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-365-    })
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-366-
+/home/ken/developer-portal/src/features/abuse-controls/lib/error-rate-detection.ts-367-    return {
+--
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-25-import { logSpikeDetection as logSpikeDetectionToDb } from '../migrations/create-spike-detections-table'
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-26-import { getUsageStatistics as getUsageStatsFromDb } from '../migrations/create-usage-metrics-table'
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-27-import { getSpikeDetectionConfig as getSpikeDetectionConfigFromDb } from '../migrations/create-spike-detection-config-table'
+developer-portal/src/features/abuse-controls/lib/spike-detection.ts:28:import { logBackgroundJob } from './audit-logger'
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-29-
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-30-/**
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-31- * Calculate average usage for a project over a time period
+--
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-418-
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-419-    console.log('='.repeat(60))
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-420-
+developer-portal/src/features/abuse-controls/lib/spike-detection.ts:421:    // Log the background job execution to audit logs
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-422-    await logBackgroundJob(
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-423-      'spike_detection',
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-424-      true,
+--
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-437-      }
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-438-    ).catch((error) => {
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-439-      // Don't fail the job if logging fails
+developer-portal/src/features/abuse-controls/lib/spike-detection.ts:440:      console.error('[Spike Detection] Failed to log to audit:', error)
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-441-    })
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-442-
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-443-    return result
+--
+developer-portal/src/features/abuse-controls/lib/spike-detection.ts-454-    console.error(`[Spike Detection] Error: ${errorMessage}`)
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-455-    console.error('='.repeat(60))
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-456-
+developer-portal/src/features/abuse-controls/lib/spike-detection.ts:457:    // Log the failed background job execution to audit logs
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-458-    await logBackgroundJob(
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-459-      'spike_detection',
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-460-      false,
+--
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-464-      }
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-465-    ).catch((logError) => {
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-466-      // Don't fail if logging fails
+developer-portal/src/features/abuse-controls/lib/spike-detection.ts:467:      console.error('[Spike Detection] Failed to log to audit:', logError)
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-468-    })
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-469-
+/home/ken/developer-portal/src/features/abuse-controls/lib/spike-detection.ts-470-    return {
+--
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-58-}
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-59-
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-60-/**
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts:61: * Log an audit entry to the database and console
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-62- *
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts:63: * @param entry - The audit log entry to record
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-64- */
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts:65:export async function logAuditEntry(entry: AuditLogEntry): Promise<void> {
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-66-  const pool = getPool()
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-67-
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-68-  try {
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-69-    // Log to database for permanent record
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-70-    await pool.query(
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-71-      `
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts:72:      INSERT INTO audit_logs (
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-73-        log_type,
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-74-        severity,
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-75-        project_id,
+--
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-117-        console.log(consoleMessage, consoleDetails)
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-118-    }
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-119-  } catch (error) {
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts:120:    console.error('[Audit Logger] Failed to log audit entry:', error)
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-121-    // Don't throw - logging failure shouldn't break the application
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-122-  }
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-123-}
+--
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-136-  reason: string,
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-137-  metadata: Record<string, unknown> = {}
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-138-): Promise<void> {
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts:139:  await logAuditEntry({
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-140-    log_type: AuditLogType.SUSPENSION,
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-141-    severity: AuditLogLevel.WARNING,
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-142-    project_id: projectId,
+--
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-164-  reason: string,
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-165-  metadata: Record<string, unknown> = {}
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-166-): Promise<void> {
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts:167:  await logAuditEntry({
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-168-    log_type: AuditLogType.UNSUSPENSION,
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-169-    severity: AuditLogLevel.INFO,
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-170-    project_id: projectId,
+--
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-194-  projectId?: string,
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-195-  ipAddress?: string
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-196-): Promise<void> {
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts:197:  await logAuditEntry({
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-198-    log_type: AuditLogType.AUTH_FAILURE,
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-199-    severity: AuditLogLevel.WARNING,
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-200-    project_id: projectId,
+--
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-222-  limit: number,
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-223-  ipAddress?: string
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-224-): Promise<void> {
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts:225:  await logAuditEntry({
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-226-    log_type: AuditLogType.RATE_LIMIT_EXCEEDED,
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-227-    severity: AuditLogLevel.WARNING,
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-228-    action,
+--
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-247-  reason: string,
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-248-  metadata: Record<string, unknown> = {}
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-249-): Promise<void> {
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts:250:  await logAuditEntry({
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-251-    log_type: AuditLogType.VALIDATION_FAILURE,
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-252-    severity: AuditLogLevel.INFO,
+/home/ken/developer-portal/src/features/abuse-controls/lib/audit-logger.ts-253-    action,
+--
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-271-  success: boolean,
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-272-  metadata: Record<string, unknown> = {}
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-273-): Promise<void> {
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts:274:  await logAuditEntry({
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-275-    log_type: AuditLogType.BACKGROUND_JOB,
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-276-    severity: success ? AuditLogLevel.INFO : AuditLogLevel.ERROR,
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-277-    action: `Background job: ${jobName}`,
+--
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-297-  action: string,
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-298-  metadata: Record<string, unknown> = {}
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-299-): Promise<void> {
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts:300:  await logAuditEntry({
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-301-    log_type: AuditLogType.MANUAL_INTERVENTION,
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-302-    severity: AuditLogLevel.INFO,
+developer-portal/src/features/abuse-controls/lib/audit-logger.ts-303-    project_id: projectId,
+--
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-11- */
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-12-
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-13-import { checkAllProjectsForSuspension } from './suspensions'
+developer-portal/src/features/abuse-controls/lib/background-job.ts:14:import { logBackgroundJob } from './audit-logger'
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-15-
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-16-/**
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-17- * Background job result interface
+--
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-101-
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-102-    console.log('='.repeat(60))
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-103-
+developer-portal/src/features/abuse-controls/lib/background-job.ts:104:    // Log the background job execution to audit logs
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-105-    await logBackgroundJob(
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-106-      'suspension_check',
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-107-      true,
+--
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-116-      }
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-117-    ).catch((error) => {
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-118-      // Don't fail the job if logging fails
+developer-portal/src/features/abuse-controls/lib/background-job.ts:119:      console.error('[Background Job] Failed to log to audit:', error)
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-120-    })
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-121-
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-122-    return result
+--
+developer-portal/src/features/abuse-controls/lib/background-job.ts-133-    console.error(`[Background Job] Error: ${errorMessage}`)
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-134-    console.error('='.repeat(60))
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-135-
+developer-portal/src/features/abuse-controls/lib/background-job.ts:136:    // Log the failed background job execution to audit logs
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-137-    await logBackgroundJob(
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-138-      'suspension_check',
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-139-      false,
+--
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-143-      }
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-144-    ).catch((logError) => {
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-145-      // Don't fail if logging fails
+developer-portal/src/features/abuse-controls/lib/background-job.ts:146:      console.error('[Background Job] Failed to log to audit:', logError)
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-147-    })
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-148-
+/home/ken/developer-portal/src/features/abuse-controls/lib/background-job.ts-149-    return {
+--
+/home/ken/developer-portal/src/features/abuse-controls/lib/authorization.ts-278-}
+/home/ken/developer-portal/src/features/abuse-controls/lib/authorization.ts-279-
+/home/ken/developer-portal/src/features/abuse-controls/lib/authorization.ts-280-/**
+developer-portal/src/features/abuse-controls/lib/authorization.ts:281: * Log authorization action for audit trail
+/home/ken/developer-portal/src/features/abuse-controls/lib/authorization.ts-282- *
+/home/ken/developer-portal/src/features/abuse-controls/lib/authorization.ts-283- * @param action - The action being performed
+/home/ken/developer-portal/src/features/abuse-controls/lib/authorization.ts-284- * @param developerId - The developer performing the action
+--
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-28-  DEFAULT_PATTERN_DETECTION_CONFIG,
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-29-  determinePatternAction,
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-30-} from './config'
+developer-portal/src/features/abuse-controls/lib/pattern-detection.ts:31:import { logBackgroundJob } from './audit-logger'
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-32-import { suspendProject } from './suspensions'
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-33-import { logPatternDetection } from '../migrations/create-pattern-detections-table'
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-34-import { HardCapType } from '../types'
+--
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-629-
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-630-    console.log('='.repeat(60))
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-631-
+developer-portal/src/features/abuse-controls/lib/pattern-detection.ts:632:    // Log the background job execution to audit logs
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-633-    await logBackgroundJob(
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-634-      'pattern_detection',
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-635-      true,
+--
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-649-      }
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-650-    ).catch((error) => {
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-651-      // Don't fail the job if logging fails
+developer-portal/src/features/abuse-controls/lib/pattern-detection.ts:652:      console.error('[Pattern Detection] Failed to log to audit:', error)
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-653-    })
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-654-
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-655-    return result
+--
+developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-665-    console.error(`[Pattern Detection] Error: ${errorMessage}`)
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-666-    console.error('='.repeat(60))
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-667-
+developer-portal/src/features/abuse-controls/lib/pattern-detection.ts:668:    // Log the failed background job execution to audit logs
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-669-    await logBackgroundJob(
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-670-      'pattern_detection',
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-671-      false,
+--
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-675-      }
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-676-    ).catch((logError) => {
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-677-      // Don't fail if logging fails
+developer-portal/src/features/abuse-controls/lib/pattern-detection.ts:678:      console.error('[Pattern Detection] Failed to log to audit:', logError)
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-679-    })
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-680-
+/home/ken/developer-portal/src/features/abuse-controls/lib/pattern-detection.ts-681-    return {

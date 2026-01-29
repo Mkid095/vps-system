@@ -1,0 +1,48 @@
+---
+memoryVersion: 1
+storyId: US-007
+storyTitle: Return Standard Error Format
+completedDate: 2026-01-28
+---
+
+STORY: US-007 - Return Standard Error Format
+========================
+
+DESCRIPTION:
+As a gateway engineer, I want to return standard error format so that errors are consistent.
+
+MAVEN STEPS COMPLETED:
+[1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Added RATE_LIMITED error code to ApiErrorCode enum and updated all rate limiting middleware to use it instead of RATE_LIMIT_EXCEEDED. Verified all error responses use standard format: { error: { code, message, retryable, details? } }. All middleware components (rate limit, JWT auth, project status, service enablement, snapshot) now consistently return errors in this format.
+
+KEY FILES:
+- src/api/middleware/error.handler.ts - Added RATE_LIMITED error code, ApiError class with toJSON()
+- src/rate-limit/middleware/rate-limit.middleware.ts - Updated to use RATE_LIMITED
+- src/rate-limit/rate-limit.validator.ts - Updated to use RATE_LIMITED
+- src/index.ts - Updated validation limiter, global error handler
+- src/api/middleware/__tests__/error.handler.test.ts - Unit tests for error format
+- src/api/middleware/__tests__/error-format-integration.test.ts - Integration tests
+- src/api/middleware/__tests__/global-error-handler-integration.test.ts - Global handler tests
+
+DECISIONS MADE:
+- Kept RATE_LIMIT_EXCEEDED for backward compatibility, added RATE_LIMITED as primary
+- Standard format includes: code (string), message (string), retryable (boolean), details (optional)
+- Generic error messages to prevent information leakage (security best practice)
+- Stack traces only logged server-side, never in responses
+
+INTEGRATION POINTS:
+- Global error handler in index.ts catches all ApiError instances
+- All middleware components import and use ApiError class
+- JWT middleware uses KEY_INVALID error code
+- Project status middleware uses PROJECT_SUSPENDED error code
+- Service enablement middleware uses SERVICE_DISABLED error code
+- Rate limit middleware uses RATE_LIMITED error code
+
+LESSONS LEARNED:
+- Error format consistency is critical for API consumers
+- Generic error messages prevent enumeration attacks
+- Standardized error format makes client-side error handling easier
+- Typecheck and tests should validate error format consistency
+- Security audit should verify no sensitive data leaks in error messages

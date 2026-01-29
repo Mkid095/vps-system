@@ -1,0 +1,127 @@
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
+import { useOrganization, type Organization } from '@/lib/store';
+
+interface OrganizationSwitcherProps {
+  organizations: Organization[];
+}
+
+export function OrganizationSwitcher({ organizations }: OrganizationSwitcherProps) {
+  const {
+    selectedOrganizationId,
+    setSelectedOrganization,
+    setOrganizations,
+    getSelectedOrganization,
+  } = useOrganization();
+
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Sync organizations from props to store
+  useEffect(() => {
+    setOrganizations(organizations);
+  }, [organizations, setOrganizations]);
+
+  // Auto-select first organization if none selected
+  useEffect(() => {
+    if (!selectedOrganizationId && organizations.length > 0) {
+      setSelectedOrganization(organizations[0].id);
+    }
+  }, [selectedOrganizationId, organizations, setSelectedOrganization]);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const selectedOrg = getSelectedOrganization();
+
+  const handleSelectOrganization = (orgId: string) => {
+    setSelectedOrganization(orgId);
+    setIsOpen(false);
+  };
+
+  return (
+    <div className="relative" ref={dropdownRef}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 hover:border-gray-300 hover:bg-gray-50 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
+      >
+        <span className="font-medium text-gray-900">
+          {selectedOrg?.name || 'Select Organization'}
+        </span>
+        <svg
+          className={`h-4 w-4 flex-shrink-0 text-gray-500 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </button>
+
+      {isOpen && (
+        <div className="absolute right-0 z-10 mt-2 w-72 origin-top-right rounded-lg border border-gray-200 bg-white shadow-md">
+          <div className="p-2">
+            <div className="mb-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-gray-500">
+              Organizations
+            </div>
+            <ul
+              role="listbox"
+              className="max-h-64 overflow-auto"
+            >
+              {organizations.map((org) => (
+                <li key={org.id}>
+                  <button
+                    onClick={() => handleSelectOrganization(org.id)}
+                    className={`flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-sm transition-colors ${
+                      selectedOrganizationId === org.id
+                        ? 'bg-blue-50 text-blue-900'
+                        : 'text-gray-700 hover:bg-gray-50'
+                    }`}
+                    role="option"
+                    aria-selected={selectedOrganizationId === org.id}
+                  >
+                    <div className="flex flex-col">
+                      <span className={`font-medium ${selectedOrganizationId === org.id ? 'text-blue-900' : 'text-gray-900'}`}>
+                        {org.name}
+                      </span>
+                      <span className="text-xs text-gray-500">/{org.slug}</span>
+                    </div>
+                    {org.role && (
+                      <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-700">
+                        {org.role}
+                      </span>
+                    )}
+                  </button>
+                </li>
+              ))}
+              {organizations.length === 0 && (
+                <li className="px-3 py-4 text-center text-sm text-gray-500">
+                  No organizations available
+                </li>
+              )}
+            </ul>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

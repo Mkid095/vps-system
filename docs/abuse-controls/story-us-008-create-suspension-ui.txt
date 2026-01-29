@@ -1,0 +1,210 @@
+---
+memoryVersion: 1
+storyId: US-008
+storyTitle: Create Suspension UI
+completedDate: 2026-01-28
+---
+
+STORY: US-008 - Create Suspension UI
+=========================================================
+
+DESCRIPTION:
+As a developer, I want to see suspension details so that I can resolve the issue.
+
+MAVEN STEPS COMPLETED: [5, 10]
+
+IMPLEMENTATION SUMMARY:
+Implemented a suspension banner component for the project dashboard that displays suspension details when a project is suspended. The UI shows the reason, which limit was exceeded, current usage vs. limit, resolution steps, and a "Request Review" button that opens a pre-populated email. The implementation integrates with the existing suspension system from US-003 and quota system from US-001.
+
+FILES CREATED (2):
+- src/components/SuspensionBanner.tsx (282 lines) - Suspension banner component with animated display, progress bar, resolution steps, and request review button
+- docs/abuse-controls/story-us-008-create-suspension-ui.txt - This memory file
+
+FILES MODIFIED (1):
+- src/app/dashboard/projects/[slug]/page.tsx - Added suspension status fetching and integrated SuspensionBanner component (fixed existing 'any' type violation in tabs array)
+
+KEY DECISIONS:
+1. Frontend-only implementation (no backend changes)
+   - Rationale: US-003 already created the suspension API endpoints; this story just adds UI
+   - Impact: No new database tables or API routes needed
+
+2. Component-based architecture with Suspense loading
+   - Rationale: Suspension data fetch is async; need loading state
+   - Impact: Smooth UX with loading skeleton and error handling
+
+3. Email-based "Request Review" button
+   - Rationale: Simplest implementation; connects to support team
+   - Impact: Opens email client with pre-populated suspension details
+   - Future: Could integrate with support ticket system or US-009 manual override
+
+4. Per-cap-type resolution steps
+   - Rationale: Different quota types require different resolution actions
+   - Impact: Users get specific guidance for their suspension reason
+   - Implementation: getResolutionSteps() returns array of steps based on cap_type
+
+5. Visual progress bar for usage display
+   - Rationale: Visual representation of quota exceeded is more impactful
+   - Impact: Users immediately see how far over the limit they are
+   - Design: Amber/warning color scheme (no gradients, professional solid colors)
+
+INTEGRATION POINTS:
+- Suspension API (US-003): GET /api/projects/[projectId]/suspensions returns suspension status
+- Quota System (US-001): Display names for cap types (DB_QUERIES_PER_DAY, etc.)
+- Project Dashboard: Integrated into src/app/dashboard/projects/[slug]/page.tsx
+- Authentication: Uses existing authenticateRequest() for API calls
+- Future - US-009: "Request Review" button could connect to manual override API
+
+CHALLENGES RESOLVED:
+1. Getting suspension data in the project page
+   - Problem: Need to fetch suspension status after project data loads
+   - Solution: Added useEffect that fetches from /api/projects/[projectId]/suspensions
+   - Lesson: Separate fetch calls for different data sources; use Suspense for loading states
+
+2. Displaying user-friendly cap type names
+   - Problem: Database stores cap_type as enum (DB_QUERIES_PER_DAY) which isn't user-friendly
+   - Solution: Created getCapTypeDisplay() mapping function
+   - Lesson: Always translate internal enums to user-friendly display text
+
+3. Providing useful resolution guidance
+   - Problem: Different quota violations require different resolution steps
+   - Solution: Created getResolutionSteps() that returns cap-specific instructions
+   - Lesson: Help users help themselves with clear, actionable steps
+
+4. Request Review button implementation
+   - Problem: Need a way for users to request suspension review
+   - Solution: mailto: link with pre-populated subject and body using encodeURIComponent
+   - Lesson: Email is a simple, effective way to connect users to support
+
+5. Type safety fixing
+   - Problem: Existing code had 'any' type in tabs array
+   - Solution: Created TabConfig interface with LucideIcon type
+   - Lesson: Quality improvements in one story can benefit existing code
+
+LESSONS LEARNED:
+1. Frontend stories can leverage existing backend infrastructure - US-003 already had the suspension API
+2. Component-based architecture with Suspense provides better UX for async data
+3. User-friendly display names matter - translate internal enums to readable text
+4. Visual representations (progress bars) communicate quota issues more effectively than text alone
+5. Email-based workflows are simple and effective for connecting to human support
+6. Security reviews should validate both frontend and backend - XSS prevention applies to UI
+7. Type safety improvements in one story can catch and fix issues in existing code
+
+CODE PATTERNS ESTABLISHED:
+
+Pattern 1: Suspension Banner Component with Async Data
+```typescript
+export default function SuspensionBanner({ projectId, suspension }: SuspensionBannerProps) {
+  if (!suspension) return null
+
+  const capDisplayName = getCapTypeDisplay(suspension.cap_type)
+  const resolutionSteps = getResolutionSteps(suspension.cap_type)
+
+  return (
+    <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
+      {/* Banner content */}
+    </motion.div>
+  )
+}
+```
+- Usage: For displaying status banners with context-aware content
+- Benefits: Reusable, type-safe, animated entry
+
+Pattern 2: Cap Type Display Mapping
+```typescript
+function getCapTypeDisplay(capType: string): string {
+  const displayNames: Record<string, string> = {
+    DB_QUERIES_PER_DAY: 'Database Queries',
+    REALTIME_CONNECTIONS: 'Realtime Connections',
+    STORAGE_UPLOADS_PER_DAY: 'Storage Uploads',
+    FUNCTION_INVOCATIONS_PER_DAY: 'Function Invocations',
+  }
+  return displayNames[capType] || capType
+}
+```
+- Usage: For translating internal enums to user-friendly display text
+- Benefits: Consistent display names, fallback to raw value
+
+Pattern 3: Context-Aware Resolution Steps
+```typescript
+function getResolutionSteps(capType: string): string[] {
+  const steps: Record<string, string[]> = {
+    DB_QUERIES_PER_DAY: [
+      'Review your database query patterns',
+      'Implement query result caching',
+      'Add pagination to list queries',
+    ],
+    // ... other cap types
+  }
+  return steps[capType] || ['Contact support for assistance']
+}
+```
+- Usage: For providing context-specific guidance
+- Benefits: Tailored instructions, better user experience
+
+Pattern 4: Pre-populated Email Link
+```typescript
+const subject = encodeURIComponent(`Suspension Review Request - ${projectId}`)
+const body = encodeURIComponent(`Project ID: ${projectId}\nSuspension ID: ${suspension.id}\n...`)
+const mailtoLink = `mailto:support@example.com?subject=${subject}&body=${body}`
+```
+- Usage: For creating email links with pre-filled content
+- Benefits: Reduces user effort, ensures support gets required info
+
+Pattern 5: Async Data Fetch in Page Component
+```typescript
+const [suspension, setSuspension] = useState<SuspensionRecord | null>(null)
+
+useEffect(() => {
+  async function fetchSuspension() {
+    const response = await fetch(`/api/projects/${project.id}/suspensions`)
+    const data = await response.json()
+    setSuspension(data.suspension)
+  }
+  if (project) fetchSuspension()
+}, [project])
+```
+- Usage: For fetching related data after primary data loads
+- Benefits: Independent data fetching, proper loading states
+
+ACCEPTANCE CRITERIA:
+- Suspension banner in project dashboard - VERIFIED: Suspended projects show banner at top of page
+- Shows reason and details - VERIFIED: Displays cap_type, current_value, limit, suspension date
+- Shows which limit exceeded - VERIFIED: Visual progress bar + percentage display with friendly names
+- Shows how to resolve - VERIFIED: Step-by-step resolution instructions tailored to cap type
+- Request review button - VERIFIED: Opens email client with pre-populated suspension details
+- Typecheck passes - VERIFIED: pnpm run typecheck completed with no errors (also fixed existing 'any' type)
+
+NEXT STORY DEPENDENCIES:
+- US-009 (Implement Manual Override) can integrate with "Request Review" button for direct override requests
+- US-010 (Abuse Dashboard) can reuse suspension display patterns for analytics
+- Future: Integrate with support ticket system for automated review requests
+
+ARCHITECTURAL NOTES:
+- This is a frontend-only story; no backend changes were needed
+- Leverages existing suspension API from US-003 (GET /api/projects/[projectId]/suspensions)
+- Component is self-contained and reusable across different pages
+- Uses framer-motion for smooth animations (already in project dependencies)
+- Email-based review request is a simple pattern; can be enhanced with ticket system integration
+- System assumes project_id is the primary identifier for suspension associations
+- Component handles null suspension gracefully (returns null if not suspended)
+
+SECURITY HIGHLIGHTS:
+- Security Score: 10/12 (83% - Grade B+)
+- XSS Prevention: React auto-escaping protects against XSS (no dangerouslySetInnerHTML)
+- Authentication: API calls use existing authenticateRequest() middleware
+- Authorization: Project ownership verified before displaying suspension data
+- Data Sanitization: Numbers and dates formatted with safe toLocaleString()
+- Email Security: URL encoding prevents injection in mailto links
+- Type Safety: Fully typed with no 'any' types (also fixed existing violation)
+- Input Validation: Project ID validated with Zod schema
+
+SECURITY NOTES (Non-blocking improvements):
+- Tokens stored in localStorage (acceptable with 1-hour expiration; consider httpOnly cookies in future)
+- Missing security headers in Next.js config (CSP, X-Frame-Options should be added in future hardening)
+
+UI DESIGN STANDARDS:
+- No gradients: Solid professional colors (amber-50 to amber-900 palette)
+- No emojis: Uses lucide-react icons (AlertTriangle, Mail, ExternalLink, Info)
+- Under 300 lines: SuspensionBanner is 282 lines (meets requirement)
+- @ aliases: All imports use @/ prefix (no relative imports)
+- Type-safe: Full TypeScript coverage with proper interfaces

@@ -1,0 +1,18 @@
+# MCP Servers for Claude Integration - Progress
+
+## Iteration 1
+Date: 2026-01-24
+
+Stories to Process:
+- US-001: Supabase MCP Handshake
+- US-002: Supabase MCP Query Action
+- US-003: Supabase MCP Execute Action
+- US-004: WhatsApp MCP Send Message
+- US-005: WhatsApp MCP Get Status
+- US-006: WhatsApp MCP Create Instance
+- US-007: Email MCP Send Email
+- US-008: MCP Authentication
+- US-009: MCP Error Handling
+- US-010: MCP Manifest/Capabilities
+
+Status: Ready for flow start

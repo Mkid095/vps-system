@@ -1,0 +1,1 @@
+-rw-rw-r-- 1 ken docker 1657 Jan 24 22:59 /home/ken/nextmavens-platform/.env.example

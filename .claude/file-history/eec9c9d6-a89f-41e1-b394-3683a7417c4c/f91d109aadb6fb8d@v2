@@ -1,0 +1,269 @@
+#!/bin/bash
+# Provision complete Supabase stack for a project
+# Usage: ./provision-project-stack.sh <project-id> <project-slug> <project-name> <db-name> <anon-key> <service-role-key> <jwt-secret>
+
+set -e
+
+PROJECT_ID=$1
+PROJECT_SLUG=$2
+PROJECT_NAME=$3
+DB_NAME=$4
+ANON_KEY=$5
+SERVICE_ROLE_KEY=$6
+JWT_SECRET=$7
+
+if [ -z "$PROJECT_ID" ] || [ -z "$PROJECT_SLUG" ] || [ -z "$PROJECT_NAME" ] || [ -z "$DB_NAME" ]; then
+  echo "Usage: $0 <project-id> <project-slug> <project-name> <db-name> <anon-key> <service-role-key> <jwt-secret>"
+  exit 1
+fi
+
+echo "========================================"
+echo "Provisioning Supabase Stack for Project"
+echo "========================================"
+echo "ID: $PROJECT_ID"
+echo "Slug: $PROJECT_SLUG"
+echo "Name: $PROJECT_NAME"
+echo "Database: $DB_NAME"
+echo ""
+
+# Get next available ports
+source /home/ken/nextmavens-platform/scripts/get-next-ports.sh
+PORTS=$(/home/ken/nextmavens-platform/scripts/get-next-ports.sh)
+STUDIO_PORT=$(echo $PORTS | cut -d' ' -f1)
+POSTGREST_PORT=$(echo $PORTS | cut -d' ' -f2)
+GOTRUE_PORT=$(echo $PORTS | cut -d' ' -f3)
+KONG_PORT=$(echo $PORTS | cut -d' ' -f4)
+
+echo "Allocated Ports:"
+echo "  Studio:      $STUDIO_PORT"
+echo "  PostgREST:   $POSTGREST_PORT"
+echo "  GoTrue:      $GOTRUE_PORT"
+echo "  Kong:        $KONG_PORT"
+echo ""
+
+# Get POSTGRES_PASSWORD
+cd /home/ken/nextmavens-platform/docker
+if [ -f .env ]; then
+  source .env
+  POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+else
+  POSTGRES_PASSWORD="postgres"
+fi
+
+# Create Kong configuration for this project
+cat > kong-${PROJECT_SLUG}.yml <<EOF
+_format_version: "3.0"
+
+services:
+  # PostgREST API
+  - name: postgrest
+    url: http://postgrest-${PROJECT_SLUG}:3000
+    routes:
+      - name: postgrest-route
+        paths:
+          - /rest/v1
+        strip_path: true
+        plugins:
+          - name: cors
+            config:
+              origins:
+                - "*"
+                - "https://nextmavens.cloud"
+              methods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+                - PATCH
+                - OPTIONS
+              headers:
+                - Accept
+                - Accept-Language
+                - Content-Type
+                - Authorization
+                - Apikey
+              exposed_headers:
+                - Content-Length
+                - Content-Type
+                - Content-Range
+              max_age: 3600
+
+  # GoTrue Auth Service
+  - name: gotrue
+    url: http://gotrue-${PROJECT_SLUG}:9999
+    routes:
+      - name: auth-route
+        paths:
+          - /auth/v1
+        strip_path: true
+        plugins:
+          - name: cors
+            config:
+              origins:
+                - "*"
+                - "https://nextmavens.cloud"
+              methods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+                - PATCH
+                - OPTIONS
+              headers:
+                - Accept
+                - Accept-Language
+                - Content-Type
+                - Authorization
+                - X-Client-Info
+                - Apikey
+              exposed_headers:
+                - Content-Length
+                - Content-Type
+              max_age: 3600
+              credentials: true
+EOF
+
+# Initialize auth schema in project database
+echo "Initializing auth schema..."
+/home/ken/nextmavens-platform/scripts/init-project-auth.sh "$DB_NAME" "$POSTGRES_PASSWORD"
+
+# Generate docker-compose override file
+cat > .stack-${PROJECT_SLUG}.yml <<EOF
+networks:
+  nextmavens-network:
+    external: true
+
+services:
+  # Supabase Studio for $PROJECT_NAME
+  studio-$PROJECT_SLUG:
+    image: supabase/studio:latest
+    container_name: ${PROJECT_SLUG}-studio
+    environment:
+      STUDIO_PG_META_URL: http://nextmavens-meta:8080
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      DEFAULT_ORGANIZATION_NAME: NextMavens
+      DEFAULT_PROJECT_NAME: $PROJECT_NAME
+      PG_DATABASE: $DB_NAME
+      PG_CONNECTION_STRING: postgres://postgres:$POSTGRES_PASSWORD@nextmavens-db:5432/$DB_NAME
+      NEXT_PUBLIC_STUDIO_URL: https://nextmavens.cloud/studio/$PROJECT_SLUG
+      STUDIO_BASE_PATH: /studio/$PROJECT_SLUG
+      JWT_SECRET: $JWT_SECRET
+      POSTGREST_URL: http://localhost:$POSTGREST_PORT
+      GOTRUE_URL: http://localhost:$GOTRUE_PORT
+    ports:
+      - "$STUDIO_PORT:3000"
+    networks:
+      - nextmavens-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
+
+  # PostgREST for $PROJECT_NAME
+  postgrest-$PROJECT_SLUG:
+    image: postgrest/postgrest:v12.2.0
+    container_name: ${PROJECT_SLUG}-postgrest
+    environment:
+      PGRST_DB_URI: postgres://postgres:$POSTGRES_PASSWORD@nextmavens-db:5432/$DB_NAME
+      PGRST_DB_SCHEMAS: public
+      PGRST_DB_ANON_ROLE: anon
+      PGRST_JWT_SECRET: $JWT_SECRET
+      PGRST_SERVER_TRACE_ENABLED: false
+    ports:
+      - "$POSTGREST_PORT:3000"
+    networks:
+      - nextmavens-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+        reservations:
+          memory: 128M
+
+  # GoTrue Auth for $PROJECT_NAME
+  gotrue-$PROJECT_SLUG:
+    image: supabase/gotrue:v2.185.0
+    container_name: ${PROJECT_SLUG}-gotrue
+    environment:
+      GOTRUE_API_HOST: 0.0.0.0
+      GOTRUE_API_PORT: 9999
+      GOTRUE_DB_DRIVER: postgres
+      GOTRUE_DB_AUTOMATIC_MIGRATIONS: "false"
+      DATABASE_URL: postgres://postgres:$POSTGRES_PASSWORD@nextmavens-db:5432/$DB_NAME?search_path=auth,public
+      GOTRUE_DB_MIGRATIONS_PATH: /usr/local/etc/auth/migrations
+      GOTRUE_JWT_SECRET: $JWT_SECRET
+      GOTRUE_JWT_EXP: 3600
+      GOTRUE_JWT_DEFAULT_GROUP_NAME: authenticated
+      GOTRUE_SITE_URL: https://nextmavens.cloud
+      API_EXTERNAL_URL: https://nextmavens.cloud
+      GOTRUE_URI_ALLOW_LIST: "*"
+      GOTRUE_DISABLE_SIGNUP: false
+      GOTRUE_EMAIL_AUTOCONFIRM: true
+      GOTRUE_SMS_AUTOCONFIRM: true
+      GOTRUE_EMAIL_SIGNUP_ENABLED: true
+      GOTRUE_EXTERNAL_HOSTS: nextmavens.cloud,www.nextmavens.cloud,localhost
+      GOTRUE_MAILER_EXTERNAL_HOSTS: nextmavens.cloud,www.nextmavens.cloud
+      ANON_KEY: $ANON_KEY
+      SERVICE_ROLE_KEY: $SERVICE_ROLE_KEY
+    ports:
+      - "$GOTRUE_PORT:9999"
+    networks:
+      - nextmavens-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+        reservations:
+          memory: 128M
+
+  # Kong API Gateway for $PROJECT_NAME
+  kong-$PROJECT_SLUG:
+    image: kong:3.7.1
+    container_name: ${PROJECT_SLUG}-kong
+    environment:
+      KONG_DATABASE: "off"
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+      KONG_ADMIN_ERROR_LOG: /dev/stderr
+      KONG_LOG_LEVEL: info
+      KONG_PLUGINS: bundled,cors
+      KONG_DECLARATIVE_CONFIG: /kong/declarative/${PROJECT_SLUG}.yml
+    ports:
+      - "$KONG_PORT:8000"
+      - "$((KONG_PORT + 1)):8001"
+    volumes:
+      - ./kong-${PROJECT_SLUG}.yml:/kong/declarative/${PROJECT_SLUG}.yml:ro
+    networks:
+      - nextmavens-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
+EOF
+
+echo "Starting project stack..."
+docker compose -f .stack-${PROJECT_SLUG}.yml up -d
+
+echo ""
+echo "Stack provisioned successfully!"
+echo "========================================"
+echo "Access URLs:"
+echo "  Studio:    https://nextmavens.cloud/studio/$PROJECT_SLUG"
+echo "  API:       https://nextmavens.cloud:$KONG_PORT"
+echo "  Auth:      https://nextmavens.cloud:$KONG_PORT/auth/v1"
+echo "  REST:      https://nextmavens.cloud:$KONG_PORT/rest/v1"
+echo ""
+echo "Environment Variables:"
+echo "  NEXT_PUBLIC_STUDIO_URL=https://nextmavens.cloud/studio/$PROJECT_SLUG"
+echo "  NEXT_PUBLIC_API_URL=https://nextmavens.cloud:$KONG_PORT"
+echo "  NEXT_PUBLIC_ANON_KEY=$ANON_KEY"
+echo "========================================"

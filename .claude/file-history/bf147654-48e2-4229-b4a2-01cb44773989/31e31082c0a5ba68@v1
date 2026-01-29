@@ -1,0 +1,45 @@
+---
+memoryVersion: 1
+schemaVersion: 1
+feature: MCP Servers for Claude Integration
+consolidatedDate: 2026-01-24
+totalStories: 10
+completedStories: 0
+status: initialized
+---
+
+# MCP Servers for Claude Integration - Consolidated Implementation Memory
+
+## System Overview
+Implement stdio-based MCP (Model Context Protocol) servers for Supabase, WhatsApp (Evolution API), and Email (Resend). Enable Claude Desktop to interact with platform services.
+
+## Current Status
+PRD created, waiting for execution.
+
+## Technical Approach
+- stdio-based communication (stdin/stdout)
+- Handshake protocol: `{"type": "handshake", "version": "1.0"}`
+- Action invocation: `{"type": "invoke", "action": "...", "params": {...}}`
+- Response: `{"type": "response", "data": {...}}`
+- Error: `{"type": "error", "message": "..."}`
+- Environment-based configuration
+
+## Related PRDs
+- Platform Core (Supabase query actions)
+- WhatsApp Integration (Evolution API wrapper)
+- CLI Tool (can spawn MCP servers)
+
+## Stories to Implement
+- US-001: Supabase MCP Handshake
+- US-002: Supabase MCP Query Action
+- US-003: Supabase MCP Execute Action
+- US-004: WhatsApp MCP Send Message
+- US-005: WhatsApp MCP Get Status
+- US-006: WhatsApp MCP Create Instance
+- US-007: Email MCP Send Email
+- US-008: MCP Authentication
+- US-009: MCP Error Handling
+- US-010: MCP Manifest/Capabilities
+
+## Memory Structure
+This file will be updated as stories complete.

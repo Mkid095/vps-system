@@ -1,0 +1,5 @@
+time="2026-01-25T17:59:59Z" level=warning msg="Found orphan containers ([supabase-mailhog supabase-gotrue supabase-storage supabase-supavisor supabase-rest evolution-db]) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up."
+ Container nextmavens-dashboard Creating 
+ Container nextmavens-dashboard Created 
+ Container nextmavens-dashboard Starting 
+ Container nextmavens-dashboard Started

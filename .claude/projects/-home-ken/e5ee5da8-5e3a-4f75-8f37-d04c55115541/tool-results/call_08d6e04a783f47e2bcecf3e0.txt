@@ -1,0 +1,471 @@
+/home/ken/docs/prd-secrets-versioning.md-10-# Secrets Versioning & Rotation
+/home/ken/docs/prd-secrets-versioning.md-11-
+/home/ken/docs/prd-secrets-versioning.md-12-## Overview
+docs/prd-secrets-versioning.md:13:Production secrets are living things. You need safe rotation, rollback capability, audit trail, and blast radius awareness. Secrets versioning enables these capabilities with a grace period for rotation.
+/home/ken/docs/prd-secrets-versioning.md-14-
+/home/ken/docs/prd-secrets-versioning.md-15-## Technical Approach
+docs/prd-secrets-versioning.md:16:Create secrets table with versioning: project_id, name, value_encrypted, version, active, rotated_from, rotation_reason, created_by. Implement rotation flow: create v2 → mark v1 inactive → notify consumers → 24h grace → delete v1. Add PGP encryption and rotation history UI.
+/home/ken/docs/prd-secrets-versioning.md-17-
+/home/ken/docs/prd-secrets-versioning.md-18-## User Stories
+/home/ken/docs/prd-secrets-versioning.md-19-
+--
+docs/prd-secrets-versioning.md-22-**Maven Steps:** [1, 2, 7]
+docs/prd-secrets-versioning.md-23-**MCP Tools:** []
+/home/ken/docs/prd-secrets-versioning.md-24-
+docs/prd-secrets-versioning.md:25:As a platform engineer, I want a secrets table with versioning so that I can track secret rotation history.
+/home/ken/docs/prd-secrets-versioning.md-26-
+docs/prd-secrets-versioning.md-27-**Acceptance Criteria:**
+/home/ken/docs/prd-secrets-versioning.md-28-- secrets table created in control_plane schema
+docs/prd-secrets-versioning.md:29:- Columns: id, project_id, name, value_encrypted, version (INT DEFAULT 1), active (BOOLEAN DEFAULT TRUE), rotated_from (REFERENCES secrets(id)), rotation_reason, created_by, created_at
+/home/ken/docs/prd-secrets-versioning.md-30-- Unique constraint on (project_id, name, version)
+/home/ken/docs/prd-secrets-versioning.md-31-- Index on (project_id, name) for lookup
+/home/ken/docs/prd-secrets-versioning.md-32-- Index on active for finding current version
+--
+docs/prd-secrets-versioning.md-39-**Maven Steps:** [1, 2, 7]
+docs/prd-secrets-versioning.md-40-**MCP Tools:** []
+/home/ken/docs/prd-secrets-versioning.md-41-
+docs/prd-secrets-versioning.md:42:As a platform engineer, I want to track which services use each secret so that I understand rotation blast radius.
+/home/ken/docs/prd-secrets-versioning.md-43-
+docs/prd-secrets-versioning.md-44-**Acceptance Criteria:**
+/home/ken/docs/prd-secrets-versioning.md-45-- secret_consumers table created in control_plane schema
+--
+/home/ken/docs/prd-secrets-versioning.md-62-- Encryption key from environment variable
+/home/ken/docs/prd-secrets-versioning.md-63-- value_encrypted contains PGP encrypted value
+/home/ken/docs/prd-secrets-versioning.md-64-- Decryption only when needed
+docs/prd-secrets-versioning.md:65:- Key rotation supported
+/home/ken/docs/prd-secrets-versioning.md-66-- Typecheck passes
+/home/ken/docs/prd-secrets-versioning.md-67-
+docs/prd-secrets-versioning.md-68-**Status:** false
+--
+docs/prd-secrets-versioning.md-89-**Maven Steps:** [1, 2, 7, 10]
+docs/prd-secrets-versioning.md-90-**MCP Tools:** []
+/home/ken/docs/prd-secrets-versioning.md-91-
+docs/prd-secrets-versioning.md:92:As a developer, I want to rotate secrets so that I can maintain security hygiene.
+/home/ken/docs/prd-secrets-versioning.md-93-
+docs/prd-secrets-versioning.md-94-**Acceptance Criteria:**
+docs/prd-secrets-versioning.md:95:- POST /api/secrets/:id/rotate endpoint
+/home/ken/docs/prd-secrets-versioning.md-96-- Creates new version (v2) with new value
+docs/prd-secrets-versioning.md:97:- Links v2.rotated_from = v1.id
+/home/ken/docs/prd-secrets-versioning.md-98-- Marks v1.active = FALSE
+docs/prd-secrets-versioning.md:99:- Includes rotation_reason
+/home/ken/docs/prd-secrets-versioning.md-100-- Returns new secret (without value)
+/home/ken/docs/prd-secrets-versioning.md-101-- Typecheck passes
+/home/ken/docs/prd-secrets-versioning.md-102-
+--
+docs/prd-secrets-versioning.md-107-**Maven Steps:** [1, 2, 7, 10]
+docs/prd-secrets-versioning.md-108-**MCP Tools:** []
+/home/ken/docs/prd-secrets-versioning.md-109-
+docs/prd-secrets-versioning.md:110:As a developer, I want old secrets to work for 24h after rotation so that consumers have time to update.
+/home/ken/docs/prd-secrets-versioning.md-111-
+docs/prd-secrets-versioning.md-112-**Acceptance Criteria:**
+/home/ken/docs/prd-secrets-versioning.md-113-- Old secret version still decryptable during grace period
+docs/prd-secrets-versioning.md:114:- Grace period: 24 hours from rotation
+/home/ken/docs/prd-secrets-versioning.md-115-- After grace period, old version deleted
+/home/ken/docs/prd-secrets-versioning.md-116-- Warning sent 1 hour before expiration
+/home/ken/docs/prd-secrets-versioning.md-117-- Typecheck passes
+--
+docs/prd-secrets-versioning.md-123-**Maven Steps:** [1, 2, 7, 10]
+docs/prd-secrets-versioning.md-124-**MCP Tools:** []
+/home/ken/docs/prd-secrets-versioning.md-125-
+docs/prd-secrets-versioning.md:126:As a developer, I want consumers notified when secret rotates so that they can fetch the new value.
+/home/ken/docs/prd-secrets-versioning.md-127-
+docs/prd-secrets-versioning.md-128-**Acceptance Criteria:**
+docs/prd-secrets-versioning.md:129:- Webhook sent on secret rotation
+docs/prd-secrets-versioning.md:130:- Webhook payload: secret_id, name, new_version, rotated_from
+/home/ken/docs/prd-secrets-versioning.md-131-- Webhook sent to all registered consumers
+/home/ken/docs/prd-secrets-versioning.md-132-- Signature verification via shared secret
+/home/ken/docs/prd-secrets-versioning.md-133-- Typecheck passes
+--
+docs/prd-secrets-versioning.md-177-**Acceptance Criteria:**
+/home/ken/docs/prd-secrets-versioning.md-178-- Secrets management page created
+/home/ken/docs/prd-secrets-versioning.md-179-- Lists all secrets for project
+docs/prd-secrets-versioning.md:180:- Shows name, version, last rotated, consumers
+/home/ken/docs/prd-secrets-versioning.md-181-- Create secret form
+/home/ken/docs/prd-secrets-versioning.md-182-- Rotate button for each secret
+docs/prd-secrets-versioning.md:183:- View rotation history
+/home/ken/docs/prd-secrets-versioning.md-184-- Delete button with confirmation
+/home/ken/docs/prd-secrets-versioning.md-185-- Values hidden by default
+/home/ken/docs/prd-secrets-versioning.md-186-- Typecheck passes
+--
+/home/ken/docs/prd-audit-logs.json-89-    {
+docs/prd-audit-logs.json-90-      "id": "US-004",
+docs/prd-audit-logs.json-91-      "title": "Audit API Key Operations",
+docs/prd-audit-logs.json:92:      "description": "As a platform operator, I want all API key create/rotate/revoke operations logged so that I can track credential changes.",
+docs/prd-audit-logs.json-93-      "acceptanceCriteria": [
+docs/prd-audit-logs.json-94-        "Key creation logged with action: key.created",
+docs/prd-audit-logs.json:95:        "Key rotation logged with action: key.rotated",
+docs/prd-audit-logs.json-96-        "Key revocation logged with action: key.revoked",
+/home/ken/docs/prd-audit-logs.json-97-        "Actor captured from authenticated user",
+/home/ken/docs/prd-audit-logs.json-98-        "Target is key_id",
+--
+docs/prd-audit-logs.json-179-      "acceptanceCriteria": [
+docs/prd-audit-logs.json-180-        "Secret creation logged with action: secret.created",
+docs/prd-audit-logs.json-181-        "Secret access logged with action: secret.accessed",
+docs/prd-audit-logs.json:182:        "Secret rotation logged with action: secret.rotated",
+/home/ken/docs/prd-audit-logs.json-183-        "Actor captured from authenticated user",
+/home/ken/docs/prd-audit-logs.json-184-        "Target is secret_id (not secret value)",
+/home/ken/docs/prd-audit-logs.json-185-        "Metadata includes secret_name",
+--
+/home/ken/docs/prd-key-rotation.json-1-{
+docs/prd-key-rotation.json-2-  "project": "Key Rotation & Revocation",
+docs/prd-key-rotation.json:3:  "branchName": "flow/key-rotation",
+docs/prd-key-rotation.json-4-  "description": "Key hygiene operations. Rotate key API with 24h overlap. Revoke key API for immediate invalidation. Usage stats per key. Last used tracking. Developers can manage key lifecycle.",
+docs/prd-key-rotation.json-5-  "userStories": [
+/home/ken/docs/prd-key-rotation.json-6-    {
+docs/prd-key-rotation.json-7-      "id": "US-001",
+docs/prd-key-rotation.json-8-      "title": "Add Key Lifecycle Columns",
+docs/prd-key-rotation.json:9:      "description": "As a platform engineer, I want key lifecycle tracking so that I can manage key rotation.",
+docs/prd-key-rotation.json-10-      "acceptanceCriteria": [
+docs/prd-key-rotation.json:11:        "api_keys table updated with: expires_at, rotated_to, last_used, usage_count",
+/home/ken/docs/prd-key-rotation.json-12-        "expires_at for automatic expiration",
+docs/prd-key-rotation.json:13:        "rotated_to references new key after rotation",
+/home/ken/docs/prd-key-rotation.json-14-        "Migration script created",
+/home/ken/docs/prd-key-rotation.json-15-        "Typecheck passes"
+/home/ken/docs/prd-key-rotation.json-16-      ],
+--
+/home/ken/docs/prd-key-rotation.json-31-    {
+docs/prd-key-rotation.json-32-      "id": "US-002",
+docs/prd-key-rotation.json-33-      "title": "Implement Rotate Key API",
+docs/prd-key-rotation.json:34:      "description": "As a developer, I want to rotate keys so that I can maintain security hygiene.",
+docs/prd-key-rotation.json-35-      "acceptanceCriteria": [
+docs/prd-key-rotation.json:36:        "POST /api/keys/:id/rotate endpoint",
+/home/ken/docs/prd-key-rotation.json-37-        "Creates new key version",
+docs/prd-key-rotation.json:38:        "Links old key.rotated_to = new key.id",
+/home/ken/docs/prd-key-rotation.json-39-        "Sets old key.expires_at = NOW() + 24 hours",
+/home/ken/docs/prd-key-rotation.json-40-        "Returns new key (show once)",
+/home/ken/docs/prd-key-rotation.json-41-        "Typecheck passes"
+--
+/home/ken/docs/prd-key-rotation.json-162-    {
+docs/prd-key-rotation.json-163-      "id": "US-007",
+docs/prd-key-rotation.json-164-      "title": "Implement Automatic Key Expiration",
+docs/prd-key-rotation.json:165:      "description": "As a platform engineer, I want rotated keys to expire automatically so that old keys don't stay active.",
+docs/prd-key-rotation.json-166-      "acceptanceCriteria": [
+/home/ken/docs/prd-key-rotation.json-167-        "Background job checks for expired keys",
+/home/ken/docs/prd-key-rotation.json-168-        "Revokes keys where expires_at < NOW()",
+--
+docs/prd-key-rotation.json-190-      "title": "Add Rotation Warning",
+docs/prd-key-rotation.json-191-      "description": "As a developer, I want warning when rotating keys so that I understand the impact.",
+docs/prd-key-rotation.json-192-      "acceptanceCriteria": [
+docs/prd-key-rotation.json:193:        "Warning modal on rotate",
+/home/ken/docs/prd-key-rotation.json-194-        "Explains 24h grace period",
+/home/ken/docs/prd-key-rotation.json-195-        "Shows which services use this key",
+/home/ken/docs/prd-key-rotation.json-196-        "Confirm to proceed",
+--
+/home/ken/docs/prd-key-rotation.json-211-    {
+docs/prd-key-rotation.json-212-      "id": "US-009",
+docs/prd-key-rotation.json-213-      "title": "Rotate Button in UI",
+docs/prd-key-rotation.json:214:      "description": "As a developer, I want a rotate button in the UI so that I can easily rotate keys.",
+docs/prd-key-rotation.json-215-      "acceptanceCriteria": [
+/home/ken/docs/prd-key-rotation.json-216-        "Rotate button for each key in list",
+/home/ken/docs/prd-key-rotation.json-217-        "Rotate button in key detail view",
+--
+/home/ken/docs/prd-key-rotation.md-1----
+docs/prd-key-rotation.md-2-project: Key Rotation & Revocation
+docs/prd-key-rotation.md:3:branch: flow/key-rotation
+docs/prd-key-rotation.md-4-availableMCPs:
+/home/ken/docs/prd-key-rotation.md-5-  - supabase
+/home/ken/docs/prd-key-rotation.md-6-  - chrome-devtools
+--
+docs/prd-key-rotation.md-22-**Maven Steps:** [1, 2, 7]
+docs/prd-key-rotation.md-23-**MCP Tools:** []
+/home/ken/docs/prd-key-rotation.md-24-
+docs/prd-key-rotation.md:25:As a platform engineer, I want key lifecycle tracking so that I can manage key rotation.
+/home/ken/docs/prd-key-rotation.md-26-
+docs/prd-key-rotation.md-27-**Acceptance Criteria:**
+docs/prd-key-rotation.md:28:- api_keys table updated with: expires_at, rotated_to, last_used, usage_count
+/home/ken/docs/prd-key-rotation.md-29-- expires_at for automatic expiration
+docs/prd-key-rotation.md:30:- rotated_to references new key after rotation
+/home/ken/docs/prd-key-rotation.md-31-- Migration script created
+/home/ken/docs/prd-key-rotation.md-32-- Typecheck passes
+/home/ken/docs/prd-key-rotation.md-33-
+--
+docs/prd-key-rotation.md-38-**Maven Steps:** [1, 2, 7, 10]
+docs/prd-key-rotation.md-39-**MCP Tools:** []
+/home/ken/docs/prd-key-rotation.md-40-
+docs/prd-key-rotation.md:41:As a developer, I want to rotate keys so that I can maintain security hygiene.
+/home/ken/docs/prd-key-rotation.md-42-
+docs/prd-key-rotation.md-43-**Acceptance Criteria:**
+docs/prd-key-rotation.md:44:- POST /api/keys/:id/rotate endpoint
+/home/ken/docs/prd-key-rotation.md-45-- Creates new key version
+docs/prd-key-rotation.md:46:- Links old key.rotated_to = new key.id
+/home/ken/docs/prd-key-rotation.md-47-- Sets old key.expires_at = NOW() + 24 hours
+/home/ken/docs/prd-key-rotation.md-48-- Returns new key (show once)
+/home/ken/docs/prd-key-rotation.md-49-- Typecheck passes
+--
+docs/prd-key-rotation.md-118-**Maven Steps:** [1, 2, 7, 10]
+docs/prd-key-rotation.md-119-**MCP Tools:** []
+/home/ken/docs/prd-key-rotation.md-120-
+docs/prd-key-rotation.md:121:As a platform engineer, I want rotated keys to expire automatically so that old keys don't stay active.
+/home/ken/docs/prd-key-rotation.md-122-
+docs/prd-key-rotation.md-123-**Acceptance Criteria:**
+/home/ken/docs/prd-key-rotation.md-124-- Background job checks for expired keys
+--
+/home/ken/docs/prd-key-rotation.md-136-As a developer, I want warning when rotating keys so that I understand the impact.
+/home/ken/docs/prd-key-rotation.md-137-
+docs/prd-key-rotation.md-138-**Acceptance Criteria:**
+docs/prd-key-rotation.md:139:- Warning modal on rotate
+/home/ken/docs/prd-key-rotation.md-140-- Explains 24h grace period
+/home/ken/docs/prd-key-rotation.md-141-- Shows which services use this key
+/home/ken/docs/prd-key-rotation.md-142-- Confirm to proceed
+--
+docs/prd-key-rotation.md-149-**Maven Steps:** [5, 10]
+docs/prd-key-rotation.md-150-**MCP Tools:** []
+/home/ken/docs/prd-key-rotation.md-151-
+docs/prd-key-rotation.md:152:As a developer, I want a rotate button in the UI so that I can easily rotate keys.
+/home/ken/docs/prd-key-rotation.md-153-
+docs/prd-key-rotation.md-154-**Acceptance Criteria:**
+/home/ken/docs/prd-key-rotation.md-155-- Rotate button for each key in list
+--
+/home/ken/docs/prd-background-jobs.json-1-{
+docs/prd-background-jobs.json-2-  "project": "Background Jobs & Task Queue",
+docs/prd-background-jobs.json-3-  "branchName": "flow/background-jobs",
+docs/prd-background-jobs.json:4:  "description": "Async operations happen everywhere in a PaaS: provisioning, key rotation, webhooks, backups, suspension. Jobs make the platform deterministic under chaos by providing reliable retry logic and state tracking.",
+docs/prd-background-jobs.json-5-  "userStories": [
+/home/ken/docs/prd-background-jobs.json-6-    {
+docs/prd-background-jobs.json-7-      "id": "US-001",
+--
+/home/ken/docs/prd-background-jobs.json-121-    {
+docs/prd-background-jobs.json-122-      "id": "US-005",
+docs/prd-background-jobs.json-123-      "title": "Implement Rotate Key Job",
+docs/prd-background-jobs.json:124:      "description": "As a platform operator, I want key rotation to run as a background job so that old keys are expired after grace period.",
+docs/prd-background-jobs.json-125-      "acceptanceCriteria": [
+docs/prd-background-jobs.json:126:        "rotate_key job handler implemented",
+/home/ken/docs/prd-background-jobs.json-127-        "Creates new key version",
+/home/ken/docs/prd-background-jobs.json-128-        "Marks old key as expired after 24h",
+/home/ken/docs/prd-background-jobs.json-129-        "One-shot job (no retry)",
+--
+/home/ken/docs/prd-background-jobs.md-10-# Background Jobs & Task Queue
+/home/ken/docs/prd-background-jobs.md-11-
+/home/ken/docs/prd-background-jobs.md-12-## Overview
+docs/prd-background-jobs.md:13:Async operations happen everywhere in a PaaS: provisioning, key rotation, webhooks, backups, suspension. Jobs make the platform deterministic under chaos by providing reliable retry logic and state tracking.
+/home/ken/docs/prd-background-jobs.md-14-
+/home/ken/docs/prd-background-jobs.md-15-## Technical Approach
+docs/prd-background-jobs.md:16:Create job queue system with jobs table for tracking state, and worker process for background execution. Implement exponential backoff for retries and status tracking (pending, running, failed, completed). Job types: provision_project, rotate_key, deliver_webhook, export_backup, check_usage_limits, auto_suspend.
+/home/ken/docs/prd-background-jobs.md-17-
+/home/ken/docs/prd-background-jobs.md-18-## User Stories
+/home/ken/docs/prd-background-jobs.md-19-
+--
+docs/prd-background-jobs.md-95-**Maven Steps:** [1, 2, 7, 10]
+docs/prd-background-jobs.md-96-**MCP Tools:** []
+/home/ken/docs/prd-background-jobs.md-97-
+docs/prd-background-jobs.md:98:As a platform operator, I want key rotation to run as a background job so that old keys are expired after grace period.
+/home/ken/docs/prd-background-jobs.md-99-
+docs/prd-background-jobs.md-100-**Acceptance Criteria:**
+docs/prd-background-jobs.md:101:- rotate_key job handler implemented
+/home/ken/docs/prd-background-jobs.md-102-- Creates new key version
+/home/ken/docs/prd-background-jobs.md-103-- Marks old key as expired after 24h
+/home/ken/docs/prd-background-jobs.md-104-- One-shot job (no retry)
+--
+/home/ken/docs/prd-control-plane-api.json-81-    {
+docs/prd-control-plane-api.json-82-      "id": "US-004",
+docs/prd-control-plane-api.json-83-      "title": "Implement API Keys Management API",
+docs/prd-control-plane-api.json:84:      "description": "As a developer, I want to create, rotate, and revoke API keys via API so that I can manage credentials programmatically.",
+docs/prd-control-plane-api.json-85-      "acceptanceCriteria": [
+/home/ken/docs/prd-control-plane-api.json-86-        "POST /v1/keys - Create new API key with type and scopes",
+/home/ken/docs/prd-control-plane-api.json-87-        "GET /v1/keys - List keys for project",
+docs/prd-control-plane-api.json-88-        "GET /v1/keys:id - Get key details (show value only on creation)",
+docs/prd-control-plane-api.json:89:        "PUT /v1/keys/:id/rotate - Rotate key with grace period",
+docs/prd-control-plane-api.json-90-        "DELETE /v1/keys:id/revoke - Revoke key immediately",
+docs/prd-control-plane-api.json-91-        "GET /v1/keys:id/usage - Get usage statistics",
+docs/prd-control-plane-api.json-92-        "Key types supported: public, secret, service_role, mcp",
+--
+docs/prd-control-plane-api.json-135-        "GET /v1/jobs:id - Get job details and status",
+docs/prd-control-plane-api.json-136-        "POST /v1/jobs:id/retry - Retry failed job",
+docs/prd-control-plane-api.json-137-        "DELETE /v1/jobs:id - Cancel pending job",
+docs/prd-control-plane-api.json:138:        "Job types: provision_project, rotate_key, deliver_webhook, export_backup, check_usage_limits",
+docs/prd-control-plane-api.json-139-        "Status tracking: pending, running, failed, completed",
+/home/ken/docs/prd-control-plane-api.json-140-        "Typecheck passes"
+/home/ken/docs/prd-control-plane-api.json-141-      ],
+--
+/home/ken/docs/prd-control-plane-api.json-180-        "GET /v1/webhooks - List webhooks for project",
+docs/prd-control-plane-api.json-181-        "DELETE /v1/webhooks:id - Remove webhook",
+docs/prd-control-plane-api.json-182-        "PUT /v1/webhooks:id - Update webhook",
+docs/prd-control-plane-api.json:183:        "Event types: project.created, user.signedup, file.uploaded, key.rotated, etc.",
+/home/ken/docs/prd-control-plane-api.json-184-        "Webhook secret for signature verification",
+/home/ken/docs/prd-control-plane-api.json-185-        "Typecheck passes"
+/home/ken/docs/prd-control-plane-api.json-186-      ],
+--
+docs/prd-control-plane-api.md-81-**Maven Steps:** [1, 2, 7, 10]
+docs/prd-control-plane-api.md-82-**MCP Tools:** []
+/home/ken/docs/prd-control-plane-api.md-83-
+docs/prd-control-plane-api.md:84:As a developer, I want to create, rotate, and revoke API keys via API so that I can manage credentials programmatically.
+/home/ken/docs/prd-control-plane-api.md-85-
+docs/prd-control-plane-api.md-86-**Acceptance Criteria:**
+/home/ken/docs/prd-control-plane-api.md-87-- POST /v1/keys - Create new API key with type and scopes
+/home/ken/docs/prd-control-plane-api.md-88-- GET /v1/keys - List keys for project
+docs/prd-control-plane-api.md-89-- GET /v1/keys:id - Get key details (show value only on creation)
+docs/prd-control-plane-api.md:90:- PUT /v1/keys/:id/rotate - Rotate key with grace period
+docs/prd-control-plane-api.md-91-- DELETE /v1/keys:id/revoke - Revoke key immediately
+docs/prd-control-plane-api.md-92-- GET /v1/keys:id/usage - Get usage statistics
+docs/prd-control-plane-api.md-93-- Key types supported: public, secret, service_role, mcp
+--
+docs/prd-control-plane-api.md-126-- GET /v1/jobs:id - Get job details and status
+docs/prd-control-plane-api.md-127-- POST /v1/jobs:id/retry - Retry failed job
+docs/prd-control-plane-api.md-128-- DELETE /v1/jobs:id - Cancel pending job
+docs/prd-control-plane-api.md:129:- Job types: provision_project, rotate_key, deliver_webhook, export_backup, check_usage_limits
+docs/prd-control-plane-api.md-130-- Status tracking: pending, running, failed, completed
+/home/ken/docs/prd-control-plane-api.md-131-- Typecheck passes
+/home/ken/docs/prd-control-plane-api.md-132-
+--
+/home/ken/docs/prd-control-plane-api.md-161-- GET /v1/webhooks - List webhooks for project
+docs/prd-control-plane-api.md-162-- DELETE /v1/webhooks:id - Remove webhook
+docs/prd-control-plane-api.md-163-- PUT /v1/webhooks:id - Update webhook
+docs/prd-control-plane-api.md:164:- Event types: project.created, user.signedup, file.uploaded, key.rotated, etc.
+/home/ken/docs/prd-control-plane-api.md-165-- Webhook secret for signature verification
+/home/ken/docs/prd-control-plane-api.md-166-- Typecheck passes
+/home/ken/docs/prd-control-plane-api.md-167-
+--
+docs/prd-audit-logs.md-74-**Maven Steps:** [1, 2, 7, 10]
+docs/prd-audit-logs.md-75-**MCP Tools:** []
+/home/ken/docs/prd-audit-logs.md-76-
+docs/prd-audit-logs.md:77:As a platform operator, I want all API key create/rotate/revoke operations logged so that I can track credential changes.
+/home/ken/docs/prd-audit-logs.md-78-
+docs/prd-audit-logs.md-79-**Acceptance Criteria:**
+docs/prd-audit-logs.md-80-- Key creation logged with action: key.created
+docs/prd-audit-logs.md:81:- Key rotation logged with action: key.rotated
+docs/prd-audit-logs.md-82-- Key revocation logged with action: key.revoked
+/home/ken/docs/prd-audit-logs.md-83-- Actor captured from authenticated user
+/home/ken/docs/prd-audit-logs.md-84-- Target is key_id
+--
+docs/prd-audit-logs.md-132-**Acceptance Criteria:**
+docs/prd-audit-logs.md-133-- Secret creation logged with action: secret.created
+docs/prd-audit-logs.md-134-- Secret access logged with action: secret.accessed
+docs/prd-audit-logs.md:135:- Secret rotation logged with action: secret.rotated
+/home/ken/docs/prd-audit-logs.md-136-- Actor captured from authenticated user
+/home/ken/docs/prd-audit-logs.md-137-- Target is secret_id (not secret value)
+/home/ken/docs/prd-audit-logs.md-138-- Metadata includes secret_name
+--
+/home/ken/docs/prd-webhooks-events.md-10-# Webhooks & Events System
+/home/ken/docs/prd-webhooks-events.md-11-
+/home/ken/docs/prd-webhooks-events.md-12-## Overview
+docs/prd-webhooks-events.md:13:Outbound event delivery to external systems. Integrations: Stripe (billing), analytics (Mixpanel, Amplitude), automations (Zapier, Make), internal webhooks. Event types: project created, user signed up, file uploaded, key rotated, function executed. Delivery with retry.
+/home/ken/docs/prd-webhooks-events.md-14-
+/home/ken/docs/prd-webhooks-events.md-15-## Technical Approach
+/home/ken/docs/prd-webhooks-events.md-16-Webhooks table stores URL, event types, secret. Event log table tracks delivery. Background job delivers webhooks with retry (5x exponential backoff). Signature verification via shared secret. Webhook management UI.
+--
+docs/prd-webhooks-events.md-61-- Events defined: project.created, project.suspended, project.deleted
+docs/prd-webhooks-events.md-62-- Events: user.signedup, user.deleted
+docs/prd-webhooks-events.md-63-- Events: file.uploaded, file.deleted
+docs/prd-webhooks-events.md:64:- Events: key.created, key.rotated, key.revoked
+docs/prd-webhooks-events.md-65-- Events: function.executed
+docs/prd-webhooks-events.md-66-- Events: usage.threshold
+/home/ken/docs/prd-webhooks-events.md-67-- Documented in code
+--
+/home/ken/docs/prd-webhooks-events.md-128-- Project creation emits project.created
+/home/ken/docs/prd-webhooks-events.md-129-- User signup emits user.signedup
+/home/ken/docs/prd-webhooks-events.md-130-- File upload emits file.uploaded
+docs/prd-webhooks-events.md:131:- Key rotation emits key.rotated
+/home/ken/docs/prd-webhooks-events.md-132-- Events created in event_log
+/home/ken/docs/prd-webhooks-events.md-133-- Typecheck passes
+/home/ken/docs/prd-webhooks-events.md-134-
+--
+/home/ken/docs/prd-webhooks-events.json-1-{
+docs/prd-webhooks-events.json-2-  "project": "Webhooks & Events System",
+docs/prd-webhooks-events.json-3-  "branchName": "flow/webhooks-events",
+docs/prd-webhooks-events.json:4:  "description": "Outbound event delivery to external systems. Integrations: Stripe (billing), analytics (Mixpanel, Amplitude), automations (Zapier, Make), internal webhooks. Event types: project created, user signed up, file uploaded, key rotated, function executed. Delivery with retry.",
+docs/prd-webhooks-events.json-5-  "userStories": [
+/home/ken/docs/prd-webhooks-events.json-6-    {
+docs/prd-webhooks-events.json-7-      "id": "US-001",
+--
+docs/prd-webhooks-events.json-62-        "Events defined: project.created, project.suspended, project.deleted",
+docs/prd-webhooks-events.json-63-        "Events: user.signedup, user.deleted",
+docs/prd-webhooks-events.json-64-        "Events: file.uploaded, file.deleted",
+docs/prd-webhooks-events.json:65:        "Events: key.created, key.rotated, key.revoked",
+docs/prd-webhooks-events.json-66-        "Events: function.executed",
+docs/prd-webhooks-events.json-67-        "Events: usage.threshold",
+/home/ken/docs/prd-webhooks-events.json-68-        "Documented in code"
+--
+/home/ken/docs/prd-webhooks-events.json-171-        "Project creation emits project.created",
+/home/ken/docs/prd-webhooks-events.json-172-        "User signup emits user.signedup",
+/home/ken/docs/prd-webhooks-events.json-173-        "File upload emits file.uploaded",
+docs/prd-webhooks-events.json:174:        "Key rotation emits key.rotated",
+/home/ken/docs/prd-webhooks-events.json-175-        "Events created in event_log",
+/home/ken/docs/prd-webhooks-events.json-176-        "Typecheck passes"
+/home/ken/docs/prd-webhooks-events.json-177-      ],
+--
+/home/ken/docs/prd-secrets-versioning.json-1-{
+docs/prd-secrets-versioning.json-2-  "project": "Secrets Versioning & Rotation",
+docs/prd-secrets-versioning.json-3-  "branchName": "flow/secrets-versioning",
+docs/prd-secrets-versioning.json:4:  "description": "Production secrets are living things. You need safe rotation, rollback capability, audit trail, and blast radius awareness. Secrets versioning enables these capabilities with a grace period for rotation.",
+docs/prd-secrets-versioning.json-5-  "userStories": [
+/home/ken/docs/prd-secrets-versioning.json-6-    {
+docs/prd-secrets-versioning.json-7-      "id": "US-001",
+docs/prd-secrets-versioning.json-8-      "title": "Create Secrets Table",
+docs/prd-secrets-versioning.json:9:      "description": "As a platform engineer, I want a secrets table with versioning so that I can track secret rotation history.",
+docs/prd-secrets-versioning.json-10-      "acceptanceCriteria": [
+/home/ken/docs/prd-secrets-versioning.json-11-        "secrets table created in control_plane schema",
+docs/prd-secrets-versioning.json:12:        "Columns: id, project_id, name, value_encrypted, version (INT DEFAULT 1), active (BOOLEAN DEFAULT TRUE), rotated_from (REFERENCES secrets(id)), rotation_reason, created_by, created_at",
+/home/ken/docs/prd-secrets-versioning.json-13-        "Unique constraint on (project_id, name, version)",
+/home/ken/docs/prd-secrets-versioning.json-14-        "Index on (project_id, name) for lookup",
+/home/ken/docs/prd-secrets-versioning.json-15-        "Index on active for finding current version",
+--
+/home/ken/docs/prd-secrets-versioning.json-32-    {
+docs/prd-secrets-versioning.json-33-      "id": "US-002",
+docs/prd-secrets-versioning.json-34-      "title": "Create Secret Consumers Table",
+docs/prd-secrets-versioning.json:35:      "description": "As a platform engineer, I want to track which services use each secret so that I understand rotation blast radius.",
+docs/prd-secrets-versioning.json-36-      "acceptanceCriteria": [
+/home/ken/docs/prd-secrets-versioning.json-37-        "secret_consumers table created in control_plane schema",
+docs/prd-secrets-versioning.json-38-        "Columns: secret_id (REFERENCES secrets(id)), service (VARCHAR(50)), last_used_at (TIMESTAMPTZ)",
+--
+/home/ken/docs/prd-secrets-versioning.json-63-        "Encryption key from environment variable",
+/home/ken/docs/prd-secrets-versioning.json-64-        "value_encrypted contains PGP encrypted value",
+/home/ken/docs/prd-secrets-versioning.json-65-        "Decryption only when needed",
+docs/prd-secrets-versioning.json:66:        "Key rotation supported",
+/home/ken/docs/prd-secrets-versioning.json-67-        "Typecheck passes"
+/home/ken/docs/prd-secrets-versioning.json-68-      ],
+docs/prd-secrets-versioning.json-69-      "mavenSteps": [
+--
+/home/ken/docs/prd-secrets-versioning.json-113-    {
+docs/prd-secrets-versioning.json-114-      "id": "US-005",
+docs/prd-secrets-versioning.json-115-      "title": "Implement Secret Rotation",
+docs/prd-secrets-versioning.json:116:      "description": "As a developer, I want to rotate secrets so that I can maintain security hygiene.",
+docs/prd-secrets-versioning.json-117-      "acceptanceCriteria": [
+docs/prd-secrets-versioning.json:118:        "POST /api/secrets/:id/rotate endpoint",
+/home/ken/docs/prd-secrets-versioning.json-119-        "Creates new version (v2) with new value",
+docs/prd-secrets-versioning.json:120:        "Links v2.rotated_from = v1.id",
+/home/ken/docs/prd-secrets-versioning.json-121-        "Marks v1.active = FALSE",
+docs/prd-secrets-versioning.json:122:        "Includes rotation_reason",
+/home/ken/docs/prd-secrets-versioning.json-123-        "Returns new secret (without value)",
+/home/ken/docs/prd-secrets-versioning.json-124-        "Typecheck passes"
+/home/ken/docs/prd-secrets-versioning.json-125-      ],
+--
+/home/ken/docs/prd-secrets-versioning.json-142-    {
+docs/prd-secrets-versioning.json-143-      "id": "US-006",
+docs/prd-secrets-versioning.json-144-      "title": "Implement Grace Period for Old Secrets",
+docs/prd-secrets-versioning.json:145:      "description": "As a developer, I want old secrets to work for 24h after rotation so that consumers have time to update.",
+docs/prd-secrets-versioning.json-146-      "acceptanceCriteria": [
+/home/ken/docs/prd-secrets-versioning.json-147-        "Old secret version still decryptable during grace period",
+docs/prd-secrets-versioning.json:148:        "Grace period: 24 hours from rotation",
+/home/ken/docs/prd-secrets-versioning.json-149-        "After grace period, old version deleted",
+/home/ken/docs/prd-secrets-versioning.json-150-        "Warning sent 1 hour before expiration",
+/home/ken/docs/prd-secrets-versioning.json-151-        "Typecheck passes"
+--
+/home/ken/docs/prd-secrets-versioning.json-169-    {
+docs/prd-secrets-versioning.json-170-      "id": "US-007",
+docs/prd-secrets-versioning.json-171-      "title": "Implement Consumer Notification",
+docs/prd-secrets-versioning.json:172:      "description": "As a developer, I want consumers notified when secret rotates so that they can fetch the new value.",
+docs/prd-secrets-versioning.json-173-      "acceptanceCriteria": [
+docs/prd-secrets-versioning.json:174:        "Webhook sent on secret rotation",
+docs/prd-secrets-versioning.json:175:        "Webhook payload: secret_id, name, new_version, rotated_from",
+/home/ken/docs/prd-secrets-versioning.json-176-        "Webhook sent to all registered consumers",
+/home/ken/docs/prd-secrets-versioning.json-177-        "Signature verification via shared secret",
+/home/ken/docs/prd-secrets-versioning.json-178-        "Typecheck passes"
+--
+docs/prd-secrets-versioning.json-255-      "acceptanceCriteria": [
+/home/ken/docs/prd-secrets-versioning.json-256-        "Secrets management page created",
+/home/ken/docs/prd-secrets-versioning.json-257-        "Lists all secrets for project",
+docs/prd-secrets-versioning.json:258:        "Shows name, version, last rotated, consumers",
+/home/ken/docs/prd-secrets-versioning.json-259-        "Create secret form",
+/home/ken/docs/prd-secrets-versioning.json-260-        "Rotate button for each secret",
+docs/prd-secrets-versioning.json:261:        "View rotation history",
+/home/ken/docs/prd-secrets-versioning.json-262-        "Delete button with confirmation",
+/home/ken/docs/prd-secrets-versioning.json-263-        "Values hidden by default",
+/home/ken/docs/prd-secrets-versioning.json-264-        "Typecheck passes"
+--
+/home/ken/docs/progress-key-rotation.txt-1-# Key Rotation - Progress Tracker
+/home/ken/docs/progress-key-rotation.txt-2-
+docs/progress-key-rotation.txt-3-## Feature: Key Rotation
+docs/progress-key-rotation.txt:4:**Branch**: flow/key-rotation
+docs/progress-key-rotation.txt-5-**Start Date**: 2026-01-28
+docs/progress-key-rotation.txt-6-**Status**: Initialized
+/home/ken/docs/progress-key-rotation.txt-7-

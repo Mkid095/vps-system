@@ -1,0 +1,146 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { useAuth } from '@/lib/store';
+
+export default function BackupPage() {
+  const { user, loading, initialize } = useAuth();
+  const [backingUp, setBackingUp] = useState(false);
+  const [lastBackup, setLastBackup] = useState<string | null>(null);
+
+  useEffect(() => {
+    initialize();
+  }, [initialize]);
+
+  const handleBackup = async (type: 'cloudinary' | 'telegram') => {
+    setBackingUp(true);
+    try {
+      const response = await fetch(`/api/backup/${type}`, { method: 'POST' });
+      if (response.ok) {
+        const data = await response.json();
+        setLastBackup(new Date().toISOString());
+        alert(`Backup completed via ${type}`);
+      }
+    } catch (error) {
+      alert(`Backup failed: ${error}`);
+    } finally {
+      setBackingUp(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <p className="text-lg text-gray-600 mb-4">Please sign in to access backups</p>
+        <a href="/auth/signin" className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 no-underline">
+          Sign In
+        </a>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      {/* Header */}
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Backup & Restore</h1>
+        <p className="text-gray-600">Secure your data with Cloudinary and Telegram backups</p>
+      </div>
+
+      {/* Backup Options */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Cloudinary */}
+        <div className="bg-white border border-gray-200 rounded-xl p-6">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center">
+              <span className="text-3xl">☁</span>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900">Cloudinary</h3>
+              <p className="text-sm text-gray-500">Image storage backup</p>
+            </div>
+          </div>
+
+          <div className="space-y-4 mb-6">
+            <div className="flex justify-between text-sm">
+              <span className="text-gray-600">Images backed up</span>
+              <span className="font-medium text-gray-900">--</span>
+            </div>
+            <div className="flex justify-between text-sm">
+              <span className="text-gray-600">Storage used</span>
+              <span className="font-medium text-gray-900">--</span>
+            </div>
+            <div className="flex justify-between text-sm">
+              <span className="text-gray-600">Last backup</span>
+              <span className="font-medium text-gray-900">
+                {lastBackup ? new Date(lastBackup).toLocaleString() : 'Never'}
+              </span>
+            </div>
+          </div>
+
+          <button
+            onClick={() => handleBackup('cloudinary')}
+            disabled={backingUp}
+            className="w-full px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
+          >
+            {backingUp ? 'Backing up...' : 'Backup Now'}
+          </button>
+        </div>
+
+        {/* Telegram */}
+        <div className="bg-white border border-gray-200 rounded-xl p-6">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-14 h-14 rounded-xl bg-sky-100 flex items-center justify-center">
+              <span className="text-3xl">✈</span>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900">Telegram</h3>
+              <p className="text-sm text-gray-500">Database backup to chat</p>
+            </div>
+          </div>
+
+          <div className="space-y-4 mb-6">
+            <div className="flex justify-between text-sm">
+              <span className="text-gray-600">Backups sent</span>
+              <span className="font-medium text-gray-900">--</span>
+            </div>
+            <div className="flex justify-between text-sm">
+              <span className="text-gray-600">Chat ID</span>
+              <span className="font-medium text-gray-900">Configured</span>
+            </div>
+            <div className="flex justify-between text-sm">
+              <span className="text-gray-600">Last backup</span>
+              <span className="font-medium text-gray-900">
+                {lastBackup ? new Date(lastBackup).toLocaleString() : 'Never'}
+              </span>
+            </div>
+          </div>
+
+          <button
+            onClick={() => handleBackup('telegram')}
+            disabled={backingUp}
+            className="w-full px-4 py-3 bg-sky-500 text-white rounded-lg hover:bg-sky-600 disabled:opacity-50 transition-colors"
+          >
+            {backingUp ? 'Backing up...' : 'Send Backup Now'}
+          </button>
+        </div>
+      </div>
+
+      {/* Backup History */}
+      <div className="mt-8">
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">Backup History</h2>
+        <div className="bg-white border border-gray-200 rounded-xl p-8 text-center text-gray-500">
+          <p>Backup history will appear here</p>
+        </div>
+      </div>
+    </div>
+  );
+}

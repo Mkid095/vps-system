@@ -1,0 +1,7 @@
+177-    print_status "EXECUTING" "Running Claude Code for story $story_id..."
+178-
+179-    # Run Claude Code
+180:    if claude --dangerously-skip-permissions -p "$prompt"; then
+181-        TOTAL_STORIES_COMPLETED=$((TOTAL_STORIES_COMPLETED + 1))
+182-        print_status "SUCCESS" "Story $story_id completed successfully"
+183-        echo ""

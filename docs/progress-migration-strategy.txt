@@ -1,0 +1,25 @@
+# Migration Strategy - Progress Tracker
+
+## Feature: Migration Strategy
+**Branch**: flow/migration-strategy
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (8 total)
+
+| US-001 | Create Schema Migrations Table | 1 | Pending | |
+| US-002 | Create Migration Runner Script | 1 | Pending | |
+| US-003 | Implement Rollback Support | 1 | Pending | |
+| US-004 | Implement Breaking Change Tracking | 2 | Pending | |
+| US-005 | Create Migration Status Command | 2 | Pending | |
+| US-006 | Create Migrations Directory Structure | 1 | Pending | |
+| US-007 | Test Migrations on Staging | 2 | Pending | |
+| US-008 | Add Migration Locking | 2 | Pending | |
+
+## Progress Summary
+- Total Stories: 8
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 8
+
+## Iteration Log

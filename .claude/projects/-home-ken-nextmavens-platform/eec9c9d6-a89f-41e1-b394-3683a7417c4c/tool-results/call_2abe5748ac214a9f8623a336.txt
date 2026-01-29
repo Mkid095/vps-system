@@ -1,0 +1,10 @@
+HTTP/1.1 307 Temporary Redirect
+Connection: keep-alive
+location: /login?redirect=%2F
+Date: Sun, 25 Jan 2026 19:25:04 GMT
+Access-Control-Allow-Origin: *
+Access-Control-Expose-Headers: Content-Length,Content-Type
+X-Kong-Upstream-Latency: 7
+X-Kong-Proxy-Latency: 1
+Via: kong/3.7.1
+X-Kong-Request-Id: 4696de0c19907e79e75c1073878aca4c

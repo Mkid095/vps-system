@@ -1,0 +1,29 @@
+# Deletion Preview - Progress Tracker
+
+## Feature: Deletion Preview
+**Branch**: flow/deletion-preview
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (12 total)
+
+| US-001 | Add Deletion Columns to Projects | 1 | Pending | |
+| US-002 | Create Deletion Preview API | 1 | Pending | |
+| US-003 | Calculate Schema Dependencies | 1 | Pending | |
+| US-004 | Calculate API Key Dependencies | 1 | Pending | |
+| US-005 | Calculate Webhook Dependencies | 1 | Pending | |
+| US-006 | Calculate Storage Dependencies | 1 | Pending | |
+| US-007 | Implement Soft Delete | 1 | Pending | |
+| US-008 | Implement 30-Day Grace Period | 1 | Pending | |
+| US-009 | Implement Restore During Grace Period | 1 | Pending | |
+| US-010 | Create Deletion Preview UI | 2 | Pending | |
+| US-011 | Implement Hard Delete After Grace Period | 2 | Pending | |
+| US-012 | Show Deleted Projects in List | 2 | Pending | |
+
+## Progress Summary
+- Total Stories: 12
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 12
+
+## Iteration Log

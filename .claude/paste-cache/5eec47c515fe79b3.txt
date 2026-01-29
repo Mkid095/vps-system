@@ -1,0 +1,39 @@
+ken@srv1292036:~$ flow start
+
+'${CYAN}' __    __     ______     __   __   ______     __   __     ______        ______   __         ______     __     __'${NC}
+'${CYAN}'/\ "-./  \   /\  __ \   /\ \ / /  /\  ___\   /\ "-.\ \   /\  ___\      /\  ___\ /\ \       /\  __ \   /\ \  _ \ \'${NC}
+'${CYAN}'\ \ \-./\ \  \ \  __ \  \ \ \'"${RED}'\/'${CYAN}'   \ \  __\   \ \ \-.  \  \ \___  \     \ \  __\ \ \ \____  \ \ \/\ \  \ \ \/ ".\ \\'${NC}
+'${CYAN}' \ \_\ \ \_\  \ \_\ \_\  \ \__|'${BLUE}'    '${CYAN}'\ \_____\  \ \_\\"'${YELLOW}'_\  \/\_____\     \ \_\    \ \_____\  \ \_____\  \ \__/".~\_\'${NC}
+'${CYAN}'  \/_/  \/_/   \/_/\/_/   \/_/      \/_____/   \/_/ \/_/   \/_____/      \/_/     \/_____/   \/_____/   \/_/   \/_/'${NC}
+
+
+╔════════════════════════════════════════════════════════════╗
+║           Maven Flow - Starting Autonomous Development      ║
+╚════════════════════════════════════════════════════════════╝
+
+▶ Maven Flow will work in iterations
+  Each iteration processes ONE incomplete story
+  Max iterations: 100
+
+▶ Scanning PRDs for stories...
+[⠋] Analyzing project...   [⠙] Analyzing project...   [⠸] Analyzing project...   [⠴] Analyzing project...   [⠦] Analyzing project...   [⠇] Analyzing project...   [⠏] Analyzing project...   [⠋] Analyzing project...   [⠙] Analyzing project...   [⠸] Analyzing project...   [⠴] Analyzing project...   [⠦] Analyzing project...   [⠇] Analyzing project...   [⠏] Analyzing project...   [⠋] Analyzing project...   [⠙] Analyzing project...   [⠸] Analyzing project...   [⠴] Analyzing project...   [⠦] Analyzing project...   [⠇] Analyzing project...   [⠏] Analyzing project...                            ✓ Ready
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+╔════════════════════════════════════════════════════════════╗
+║  Iteration 1 of 100
+╚════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────┐
+│  Progress:   3/443 stories      0.7%    (440 remaining) │
+└─────────────────────────────────────────────────────────────┘
+
+▶ Working on: US-004 - Detect Usage Spikes
+  PRD: docs/prd-abuse-controls.json
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+▶ Processing: US-004 - Detect Usage Spikes
+
+[⠇] Working on US-004...

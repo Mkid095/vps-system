@@ -1,0 +1,27 @@
+# Abuse Controls - Progress Tracker
+
+## Feature: Abuse Controls
+**Branch**: flow/abuse-controls
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (10 total)
+
+| US-001 | Define Hard Caps | 1 | Pending | |
+| US-002 | Implement Signup Rate Limiting | 1 | Pending | |
+| US-003 | Implement Auto-Suspend on Hard Cap | 1 | Pending | |
+| US-004 | Detect Usage Spikes | 2 | Pending | |
+| US-005 | Detect Error Rate Spikes | 2 | Pending | |
+| US-006 | Detect Malicious Patterns | 2 | Pending | |
+| US-007 | Send Suspension Notifications | 1 | Pending | |
+| US-008 | Create Suspension UI | 2 | Pending | |
+| US-009 | Implement Manual Override | 2 | Pending | |
+| US-010 | Abuse Dashboard | 3 | Pending | |
+
+## Progress Summary
+- Total Stories: 10
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 10
+
+## Iteration Log

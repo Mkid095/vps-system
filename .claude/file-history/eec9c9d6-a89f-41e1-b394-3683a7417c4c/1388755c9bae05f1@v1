@@ -1,0 +1,13 @@
+# Studio Proxy - Routes Studio database requests to project-specific databases
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Create a simple proxy server
+COPY proxy.js .
+
+# Expose port
+EXPOSE 3001
+
+# Start the proxy
+CMD ["node", "proxy.js"]

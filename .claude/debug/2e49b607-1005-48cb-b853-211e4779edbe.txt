@@ -1,0 +1,552 @@
+2026-01-28T04:19:41.492Z [DEBUG] Failed to check enabledPlatforms: TypeError: undefined is not an object (evaluating 'l7.join')
+2026-01-28T04:19:41.525Z [DEBUG] Watching for changes in setting files /home/ken/.claude, /home/ken/.claude...
+2026-01-28T04:19:41.530Z [DEBUG] [init] configureGlobalMTLS starting
+2026-01-28T04:19:41.530Z [DEBUG] [init] configureGlobalMTLS complete
+2026-01-28T04:19:41.530Z [DEBUG] [init] configureGlobalAgents starting
+2026-01-28T04:19:41.530Z [DEBUG] [init] configureGlobalAgents complete
+2026-01-28T04:19:41.538Z [DEBUG] [STARTUP] Loading MCP configs...
+2026-01-28T04:19:41.549Z [DEBUG] Loading plugin rust-analyzer-lsp from source: "./plugins/rust-analyzer-lsp"
+2026-01-28T04:19:41.549Z [DEBUG] Using provided version for rust-analyzer-lsp@claude-plugins-official: 1.0.0
+2026-01-28T04:19:41.550Z [DEBUG] [ToolSearch:optimistic] mode=standard, ENABLE_TOOL_SEARCH=undefined, result=false
+2026-01-28T04:19:41.553Z [DEBUG] [STARTUP] Running setup()...
+2026-01-28T04:19:41.554Z [DEBUG] Plugin rust-analyzer-lsp@claude-plugins-official version 1.0.0 already cached at /home/ken/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0
+2026-01-28T04:19:41.565Z [DEBUG] Loading skills from: managed=/etc/claude-code/.claude/skills, user=/home/ken/.claude/skills, project=[]
+2026-01-28T04:19:41.571Z [ERROR] Error: Error: ENOENT: no such file or directory, scandir '/etc/claude-code/.claude/skills'
+    at readdirSync (unknown)
+    at <anonymous> (/$bunfs/root/claude:12:2063)
+    at aJ (/$bunfs/root/claude:11:35454)
+    at readdirSync (/$bunfs/root/claude:12:2024)
+    at AZ$ (/$bunfs/root/claude:1756:380)
+    at AZ$ (/$bunfs/root/claude:1756:1350)
+    at <anonymous> (/$bunfs/root/claude:1756:4670)
+    at <anonymous> (/$bunfs/root/claude:1756:5401)
+    at A (/$bunfs/root/claude:11:7259)
+    at vS1 (/$bunfs/root/claude:4818:4342)
+2026-01-28T04:19:41.571Z [DEBUG] Error log sink initialized
+2026-01-28T04:19:41.580Z [DEBUG] Copied local plugin rust-analyzer-lsp to versioned cache: /home/ken/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0
+2026-01-28T04:19:41.580Z [DEBUG] Plugin rust-analyzer-lsp has no entry.skills defined
+2026-01-28T04:19:41.580Z [DEBUG] [STARTUP] setup() completed in 27ms
+2026-01-28T04:19:41.580Z [DEBUG] [STARTUP] Loading commands and agents...
+2026-01-28T04:19:41.581Z [DEBUG] Found 1 plugins (1 enabled, 0 disabled)
+2026-01-28T04:19:41.581Z [DEBUG] getPluginSkills: Processing 1 enabled plugins
+2026-01-28T04:19:41.581Z [DEBUG] Checking plugin rust-analyzer-lsp: skillsPath=none, skillsPaths=0 paths
+2026-01-28T04:19:41.581Z [DEBUG] Total plugin skills loaded: 0
+2026-01-28T04:19:41.581Z [DEBUG] Total plugin commands loaded: 0
+2026-01-28T04:19:41.581Z [DEBUG] Registered 0 hooks from 1 plugins
+2026-01-28T04:19:41.582Z [DEBUG] [claudeai-mcp] Checking gate (cached)...
+2026-01-28T04:19:41.582Z [DEBUG] [claudeai-mcp] Gate returned: true
+2026-01-28T04:19:41.582Z [DEBUG] [claudeai-mcp] No access token
+2026-01-28T04:19:41.586Z [DEBUG] Acquired PID lock for 2.1.21 (PID 2984918)
+2026-01-28T04:19:41.586Z [DEBUG] Acquired PID lock on running version: /home/ken/.local/share/claude/versions/2.1.21
+2026-01-28T04:19:41.631Z [DEBUG] Watching for changes in skill/command directories: /home/ken/.claude/skills, /home/ken/.claude/commands, /home/ken/.claude/skills, /home/ken/.claude/commands...
+2026-01-28T04:19:41.647Z [DEBUG] Loaded 10 unique skills (managed: 0, user: 2, project: 0, legacy commands: 8)
+2026-01-28T04:19:41.647Z [DEBUG] getSkills returning: 10 skill dir commands, 0 plugin skills, 1 bundled skills
+2026-01-28T04:19:41.649Z [DEBUG] Total plugin agents loaded: 0
+2026-01-28T04:19:41.650Z [DEBUG] [STARTUP] Commands and agents loaded in 70ms
+2026-01-28T04:19:41.650Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2026-01-28T04:19:41.650Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2026-01-28T04:19:41.650Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2026-01-28T04:19:41.656Z [DEBUG] [STARTUP] MCP configs loaded in 118ms
+2026-01-28T04:19:41.660Z [DEBUG] MCP server "zai-mcp-server": Starting connection with timeout of 30000ms
+2026-01-28T04:19:41.662Z [DEBUG] MCP server "web-search-prime": Initializing HTTP transport to https://api.z.ai/api/mcp/web_search_prime/mcp
+2026-01-28T04:19:41.662Z [DEBUG] MCP server "web-search-prime": Node version: v24.3.0, Platform: linux
+2026-01-28T04:19:41.662Z [DEBUG] MCP server "web-search-prime": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-28T04:19:41.662Z [DEBUG] MCP server "web-reader": Initializing HTTP transport to https://api.z.ai/api/mcp/web_reader/mcp
+2026-01-28T04:19:41.662Z [DEBUG] MCP server "web-reader": Node version: v24.3.0, Platform: linux
+2026-01-28T04:19:41.662Z [DEBUG] MCP server "web-reader": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-28T04:19:41.662Z [DEBUG] MCP server "zread": Initializing HTTP transport to https://api.z.ai/api/mcp/zread/mcp
+2026-01-28T04:19:41.662Z [DEBUG] MCP server "zread": Node version: v24.3.0, Platform: linux
+2026-01-28T04:19:41.662Z [DEBUG] MCP server "zread": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-28T04:19:41.663Z [DEBUG] MCP server "web-search-prime": Proxy options: default
+2026-01-28T04:19:41.663Z [DEBUG] MCP server "web-search-prime": HTTP transport options: {"url":"https://api.z.ai/api/mcp/web_search_prime/mcp","headers":{"User-Agent":"claude-code/2.1.21","Authorization":"[REDACTED]"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-28T04:19:41.663Z [DEBUG] MCP server "web-search-prime": HTTP transport created successfully
+2026-01-28T04:19:41.664Z [DEBUG] MCP server "web-search-prime": Client created, setting up request handler
+2026-01-28T04:19:41.664Z [DEBUG] MCP server "web-search-prime": Starting connection with timeout of 30000ms
+2026-01-28T04:19:41.664Z [DEBUG] MCP server "web-search-prime": Testing basic HTTP connectivity to https://api.z.ai/api/mcp/web_search_prime/mcp
+2026-01-28T04:19:41.664Z [DEBUG] MCP server "web-search-prime": Parsed URL: host=api.z.ai, port=default, protocol=https:
+2026-01-28T04:19:41.664Z [DEBUG] MCP server "web-reader": Proxy options: default
+2026-01-28T04:19:41.664Z [DEBUG] MCP server "web-reader": HTTP transport options: {"url":"https://api.z.ai/api/mcp/web_reader/mcp","headers":{"User-Agent":"claude-code/2.1.21","Authorization":"[REDACTED]"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-28T04:19:41.664Z [DEBUG] MCP server "web-reader": HTTP transport created successfully
+2026-01-28T04:19:41.665Z [DEBUG] MCP server "web-reader": Client created, setting up request handler
+2026-01-28T04:19:41.665Z [DEBUG] MCP server "web-reader": Starting connection with timeout of 30000ms
+2026-01-28T04:19:41.665Z [DEBUG] MCP server "web-reader": Testing basic HTTP connectivity to https://api.z.ai/api/mcp/web_reader/mcp
+2026-01-28T04:19:41.665Z [DEBUG] MCP server "web-reader": Parsed URL: host=api.z.ai, port=default, protocol=https:
+2026-01-28T04:19:41.665Z [DEBUG] MCP server "zread": Proxy options: default
+2026-01-28T04:19:41.665Z [DEBUG] MCP server "zread": HTTP transport options: {"url":"https://api.z.ai/api/mcp/zread/mcp","headers":{"User-Agent":"claude-code/2.1.21","Authorization":"[REDACTED]"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-28T04:19:41.665Z [DEBUG] MCP server "zread": HTTP transport created successfully
+2026-01-28T04:19:41.666Z [DEBUG] MCP server "zread": Client created, setting up request handler
+2026-01-28T04:19:41.666Z [DEBUG] MCP server "zread": Starting connection with timeout of 30000ms
+2026-01-28T04:19:41.666Z [DEBUG] MCP server "zread": Testing basic HTTP connectivity to https://api.z.ai/api/mcp/zread/mcp
+2026-01-28T04:19:41.666Z [DEBUG] MCP server "zread": Parsed URL: host=api.z.ai, port=default, protocol=https:
+2026-01-28T04:19:41.667Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-28T04:19:41.667Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-28T04:19:41.667Z [DEBUG] MCP server "zread": No token data found
+2026-01-28T04:19:41.672Z [DEBUG] Loaded 1 LSP server(s) from plugin: rust-analyzer-lsp
+2026-01-28T04:19:41.672Z [DEBUG] Total LSP servers loaded: 1
+2026-01-28T04:19:41.672Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 1 server(s)
+2026-01-28T04:19:41.672Z [DEBUG] Queued request handler for plugin:rust-analyzer-lsp:rust-analyzer.workspace/configuration (connection not ready)
+2026-01-28T04:19:41.672Z [DEBUG] Starting LSP server instance: plugin:rust-analyzer-lsp:rust-analyzer
+2026-01-28T04:19:41.672Z [DEBUG] LSP manager initialized with 1 servers
+2026-01-28T04:19:41.672Z [DEBUG] LSP server manager initialized successfully
+2026-01-28T04:19:41.672Z [DEBUG] Queued notification handler for plugin:rust-analyzer-lsp:rust-analyzer.textDocument/publishDiagnostics (connection not ready)
+2026-01-28T04:19:41.672Z [DEBUG] Registered diagnostics handler for plugin:rust-analyzer-lsp:rust-analyzer
+2026-01-28T04:19:41.672Z [DEBUG] LSP notification handlers registered successfully for all 1 server(s)
+2026-01-28T04:19:41.673Z [ERROR] Error: Error: LSP server plugin:rust-analyzer-lsp:rust-analyzer failed to start: Executable not found in $PATH: "rust-analyzer"
+    at start (/$bunfs/root/claude:1724:22299)
+    at async f (/$bunfs/root/claude:1724:24751)
+    at processTicksAndRejections (native:7:39)
+2026-01-28T04:19:41.673Z [ERROR] Error: Error: Executable not found in $PATH: "rust-analyzer"
+    at spawn (unknown)
+    at spawn (node:child_process:669:35)
+    at spawn (node:child_process:14:39)
+    at start (/$bunfs/root/claude:1724:20844)
+    at start (/$bunfs/root/claude:1724:22353)
+    at f (/$bunfs/root/claude:1724:24751)
+    at f (/$bunfs/root/claude:1724:25726)
+    at L (/$bunfs/root/claude:1724:32513)
+    at processTicksAndRejections (native:7:39)
+2026-01-28T04:19:41.673Z [ERROR] Error: Error: Failed to start LSP server plugin:rust-analyzer-lsp:rust-analyzer: Executable not found in $PATH: "rust-analyzer"
+    at <anonymous> (/$bunfs/root/claude:1724:32535)
+    at processTicksAndRejections (native:7:39)
+2026-01-28T04:19:42.237Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-28T04:19:42.228Z] INFO: MCP Server Application initialized
+[2026-01-28T04:19:42.229Z] INFO: Starting MCP server...
+[2026-01-28T04:19:42.229Z] INFO: UI to Artifact tool registered successfully
+[2026-01-28T04:19:42.229Z] INFO: Text Extraction tool registered successfully
+[2026-01-28T04:19:42.229Z] INFO: Error Diagnosis tool registered successfully
+[2026-01-28T04:19:42.229Z] INFO: Diagram Analysis tool registered successfully
+[2026-01-28T04:19:42.230Z] INFO: Data Visualization Analysis tool registered successfully
+[2026-01-28T04:19:42.230Z] INFO: UI Diff Check tool registered successfully
+[2026-01-28T04:19:42.230Z] INFO: General Image Analysis tool registered successfully
+[2026-01-28T04:19:42.230Z] INFO: Video analysis tool registered successfully
+[2026-01-28T04:19:42.230Z] INFO: Successfully registered all tools
+[2026-01-28T04:19:42.230Z] INFO: MCP Server started successfully [{"mode":"ZHIPU","name":"zai-mcp-server","version":"0.1.2"}]
+2026-01-28T04:19:42.237Z [DEBUG] MCP server "zai-mcp-server": Successfully connected to stdio server in 580ms
+2026-01-28T04:19:42.238Z [DEBUG] MCP server "zai-mcp-server": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"zai-mcp-server","version":"0.1.2"}}
+2026-01-28T04:19:42.460Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-28T04:19:42.465Z [DEBUG] MCP server "zread": No token data found
+2026-01-28T04:19:42.578Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-28T04:19:43.207Z [DEBUG] MCP server "web-search-prime": Successfully connected to http server in 1545ms
+2026-01-28T04:19:43.207Z [DEBUG] MCP server "web-search-prime": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"mcp-web-search-prime","version":"0.0.1"}}
+2026-01-28T04:19:43.207Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-28T04:19:43.222Z [DEBUG] MCP server "zread": Successfully connected to http server in 1560ms
+2026-01-28T04:19:43.222Z [DEBUG] MCP server "zread": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"zread-server","version":"0.0.1"}}
+2026-01-28T04:19:43.222Z [DEBUG] MCP server "zread": No token data found
+2026-01-28T04:19:43.238Z [DEBUG] MCP server "web-reader": Successfully connected to http server in 1576ms
+2026-01-28T04:19:43.238Z [DEBUG] MCP server "web-reader": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"web-reader-server","version":"0.0.1"}}
+2026-01-28T04:19:43.238Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-28T04:19:44.499Z [DEBUG] All plugins already exist, skipping migration
+2026-01-28T04:19:44.500Z [DEBUG] Loaded 1 installed plugins from /home/ken/.claude/plugins/installed_plugins.json
+2026-01-28T04:19:44.500Z [DEBUG] Initialized versioned plugins system with 1 plugins
+2026-01-28T04:19:44.501Z [DEBUG] [Perfetto] initializePerfettoTracing called, env value: undefined
+2026-01-28T04:19:44.515Z [DEBUG] Writing to temp file: /home/ken/.claude/todos/2e49b607-1005-48cb-b853-211e4779edbe-agent-2e49b607-1005-48cb-b853-211e4779edbe.json.tmp.2984918.1769573984515
+2026-01-28T04:19:44.518Z [DEBUG] Temp file written successfully, size: 2 bytes
+2026-01-28T04:19:44.518Z [DEBUG] Renaming /home/ken/.claude/todos/2e49b607-1005-48cb-b853-211e4779edbe-agent-2e49b607-1005-48cb-b853-211e4779edbe.json.tmp.2984918.1769573984515 to /home/ken/.claude/todos/2e49b607-1005-48cb-b853-211e4779edbe-agent-2e49b607-1005-48cb-b853-211e4779edbe.json
+2026-01-28T04:19:44.518Z [DEBUG] File /home/ken/.claude/todos/2e49b607-1005-48cb-b853-211e4779edbe-agent-2e49b607-1005-48cb-b853-211e4779edbe.json written atomically
+2026-01-28T04:19:44.704Z [DEBUG] Getting matching hook commands for SessionStart with query: startup
+2026-01-28T04:19:44.704Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:19:44.704Z [DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+2026-01-28T04:19:44.705Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:19:44.705Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:19:44.705Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:19:44.705Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:19:44.705Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:19:44.705Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:19:44.705Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:19:44.705Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:19:44.705Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:19:44.705Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:19:44.705Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:19:44.705Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:19:44.705Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:19:44.705Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:19:44.705Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:19:44.705Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:19:44.705Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:19:44.705Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:19:44.706Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:19:44.706Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:19:44.706Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:19:44.706Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:19:44.706Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:19:44.706Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:19:44.706Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:19:44.706Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:19:44.707Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:19:44.708Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:19:44.708Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:19:44.708Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:19:44.708Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:19:44.708Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:19:44.708Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:19:44.708Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:19:44.708Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:19:44.708Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:19:44.708Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:19:44.708Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:19:44.708Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:19:44.728Z [DEBUG] Total plugin output styles loaded: 0
+2026-01-28T04:19:44.749Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.2984918.1769573984749
+2026-01-28T04:19:44.749Z [DEBUG] Preserving file permissions: 100600
+2026-01-28T04:19:44.750Z [DEBUG] Temp file written successfully, size: 10936 bytes
+2026-01-28T04:19:44.750Z [DEBUG] Applied original permissions to temp file
+2026-01-28T04:19:44.750Z [DEBUG] Renaming /home/ken/.claude.json.tmp.2984918.1769573984749 to /home/ken/.claude.json
+2026-01-28T04:19:44.750Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-28T04:19:44.753Z [DEBUG] Metadata string for flow-work-story:
+2026-01-28T04:19:44.753Z [DEBUG] <command-message>flow-work-story</command-message>
+<command-name>/flow-work-story</command-name>
+<command-args>docs/prd-abuse-controls.json US-003</command-args>
+2026-01-28T04:19:44.753Z [DEBUG] command-message tags in metadata: 1
+2026-01-28T04:19:44.757Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-28T04:19:44.757Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-28T04:19:44.758Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-28T04:19:44.758Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-28T04:19:44.758Z [DEBUG] processPromptSlashCommand creating 3 messages for flow-work-story
+2026-01-28T04:19:44.759Z [DEBUG] Message 1: <command-message>flow-work-story</command-message>
+<command-name>/flow-work-story</command-name>
+<command-args>docs/prd-abuse-controls.json US-003</command-args>
+2026-01-28T04:19:44.759Z [DEBUG] Message 2 [META]: [{"type":"text","text":"# Flow Work Story - Process ONE Story\n\n**YOU MUST process exactly ONE story through the Maven 10-Step Workflow.**\n\nThis command is called by `flow.sh` for each iteration. Y
+2026-01-28T04:19:44.759Z [DEBUG] Message 3: [ATTACHMENT]
+2026-01-28T04:19:44.759Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-01-28T04:19:44.759Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:19:44.759Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-01-28T04:19:44.768Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:19:44.772Z [DEBUG] Skills and commands included in Skill tool: flow-convert, workflow, create-story-memory, flow-mobile, consolidate-memory, flow-convert, flow-update, flow, flow-work-story, flow-prd
+2026-01-28T04:19:44.776Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:19:44.776Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:19:44.779Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:19:44.791Z [DEBUG] Stats cache is up to date
+2026-01-28T04:19:44.802Z [DEBUG] Session index: added 1, updated 0, removed 0, summaries generated 0 (total: 14)
+2026-01-28T04:19:45.029Z [DEBUG] Successfully refreshed marketplace: claude-plugins-official
+2026-01-28T04:19:45.029Z [DEBUG] Plugin autoupdate: checking installed plugins
+2026-01-28T04:19:45.031Z [DEBUG] Using provided version for rust-analyzer-lsp@claude-plugins-official: 1.0.0
+2026-01-28T04:19:46.513Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:19:46.516Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:19:46.516Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:19:46.516Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:07.392Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:20:07.424Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-28T04:20:07.424Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-28T04:20:07.424Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:20:07.425Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-28T04:20:07.476Z [DEBUG] tree-sitter: loaded from embedded
+2026-01-28T04:20:07.540Z [DEBUG] Creating shell snapshot for bash (/bin/bash)
+2026-01-28T04:20:07.540Z [DEBUG] Looking for shell config file: /home/ken/.bashrc
+2026-01-28T04:20:07.540Z [DEBUG] Snapshots directory: /home/ken/.claude/shell-snapshots
+2026-01-28T04:20:07.541Z [DEBUG] Creating snapshot at: /home/ken/.claude/shell-snapshots/snapshot-bash-1769574007540-ew84ey.sh
+2026-01-28T04:20:07.541Z [DEBUG] Shell binary exists: true
+2026-01-28T04:20:07.541Z [DEBUG] Execution timeout: 10000ms
+2026-01-28T04:20:07.582Z [DEBUG] Shell snapshot created successfully (3161 bytes)
+2026-01-28T04:20:07.583Z [DEBUG] No session environment scripts found
+2026-01-28T04:20:07.618Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:20:07.619Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:07.619Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:07.620Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-28T04:20:07.620Z [DEBUG] Found 3 hook matchers in settings
+2026-01-28T04:20:07.620Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-28T04:20:07.621Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:07.628Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-28T04:20:07.628Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-28T04:20:07.629Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-28T04:20:07.629Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-28T04:20:07.631Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:20:07.637Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:07.637Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:07.638Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:10.071Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:20:10.085Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-28T04:20:10.085Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-28T04:20:10.085Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:20:10.085Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-28T04:20:10.126Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:20:10.127Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:10.127Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:10.127Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-28T04:20:10.127Z [DEBUG] Found 3 hook matchers in settings
+2026-01-28T04:20:10.127Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-28T04:20:10.128Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:10.141Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-28T04:20:10.141Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-28T04:20:10.141Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-28T04:20:10.141Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-28T04:20:10.143Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:20:10.146Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:10.146Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:10.147Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:12.738Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:20:12.746Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-28T04:20:12.747Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-28T04:20:12.747Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:20:12.747Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-28T04:20:12.794Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:20:12.795Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:12.795Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:12.795Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-28T04:20:12.795Z [DEBUG] Found 3 hook matchers in settings
+2026-01-28T04:20:12.795Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-28T04:20:12.796Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:12.801Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-28T04:20:12.801Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-28T04:20:12.801Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-28T04:20:12.801Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-28T04:20:12.802Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:20:12.804Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:12.804Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:12.805Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:14.909Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:20:14.929Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-28T04:20:14.929Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-28T04:20:14.929Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:20:14.929Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-28T04:20:14.977Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:20:14.977Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:14.977Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:14.978Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-28T04:20:14.978Z [DEBUG] Found 3 hook matchers in settings
+2026-01-28T04:20:14.978Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-28T04:20:14.978Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:14.984Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-28T04:20:14.984Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-28T04:20:14.984Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-28T04:20:14.984Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-28T04:20:14.985Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:20:14.987Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:14.987Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:14.987Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:17.803Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:20:17.818Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-28T04:20:17.818Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-28T04:20:17.818Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-28T04:20:17.818Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:20:17.818Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-28T04:20:17.818Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-28T04:20:17.818Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:20:17.818Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-28T04:20:17.828Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-28T04:20:17.828Z [DEBUG] Found 3 hook matchers in settings
+2026-01-28T04:20:17.828Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-28T04:20:17.828Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-28T04:20:17.828Z [DEBUG] Found 3 hook matchers in settings
+2026-01-28T04:20:17.828Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-28T04:20:17.852Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-28T04:20:17.852Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-28T04:20:17.852Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-28T04:20:17.852Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-28T04:20:17.857Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:20:17.863Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:17.863Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:17.866Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:21.646Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:20:21.657Z [DEBUG] executePreToolHooks called for tool: TodoWrite
+2026-01-28T04:20:21.657Z [DEBUG] Getting matching hook commands for PreToolUse with query: TodoWrite
+2026-01-28T04:20:21.657Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:20:21.657Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-28T04:20:21.658Z [DEBUG] Writing to temp file: /home/ken/.claude/todos/2e49b607-1005-48cb-b853-211e4779edbe-agent-2e49b607-1005-48cb-b853-211e4779edbe.json.tmp.2984918.1769574021658
+2026-01-28T04:20:21.658Z [DEBUG] Preserving file permissions: 100664
+2026-01-28T04:20:21.660Z [DEBUG] Temp file written successfully, size: 950 bytes
+2026-01-28T04:20:21.660Z [DEBUG] Applied original permissions to temp file
+2026-01-28T04:20:21.660Z [DEBUG] Renaming /home/ken/.claude/todos/2e49b607-1005-48cb-b853-211e4779edbe-agent-2e49b607-1005-48cb-b853-211e4779edbe.json.tmp.2984918.1769574021658 to /home/ken/.claude/todos/2e49b607-1005-48cb-b853-211e4779edbe-agent-2e49b607-1005-48cb-b853-211e4779edbe.json
+2026-01-28T04:20:21.660Z [DEBUG] File /home/ken/.claude/todos/2e49b607-1005-48cb-b853-211e4779edbe-agent-2e49b607-1005-48cb-b853-211e4779edbe.json written atomically
+2026-01-28T04:20:21.661Z [DEBUG] Getting matching hook commands for PostToolUse with query: TodoWrite
+2026-01-28T04:20:21.661Z [DEBUG] Found 3 hook matchers in settings
+2026-01-28T04:20:21.661Z [DEBUG] Matched 0 unique hooks for query "TodoWrite" (0 before deduplication)
+2026-01-28T04:20:21.666Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-01-28T04:20:21.666Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-01-28T04:20:21.666Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-01-28T04:20:21.666Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-01-28T04:20:21.669Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:20:21.676Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:21.676Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:21.677Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:22.710Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:20:22.839Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:20:23.321Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:20:25.341Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:20:29.760Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:20:29.777Z [DEBUG] executePreToolHooks called for tool: Task
+2026-01-28T04:20:29.778Z [DEBUG] Getting matching hook commands for PreToolUse with query: Task
+2026-01-28T04:20:29.778Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:20:29.778Z [DEBUG] Matched 0 unique hooks for query "Task" (0 before deduplication)
+2026-01-28T04:20:29.791Z [DEBUG] Getting matching hook commands for SubagentStart with query: development-agent
+2026-01-28T04:20:29.791Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:20:29.791Z [DEBUG] Matched 0 unique hooks for query "development-agent" (0 before deduplication)
+2026-01-28T04:20:29.813Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:20:29.815Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:29.815Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:29.816Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:44.915Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:20:44.927Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-28T04:20:44.927Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-28T04:20:44.927Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-28T04:20:44.927Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:20:44.927Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-28T04:20:44.927Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-28T04:20:44.927Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:20:44.927Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-28T04:20:44.933Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-28T04:20:44.933Z [DEBUG] Found 3 hook matchers in settings
+2026-01-28T04:20:44.933Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-28T04:20:44.933Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-28T04:20:44.933Z [DEBUG] Found 3 hook matchers in settings
+2026-01-28T04:20:44.933Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-28T04:20:44.969Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:20:44.971Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:44.971Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:44.971Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:48.137Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:20:48.153Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-28T04:20:48.153Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-28T04:20:48.153Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:20:48.153Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-28T04:20:48.336Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:20:48.336Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:48.336Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:48.337Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-28T04:20:48.337Z [DEBUG] Found 3 hook matchers in settings
+2026-01-28T04:20:48.337Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-28T04:20:48.337Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:48.348Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:20:48.352Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:48.352Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:48.353Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:51.617Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:20:51.629Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-28T04:20:51.629Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-28T04:20:51.629Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:20:51.629Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-28T04:20:51.663Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:20:51.663Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:51.663Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:51.664Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-28T04:20:51.664Z [DEBUG] Found 3 hook matchers in settings
+2026-01-28T04:20:51.664Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-28T04:20:51.664Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:51.672Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:20:51.676Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:51.676Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:51.677Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:53.125Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"20260128122052d971fce8e8f54ac5"}
+2026-01-28T04:20:53.125Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:53.125Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:53.125Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:56.335Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:20:56.353Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-28T04:20:56.353Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-28T04:20:56.353Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:20:56.354Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-28T04:20:56.690Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:20:56.690Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:56.690Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:56.691Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-28T04:20:56.691Z [DEBUG] Found 3 hook matchers in settings
+2026-01-28T04:20:56.691Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-28T04:20:56.692Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:56.699Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:20:56.700Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:56.700Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:56.701Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:59.157Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:20:59.165Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-28T04:20:59.165Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-28T04:20:59.165Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:20:59.165Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-28T04:20:59.204Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:20:59.205Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:59.205Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:59.206Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-28T04:20:59.206Z [DEBUG] Found 3 hook matchers in settings
+2026-01-28T04:20:59.206Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-28T04:20:59.206Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:59.212Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:20:59.215Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:59.215Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:59.216Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:20:59.953Z [ERROR] Error streaming, falling back to non-streaming mode: {"error":{"code":"1302","message":"High concurrency usage of this API, please reduce concurrency or contact customer service to increase limits"},"request_id":"202601281220594a29a4e3f1464f3a"}
+2026-01-28T04:20:59.953Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:20:59.953Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:20:59.954Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:21:01.211Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:21:02.228Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:21:02.261Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-28T04:21:02.261Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-28T04:21:02.261Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-28T04:21:02.261Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-28T04:21:02.261Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-28T04:21:02.261Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:21:02.261Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-28T04:21:02.261Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-28T04:21:02.261Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:21:02.261Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-28T04:21:02.261Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-28T04:21:02.261Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:21:02.261Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-28T04:21:02.261Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-28T04:21:02.261Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:21:02.261Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-28T04:21:02.268Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-28T04:21:02.268Z [DEBUG] Found 3 hook matchers in settings
+2026-01-28T04:21:02.268Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-28T04:21:02.268Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-28T04:21:02.268Z [DEBUG] Found 3 hook matchers in settings
+2026-01-28T04:21:02.268Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-28T04:21:02.268Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-28T04:21:02.268Z [DEBUG] Found 3 hook matchers in settings
+2026-01-28T04:21:02.268Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-28T04:21:02.268Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-28T04:21:02.268Z [DEBUG] Found 3 hook matchers in settings
+2026-01-28T04:21:02.268Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-28T04:21:02.316Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:21:02.319Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:21:02.319Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:21:02.319Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:21:06.223Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:21:06.237Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-28T04:21:06.237Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-28T04:21:06.238Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-28T04:21:06.238Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:21:06.238Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-28T04:21:06.238Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-28T04:21:06.238Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:21:06.238Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-28T04:21:06.246Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-28T04:21:06.246Z [DEBUG] Found 3 hook matchers in settings
+2026-01-28T04:21:06.246Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-28T04:21:06.449Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:21:06.450Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:21:06.450Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:21:06.451Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-28T04:21:06.451Z [DEBUG] Found 3 hook matchers in settings
+2026-01-28T04:21:06.451Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-28T04:21:06.451Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:21:06.461Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:21:06.464Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:21:06.464Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:21:06.464Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:21:08.927Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:21:08.938Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-01-28T04:21:08.938Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-01-28T04:21:08.938Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:21:08.938Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-28T04:21:09.092Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:21:09.092Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:21:09.092Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:21:09.093Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-01-28T04:21:09.093Z [DEBUG] Found 3 hook matchers in settings
+2026-01-28T04:21:09.093Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-01-28T04:21:09.093Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:21:09.099Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:21:09.101Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:21:09.101Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:21:09.101Z [DEBUG] [API:auth] OAuth token check complete
+2026-01-28T04:21:11.419Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:21:14.703Z [DEBUG] Stream started - received first chunk
+2026-01-28T04:21:14.716Z [DEBUG] executePreToolHooks called for tool: Read
+2026-01-28T04:21:14.716Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-01-28T04:21:14.716Z [DEBUG] Found 0 hook matchers in settings
+2026-01-28T04:21:14.716Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-01-28T04:21:14.722Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-01-28T04:21:14.722Z [DEBUG] Found 3 hook matchers in settings
+2026-01-28T04:21:14.722Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-01-28T04:21:14.741Z [DEBUG] Tool search disabled: ToolSearchTool is not available (may have been disallowed via disallowedTools).
+2026-01-28T04:21:14.744Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-01-28T04:21:14.744Z [DEBUG] [API:auth] OAuth token check starting
+2026-01-28T04:21:14.745Z [DEBUG] [API:auth] OAuth token check complete

@@ -1,0 +1,2 @@
+Exit code 1
+{"iss":"https://nextmavens.cloud","sub":"service_role","aud":"authenticated","role":"service_role","ref":"nextmavens","iat":1769372026,"exp":4102358400}base64: invalid input

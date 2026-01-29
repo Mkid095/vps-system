@@ -1,0 +1,22 @@
+#!/bin/bash
+# Allocate ports for a new project stack
+# Usage: ./get-next-ports.sh
+# Outputs: STUDIO_PORT POSTGREST_PORT GOTRUE_PORT KONG_PORT
+
+# Port ranges:
+# Studio: 3001-3099 (projects 1-99)
+# PostgREST: 3002-3199 (projects 1-198)
+# GoTrue: 9100-9999 (projects 1-899)
+# Kong: 8100-8999 (projects 1-899)
+
+# Find existing project containers to determine next available ports
+EXISTING_STUDIOS=$(docker ps -a --filter "name=.*-studio" --format "{{.Names}}" | grep -E "^[a-z0-9-]+-studio$" | wc -l)
+NEXT_PROJECT_NUM=$((EXISTING_STUDIOS + 1))
+
+# Calculate ports based on project number
+STUDIO_PORT=$((3000 + NEXT_PROJECT_NUM))
+POSTGREST_PORT=$((3000 + NEXT_PROJECT_NUM + 1))
+GOTRUE_PORT=$((9000 + NEXT_PROJECT_NUM))
+KONG_PORT=$((8000 + NEXT_PROJECT_NUM))
+
+echo "$STUDIO_PORT $POSTGREST_PORT $GOTRUE_PORT $KONG_PORT"

@@ -1,0 +1,467 @@
+// NextMavens MCP Server for Self-Hosted Supabase
+// Implements the 29 Supabase MCP tools for self-hosted instances
+
+import { createClient } from '@supabase/supabase-js';
+
+// MCP Tool definitions
+export interface MCPTool {
+  name: string;
+  description: string;
+  inputSchema: Record<string, unknown>;
+}
+
+export interface MCPMessage {
+  jsonrpc: '2.0';
+  id: number | string;
+  method?: string;
+  params?: unknown;
+  result?: unknown;
+  error?: {
+    code: number;
+    message: string;
+    data?: unknown;
+  };
+}
+
+// All 29 Supabase MCP tools
+export const MCP_TOOLS: MCPTool[] = [
+  // Account tools (6)
+  {
+    name: 'list_projects',
+    description: 'Lists all Supabase projects for the user',
+    inputSchema: {
+      type: 'object',
+      properties: {},
+    },
+  },
+  {
+    name: 'get_project',
+    description: 'Gets details for a project including database connection info',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        project_ref: {
+          type: 'string',
+          description: 'Project reference ID (UUID)',
+        },
+      },
+      required: ['project_ref'],
+    },
+  },
+  {
+    name: 'create_project',
+    description: 'Creates a new Supabase project',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        organization_id: { type: 'string', description: 'Organization ID' },
+        name: { type: 'string', description: 'Project name' },
+        slug: { type: 'string', description: 'Project slug' },
+        description: { type: 'string', description: 'Project description' },
+      },
+      required: ['organization_id', 'name'],
+    },
+  },
+  {
+    name: 'pause_project',
+    description: 'Pauses a project',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        project_ref: { type: 'string' },
+      },
+      required: ['project_ref'],
+    },
+  },
+  {
+    name: 'restore_project',
+    description: 'Restores a paused project',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        project_ref: { type: 'string' },
+      },
+      required: ['project_ref'],
+    },
+  },
+  {
+    name: 'list_organizations',
+    description: 'Lists all organizations the user is a member of',
+    inputSchema: {
+      type: 'object',
+      properties: {},
+    },
+  },
+  {
+    name: 'get_organization',
+    description: 'Gets details for an organization',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        organization_id: { type: 'string' },
+      },
+      required: ['organization_id'],
+    },
+  },
+  {
+    name: 'get_cost',
+    description: 'Gets the cost of a new project or branch',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        organization_id: { type: 'string' },
+        region: { type: 'string' },
+      },
+      required: ['organization_id'],
+    },
+  },
+  {
+    name: 'confirm_cost',
+    description: 'Confirms the user understands the costs',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        cost_id: { type: 'string' },
+      },
+      required: ['cost_id'],
+    },
+  },
+
+  // Database tools (5)
+  {
+    name: 'list_tables',
+    description: 'Lists all tables within the specified schemas',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        project_ref: { type: 'string' },
+        schemas: {
+          type: 'array',
+          items: { type: 'string' },
+          description: 'Schemas to list tables from',
+        },
+      },
+      required: ['project_ref'],
+    },
+  },
+  {
+    name: 'list_extensions',
+    description: 'Lists all extensions in the database',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        project_ref: { type: 'string' },
+      },
+      required: ['project_ref'],
+    },
+  },
+  {
+    name: 'list_migrations',
+    description: 'Lists all migrations in the database',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        project_ref: { type: 'string' },
+      },
+      required: ['project_ref'],
+    },
+  },
+  {
+    name: 'apply_migration',
+    description: 'Applies a SQL migration to the database',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        project_ref: { type: 'string' },
+        sql: { type: 'string', description: 'SQL migration to apply' },
+        name: { type: 'string', description: 'Migration name' },
+      },
+      required: ['project_ref', 'sql'],
+    },
+  },
+  {
+    name: 'execute_sql',
+    description: 'Executes raw SQL in the database',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        project_ref: { type: 'string' },
+        query: { type: 'string', description: 'SQL query to execute' },
+      },
+      required: ['project_ref', 'query'],
+    },
+  },
+
+  // Debugging tools (2)
+  {
+    name: 'get_logs',
+    description: 'Gets logs for a Supabase project',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        project_ref: { type: 'string' },
+        service: {
+          type: 'string',
+          enum: ['api', 'postgres', 'edge_functions', 'auth', 'storage', 'realtime'],
+          description: 'Service to get logs from',
+        },
+        limit: { type: 'number', description: 'Number of log entries' },
+      },
+      required: ['project_ref', 'service'],
+    },
+  },
+  {
+    name: 'get_advisors',
+    description: 'Gets advisory notices for a project',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        project_ref: { type: 'string' },
+      },
+      required: ['project_ref'],
+    },
+  },
+
+  // Development tools (3)
+  {
+    name: 'get_project_url',
+    description: 'Gets the API URL for a project',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        project_ref: { type: 'string' },
+      },
+      required: ['project_ref'],
+    },
+  },
+  {
+    name: 'get_publishable_keys',
+    description: 'Gets the anonymous API keys for a project',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        project_ref: { type: 'string' },
+      },
+      required: ['project_ref'],
+    },
+  },
+  {
+    name: 'generate_typescript_types',
+    description: 'Generates TypeScript types based on the database schema',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        project_ref: { type: 'string' },
+        included_schemas: {
+          type: 'string',
+          description: 'Comma-separated list of schemas to include',
+        },
+      },
+      required: ['project_ref'],
+    },
+  },
+
+  // Edge Functions tools (3)
+  {
+    name: 'list_edge_functions',
+    description: 'Lists all Edge Functions in a project',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        project_ref: { type: 'string' },
+      },
+      required: ['project_ref'],
+    },
+  },
+  {
+    name: 'get_edge_function',
+    description: 'Retrieves file contents for an Edge Function',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        project_ref: { type: 'string' },
+        function_slug: { type: 'string' },
+      },
+      required: ['project_ref', 'function_slug'],
+    },
+  },
+  {
+    name: 'deploy_edge_function',
+    description: 'Deploys a new Edge Function to a project',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        project_ref: { type: 'string' },
+        function_slug: { type: 'string' },
+        name: { type: 'string' },
+        body: { type: 'string', description: 'Function code' },
+        verify_jwt: { type: 'boolean' },
+      },
+      required: ['project_ref', 'function_slug', 'body'],
+    },
+  },
+
+  // Branching tools (6)
+  {
+    name: 'create_branch',
+    description: 'Creates a development branch',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        project_ref: { type: 'string' },
+        branch_name: { type: 'string' },
+        git_branch: { type: 'string' },
+      },
+      required: ['project_ref', 'branch_name'],
+    },
+  },
+  {
+    name: 'list_branches',
+    description: 'Lists all development branches',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        project_ref: { type: 'string' },
+      },
+      required: ['project_ref'],
+    },
+  },
+  {
+    name: 'delete_branch',
+    description: 'Deletes a development branch',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        branch_id: { type: 'string' },
+      },
+      required: ['branch_id'],
+    },
+  },
+  {
+    name: 'merge_branch',
+    description: 'Merges a development branch to production',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        branch_id: { type: 'string' },
+      },
+      required: ['branch_id'],
+    },
+  },
+  {
+    name: 'reset_branch',
+    description: 'Resets a development branch',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        branch_id: { type: 'string' },
+      },
+      required: ['branch_id'],
+    },
+  },
+  {
+    name: 'rebase_branch',
+    description: 'Rebases a development branch on production',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        branch_id: { type: 'string' },
+      },
+      required: ['branch_id'],
+    },
+  },
+];
+
+// Helper to create Supabase client for a project
+export function createProjectClient(project_ref: string, anonKey: string) {
+  const supabaseUrl = process.env.SUPABASE_URL || 'http://localhost:8000';
+  return createClient(supabaseUrl, anonKey);
+}
+
+// Execute SQL on project database
+export async function executeProjectQuery(
+  project_ref: string,
+  query: string,
+  anonKey: string
+): Promise<{ rows: unknown[]; columns: string[]; affected_rows: number }> {
+  const supabase = createProjectClient(project_ref, anonKey);
+
+  // Use RPC to call execute_sql function
+  const { data, error } = await supabase.rpc('execute_sql', {
+    sql_query: query,
+  });
+
+  if (error) {
+    throw new Error(`SQL execution failed: ${error.message}`);
+  }
+
+  return data as { rows: unknown[]; columns: string[]; affected_rows: number };
+}
+
+// Generate TypeScript types from database schema
+export async function generateTypescriptTypes(
+  project_ref: string,
+  included_schemas = 'public',
+  anonKey: string
+): Promise<string> {
+  const supabase = createProjectClient(project_ref, anonKey);
+
+  // Get all tables and their columns
+  let tables;
+  let error;
+  try {
+    const result = await supabase.rpc('get_schema_info', {
+      included_schemas,
+    });
+    tables = result.data;
+    error = result.error;
+  } catch (e) {
+    error = { message: 'Schema info not available' };
+  }
+
+  if (error) {
+    throw new Error(`Failed to generate types: ${error.message}`);
+  }
+
+  // Generate TypeScript interfaces
+  let types = `// Auto-generated TypeScript types for Supabase project: ${project_ref}\n\n`;
+
+  if (tables && Array.isArray(tables)) {
+    for (const table of tables) {
+      types += `export interface ${table.table_name} {\n`;
+      if (table.columns && Array.isArray(table.columns)) {
+        for (const col of table.columns) {
+          types += `  ${col.column_name}: ${mapPgTypeToTs(col.data_type)};\n`;
+        }
+      }
+      types += `}\n\n`;
+    }
+  }
+
+  return types;
+}
+
+function mapPgTypeToTs(pgType: string): string {
+  const typeMap: Record<string, string> = {
+    text: 'string',
+    varchar: 'string',
+    char: 'string',
+    integer: 'number',
+    bigint: 'number',
+    smallint: 'number',
+    decimal: 'number',
+    numeric: 'number',
+    real: 'number',
+    double: 'number',
+    boolean: 'boolean',
+    date: 'string',
+    timestamp: 'string',
+    timestamptz: 'string',
+    uuid: 'string',
+    json: 'unknown',
+    jsonb: 'unknown',
+    array: 'unknown[]',
+  };
+
+  return typeMap[pgType.toLowerCase()] || 'unknown';
+}

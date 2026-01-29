@@ -1,0 +1,28 @@
+# Auth User Manager - Progress Tracker
+
+## Feature: Auth User Manager
+**Branch**: flow/auth-user-manager
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (11 total)
+
+| US-001 | Create Users Tab in Studio | 1 | Pending | |
+| US-002 | Create User List Component | 1 | Pending | |
+| US-003 | Create User Detail View | 1 | Pending | |
+| US-004 | Implement Disable User | 1 | Pending | |
+| US-005 | Implement Delete User | 1 | Pending | |
+| US-006 | Implement Reset Password | 2 | Pending | |
+| US-007 | Implement View Active Sessions | 2 | Pending | |
+| US-008 | Add User Filtering | 2 | Pending | |
+| US-009 | Add User Export | 3 | Pending | |
+| US-010 | Show User Auth History | 3 | Pending | |
+| US-011 | Integrate with Auth Service API | 1 | Pending | |
+
+## Progress Summary
+- Total Stories: 11
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 11
+
+## Iteration Log

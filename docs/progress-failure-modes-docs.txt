@@ -1,0 +1,27 @@
+# Failure Modes Docs - Progress Tracker
+
+## Feature: Failure Modes Docs
+**Branch**: flow/failure-modes-docs
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (10 total)
+
+| US-001 | Document Database Limits | 1 | Pending | |
+| US-002 | Document Auth Limits | 1 | Pending | |
+| US-003 | Document Realtime Limits | 1 | Pending | |
+| US-004 | Document Storage Limits | 1 | Pending | |
+| US-005 | Document GraphQL Limits | 1 | Pending | |
+| US-006 | Document Error Codes | 1 | Pending | |
+| US-007 | Document Common Pitfalls | 2 | Pending | |
+| US-008 | Document Query Timeout Scenarios | 2 | Pending | |
+| US-009 | Document Rate Limit Behavior | 2 | Pending | |
+| US-010 | Add Troubleshooting Guide | 2 | Pending | |
+
+## Progress Summary
+- Total Stories: 10
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 10
+
+## Iteration Log

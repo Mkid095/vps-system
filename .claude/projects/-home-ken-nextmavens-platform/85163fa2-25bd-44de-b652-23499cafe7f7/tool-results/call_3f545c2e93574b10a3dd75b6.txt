@@ -1,0 +1,25 @@
+Exit code 1
+==========================================
+NextMavens Platform - Starting Services
+==========================================
+
+[1;33mChecking Docker installation...[0m
+
+[1;33mStarting Supabase services...[0m
+ Image supabase/supavisor:1.1.51 Pulling 
+ Image pgvector/pgvector:pg16 Pulling 
+ Image supabase/storage-api:v1.14.2 Pulling 
+ Image supabase/pg-meta:v0.79.0 Pulling 
+ Image kong:3.7.1 Pulling 
+ Image supabase/studio:20241203-9e0433f Pulling 
+ Image supabase/realtime:v2.30.8 Pulling 
+ Image postgrest/postgrest:v12.2.0 Pulling 
+ Image supabase/pg-meta:v0.79.0 Error pull access denied for supabase/pg-meta, repository does not exist or may require 'docker login'
+ Image supabase/supavisor:1.1.51 Interrupted 
+ Image supabase/storage-api:v1.14.2 Interrupted 
+ Image kong:3.7.1 Interrupted 
+ Image supabase/realtime:v2.30.8 Interrupted 
+ Image postgrest/postgrest:v12.2.0 Interrupted 
+ Image pgvector/pgvector:pg16 Interrupted 
+ Image supabase/studio:20241203-9e0433f Interrupted 
+Error response from daemon: pull access denied for supabase/pg-meta, repository does not exist or may require 'docker login'

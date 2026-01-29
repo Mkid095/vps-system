@@ -1,0 +1,73 @@
+---
+memoryVersion: 1
+storyId: US-009
+storyTitle: Create Audit Log Viewer UI
+completedDate: 2026-01-28
+---
+
+STORY: US-009 - Create Audit Log Viewer UI
+========================
+
+DESCRIPTION:
+As a platform operator, I want a UI to view audit logs so that I can investigate actions without writing queries.
+
+MAVEN STEPS COMPLETED:
+[5, 10]
+
+IMPLEMENTATION SUMMARY:
+Created a complete audit log viewer UI in developer-portal with filtering, pagination, CSV export, and expandable metadata. The UI integrates with the GET /api/audit endpoint from US-008 and implements comprehensive security measures including XSS prevention, CSV injection protection, and proper JWT authentication. Quality Agent enforced strict standards (fixed 'any' types, reduced component sizes). Security Agent validated comprehensive protection (SQL injection, XSS, CSV injection).
+
+KEY FILES:
+- developer-portal/src/app/dashboard/audit/page.tsx (146 lines) - Main audit logs page
+- developer-portal/src/features/audit-logs/useAuditLogs.ts (192 lines) - Custom hook for data fetching
+- developer-portal/src/features/audit-logs/AuditLogTable.tsx (196 lines) - Table with expandable metadata
+- developer-portal/src/features/audit-logs/AuditFilters.tsx (141 lines) - Filter controls (actor, action, target, date range)
+- developer-portal/src/features/audit-logs/exportToCsv.ts (45 lines) - CSV export with injection protection
+- developer-portal/src/features/audit-logs/Pagination.tsx (66 lines) - Pagination controls
+- developer-portal/src/features/audit-logs/AuditNav.tsx (51 lines) - Navigation component with logout
+- developer-portal/src/features/audit-logs/index.ts - Exports all components and hooks
+
+DECISIONS MADE:
+- Built UI in developer-portal (not separate service) following pattern from US-003, US-004, US-005
+- Used GET /api/audit endpoint from US-008 for data fetching
+- Placed at /dashboard/audit route (not /admin) for broader operator access
+- Implemented client-side date range picker using native HTML date inputs with ISO validation
+- Used shadcn/ui components (Button, Input, Select) for consistency
+- Implemented XSS prevention with sanitizeMetadata() and sanitizeUserAgent() functions
+- CSV export uses client-side JavaScript (Blob approach) with injection protection
+- JWT tokens stored in localStorage with documented security implications
+
+INTEGRATION POINTS:
+- Uses GET /api/audit endpoint from US-008
+- Integrates with JWT authentication (authenticateRequest middleware)
+- Uses control_plane.audit_logs table (created in US-001)
+- Follows Next.js App Router pattern (developer-portal/src/app/dashboard/)
+- Uses lucide-react icons for professional UI
+
+LESSONS LEARNED:
+- Quality Agent enforced strict standards: fixed 2 'any' types, reduced main page from 342 to 145 lines
+- Security Agent validated comprehensive protection: SQL injection (parameterized queries), XSS (React + sanitization), CSV injection (quote escaping)
+- Security Score: 8.5/10 - excellent with noted localStorage tradeoff
+- Typecheck passes with 0 errors
+- All components under 300 lines (largest is 196 lines)
+- No gradients, no emojis, no relative imports - all quality standards met
+
+SECURITY FEATURES:
+- JWT token validation on all API calls
+- Input validation with allowlists (ACTION_TYPES, TARGET_TYPES)
+- XSS prevention: sanitizeMetadata() removes HTML tags, event handlers, dangerous patterns
+- CSV injection protection: cells starting with =, +, -, @ are prefixed with single quote
+- Project-level authorization: users can only query logs where actor_id = their project_id
+- Generic error messages prevent information leakage
+- Token storage in localStorage with security documentation
+
+QUALITY STANDARDS MET:
+- No 'any' types - all TypeScript properly typed
+- No gradients - solid professional colors (slate, emerald, red, amber, blue, orange)
+- No relative imports - all use @/ aliases
+- Components < 300 lines
+
+AUDIT RESULTS:
+- Step 5 (Quality Agent): PASSED - All acceptance criteria met, typecheck passed
+- Step 10 (Security Agent): PASSED - Security Score 8.5/10, approved for production
+- Typecheck: PASSED - 0 errors

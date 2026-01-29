@@ -1,0 +1,8 @@
+supabase-studio      Up 41 minutes (unhealthy)
+supabase-gotrue      Up About a minute
+supabase-storage     Up About an hour
+supabase-supavisor   Up About an hour
+supabase-realtime    Up About an hour
+supabase-rest        Up About an hour
+supabase-db          Up About an hour (healthy)
+supabase-kong        Up About an hour (healthy)

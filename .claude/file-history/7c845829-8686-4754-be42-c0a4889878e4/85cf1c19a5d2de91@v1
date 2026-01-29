@@ -1,0 +1,6 @@
+packages:
+  - 'dashboard'
+  - 'cli'
+  - 'api/*'
+  - 'mcp/*'
+  - 'scripts/*'

@@ -1,0 +1,26 @@
+# Quotas Limits - Progress Tracker
+
+## Feature: Quotas Limits
+**Branch**: flow/quotas-limits
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (9 total)
+
+| US-001 | Create Quotas Table | 1 | Pending | |
+| US-002 | Create Usage Snapshots Table | 1 | Pending | |
+| US-003 | Create Quota Checking API | 1 | Pending | |
+| US-004 | Implement Usage Tracking | 1 | Pending | |
+| US-005 | Implement Quota Warnings | 2 | Pending | |
+| US-006 | Implement Auto-Suspend on Hard Cap | 1 | Pending | |
+| US-007 | Create Usage Dashboard | 2 | Pending | |
+| US-008 | Implement Quota Reset | 2 | Pending | |
+| US-009 | Define Clear Error Messages | 2 | Pending | |
+
+## Progress Summary
+- Total Stories: 9
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 9
+
+## Iteration Log

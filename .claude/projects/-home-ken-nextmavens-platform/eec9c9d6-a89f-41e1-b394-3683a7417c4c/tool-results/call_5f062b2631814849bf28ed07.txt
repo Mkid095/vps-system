@@ -1,0 +1,30 @@
+2026/01/25 19:18:35 [debug] 1333#0: *649 [lua] client.lua:559: init(): [dns-client] adding AAAA-record from 'hosts' file: localhost = [::1]
+2026/01/25 19:18:35 [debug] 1333#0: *649 [lua] client.lua:559: init(): [dns-client] adding AAAA-record from 'hosts' file: ip6-allrouters = [ff02::2]
+2026/01/25 19:18:35 [debug] 1333#0: *649 [lua] client.lua:559: init(): [dns-client] adding AAAA-record from 'hosts' file: ip6-allnodes = [ff02::1]
+2026/01/25 19:18:35 [debug] 1333#0: *649 [lua] client.lua:559: init(): [dns-client] adding AAAA-record from 'hosts' file: ip6-mcastprefix = [ff00::]
+2026/01/25 19:18:35 [debug] 1333#0: *649 [lua] client.lua:568: init(): [dns-client] validTtl = nil
+2026/01/25 19:18:35 [debug] 1333#0: *649 [lua] client.lua:609: init(): [dns-client] nameserver 127.0.0.11
+2026/01/25 19:18:35 [debug] 1333#0: *649 [lua] client.lua:614: init(): [dns-client] attempts = 5
+2026/01/25 19:18:35 [debug] 1333#0: *649 [lua] client.lua:621: init(): [dns-client] no_random = true
+2026/01/25 19:18:35 [debug] 1333#0: *649 [lua] client.lua:631: init(): [dns-client] timeout = 2000 ms
+2026/01/25 19:18:35 [debug] 1333#0: *649 [lua] client.lua:639: init(): [dns-client] ndots = 1
+2026/01/25 19:18:35 [debug] 1333#0: *649 [lua] client.lua:641: init(): [dns-client] search = .
+2026/01/25 19:18:35 [debug] 1333#0: *649 [lua] client.lua:653: init(): [dns-client] badTtl = 1 s
+2026/01/25 19:18:35 [debug] 1333#0: *649 [lua] client.lua:655: init(): [dns-client] emptyTtl = 30 s
+2026/01/25 19:18:35 [debug] 1333#0: *649 [lua] upstreams.lua:270: update_balancer_state(): update proxy state timer scheduled
+2026/01/25 19:18:35 [debug] 1333#0: *647 [lua] worker.lua:147: communicate(): 0 on (unix:/usr/local/kong/worker_events.sock) is ready
+2026/01/25 19:18:35 [debug] 1334#0: *4 [lua] worker.lua:147: communicate(): 1 on (unix:/usr/local/kong/worker_events.sock) is ready
+2026/01/25 19:18:35 [debug] 1333#0: *645 [lua] broker.lua:73: broadcast_events(): event published to 2 workers
+2026/01/25 19:18:35 [debug] 1333#0: *645 [lua] broker.lua:73: broadcast_events(): event published to 2 workers
+2026/01/25 19:18:35 [debug] 1333#0: *645 [lua] broker.lua:73: broadcast_events(): event published to 2 workers
+2026/01/25 19:18:35 [debug] 1333#0: *1288 [lua] broker.lua:73: broadcast_events(): event published to 2 workers
+2026/01/25 19:18:35 [debug] 1333#0: *647 [lua] callback.lua:114: do_event(): worker-events: handling event; source=mlcache, event=mlcache:invalidations:kong_db_cache, wid=1
+2026/01/25 19:18:35 [debug] 1334#0: *4 [lua] callback.lua:114: do_event(): worker-events: handling event; source=mlcache, event=mlcache:invalidations:kong_db_cache, wid=1
+2026/01/25 19:18:35 [debug] 1334#0: *4 [lua] callback.lua:114: do_event(): worker-events: handling event; source=mlcache, event=mlcache:purge:kong_core_db_cache, wid=1
+2026/01/25 19:18:35 [debug] 1334#0: *4 [lua] callback.lua:114: do_event(): worker-events: handling event; source=mlcache, event=mlcache:purge:kong_db_cache, wid=1
+2026/01/25 19:18:35 [debug] 1333#0: *647 [lua] callback.lua:114: do_event(): worker-events: handling event; source=mlcache, event=mlcache:purge:kong_core_db_cache, wid=1
+2026/01/25 19:18:35 [debug] 1334#0: *4 [lua] callback.lua:114: do_event(): worker-events: handling event; source=mlcache, event=mlcache:invalidations:kong_db_cache, wid=0
+2026/01/25 19:18:35 [debug] 1333#0: *647 [lua] callback.lua:114: do_event(): worker-events: handling event; source=mlcache, event=mlcache:purge:kong_db_cache, wid=1
+2026/01/25 19:18:35 [debug] 1333#0: *647 [lua] callback.lua:114: do_event(): worker-events: handling event; source=mlcache, event=mlcache:invalidations:kong_db_cache, wid=0
+2026/01/25 19:18:35 [debug] 1334#0: *3 [lua] super.lua:161: scaling_log(): [timer-ng] load_avg: 0.0015625, runable_jobs_avg: 1, alive_threads_avg: 640
+2026/01/25 19:18:35 [debug] 1333#0: *646 [lua] super.lua:161: scaling_log(): [timer-ng] load_avg: 0.0015625, runable_jobs_avg: 1, alive_threads_avg: 640

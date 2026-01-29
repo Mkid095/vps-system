@@ -1,0 +1,5 @@
+bb91065 fix: Add dashboard route to Kong and fix RLS infinite recursion
+52256eb fix: Replace .catch() with try-catch in generateTypescriptTypes
+540957b fix: Replace .catch() with try-catch for Supabase RPC calls
+fb4f0f2 fix: Correct syntax error in mcp-token route
+30de122 fix: Update API routes for Next.js 16 params as Promises

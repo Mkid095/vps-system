@@ -1,0 +1,43 @@
+# Supabase Configuration
+SUPABASE_ANON_KEY=your-anon-key-here
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key-here
+SUPABASE_URL=http://localhost:8000
+SUPABASE_STUDIO_URL=http://localhost:8000
+
+# Master Database (for managing project databases)
+MASTER_DB_URL=postgres://postgres:your-password@localhost:5432/postgres
+
+# Evolution API Configuration
+EVOLUTION_API_URL=http://localhost:8080
+EVOLUTION_API_KEY=your-api-key-here
+EVOLUTION_WEBHOOK_SECRET=your-webhook-secret-here
+EVOLUTION_WEBHOOK_URL=https://nextmavens.cloud/api/webhooks/whatsapp
+
+# Redis Configuration
+REDIS_URL=redis://localhost:6379
+
+# Kong API Gateway
+KONG_ADMIN_URL=http://localhost:8001
+KONG_PROXY_URL=http://localhost:8000
+
+# External Services
+CLOUDINARY_CLOUD_NAME=your-cloud-name
+CLOUDINARY_API_KEY=your-api-key
+CLOUDINARY_API_SECRET=your-api-secret
+CLOUDINARY_UPLOAD_PRESET=your-upload-preset
+
+RESEND_API_KEY=re-your-api-key-here
+
+# Telegram (for alerts and backups)
+TELEGRAM_BOT_TOKEN=your-bot-token-here
+TELEGRAM_CHAT_ID=your-chat-id-here
+TELEGRAM_BACKUP_CHANNEL_ID=your-channel-id-here
+
+# Application
+NEXT_PUBLIC_APP_URL=https://nextmavens.cloud
+NEXT_PUBLIC_APP_NAME=NextMavens Platform
+
+# Storage Monitoring (alert thresholds)
+STORAGE_ALERT_80_SENT=false
+STORAGE_ALERT_90_SENT=false
+STORAGE_ALERT_95_SENT=false

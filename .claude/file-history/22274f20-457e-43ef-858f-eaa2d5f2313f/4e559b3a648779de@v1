@@ -1,0 +1,472 @@
+// NextMavens Platform - Shared TypeScript Types
+
+// ====================================================================
+// Organization Types
+// ====================================================================
+
+export type OrganizationRole = 'owner' | 'admin' | 'member' | 'viewer';
+
+export interface Organization {
+  id: string;
+  name: string;
+  slug: string;
+  logo_url?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface OrganizationMember {
+  id: string;
+  organization_id: string;
+  user_id: string;
+  role: OrganizationRole;
+  invited_by?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface CreateOrganizationInput {
+  name: string;
+  slug?: string;
+  logo_url?: string;
+}
+
+export interface UpdateOrganizationInput {
+  name?: string;
+  logo_url?: string;
+}
+
+// ====================================================================
+// Project Types
+// ====================================================================
+
+export type ProjectStatus = 'provisioning' | 'active' | 'suspended' | 'archived';
+
+export interface Project {
+  id: string;
+  organization_id: string;
+  name: string;
+  slug: string;
+  description?: string;
+  status: ProjectStatus;
+  db_name?: string;
+  db_user?: string;
+  anon_key?: string;
+  service_role_key?: string;
+  jwt_secret?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface CreateProjectInput {
+  organization_id: string;
+  name: string;
+  slug?: string;
+  description?: string;
+}
+
+export interface UpdateProjectInput {
+  name?: string;
+  description?: string;
+  status?: ProjectStatus;
+}
+
+export interface ProjectDatabase {
+  id: string;
+  project_id: string;
+  db_name: string;
+  db_user: string;
+  db_host: string;
+  db_port: number;
+  connection_pool?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ProjectDatabaseConnection {
+  db_name: string;
+  db_user: string;
+  db_password: string;
+  connection_string: string;
+}
+
+// ====================================================================
+// WhatsApp Types
+// ====================================================================
+
+export type WhatsappInstanceStatus = 'pending' | 'connecting' | 'connected' | 'disconnected' | 'error';
+
+export interface WhatsappInstance {
+  id: string;
+  project_id: string;
+  instance_name: string;
+  instance_id?: string;
+  status: WhatsappInstanceStatus;
+  phone_number?: string;
+  qr_code_base64?: string;
+  webhook_url?: string;
+  webhook_secret?: string;
+  settings: Record<string, unknown>;
+  created_at: string;
+  connected_at?: string;
+  last_activity_at: string;
+}
+
+export interface CreateWhatsappInstanceInput {
+  project_id: string;
+  instance_name: string;
+  webhook_url?: string;
+}
+
+export interface WhatsappMessage {
+  id: string;
+  instance_id: string;
+  message_id: string;
+  from_number: string;
+  to_number: string;
+  message_type: string;
+  content?: string;
+  media_url?: string;
+  direction: 'inbound' | 'outbound';
+  status: string;
+  metadata: Record<string, unknown>;
+  created_at: string;
+}
+
+export interface SendWhatsappMessageInput {
+  instance_name: string;
+  number: string;
+  text?: string;
+  media_url?: string;
+}
+
+// ====================================================================
+// API Key Types
+// ====================================================================
+
+export interface ApiKey {
+  id: string;
+  project_id: string;
+  name: string;
+  key_prefix: string;
+  scopes: string[];
+  is_active: boolean;
+  last_used_at?: string;
+  expires_at?: string;
+  created_by?: string;
+  created_at: string;
+}
+
+export interface CreateApiKeyInput {
+  project_id: string;
+  name: string;
+  scopes?: string[];
+  expires_at?: string;
+}
+
+export interface ApiKeyResponse {
+  key: string;
+  prefix: string;
+  api_key: ApiKey;
+}
+
+// ====================================================================
+// Settings Types
+// ====================================================================
+
+export interface ProjectSetting {
+  id: string;
+  project_id: string;
+  key: string;
+  value: unknown;
+  description?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+// ====================================================================
+// Audit Log Types
+// ====================================================================
+
+export interface AuditLog {
+  id: string;
+  project_id?: string;
+  user_id?: string;
+  action: string;
+  resource_type: string;
+  resource_id?: string;
+  metadata: Record<string, unknown>;
+  ip_address?: string;
+  user_agent?: string;
+  created_at: string;
+}
+
+// ====================================================================
+// Storage Types
+// ====================================================================
+
+export interface StorageMetric {
+  id: string;
+  metric_type: string;
+  value: number;
+  unit: string;
+  threshold_alerted: number[];
+  metadata: Record<string, unknown>;
+  created_at: string;
+}
+
+export interface StorageAlert {
+  threshold: number;
+  current: number;
+  message: string;
+}
+
+// ====================================================================
+// Evolution API Types
+// ====================================================================
+
+export interface EvolutionInstance {
+  instance: {
+    instanceName: string;
+    status: string;
+  };
+}
+
+export interface EvolutionQrResponse {
+  base64: string;
+  code: string;
+  pairingCode?: string;
+}
+
+export interface EvolutionStatusResponse {
+  state: string;
+  status?: string;
+  user?: {
+    id: string;
+    name: string;
+    phone: string;
+  };
+  battery?: number;
+  plugged?: boolean;
+}
+
+export interface EvolutionMessageResponse {
+  key: {
+    remoteJid: string;
+    fromMe: boolean;
+    id: string;
+  };
+  message?: {
+    conversation?: string;
+    extendedTextMessage?: {
+      text: string;
+    };
+  };
+  messageTimestamp: number;
+}
+
+// ====================================================================
+// Supabase Client Types
+// ====================================================================
+
+export interface SupabaseConfig {
+  url: string;
+  anonKey: string;
+  serviceRoleKey?: string;
+}
+
+export interface SupabaseClientOptions {
+  db?: string;
+  schema?: string;
+  auth?: {
+    autoRefreshToken?: boolean;
+    persistSession?: boolean;
+    detectSessionInUrl?: boolean;
+  };
+}
+
+// ====================================================================
+// Error Types
+// ====================================================================
+
+export class ApiError extends Error {
+  constructor(
+    public statusCode: number,
+    public code: string,
+    message: string,
+    public details?: Record<string, unknown>
+  ) {
+    super(message);
+    this.name = 'ApiError';
+  }
+}
+
+export interface ErrorResponse {
+  error: {
+    code: string;
+    message: string;
+    details?: Record<string, unknown>;
+  };
+}
+
+// ====================================================================
+// Response Types
+// ====================================================================
+
+export interface PaginatedResponse<T> {
+  data: T[];
+  pagination: {
+    page: number;
+    per_page: number;
+    total: number;
+    total_pages: number;
+  };
+}
+
+export interface SuccessResponse<T = unknown> {
+  success: true;
+  data: T;
+}
+
+export interface ListResponse<T = unknown> {
+  items: T[];
+  total: number;
+  page?: number;
+  per_page?: number;
+}
+
+// ====================================================================
+// MCP Types
+// ====================================================================
+
+export interface MCPMessage {
+  type: 'handshake' | 'invoke' | 'response' | 'error' | 'notification';
+  version?: string;
+  action?: string;
+  params?: Record<string, unknown>;
+  data?: unknown;
+  message?: string;
+  id?: string;
+}
+
+export interface MCPContext {
+  project_id?: string;
+  user_id?: string;
+  token?: string;
+}
+
+export interface MCPCapabilities {
+  actions: string[];
+  events: string[];
+}
+
+// ====================================================================
+// CLI Types
+// ====================================================================
+
+export interface CLIConfig {
+  api_url: string;
+  token: string;
+  default_project?: string;
+}
+
+export interface DeployOptions {
+  project_id: string;
+  path?: string;
+  branch?: string;
+  env?: Record<string, string>;
+}
+
+export interface LogOptions {
+  project_id: string;
+  service?: string;
+  follow?: boolean;
+  lines?: number;
+}
+
+// ====================================================================
+// Webhook Types
+// ====================================================================
+
+export interface WebhookHeaders {
+  'x-webhook-id'?: string;
+  'x-webhook-timestamp'?: string;
+  'x-webhook-signature'?: string;
+  'x-hub-signature-256'?: string;
+}
+
+export interface WhatsappWebhookPayload {
+  event: string;
+  instance: string;
+  data: EvolutionMessageResponse | Record<string, unknown>;
+  timestamp: number;
+}
+
+export interface WebhookVerificationResult {
+  valid: boolean;
+  error?: string;
+}
+
+// ====================================================================
+// User Types (from Supabase Auth)
+// ====================================================================
+
+export interface AuthUser {
+  id: string;
+  email: string;
+  email_confirmed_at?: string;
+  phone?: string;
+  phone_confirmed_at?: string;
+  last_sign_in_at?: string;
+  created_at: string;
+  updated_at: string;
+  app_metadata: Record<string, unknown>;
+  user_metadata: Record<string, unknown>;
+  raw_app_meta_data?: Record<string, unknown>;
+  raw_user_meta_data?: Record<string, unknown>;
+}
+
+export interface AuthSession {
+  access_token: string;
+  refresh_token: string;
+  expires_in: number;
+  expires_at: number;
+  token_type: string;
+  user: AuthUser;
+}
+
+// ====================================================================
+// Validation Types
+// ====================================================================
+
+export interface ValidationResult {
+  valid: boolean;
+  errors?: Record<string, string>;
+}
+
+export interface SlugValidation {
+  valid: boolean;
+  available?: boolean;
+  error?: string;
+}
+
+// ====================================================================
+// Dashboard Types
+// ====================================================================
+
+export interface DashboardStats {
+  organizations: number;
+  projects: number;
+  whatsapp_instances: number;
+  messages_sent: number;
+  messages_received: number;
+  storage_used: number;
+  storage_total: number;
+}
+
+export interface ProjectOverview {
+  project: Project;
+  whatsapp_instances: WhatsappInstance[];
+  api_keys_count: number;
+  messages_this_month: number;
+}

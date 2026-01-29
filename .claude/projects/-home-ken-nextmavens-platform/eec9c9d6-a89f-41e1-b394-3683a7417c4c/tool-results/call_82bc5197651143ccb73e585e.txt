@@ -1,0 +1,216 @@
+   100→        limits:
+   101→          memory: 512M
+   102→        reservations:
+   103→          memory: 256M
+   104→  
+   105→    healthcheck:
+   106→      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/api/profile"]
+   107→      interval: 30s
+   108→      timeout: 10s
+   109→      retries: 3
+   110→      start_period: 40s
+   111→    depends_on:
+   112→      db:
+   113→        condition: service_healthy
+   114→      meta:
+   115→        condition: service_healthy
+   116→
+   117→  # pg-meta
+   118→  meta:
+   119→    image: supabase/postgres-meta:v0.83.0
+   120→    container_name: nextmavens-meta
+   121→    environment:
+   122→      PG_META_PORT: 8080
+   123→      PG_META_DB_HOST: db
+   124→      PG_META_DB_PORT: 5432
+   125→      PG_META_DB_NAME: postgres
+   126→      PG_META_DB_USER: postgres
+   127→      PG_META_DB_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+   128→    networks:
+   129→      - nextmavens-network
+   130→    restart: unless-stopped
+   131→    logging: *default-logging
+   132→    deploy:
+   133→      resources:
+   134→        limits:
+   135→          memory: 256M
+   136→        reservations:
+   137→          memory: 128M
+   138→  
+   139→    healthcheck:
+   140→      test: ["CMD-SHELL", "node --eval 'require(\"http\").get(\"http://localhost:8080/health\", (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})'"]
+   141→      interval: 30s
+   142→      timeout: 10s
+   143→      retries: 3
+   144→      start_period: 20s
+   145→    depends_on:
+   146→      db:
+   147→        condition: service_healthy
+   148→
+   149→  # Realtime
+   150→  realtime:
+   151→    image: supabase/realtime:v2.31.4
+   152→    container_name: nextmavens-realtime
+   153→    ports:
+   154→      - "4001:4000"
+   155→    environment:
+   156→      PORT: 4000
+   157→      DB_HOST: db
+   158→      DB_PORT: 5432
+   159→      DB_USER: postgres
+   160→      DB_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+   161→      DB_NAME: postgres
+   162→      DB_AFTER_CONNECT_QUERY: 'SET search_path TO _realtime'
+   163→      API_JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
+   164→      SECRET_KEY_BASE: ${REALTIME_SECRET_KEY:-change-me-in-production}
+   165→    networks:
+   166→      - nextmavens-network
+   167→    restart: unless-stopped
+   168→    logging: *default-logging
+   169→    deploy:
+   170→      resources:
+   171→        limits:
+   172→          memory: 512M
+   173→        reservations:
+   174→          memory: 256M
+   175→  
+   176→    healthcheck:
+   177→      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:4000/api/health"]
+   178→      interval: 30s
+   179→      timeout: 10s
+   180→      retries: 3
+   181→      start_period: 30s
+   182→    depends_on:
+   183→      db:
+   184→        condition: service_healthy
+   185→
+   186→  # Evolution API (WhatsApp)
+   187→  evolution:
+   188→    image: evolutionapi/evolution-api:v2.3.7
+   189→    container_name: nextmavens-evolution
+   190→    ports:
+   191→      - "8080:8080"
+   192→    environment:
+   193→      SERVER_PORT: 8080
+   194→      SERVER_URL: https://nextmavens.cloud
+   195→      API_KEY: ${EVOLUTION_API_KEY:-your-api-key-here}
+   196→      AUTHENTICATION_API_KEY: true
+   197→      AUTHENTICATION_TYPE: apikey
+   198→      REDIS_ENABLED: true
+   199→      REDIS_URI: redis://redis:6379
+   200→      REDIS_PREFIX: evolution
+   201→      STORE_SESSION: true
+   202→      STORE_MESSAGE: true
+   203→      STORE_CHATS: true
+   204→      STORE_CONTACTS: true
+   205→      WEBHOOK_ENABLED: true
+   206→      WEBHOOK_GLOBAL_URL: ${EVOLUTION_WEBHOOK_URL:-https://nextmavens.cloud/api/webhooks/whatsapp}
+   207→      WEBHOOK_GLOBAL_WEBHOOK_BY_EVENTS: true
+   208→      WEBHOOK_GLOBAL_EVENTS: |
+   209→        MESSAGES_UPDATE
+   210→        MESSAGES_UPSERT
+   211→        SEND_MESSAGE
+   212→        CONNECTION_UPDATE
+   213→        STATUS_INSTANCE
+   214→      CLEANUP_DAYS: 30
+   215→      CLEANUP_SCHEDULE: 0 0 * * *
+   216→    volumes:
+   217→      - evolution-data:/evolution/store
+   218→    networks:
+   219→      - nextmavens-network
+   220→    restart: unless-stopped
+   221→    logging: *default-logging
+   222→    deploy:
+   223→      resources:
+   224→        limits:
+   225→          memory: 1G
+   226→        reservations:
+   227→          memory: 256M
+   228→  
+   229→    depends_on:
+   230→      redis:
+   231→        condition: service_healthy
+   232→    healthcheck:
+   233→      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080"]
+   234→      interval: 30s
+   235→      timeout: 10s
+   236→      retries: 3
+   237→      start_period: 40s
+   238→
+   239→  # Kong API Gateway
+   240→  kong:
+   241→    image: kong:3.7.1
+   242→    container_name: nextmavens-kong
+   243→    ports:
+   244→      - "8000:8000"
+   245→      - "8443:8443"
+   246→      - "8001:8001"
+   247→    environment:
+   248→      KONG_DATABASE: "off"
+   249→      KONG_PROXY_ACCESS_LOG: /dev/stdout
+   250→      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+   251→      KONG_PROXY_ERROR_LOG: /dev/stderr
+   252→      KONG_ADMIN_ERROR_LOG: /dev/stderr
+   253→      KONG_LOG_LEVEL: info
+   254→      KONG_PLUGINS: bundled,cors
+   255→      KONG_DECLARATIVE_CONFIG: /kong/declarative/kong.yml
+   256→    volumes:
+   257→      - ./kong.yml:/kong/declarative/kong.yml:ro
+   258→    networks:
+   259→      - nextmavens-network
+   260→    restart: unless-stopped
+   261→    logging: *default-logging
+   262→    deploy:
+   263→      resources:
+   264→        limits:
+   265→          memory: 512M
+   266→        reservations:
+   267→          memory: 256M
+   268→  
+   269→    healthcheck:
+   270→      test: ["CMD", "kong", "health"]
+   271→      interval: 30s
+   272→      timeout: 10s
+   273→      retries: 3
+   274→      start_period: 40s
+   275→
+   276→  # Dashboard (Next.js)
+   277→  dashboard:
+   278→    build:
+   279→      context: ..
+   280→      dockerfile: dashboard/Dockerfile
+   281→    image: nextmavens-dashboard:latest
+   282→    container_name: nextmavens-dashboard
+   283→    ports:
+   284→      - "3005:3000"
+   285→    environment:
+   286→      NODE_ENV: production
+   287→      NEXT_TELEMETRY_DISABLED: "1"
+   288→      # Supabase Configuration
+   289→      SUPABASE_URL: https://nextmavens.cloud
+   290→      SUPABASE_SERVICE_ROLE_KEY: ${SUPABASE_SERVICE_ROLE_KEY}
+   291→      SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY}
+   292→      NEXT_PUBLIC_SUPABASE_URL: https://nextmavens.cloud
+   293→      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY}
+   294→      NEXT_PUBLIC_API_URL: https://nextmavens.cloud/api
+   295→    networks:
+   296→      - nextmavens-network
+   297→    restart: unless-stopped
+   298→    logging: *default-logging
+   299→    deploy:
+   300→      resources:
+   301→        limits:
+   302→          memory: 1G
+   303→        reservations:
+   304→          memory: 256M
+   305→    healthcheck:
+   306→      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000"]
+   307→      interval: 30s
+   308→      timeout: 10s
+   309→      retries: 3
+   310→      start_period: 40s
+   311→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

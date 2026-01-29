@@ -1,0 +1,376 @@
+Initializing deployment
+Cloning Repo github.com/Mkid095/nextmavens-developer-portal.git to /etc/dokploy/compose/nextmavens-developerportal-pfxse0/code: ✅
+Cloning into '/etc/dokploy/compose/nextmavens-developerportal-pfxse0/code'...
+remote: Enumerating objects: 70, done.
+remote: Counting objects:   1% (1/70)        
+remote: Counting objects:   2% (2/70)        
+remote: Counting objects:   4% (3/70)        
+remote: Counting objects:   5% (4/70)        
+remote: Counting objects:   7% (5/70)        
+remote: Counting objects:   8% (6/70)        
+remote: Counting objects:  10% (7/70)        
+remote: Counting objects:  11% (8/70)        
+remote: Counting objects:  12% (9/70)        
+remote: Counting objects:  14% (10/70)        
+remote: Counting objects:  15% (11/70)        
+remote: Counting objects:  17% (12/70)        
+remote: Counting objects:  18% (13/70)        
+remote: Counting objects:  20% (14/70)        
+remote: Counting objects:  21% (15/70)        
+remote: Counting objects:  22% (16/70)        
+remote: Counting objects:  24% (17/70)        
+remote: Counting objects:  25% (18/70)        
+remote: Counting objects:  27% (19/70)        
+remote: Counting objects:  28% (20/70)        
+remote: Counting objects:  30% (21/70)        
+remote: Counting objects:  31% (22/70)        
+remote: Counting objects:  32% (23/70)        
+remote: Counting objects:  34% (24/70)        
+remote: Counting objects:  35% (25/70)        
+remote: Counting objects:  37% (26/70)        
+remote: Counting objects:  38% (27/70)        
+remote: Counting objects:  40% (28/70)        
+remote: Counting objects:  41% (29/70)        
+remote: Counting objects:  42% (30/70)        
+remote: Counting objects:  44% (31/70)        
+remote: Counting objects:  45% (32/70)        
+remote: Counting objects:  47% (33/70)        
+remote: Counting objects:  48% (34/70)        
+remote: Counting objects:  50% (35/70)        
+remote: Counting objects:  51% (36/70)        
+remote: Counting objects:  52% (37/70)        
+remote: Counting objects:  54% (38/70)        
+remote: Counting objects:  55% (39/70)        
+remote: Counting objects:  57% (40/70)        
+remote: Counting objects:  58% (41/70)        
+remote: Counting objects:  60% (42/70)        
+remote: Counting objects:  61% (43/70)        
+remote: Counting objects:  62% (44/70)        
+remote: Counting objects:  64% (45/70)        
+remote: Counting objects:  65% (46/70)        
+remote: Counting objects:  67% (47/70)        
+remote: Counting objects:  68% (48/70)        
+remote: Counting objects:  70% (49/70)        
+remote: Counting objects:  71% (50/70)        
+remote: Counting objects:  72% (51/70)        
+remote: Counting objects:  74% (52/70)        
+remote: Counting objects:  75% (53/70)        
+remote: Counting objects:  77% (54/70)        
+remote: Counting objects:  78% (55/70)        
+remote: Counting objects:  80% (56/70)        
+remote: Counting objects:  81% (57/70)        
+remote: Counting objects:  82% (58/70)        
+remote: Counting objects:  84% (59/70)        
+remote: Counting objects:  85% (60/70)        
+remote: Counting objects:  87% (61/70)        
+remote: Counting objects:  88% (62/70)        
+remote: Counting objects:  90% (63/70)        
+remote: Counting objects:  91% (64/70)        
+remote: Counting objects:  92% (65/70)        
+remote: Counting objects:  94% (66/70)        
+remote: Counting objects:  95% (67/70)        
+remote: Counting objects:  97% (68/70)        
+remote: Counting objects:  98% (69/70)        
+remote: Counting objects: 100% (70/70)        
+remote: Counting objects: 100% (70/70), done.
+remote: Compressing objects:   2% (1/48)        
+remote: Compressing objects:   4% (2/48)        
+remote: Compressing objects:   6% (3/48)        
+remote: Compressing objects:   8% (4/48)        
+remote: Compressing objects:  10% (5/48)        
+remote: Compressing objects:  12% (6/48)        
+remote: Compressing objects:  14% (7/48)        
+remote: Compressing objects:  16% (8/48)        
+remote: Compressing objects:  18% (9/48)        
+remote: Compressing objects:  20% (10/48)        
+remote: Compressing objects:  22% (11/48)        
+remote: Compressing objects:  25% (12/48)        
+remote: Compressing objects:  27% (13/48)        
+remote: Compressing objects:  29% (14/48)        
+remote: Compressing objects:  31% (15/48)        
+remote: Compressing objects:  33% (16/48)        
+remote: Compressing objects:  35% (17/48)        
+remote: Compressing objects:  37% (18/48)        
+remote: Compressing objects:  39% (19/48)        
+remote: Compressing objects:  41% (20/48)        
+remote: Compressing objects:  43% (21/48)        
+remote: Compressing objects:  45% (22/48)        
+remote: Compressing objects:  47% (23/48)        
+remote: Compressing objects:  50% (24/48)        
+remote: Compressing objects:  52% (25/48)        
+remote: Compressing objects:  54% (26/48)        
+remote: Compressing objects:  56% (27/48)        
+remote: Compressing objects:  58% (28/48)        
+remote: Compressing objects:  60% (29/48)        
+remote: Compressing objects:  62% (30/48)        
+remote: Compressing objects:  64% (31/48)        
+remote: Compressing objects:  66% (32/48)        
+remote: Compressing objects:  68% (33/48)        
+remote: Compressing objects:  70% (34/48)        
+remote: Compressing objects:  72% (35/48)        
+remote: Compressing objects:  75% (36/48)        
+remote: Compressing objects:  77% (37/48)        
+remote: Compressing objects:  79% (38/48)        
+remote: Compressing objects:  81% (39/48)        
+remote: Compressing objects:  83% (40/48)        
+remote: Compressing objects:  85% (41/48)        
+remote: Compressing objects:  87% (42/48)        
+remote: Compressing objects:  89% (43/48)        
+remote: Compressing objects:  91% (44/48)        
+remote: Compressing objects:  93% (45/48)        
+remote: Compressing objects:  95% (46/48)        
+remote: Compressing objects:  97% (47/48)        
+remote: Compressing objects: 100% (48/48)        
+remote: Compressing objects: 100% (48/48), done.
+Receiving objects:   1% (1/70)
+Receiving objects:   2% (2/70)
+Receiving objects:   4% (3/70)
+Receiving objects:   5% (4/70)
+Receiving objects:   7% (5/70)
+Receiving objects:   8% (6/70)
+Receiving objects:  10% (7/70)
+Receiving objects:  11% (8/70)
+Receiving objects:  12% (9/70)
+Receiving objects:  14% (10/70)
+Receiving objects:  15% (11/70)
+Receiving objects:  17% (12/70)
+Receiving objects:  18% (13/70)
+Receiving objects:  20% (14/70)
+Receiving objects:  21% (15/70)
+Receiving objects:  22% (16/70)
+Receiving objects:  24% (17/70)
+Receiving objects:  25% (18/70)
+Receiving objects:  27% (19/70)
+Receiving objects:  28% (20/70)
+Receiving objects:  30% (21/70)
+Receiving objects:  31% (22/70)
+Receiving objects:  32% (23/70)
+Receiving objects:  34% (24/70)
+Receiving objects:  35% (25/70)
+Receiving objects:  37% (26/70)
+Receiving objects:  38% (27/70)
+Receiving objects:  40% (28/70)
+Receiving objects:  41% (29/70)
+Receiving objects:  42% (30/70)
+Receiving objects:  44% (31/70)
+Receiving objects:  45% (32/70)
+Receiving objects:  47% (33/70)
+Receiving objects:  48% (34/70)
+Receiving objects:  50% (35/70)
+Receiving objects:  51% (36/70)
+Receiving objects:  52% (37/70)
+Receiving objects:  54% (38/70)
+Receiving objects:  55% (39/70)
+Receiving objects:  57% (40/70)
+Receiving objects:  58% (41/70)
+Receiving objects:  60% (42/70)
+Receiving objects:  61% (43/70)
+Receiving objects:  62% (44/70)
+Receiving objects:  64% (45/70)
+Receiving objects:  65% (46/70)
+Receiving objects:  67% (47/70)
+Receiving objects:  68% (48/70)
+Receiving objects:  70% (49/70)
+Receiving objects:  71% (50/70)
+Receiving objects:  72% (51/70)
+Receiving objects:  74% (52/70)
+Receiving objects:  75% (53/70)
+Receiving objects:  77% (54/70)
+Receiving objects:  78% (55/70)
+Receiving objects:  80% (56/70)
+Receiving objects:  81% (57/70)
+Receiving objects:  82% (58/70)
+Receiving objects:  84% (59/70)
+Receiving objects:  85% (60/70)
+Receiving objects:  87% (61/70)
+Receiving objects:  88% (62/70)
+Receiving objects:  90% (63/70)
+Receiving objects:  91% (64/70)
+Receiving objects:  92% (65/70)
+Receiving objects:  94% (66/70)
+Receiving objects:  95% (67/70)
+Receiving objects:  97% (68/70)
+Receiving objects:  98% (69/70)
+Receiving objects: 100% (70/70)
+Receiving objects: 100% (70/70), 68.25 KiB | 17.06 MiB/s, done.
+remote: Total 70 (delta 7), reused 57 (delta 5), pack-reused 0 (from 0)
+Resolving deltas:   0% (0/7)
+Resolving deltas:  14% (1/7)
+Resolving deltas:  28% (2/7)
+Resolving deltas:  42% (3/7)
+Resolving deltas:  57% (4/7)
+Resolving deltas:  71% (5/7)
+Resolving deltas:  85% (6/7)
+Resolving deltas: 100% (7/7)
+Resolving deltas: 100% (7/7), done.
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║ App Name: nextmavens-developerportal-pfxse0                                  ║
+║ Build Compose 🐳                                                             ║
+║ Detected: 0 mounts 📂                                                        ║
+║ Command: docker compose -p nextmavens-developerportal-pfxse0 -f              ║
+║ ./docker-compose.yml up -d --build --remove-orphans                          ║
+║ Source Type: docker github ✅                                                ║
+║ Compose Type: docker-compose ✅                                              ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+Image nextmavens-developerportal-pfxse0-developer-portal Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 662B done
+#1 DONE 0.0s
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.12kB done
+#2 DONE 0.0s
+#3 [internal] load metadata for docker.io/library/node:18-alpine
+#3 DONE 0.7s
+#4 [internal] load .dockerignore
+#4 transferring context: 79B done
+#4 DONE 0.0s
+#5 [base 1/1] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+#5 resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e 0.0s done
+#5 DONE 0.0s
+#6 [internal] load build context
+#6 transferring context: 261.57kB 0.0s done
+#6 DONE 0.0s
+#7 [builder 1/5] WORKDIR /app
+#7 CACHED
+#8 [deps 1/5] RUN apk add --no-cache libc6-compat
+#8 CACHED
+#9 [deps 2/5] WORKDIR /app
+#9 CACHED
+#10 [deps 3/5] RUN npm install -g pnpm
+#10 CACHED
+#11 [deps 5/5] RUN pnpm install
+#11 CACHED
+#12 [deps 4/5] COPY package.json ./
+#12 CACHED
+#13 [builder 2/5] COPY --from=deps /app/node_modules ./node_modules
+#13 CACHED
+#14 [builder 3/5] COPY . .
+#14 DONE 0.0s
+#15 [builder 4/5] RUN npm install -g pnpm
+#15 1.933
+#15 1.933 added 1 package in 1s
+#15 1.934
+#15 1.934 1 package is looking for funding
+#15 1.935   run `npm fund` for details
+#15 1.937 npm notice
+#15 1.937 npm notice New major version of npm available! 10.8.2 -> 11.8.0
+#15 1.937 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.8.0
+#15 1.937 npm notice To update run: npm install -g npm@11.8.0
+#15 1.937 npm notice
+#15 DONE 2.0s
+#16 [builder 5/5] RUN pnpm build
+#16 0.595
+#16 0.595 > nextmavens-developer-portal@1.0.0 build /app
+#16 0.595 > next build
+#16 0.595
+#16 1.292 Attention: Next.js now collects completely anonymous telemetry regarding usage.
+#16 1.293 This information is used to shape Next.js' roadmap and prioritize features.
+#16 1.293 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+#16 1.293 https://nextjs.org/telemetry
+#16 1.293
+#16 1.358   ▲ Next.js 14.2.35
+#16 1.359
+#16 1.434    Creating an optimized production build ...
+#16 23.94  ✓ Compiled successfully
+#16 23.95    Linting and checking validity of types ...
+#16 29.01    Collecting page data ...
+#16 30.32    Generating static pages (0/20) ...
+#16 30.49 [Developer Portal] Get developer error: B [Error]: Dynamic server usage: Route /api/developer/me couldn't be rendered statically because it used `request.headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+#16 30.49     at V (/app/node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:21778)
+#16 30.49     at Object.get (/app/node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:29465)
+#16 30.49     at u (/app/.next/server/app/api/developer/me/route.js:1:1315)
+#16 30.49     at /app/node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:38417
+#16 30.49     at /app/node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+#16 30.49     at NoopContextManager.with (/app/node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+#16 30.49     at ContextAPI.with (/app/node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+#16 30.49     at NoopTracer.startActiveSpan (/app/node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+#16 30.49     at ProxyTracer.startActiveSpan (/app/node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854)
+#16 30.49     at /app/node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/server/lib/trace/tracer.js:122:103 {
+#16 30.49   description: "Route /api/developer/me couldn't be rendered statically because it used `request.headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+#16 30.49   digest: 'DYNAMIC_SERVER_USAGE'
+#16 30.49 }
+#16 30.51    Generating static pages (5/20)
+#16 30.68 [Developer Portal] Services error: B [Error]: Dynamic server usage: Route /api/services couldn't be rendered statically because it used `request.headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+#16 30.68     at V (/app/node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:21778)
+#16 30.68     at Object.get (/app/node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:29465)
+#16 30.68     at n (/app/.next/server/app/api/projects/route.js:19:1542)
+#16 30.68     at p (/app/.next/server/app/api/services/route.js:1:682)
+#16 30.68     at /app/node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:38417
+#16 30.68     at /app/node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+#16 30.68     at NoopContextManager.with (/app/node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+#16 30.68     at ContextAPI.with (/app/node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+#16 30.68     at NoopTracer.startActiveSpan (/app/node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+#16 30.68     at ProxyTracer.startActiveSpan (/app/node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854) {
+#16 30.68   description: "Route /api/services couldn't be rendered statically because it used `request.headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+#16 30.68   digest: 'DYNAMIC_SERVER_USAGE'
+#16 30.68 }
+#16 30.76    Generating static pages (10/20)
+#16 31.05    Generating static pages (15/20)
+#16 31.51  ✓ Generating static pages (20/20)
+#16 31.71    Finalizing page optimization ...
+#16 31.71    Collecting build traces ...
+#16 42.15
+#16 42.16 Route (app)                              Size     First Load JS
+#16 42.16 ┌ ○ /                                    2.8 kB          129 kB
+#16 42.16 ├ ○ /_not-found                          873 B          88.2 kB
+#16 42.16 ├ ƒ /api/api-keys                        0 B                0 B
+#16 42.16 ├ ƒ /api/developer/login                 0 B                0 B
+#16 42.16 ├ ƒ /api/developer/me                    0 B                0 B
+#16 42.16 ├ ƒ /api/developer/register              0 B                0 B
+#16 42.16 ├ ○ /api/health                          0 B                0 B
+#16 42.16 ├ ƒ /api/projects                        0 B                0 B
+#16 42.16 ├ ƒ /api/services                        0 B                0 B
+#16 42.16 ├ ○ /dashboard                           6.78 kB         142 kB
+#16 42.16 ├ ○ /docs                                175 B          96.2 kB
+#16 42.16 ├ ○ /docs/auth                           2.58 kB         137 kB
+#16 42.16 ├ ○ /docs/database                       2.54 kB         137 kB
+#16 42.16 ├ ○ /docs/graphql                        2.51 kB         137 kB
+#16 42.16 ├ ○ /docs/storage                        2.73 kB         137 kB
+#16 42.16 ├ ○ /login                               2.13 kB         137 kB
+#16 42.16 ├ ○ /mcp                                 4.17 kB         139 kB
+#16 42.16 └ ○ /register                            2.5 kB          137 kB
+#16 42.16 + First Load JS shared by all            87.3 kB
+#16 42.16   ├ chunks/2200cc46-3b264c02f307c332.js  53.6 kB
+#16 42.16   ├ chunks/945-9dff59abcf30ca8b.js       31.7 kB
+#16 42.16   └ other shared chunks (total)          1.96 kB
+#16 42.16
+#16 42.16
+#16 42.16 ○  (Static)   prerendered as static content
+#16 42.16 ƒ  (Dynamic)  server-rendered on demand
+#16 42.16
+#16 DONE 42.3s
+#17 [runner 5/8] RUN mkdir .next
+#17 CACHED
+#18 [runner 2/8] RUN addgroup --system --gid 1001 nodejs
+#18 CACHED
+#19 [runner 3/8] RUN adduser --system --uid 1001 nextjs
+#19 CACHED
+#20 [runner 4/8] COPY --from=builder /app/public ./public
+#20 CACHED
+#21 [runner 6/8] RUN chown nextjs:nodejs .next
+#21 CACHED
+#22 [runner 7/8] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#22 DONE 0.3s
+#23 [runner 8/8] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#23 DONE 0.1s
+#24 exporting to image
+#24 exporting layers
+#24 exporting layers 0.7s done
+#24 exporting manifest sha256:c1d3acd4d344b0362cd2fe08b4ccd6c738a425931c535f0b50b69af64019c920 done
+#24 exporting config sha256:754e70c3a83cae39b2889967a40d3a09adb0e2f333fe97892921a27597acd9f3 done
+#24 exporting attestation manifest sha256:2c9de1217c0e6c1e22ef7304014db24b4f3f36a6dec20e18ea11c87585452660 0.0s done
+#24 exporting manifest list sha256:89a72e0756b2aec99eda502e0794ca388d9ef41f8ce6385a9f091a8a22d062f3 done
+#24 naming to docker.io/library/nextmavens-developerportal-pfxse0-developer-portal:latest done
+#24 unpacking to docker.io/library/nextmavens-developerportal-pfxse0-developer-portal:latest
+#24 unpacking to docker.io/library/nextmavens-developerportal-pfxse0-developer-portal:latest 0.5s done
+#24 DONE 1.3s
+#25 resolving provenance for metadata file
+#25 DONE 0.0s
+Image nextmavens-developerportal-pfxse0-developer-portal Built
+Container nextmavens-developer-portal Creating
+Container nextmavens-developer-portal Error response from daemon: Conflict. The container name "/nextmavens-developer-portal" is already in use by container "ee54fb71fd157005e404192d0bc7c45af8095c89f12082e764107415bd2564de". You have to remove (or rename) that container to be able to reuse that name.
+Error response from daemon: Conflict. The container name "/nextmavens-developer-portal" is already in use by container "ee54fb71fd157005e404192d0bc7c45af8095c89f12082e764107415bd2564de". You have to remove (or rename) that container to be able to reuse that name.
+Error: ❌ Docker command failed
+Error occurred ❌, check the logs for details.

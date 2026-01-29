@@ -1,0 +1,7 @@
+    rolname    | rolsuper | rolcreaterole | rolcreatedb | rolcanlogin 
+---------------+----------+---------------+-------------+-------------
+ postgres      | t        | t             | t           | t
+ anon          | f        | f             | f           | f
+ authenticated | f        | f             | f           | f
+ service_role  | f        | f             | f           | f
+(4 rows)

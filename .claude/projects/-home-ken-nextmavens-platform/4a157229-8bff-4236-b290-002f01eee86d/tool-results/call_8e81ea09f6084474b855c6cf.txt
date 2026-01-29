@@ -1,0 +1,945 @@
+     1→'use client';
+     2→
+     3→import { useEffect, useState } from 'react';
+     4→import { useAuth, useOrganization } from '@/lib/store';
+     5→import { api, Project, WhatsappInstance } from '@/lib/api';
+     6→import type { Organization } from '@/lib/api';
+     7→import { OrganizationSwitcher } from '@/components/organization-switcher';
+     8→import { ToastContainer, notify } from '@/components/toast-notifications';
+     9→import { NotificationButton } from '@/components/notification-center';
+    10→
+    11→interface OrganizationWithProjects extends Organization {
+    12→  projects: ProjectWithInstances[];
+    13→}
+    14→
+    15→interface ProjectWithInstances extends Project {
+    16→  whatsappInstances?: WhatsappInstance[];
+    17→}
+    18→
+    19→interface CreatedProjectData {
+    20→  name: string;
+    21→  slug: string;
+    22→  anonKey: string;
+    23→  serviceRoleKey: string;
+    24→  connectionString: string;
+    25→}
+    26→
+    27→export default function DashboardPage() {
+    28→  const { user, loading, initialized, initialize, signOut } = useAuth();
+    29→  const { selectedOrganizationId, getSelectedOrganization } = useOrganization();
+    30→  const [organizations, setOrganizations] = useState<OrganizationWithProjects[]>([]);
+    31→  const [showCreateOrgForm, setShowCreateOrgForm] = useState(false);
+    32→  const [showCreateProjectForm, setShowCreateProjectForm] = useState(false);
+    33→  const [showCreateInstanceForm, setShowCreateInstanceForm] = useState(false);
+    34→  const [showApiKeysModal, setShowApiKeysModal] = useState(false);
+    35→  const [showQrModal, setShowQrModal] = useState(false);
+    36→  const [qrInstanceData, setQrInstanceData] = useState<{ instanceName: string; projectId: string; projectName: string } | null>(null);
+    37→  const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null);
+    38→  const [qrPairingCode, setQrPairingCode] = useState<string | null>(null);
+    39→  const [qrError, setQrError] = useState<string | null>(null);
+    40→  const [alreadyConnected, setAlreadyConnected] = useState(false);
+    41→  const [connectedPhoneNumber, setConnectedPhoneNumber] = useState<string | null>(null);
+    42→  const [createdProjectData, setCreatedProjectData] = useState<CreatedProjectData | null>(null);
+    43→  const [selectedOrgId, setSelectedOrgId] = useState<string>('');
+    44→  const [selectedProjectId, setSelectedProjectId] = useState<string>('');
+    45→  const [orgName, setOrgName] = useState('');
+    46→  const [orgSlug, setOrgSlug] = useState('');
+    47→  const [projectName, setProjectName] = useState('');
+    48→  const [projectSlug, setProjectSlug] = useState('');
+    49→  const [projectDescription, setProjectDescription] = useState('');
+    50→  const [instanceName, setInstanceName] = useState('');
+    51→  const [formError, setFormError] = useState('');
+    52→  const [dataLoading, setDataLoading] = useState(false);
+    53→
+    54→  useEffect(() => {
+    55→    if (!initialized) {
+    56→      initialize();
+    57→    }
+    58→  }, [initialize, initialized]);
+    59→
+    60→  useEffect(() => {
+    61→    if (user) {
+    62→      fetchDashboardData();
+    63→    }
+    64→  }, [user]);
+    65→
+    66→  // Poll for QR code updates when modal is open
+    67→  useEffect(() => {
+    68→    if (!showQrModal || !qrInstanceData || alreadyConnected) {
+    69→      return;
+    70→    }
+    71→
+    72→    const pollQrCode = async () => {
+    73→      try {
+    74→        const response = await api.getWhatsappQrCode(qrInstanceData.instanceName, qrInstanceData.projectId);
+    75→
+    76→        if (response.already_connected) {
+    77→          setAlreadyConnected(true);
+    78→          setConnectedPhoneNumber(response.phone_number || null);
+    79→          setQrCodeBase64(null);
+    80→          setQrPairingCode(null);
+    81→          // Refresh dashboard data to show updated status
+    82→          fetchDashboardData();
+    83→          return;
+    84→        }
+    85→
+    86→        if (response.qr_code_base64) {
+    87→          setQrCodeBase64(response.qr_code_base64);
+    88→          setQrPairingCode(response.pairing_code || null);
+    89→          setQrError(null);
+    90→        }
+    91→      } catch (error) {
+    92→        console.error('Failed to fetch QR code:', error);
+    93→        setQrError(error instanceof Error ? error.message : 'Failed to fetch QR code');
+    94→      }
+    95→    };
+    96→
+    97→    // Initial fetch
+    98→    pollQrCode();
+    99→
+   100→    // Poll every 3 seconds
+   101→    const interval = setInterval(pollQrCode, 3000);
+   102→
+   103→    return () => clearInterval(interval);
+   104→  }, [showQrModal, qrInstanceData, alreadyConnected]);
+   105→
+   106→  // Poll for WhatsApp instance connection status updates
+   107→  useEffect(() => {
+   108→    // Only poll when user is logged in and dashboard is visible
+   109→    if (!user) {
+   110→      return;
+   111→    }
+   112→
+   113→    // Collect all non-connected instances that need polling
+   114→    const getInstancesToPoll = (): Array<{ instanceName: string; projectId: string }> => {
+   115→      const instances: Array<{ instanceName: string; projectId: string }> = [];
+   116→      for (const org of organizations) {
+   117→        for (const project of org.projects) {
+   118→          if (project.whatsappInstances) {
+   119→            for (const instance of project.whatsappInstances) {
+   120→              // Poll instances that are pending, connecting, or recently disconnected
+   121→              if (['pending', 'connecting', 'disconnected'].includes(instance.status)) {
+   122→                instances.push({
+   123→                  instanceName: instance.instance_name,
+   124→                  projectId: project.id,
+   125→                });
+   126→              }
+   127→            }
+   128→          }
+   129→        }
+   130→      }
+   131→      return instances;
+   132→    };
+   133→
+   134→    const pollInstanceStatus = async () => {
+   135→      const instancesToPoll = getInstancesToPoll();
+   136→      if (instancesToPoll.length === 0) {
+   137→        return;
+   138→      }
+   139→
+   140→      // Poll each instance and update status
+   141→      for (const { instanceName, projectId } of instancesToPoll) {
+   142→        try {
+   143→          const response = await api.getWhatsappInstanceStatus(instanceName, projectId);
+   144→          console.log(`Status for ${instanceName}:`, response);
+   145→          // If status changed, refresh dashboard data
+   146→          if (response && (response.state === 'open' || response.status === 'connected')) {
+   147→            fetchDashboardData();
+   148→          }
+   149→        } catch (error) {
+   150→          console.error(`Failed to fetch status for ${instanceName}:`, error);
+   151→        }
+   152→      }
+   153→    };
+   154→
+   155→    // Initial poll
+   156→    pollInstanceStatus();
+   157→
+   158→    // Poll every 5 seconds for connection status
+   159→    const interval = setInterval(pollInstanceStatus, 5000);
+   160→
+   161→    return () => clearInterval(interval);
+   162→  }, [user, organizations]);
+   163→
+   164→  const fetchDashboardData = async () => {
+   165→    setDataLoading(true);
+   166→    try {
+   167→      const [orgsResponse, projectsResponse] = await Promise.all([
+   168→        api.getOrganizations(),
+   169→        api.getProjects(),
+   170→      ]);
+   171→
+   172→      // Group projects by organization
+   173→      const orgsWithProjects: OrganizationWithProjects[] = orgsResponse.items.map(org => ({
+   174→        ...org,
+   175→        projects: projectsResponse.items.filter(p => p.organization_id === org.id),
+   176→      }));
+   177→
+   178→      setOrganizations(orgsWithProjects);
+   179→    } catch (error) {
+   180→      console.error('Failed to fetch dashboard data:', error);
+   181→    } finally {
+   182→      setDataLoading(false);
+   183→    }
+   184→  };
+   185→
+   186→  const handleCreateOrganization = async (e: React.FormEvent) => {
+   187→    e.preventDefault();
+   188→    setFormError('');
+   189→
+   190→    try {
+   191→      const response = await api.createOrganization({
+   192→        name: orgName,
+   193→        slug: orgSlug || undefined,
+   194→      });
+   195→      const newOrg: OrganizationWithProjects = { ...response.data, projects: [] };
+   196→      setOrganizations([...organizations, newOrg]);
+   197→      setOrgName('');
+   198→      setOrgSlug('');
+   199→      setShowCreateOrgForm(false);
+   200→    } catch (error: unknown) {
+   201→      if (error instanceof Error) {
+   202→        setFormError(error.message);
+   203→      } else {
+   204→        setFormError('Failed to create organization');
+   205→      }
+   206→    }
+   207→  };
+   208→
+   209→  const handleCreateProject = async (e: React.FormEvent) => {
+   210→    e.preventDefault();
+   211→    setFormError('');
+   212→
+   213→    if (!selectedOrgId) {
+   214→      setFormError('Please select an organization');
+   215→      return;
+   216→    }
+   217→
+   218→    try {
+   219→      const response = await api.createProject(selectedOrgId, {
+   220→        name: projectName,
+   221→        slug: projectSlug || undefined,
+   222→        description: projectDescription || undefined,
+   223→      });
+   224→
+   225→      // Show notification for project creation
+   226→      notify.success('Project Created', `Project "${response.name}" has been created successfully.`, response.id);
+   227→
+   228→      // Check if API keys were returned (only on creation)
+   229→      if (response.api_keys && response.connection_string) {
+   230→        // Show the API keys modal
+   231→        setCreatedProjectData({
+   232→          name: response.name,
+   233→          slug: response.slug,
+   234→          anonKey: response.api_keys.anon,
+   235→          serviceRoleKey: response.api_keys.service_role,
+   236→          connectionString: response.connection_string,
+   237→        });
+   238→        setShowApiKeysModal(true);
+   239→      }
+   240→
+   241→      setOrganizations(organizations.map(org =>
+   242→        org.id === selectedOrgId
+   243→          ? { ...org, projects: [...org.projects, response] }
+   244→          : org
+   245→      ));
+   246→      setProjectName('');
+   247→      setProjectSlug('');
+   248→      setProjectDescription('');
+   249→      setShowCreateProjectForm(false);
+   250→      setSelectedOrgId('');
+   251→    } catch (error: unknown) {
+   252→      if (error instanceof Error) {
+   253→        setFormError(error.message);
+   254→      } else {
+   255→        setFormError('Failed to create project');
+   256→      }
+   257→    }
+   258→  };
+   259→
+   260→  const handleCreateWhatsappInstance = async (e: React.FormEvent) => {
+   261→    e.preventDefault();
+   262→    setFormError('');
+   263→
+   264→    if (!selectedProjectId) {
+   265→      setFormError('Please select a project');
+   266→      return;
+   267→    }
+   268→
+   269→    try {
+   270→      const newInstance = await api.createWhatsappInstance(selectedProjectId, {
+   271→        instance_name: instanceName,
+   272→      });
+   273→
+   274→      // Show notification for WhatsApp instance creation
+   275→      const project = organizations.flatMap(org => org.projects).find(p => p.id === selectedProjectId);
+   276→      notify.info(
+   277→        'WhatsApp Instance Created',
+   278→        `Instance "${instanceName}" has been created. Connect it using QR code.`,
+   279→        'whatsapp_connect',
+   280→        selectedProjectId
+   281→      );
+   282→
+   283→      // Add instance to the project
+   284→      setOrganizations(organizations.map(org => ({
+   285→        ...org,
+   286→        projects: org.projects.map(proj =>
+   287→          proj.id === selectedProjectId
+   288→            ? { ...proj, whatsappInstances: [...(proj.whatsappInstances || []), newInstance] }
+   289→            : proj
+   290→        ),
+   291→      })));
+   292→
+   293→      setInstanceName('');
+   294→      setShowCreateInstanceForm(false);
+   295→      setSelectedProjectId('');
+   296→    } catch (error: unknown) {
+   297→      if (error instanceof Error) {
+   298→        setFormError(error.message);
+   299→      } else {
+   300→        setFormError('Failed to create WhatsApp instance');
+   301→      }
+   302→    }
+   303→  };
+   304→
+   305→  const handleOpenQrModal = (instance: WhatsappInstance, projectName: string) => {
+   306→    setQrInstanceData({
+   307→      instanceName: instance.instance_name,
+   308→      projectId: instance.project_id,
+   309→      projectName,
+   310→    });
+   311→    setQrCodeBase64(null);
+   312→    setQrPairingCode(null);
+   313→    setQrError(null);
+   314→    setAlreadyConnected(instance.status === 'connected');
+   315→    setConnectedPhoneNumber(instance.phone_number || null);
+   316→    setShowQrModal(true);
+   317→  };
+   318→
+   319→  const handleCloseQrModal = () => {
+   320→    setShowQrModal(false);
+   321→    setQrInstanceData(null);
+   322→    setQrCodeBase64(null);
+   323→    setQrPairingCode(null);
+   324→    setQrError(null);
+   325→    setAlreadyConnected(false);
+   326→    setConnectedPhoneNumber(null);
+   327→    // Refresh dashboard data to show updated status
+   328→    fetchDashboardData();
+   329→  };
+   330→
+   331→  const handleSignOut = async () => {
+   332→    await signOut();
+   333→    setOrganizations([]);
+   334→  };
+   335→
+   336→  // Calculate statistics
+   337→  const totalProjects = organizations.reduce((sum, org) => sum + org.projects.length, 0);
+   338→  const activeProjects = organizations.reduce((sum, org) =>
+   339→    sum + org.projects.filter(p => p.status === 'active').length, 0);
+   340→
+   341→  const getStatusColor = (status: string) => {
+   342→    switch (status) {
+   343→      case 'active': return 'bg-green-100 text-green-800';
+   344→      case 'provisioning': return 'bg-yellow-100 text-yellow-800';
+   345→      case 'suspended': return 'bg-red-100 text-red-800';
+   346→      case 'archived': return 'bg-gray-100 text-gray-800';
+   347→      default: return 'bg-gray-100 text-gray-800';
+   348→    }
+   349→  };
+   350→
+   351→  const getWhatsappStatusColor = (status: string) => {
+   352→    switch (status) {
+   353→      case 'connected': return 'bg-green-100 text-green-800';
+   354→      case 'connecting': return 'bg-yellow-100 text-yellow-800';
+   355→      case 'pending': return 'bg-gray-100 text-gray-800';
+   356→      case 'disconnected': return 'bg-red-100 text-red-800';
+   357→      case 'error': return 'bg-red-100 text-red-800';
+   358→      default: return 'bg-gray-100 text-gray-800';
+   359→    }
+   360→  };
+   361→
+   362→  if (loading || !initialized) {
+   363→    return (
+   364→      <div className="flex min-h-screen items-center justify-center">
+   365→        <div className="text-lg">Loading...</div>
+   366→      </div>
+   367→    );
+   368→  }
+   369→
+   370→  if (!user) {
+   371→    return (
+   372→      <div className="flex min-h-screen items-center justify-center bg-gray-50">
+   373→        <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
+   374→          <h1 className="mb-6 text-2xl font-bold">NextMavens Platform</h1>
+   375→          <p className="mb-4 text-gray-600">Please sign in to continue</p>
+   376→          <a
+   377→            href="/login"
+   378→            className="block w-full rounded-md bg-blue-600 px-4 py-2 text-center text-white hover:bg-blue-700"
+   379→          >
+   380→            Sign In
+   381→          </a>
+   382→        </div>
+   383→      </div>
+   384→    );
+   385→  }
+   386→
+   387→  return (
+   388→    <div className="min-h-screen bg-gray-50">
+   389→      {/* Navigation */}
+   390→      <nav className="border-b bg-white px-6 py-4">
+   391→        <div className="flex items-center justify-between">
+   392→          <div className="flex items-center gap-4">
+   393→            <h1 className="text-xl font-bold">NextMavens Platform</h1>
+   394→            {organizations.length > 0 && (
+   395→              <OrganizationSwitcher organizations={organizations} />
+   396→            )}
+   397→          </div>
+   398→          <div className="flex items-center gap-4">
+   399→            <NotificationButton />
+   400→            <span className="text-sm text-gray-600">{user.email}</span>
+   401→            <button
+   402→              onClick={handleSignOut}
+   403→              className="rounded-md px-4 py-2 text-sm text-gray-600 hover:bg-gray-100"
+   404→            >
+   405→              Sign Out
+   406→            </button>
+   407→          </div>
+   408→        </div>
+   409→      </nav>
+   410→
+   411→      {/* Toast Container */}
+   412→      <ToastContainer />
+   413→
+   414→      <main className="container mx-auto px-6 py-8">
+   415→        {/* Statistics */}
+   416→        <div className="mb-8 grid gap-4 md:grid-cols-3">
+   417→          <div className="rounded-lg bg-white p-6 shadow-md">
+   418→            <div className="text-sm text-gray-600">Total Organizations</div>
+   419→            <div className="text-2xl font-bold">{organizations.length}</div>
+   420→          </div>
+   421→          <div className="rounded-lg bg-white p-6 shadow-md">
+   422→            <div className="text-sm text-gray-600">Total Projects</div>
+   423→            <div className="text-2xl font-bold">{totalProjects}</div>
+   424→          </div>
+   425→          <div className="rounded-lg bg-white p-6 shadow-md">
+   426→            <div className="text-sm text-gray-600">Active Projects</div>
+   427→            <div className="text-2xl font-bold">{activeProjects}</div>
+   428→          </div>
+   429→        </div>
+   430→
+   431→        {/* Quick Actions */}
+   432→        <div className="mb-8 flex flex-wrap gap-3">
+   433→          <button
+   434→            onClick={() => setShowCreateOrgForm(!showCreateOrgForm)}
+   435→            className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+   436→          >
+   437→            New Organization
+   438→          </button>
+   439→          <button
+   440→            onClick={() => {
+   441→              if (selectedOrganizationId) {
+   442→                setSelectedOrgId(selectedOrganizationId);
+   443→              }
+   444→              setShowCreateProjectForm(!showCreateProjectForm);
+   445→            }}
+   446→            className="rounded-md bg-green-600 px-4 py-2 text-white hover:bg-green-700"
+   447→            disabled={!selectedOrganizationId}
+   448→          >
+   449→            New Project
+   450→          </button>
+   451→          <button
+   452→            onClick={() => {
+   453→              if (selectedOrganizationId) {
+   454→                setSelectedProjectId(selectedOrganizationId);
+   455→              }
+   456→              setShowCreateInstanceForm(!showCreateInstanceForm);
+   457→            }}
+   458→            className="rounded-md bg-purple-600 px-4 py-2 text-white hover:bg-purple-700"
+   459→            disabled={!selectedOrganizationId}
+   460→          >
+   461→            New WhatsApp Instance
+   462→          </button>
+   463→        </div>
+   464→
+   465→        {/* Create Organization Form */}
+   466→        {showCreateOrgForm && (
+   467→          <div className="mb-8 rounded-lg bg-white p-6 shadow-md">
+   468→            <h3 className="mb-4 text-lg font-semibold">Create Organization</h3>
+   469→            <form onSubmit={handleCreateOrganization}>
+   470→              <div className="mb-4">
+   471→                <label htmlFor="orgName" className="mb-2 block text-sm font-medium">
+   472→                  Organization Name *
+   473→                </label>
+   474→                <input
+   475→                  type="text"
+   476→                  id="orgName"
+   477→                  value={orgName}
+   478→                  onChange={(e) => setOrgName(e.target.value)}
+   479→                  required
+   480→                  minLength={2}
+   481→                  maxLength={100}
+   482→                  className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none"
+   483→                  placeholder="My Organization"
+   484→                />
+   485→              </div>
+   486→              <div className="mb-4">
+   487→                <label htmlFor="orgSlug" className="mb-2 block text-sm font-medium">
+   488→                  Slug (optional)
+   489→                </label>
+   490→                <input
+   491→                  type="text"
+   492→                  id="orgSlug"
+   493→                  value={orgSlug}
+   494→                  onChange={(e) => setOrgSlug(e.target.value)}
+   495→                  pattern="[a-z0-9-]+"
+   496→                  className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none"
+   497→                  placeholder="my-organization"
+   498→                />
+   499→                <p className="mt-1 text-xs text-gray-500">
+   500→                  Only lowercase letters, numbers, and hyphens. Auto-generated if not provided.
+   501→                </p>
+   502→              </div>
+   503→              {formError && (
+   504→                <div className="mb-4 rounded-md bg-red-50 p-3 text-red-600">
+   505→                  {formError}
+   506→                </div>
+   507→              )}
+   508→              <button
+   509→                type="submit"
+   510→                className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+   511→              >
+   512→                Create Organization
+   513→              </button>
+   514→            </form>
+   515→          </div>
+   516→        )}
+   517→
+   518→        {/* Create Project Form */}
+   519→        {showCreateProjectForm && (
+   520→          <div className="mb-8 rounded-lg bg-white p-6 shadow-md">
+   521→            <h3 className="mb-4 text-lg font-semibold">Create Project</h3>
+   522→            <form onSubmit={handleCreateProject}>
+   523→              <div className="mb-4">
+   524→                <label htmlFor="orgSelect" className="mb-2 block text-sm font-medium">
+   525→                  Organization *
+   526→                </label>
+   527→                <select
+   528→                  id="orgSelect"
+   529→                  value={selectedOrgId}
+   530→                  onChange={(e) => setSelectedOrgId(e.target.value)}
+   531→                  required
+   532→                  className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none"
+   533→                >
+   534→                  <option value="">Select an organization</option>
+   535→                  {organizations.map((org) => (
+   536→                    <option key={org.id} value={org.id}>
+   537→                      {org.name}
+   538→                    </option>
+   539→                  ))}
+   540→                </select>
+   541→              </div>
+   542→              <div className="mb-4">
+   543→                <label htmlFor="projName" className="mb-2 block text-sm font-medium">
+   544→                  Project Name *
+   545→                </label>
+   546→                <input
+   547→                  type="text"
+   548→                  id="projName"
+   549→                  value={projectName}
+   550→                  onChange={(e) => setProjectName(e.target.value)}
+   551→                  required
+   552→                  minLength={2}
+   553→                  maxLength={100}
+   554→                  className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none"
+   555→                  placeholder="My Project"
+   556→                />
+   557→              </div>
+   558→              <div className="mb-4">
+   559→                <label htmlFor="projSlug" className="mb-2 block text-sm font-medium">
+   560→                  Slug (optional)
+   561→                </label>
+   562→                <input
+   563→                  type="text"
+   564→                  id="projSlug"
+   565→                  value={projectSlug}
+   566→                  onChange={(e) => setProjectSlug(e.target.value)}
+   567→                  pattern="[a-z0-9-]+"
+   568→                  className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none"
+   569→                  placeholder="my-project"
+   570→                />
+   571→              </div>
+   572→              <div className="mb-4">
+   573→                <label htmlFor="projDesc" className="mb-2 block text-sm font-medium">
+   574→                  Description (optional)
+   575→                </label>
+   576→                <textarea
+   577→                  id="projDesc"
+   578→                  value={projectDescription}
+   579→                  onChange={(e) => setProjectDescription(e.target.value)}
+   580→                  rows={3}
+   581→                  className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none"
+   582→                  placeholder="Project description"
+   583→                />
+   584→              </div>
+   585→              {formError && (
+   586→                <div className="mb-4 rounded-md bg-red-50 p-3 text-red-600">
+   587→                  {formError}
+   588→                </div>
+   589→              )}
+   590→              <button
+   591→                type="submit"
+   592→                className="rounded-md bg-green-600 px-4 py-2 text-white hover:bg-green-700"
+   593→              >
+   594→                Create Project
+   595→              </button>
+   596→            </form>
+   597→          </div>
+   598→        )}
+   599→
+   600→        {/* Create WhatsApp Instance Form */}
+   601→        {showCreateInstanceForm && (
+   602→          <div className="mb-8 rounded-lg bg-white p-6 shadow-md">
+   603→            <h3 className="mb-4 text-lg font-semibold">Create WhatsApp Instance</h3>
+   604→            <form onSubmit={handleCreateWhatsappInstance}>
+   605→              <div className="mb-4">
+   606→                <label htmlFor="projectSelect" className="mb-2 block text-sm font-medium">
+   607→                  Project *
+   608→                </label>
+   609→                <select
+   610→                  id="projectSelect"
+   611→                  value={selectedProjectId}
+   612→                  onChange={(e) => setSelectedProjectId(e.target.value)}
+   613→                  required
+   614→                  className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-purple-500 focus:outline-none"
+   615→                >
+   616→                  <option value="">Select a project</option>
+   617→                  {organizations.flatMap(org =>
+   618→                    org.projects.map((project) => (
+   619→                      <option key={project.id} value={project.id}>
+   620→                        {org.name} / {project.name}
+   621→                      </option>
+   622→                    ))
+   623→                  )}
+   624→                </select>
+   625→              </div>
+   626→              <div className="mb-4">
+   627→                <label htmlFor="instanceName" className="mb-2 block text-sm font-medium">
+   628→                  Instance Name *
+   629→                </label>
+   630→                <input
+   631→                  type="text"
+   632→                  id="instanceName"
+   633→                  value={instanceName}
+   634→                  onChange={(e) => setInstanceName(e.target.value)}
+   635→                  required
+   636→                  minLength={2}
+   637→                  maxLength={50}
+   638→                  pattern="[a-zA-Z0-9_-]+"
+   639→                  className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-purple-500 focus:outline-none"
+   640→                  placeholder="my-instance"
+   641→                />
+   642→                <p className="mt-1 text-xs text-gray-500">
+   643→                  Only letters, numbers, hyphens, and underscores.
+   644→                </p>
+   645→              </div>
+   646→              {formError && (
+   647→                <div className="mb-4 rounded-md bg-red-50 p-3 text-red-600">
+   648→                  {formError}
+   649→                </div>
+   650→              )}
+   651→              <button
+   652→                type="submit"
+   653→                className="rounded-md bg-purple-600 px-4 py-2 text-white hover:bg-purple-700"
+   654→              >
+   655→                Create WhatsApp Instance
+   656→              </button>
+   657→            </form>
+   658→          </div>
+   659→        )}
+   660→
+   661→        {/* Organizations and Projects */}
+   662→        {dataLoading ? (
+   663→          <div className="text-center py-12">
+   664→            <div className="text-lg">Loading...</div>
+   665→          </div>
+   666→        ) : organizations.length === 0 ? (
+   667→          <div className="rounded-lg bg-white p-12 text-center shadow-md">
+   668→            <h3 className="mb-2 text-lg font-semibold">No organizations yet</h3>
+   669→            <p className="text-gray-600 mb-4">Create your first organization to get started</p>
+   670→            <button
+   671→              onClick={() => setShowCreateOrgForm(true)}
+   672→              className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+   673→            >
+   674→              Create Organization
+   675→            </button>
+   676→          </div>
+   677→        ) : selectedOrganizationId ? (
+   678→          <div className="space-y-6">
+   679→            {(() => {
+   680→              const selectedOrg = organizations.find(org => org.id === selectedOrganizationId);
+   681→              if (!selectedOrg) return null;
+   682→
+   683→              return (
+   684→                <div key={selectedOrg.id} className="rounded-lg bg-white p-6 shadow-md">
+   685→                  <div className="mb-4 flex items-center justify-between">
+   686→                    <div>
+   687→                      <h3 className="text-lg font-semibold">{selectedOrg.name}</h3>
+   688→                      <p className="text-sm text-gray-500">/{selectedOrg.slug}</p>
+   689→                    </div>
+   690→                    <span className="rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800">
+   691→                      {selectedOrg.role || 'member'}
+   692→                    </span>
+   693→                  </div>
+   694→
+   695→                  {selectedOrg.projects.length === 0 ? (
+   696→                    <div className="rounded-md bg-gray-50 p-6 text-center">
+   697→                      <p className="text-gray-500 text-sm mb-3">No projects yet</p>
+   698→                      <button
+   699→                        onClick={() => {
+   700→                          setSelectedOrgId(selectedOrg.id);
+   701→                          setShowCreateProjectForm(true);
+   702→                        }}
+   703→                        className="rounded-md bg-green-600 px-3 py-1.5 text-sm text-white hover:bg-green-700"
+   704→                      >
+   705→                        Create First Project
+   706→                      </button>
+   707→                    </div>
+   708→                  ) : (
+   709→                    <div className="space-y-4">
+   710→                      {selectedOrg.projects.map((project) => (
+   711→                        <div key={project.id} className="rounded-md border border-gray-200 p-4 hover:bg-gray-50">
+   712→                          <div className="flex items-center justify-between mb-2">
+   713→                            <div>
+   714→                              <h4 className="font-medium">{project.name}</h4>
+   715→                              <p className="text-sm text-gray-500">/{project.slug}</p>
+   716→                            </div>
+   717→                            <div className="flex items-center gap-2">
+   718→                              <span className={`rounded-full px-2 py-1 text-xs font-medium ${getStatusColor(project.status)}`}>
+   719→                                {project.status}
+   720→                              </span>
+   721→                            </div>
+   722→                          </div>
+   723→
+   724→                          {/* WhatsApp Instances Section */}
+   725→                          <div className="mt-3 pl-4 border-l-2 border-purple-200">
+   726→                            <div className="flex items-center justify-between mb-2">
+   727→                              <h5 className="text-xs font-semibold text-gray-600 uppercase">WhatsApp Instances</h5>
+   728→                              <button
+   729→                                onClick={() => {
+   730→                                  setSelectedProjectId(project.id);
+   731→                                  setShowCreateInstanceForm(true);
+   732→                                }}
+   733→                                className="text-xs text-purple-600 hover:text-purple-800"
+   734→                              >
+   735→                                + Add Instance
+   736→                              </button>
+   737→                            </div>
+   738→
+   739→                            {project.whatsappInstances && project.whatsappInstances.length > 0 ? (
+   740→                              <div className="space-y-2">
+   741→                                {project.whatsappInstances.map((instance) => (
+   742→                                  <div
+   743→                                    key={instance.id}
+   744→                                    className="flex items-center justify-between rounded bg-white border border-gray-200 px-3 py-2 text-sm"
+   745→                                  >
+   746→                                    <div>
+   747→                                      <span className="font-medium">{instance.instance_name}</span>
+   748→                                      {instance.phone_number && (
+   749→                                        <span className="ml-2 text-gray-500">{instance.phone_number}</span>
+   750→                                      )}
+   751→                                    </div>
+   752→                                    <div className="flex items-center gap-2">
+   753→                                      <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${getWhatsappStatusColor(instance.status)}`}>
+   754→                                        {instance.status}
+   755→                                      </span>
+   756→                                      {instance.status !== 'connected' && (
+   757→                                        <button
+   758→                                          onClick={() => handleOpenQrModal(instance, project.name)}
+   759→                                          className="text-xs text-purple-600 hover:text-purple-800"
+   760→                                        >
+   761→                                          {instance.status === 'connecting' ? 'View QR' : 'Connect'}
+   762→                                        </button>
+   763→                                      )}
+   764→                                    </div>
+   765→                                  </div>
+   766→                                ))}
+   767→                              </div>
+   768→                            ) : (
+   769→                              <p className="text-xs text-gray-400">No WhatsApp instances configured</p>
+   770→                            )}
+   771→                          </div>
+   772→                        </div>
+   773→                      ))}
+   774→                    </div>
+   775→                  )}
+   776→                </div>
+   777→              );
+   778→            })()}
+   779→          </div>
+   780→        ) : (
+   781→          <div className="rounded-lg bg-white p-12 text-center shadow-md">
+   782→            <p className="text-gray-600">Select an organization to view projects</p>
+   783→          </div>
+   784→        )}
+   785→      </main>
+   786→
+   787→      {/* API Keys Modal */}
+   788→      {showApiKeysModal && createdProjectData && (
+   789→        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 px-4">
+   790→          <div className="w-full max-w-2xl rounded-lg bg-white p-6 shadow-xl">
+   791→            <div className="mb-4 flex items-center justify-between">
+   792→              <h3 className="text-lg font-semibold">Project Created - Save Your API Keys</h3>
+   793→              <button
+   794→                onClick={() => setShowApiKeysModal(false)}
+   795→                className="text-gray-400 hover:text-gray-600"
+   796→              >
+   797→                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+   798→                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+   799→                </svg>
+   800→              </button>
+   801→            </div>
+   802→
+   803→            <div className="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-md">
+   804→              <p className="text-sm text-yellow-800">
+   805→                <strong>Important:</strong> Save these API keys now. You won't be able to see them again.
+   806→              </p>
+   807→            </div>
+   808→
+   809→            <div className="space-y-4">
+   810→              <div>
+   811→                <label className="mb-1 block text-sm font-medium text-gray-700">Project Name</label>
+   812→                <div className="rounded-md bg-gray-100 p-2 text-sm">{createdProjectData.name}</div>
+   813→              </div>
+   814→
+   815→              <div>
+   816→                <label className="mb-1 block text-sm font-medium text-gray-700">Anonymous Key (public)</label>
+   817→                <div className="rounded-md bg-gray-100 p-2 text-sm font-mono break-all">
+   818→                  {createdProjectData.anonKey}
+   819→                </div>
+   820→              </div>
+   821→
+   822→              <div>
+   823→                <label className="mb-1 block text-sm font-medium text-gray-700">Service Role Key (secret)</label>
+   824→                <div className="rounded-md bg-gray-100 p-2 text-sm font-mono break-all">
+   825→                  {createdProjectData.serviceRoleKey}
+   826→                </div>
+   827→              </div>
+   828→
+   829→              <div>
+   830→                <label className="mb-1 block text-sm font-medium text-gray-700">Connection String</label>
+   831→                <div className="rounded-md bg-gray-100 p-2 text-xs font-mono break-all">
+   832→                  {createdProjectData.connectionString}
+   833→                </div>
+   834→              </div>
+   835→            </div>
+   836→
+   837→            <div className="mt-6 flex justify-end gap-3">
+   838→              <button
+   839→                onClick={() => {
+   840→                  navigator.clipboard.writeText(
+   841→                    `Anonymous Key: ${createdProjectData.anonKey}\nService Role Key: ${createdProjectData.serviceRoleKey}\nConnection String: ${createdProjectData.connectionString}`
+   842→                  );
+   843→                }}
+   844→                className="rounded-md bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300"
+   845→              >
+   846→                Copy All
+   847→              </button>
+   848→              <button
+   849→                onClick={() => setShowApiKeysModal(false)}
+   850→                className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+   851→              >
+   852→                I've Saved My Keys
+   853→              </button>
+   854→            </div>
+   855→          </div>
+   856→        </div>
+   857→      )}
+   858→
+   859→      {/* QR Code Modal */}
+   860→      {showQrModal && qrInstanceData && (
+   861→        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 px-4">
+   862→          <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-xl">
+   863→            <div className="mb-4 flex items-center justify-between">
+   864→              <h3 className="text-lg font-semibold">Connect WhatsApp</h3>
+   865→              <button
+   866→                onClick={handleCloseQrModal}
+   867→                className="text-gray-400 hover:text-gray-600"
+   868→              >
+   869→                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+   870→                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+   871→                </svg>
+   872→              </button>
+   873→            </div>
+   874→
+   875→            <div className="mb-4 text-sm text-gray-600">
+   876→              <p><strong>Instance:</strong> {qrInstanceData.instanceName}</p>
+   877→              <p><strong>Project:</strong> {qrInstanceData.projectName}</p>
+   878→            </div>
+   879→
+   880→            {alreadyConnected ? (
+   881→              <div className="text-center py-8">
+   882→                <div className="mb-4 text-green-600">
+   883→                  <svg className="mx-auto h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+   884→                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+   885→                  </svg>
+   886→                </div>
+   887→                <h4 className="text-lg font-semibold text-green-600 mb-2">Connected!</h4>
+   888→                {connectedPhoneNumber && (
+   889→                  <p className="text-gray-600">Phone: {connectedPhoneNumber}</p>
+   890→                )}
+   891→              </div>
+   892→            ) : qrError ? (
+   893→              <div className="text-center py-8">
+   894→                <div className="mb-4 text-red-600">
+   895→                  <svg className="mx-auto h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+   896→                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+   897→                  </svg>
+   898→                </div>
+   899→                <h4 className="text-lg font-semibold text-red-600 mb-2">Error</h4>
+   900→                <p className="text-gray-600 text-sm">{qrError}</p>
+   901→              </div>
+   902→            ) : qrCodeBase64 ? (
+   903→              <div className="text-center">
+   904→                <p className="mb-4 text-sm text-gray-600">Scan this QR code with WhatsApp</p>
+   905→                <div className="mb-4 flex justify-center">
+   906→                  <img
+   907→                    src={`data:image/png;base64,${qrCodeBase64}`}
+   908→                    alt="WhatsApp QR Code"
+   909→                    className="border-2 border-gray-300 rounded-lg"
+   910→                  />
+   911→                </div>
+   912→                {qrPairingCode && (
+   913→                  <div className="mb-4 p-3 bg-gray-100 rounded-md">
+   914→                    <p className="text-xs text-gray-600 mb-1">Or enter this pairing code:</p>
+   915→                    <p className="text-lg font-mono font-bold">{qrPairingCode}</p>
+   916→                  </div>
+   917→                )}
+   918→                <p className="text-xs text-gray-500">QR code refreshes every 3 seconds</p>
+   919→              </div>
+   920→            ) : (
+   921→              <div className="text-center py-8">
+   922→                <div className="animate-spin mx-auto h-12 w-12 rounded-full border-b-2 border-purple-600"></div>
+   923→                <p className="mt-4 text-gray-600">Loading QR code...</p>
+   924→              </div>
+   925→            )}
+   926→
+   927→            <div className="mt-6 flex justify-end">
+   928→              <button
+   929→                onClick={handleCloseQrModal}
+   930→                className="rounded-md bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300"
+   931→              >
+   932→                Close
+   933→              </button>
+   934→            </div>
+   935→          </div>
+   936→        </div>
+   937→      )}
+   938→    </div>
+   939→  );
+   940→}
+   941→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

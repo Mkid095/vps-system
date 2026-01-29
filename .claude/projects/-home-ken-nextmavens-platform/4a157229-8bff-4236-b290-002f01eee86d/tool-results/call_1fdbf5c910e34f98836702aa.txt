@@ -1,0 +1,2 @@
+Exit code 1
+ERROR:  type "auth.factor_type" does not exist

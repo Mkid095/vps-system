@@ -1,0 +1,4 @@
+tcp        0      0 0.0.0.0:443             0.0.0.0:*               LISTEN      112234/nginx: maste 
+tcp6       0      0 :::443                  :::*                    LISTEN      112234/nginx: maste 
+---
+  nginx.service                                  loaded active running A high performance web server and a reverse proxy server

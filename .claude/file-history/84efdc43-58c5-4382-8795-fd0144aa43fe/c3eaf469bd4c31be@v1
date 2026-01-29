@@ -1,0 +1,170 @@
+/**
+ * Shared types for NextMavens SDK
+ */
+
+// Auth types
+export interface User {
+  id: number;
+  email: string;
+  name?: string;
+  tenant_id: string;
+  role: string;
+  is_verified?: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface AuthTokens {
+  accessToken: string;
+  refreshToken: string;
+  user?: User;
+}
+
+export interface SignInCredentials {
+  email: string;
+  password: string;
+  tenantId?: string;
+}
+
+export interface SignUpCredentials {
+  email: string;
+  password: string;
+  name?: string;
+  tenantId: string;
+}
+
+// Database types
+export type FilterOperator =
+  | 'eq'
+  | 'neq'
+  | 'gt'
+  | 'gte'
+  | 'lt'
+  | 'lte'
+  | 'like'
+  | 'ilike'
+  | 'in'
+  | 'is'
+  | 'cs'
+  | 'cd';
+
+export interface Filter {
+  column: string;
+  operator: FilterOperator;
+  value: any;
+}
+
+export interface OrderBy {
+  column: string;
+  ascending?: boolean;
+}
+
+export interface QueryOptions {
+  select?: string[];
+  filters?: Filter[];
+  orderBy?: OrderBy;
+  limit?: number;
+  offset?: number;
+}
+
+export interface InsertData {
+  [key: string]: any;
+}
+
+export interface UpdateData {
+  [key: string]: any;
+}
+
+// Realtime types
+export type RealtimeEvent = 'INSERT' | 'UPDATE' | 'DELETE';
+
+export interface RealtimePayload<T = any> {
+  event: RealtimeEvent;
+  table: string;
+  data: T;
+  old?: T;
+}
+
+export type RealtimeCallback<T = any> = (payload: RealtimePayload<T>) => void;
+
+export interface SubscriptionOptions {
+  schema?: string;
+  filter?: string;
+}
+
+// Storage types
+export interface UploadOptions {
+  metadata?: Record<string, any>;
+}
+
+export interface FileInfo {
+  id: string;
+  file_id: string;
+  file_name: string;
+  file_type: string;
+  file_size: number;
+  mime_type?: string;
+  caption?: string;
+  created_at: string;
+}
+
+export interface UploadResult {
+  file: FileInfo;
+  download_url: string;
+}
+
+// Error types
+export class NextMavensError extends Error {
+  constructor(
+    message: string,
+    public code?: string,
+    public statusCode?: number
+  ) {
+    super(message);
+    this.name = 'NextMavensError';
+  }
+}
+
+export class AuthError extends NextMavensError {
+  constructor(message: string, code?: string) {
+    super(message, code || 'AUTH_ERROR');
+    this.name = 'AuthError';
+  }
+}
+
+export class DatabaseError extends NextMavensError {
+  constructor(message: string, code?: string) {
+    super(message, code || 'DATABASE_ERROR');
+    this.name = 'DatabaseError';
+  }
+}
+
+export class RealtimeError extends NextMavensError {
+  constructor(message: string, code?: string) {
+    super(message, code || 'REALTIME_ERROR');
+    this.name = 'RealtimeError';
+  }
+}
+
+export class StorageError extends NextMavensError {
+  constructor(message: string, code?: string) {
+    super(message, code || 'STORAGE_ERROR');
+    this.name = 'StorageError';
+  }
+}
+
+// Response types
+export interface ApiResponse<T = any> {
+  data?: T;
+  error?: {
+    message: string;
+    code?: string;
+  };
+}
+
+export interface PaginatedResponse<T = any> {
+  data: T[];
+  total: number;
+  limit: number;
+  offset: number;
+}

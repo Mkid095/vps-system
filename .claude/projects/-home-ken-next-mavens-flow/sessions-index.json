@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sessionId": "ac7005cd-c38e-486b-8500-a82db66bbf7b",
+      "fullPath": "/home/ken/.claude/projects/-home-ken-next-mavens-flow/ac7005cd-c38e-486b-8500-a82db66bbf7b.jsonl",
+      "fileMtime": 1769680407363,
+      "firstPrompt": "<command-message>flow-prd</command-message> <command-name>/flow-prd</command-name> <command-args>test</command-args>",
+      "summary": "Parsing plan.md into multiple feature PRDs",
+      "messageCount": 4,
+      "created": "2026-01-28T02:44:58.834Z",
+      "modified": "2026-01-28T02:45:36.008Z",
+      "gitBranch": "main",
+      "projectPath": "/home/ken/next-mavens-flow",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "0c4091f0-060f-4af0-8df1-c18d15dd7487",
+      "fullPath": "/home/ken/.claude/projects/-home-ken-next-mavens-flow/0c4091f0-060f-4af0-8df1-c18d15dd7487.jsonl",
+      "fileMtime": 1769680702069,
+      "firstPrompt": "commit and push",
+      "summary": "Git commit and push changes",
+      "messageCount": 4,
+      "created": "2026-01-29T09:53:06.465Z",
+      "modified": "2026-01-29T09:53:59.796Z",
+      "gitBranch": "main",
+      "projectPath": "/home/ken/next-mavens-flow",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "eb3fff50-8602-4007-9d57-c59c2da9cc9f",
+      "fullPath": "/home/ken/.claude/projects/-home-ken-next-mavens-flow/eb3fff50-8602-4007-9d57-c59c2da9cc9f.jsonl",
+      "fileMtime": 1769686263409,
+      "firstPrompt": "make suer that the flow scripts are all working with powershell, cmd, bash, and then look through the system and look at the different commands missing scripts so that we know they need to be implimen…",
+      "messageCount": 13,
+      "created": "2026-01-29T10:03:25.835Z",
+      "modified": "2026-01-29T11:31:03.302Z",
+      "gitBranch": "main",
+      "projectPath": "/home/ken/next-mavens-flow",
+      "isSidechain": false
+    }
+  ],
+  "originalPath": "/home/ken/next-mavens-flow"
+}

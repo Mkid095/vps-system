@@ -1,0 +1,29 @@
+# Rbac System - Progress Tracker
+
+## Feature: Rbac System
+**Branch**: flow/rbac-system
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (12 total)
+
+| US-001 | Define Permissions | 1 | Pending | |
+| US-002 | Define Role Permissions | 1 | Pending | |
+| US-003 | Create Permission Checker | 1 | Pending | |
+| US-004 | Create Permission Middleware | 1 | Pending | |
+| US-005 | Apply Permissions to Project Deletion | 1 | Pending | |
+| US-006 | Apply Permissions to Service Management | 1 | Pending | |
+| US-007 | Apply Permissions to Key Management | 1 | Pending | |
+| US-008 | Apply Permissions to User Management | 1 | Pending | |
+| US-009 | Update UI Based on Permissions | 2 | Pending | |
+| US-010 | Enforce Database Write Permissions | 2 | Pending | |
+| US-011 | Enforce Studio Permissions | 2 | Pending | |
+| US-012 | Create Permission Denied Error | 2 | Pending | |
+
+## Progress Summary
+- Total Stories: 12
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 12
+
+## Iteration Log

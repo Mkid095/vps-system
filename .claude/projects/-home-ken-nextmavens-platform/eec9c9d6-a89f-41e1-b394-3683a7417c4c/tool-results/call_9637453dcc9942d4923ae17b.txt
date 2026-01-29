@@ -1,0 +1,64 @@
+     1→_format_version: "3.0"
+     2→
+     3→services:
+     4→  # NextMavens Dashboard - must be first to catch / before /studio
+     5→  - name: dashboard
+     6→    url: http://dashboard:3000
+     7→    routes:
+     8→      - name: dashboard-root
+     9→        paths:
+    10→          - /              # Root path
+    11→          - /api            # Dashboard API
+    12→        strip_path: false
+    13→        plugins:
+    14→          - name: cors
+    15→            config:
+    16→              origins:
+    17→                - "*"
+    18→              methods:
+    19→                - GET
+    20→                - POST
+    21→                - PUT
+    22→                - DELETE
+    23→                - OPTIONS
+    24→              headers:
+    25→                - Accept
+    26→                - Accept-Language
+    27→                - Content-Type
+    28→                - Authorization
+    29→              exposed_headers:
+    30→                - Content-Length
+    31→                - Content-Type
+    32→              max_age: 3600
+    33→
+    34→  # GoTrue Auth Service
+    35→  - name: gotrue
+    36→    url: http://gotrue:9999
+    37→    routes:
+    38→      - name: auth-route
+    39→        paths:
+    40→          - /auth/v1
+    41→        strip_path: false
+    42→
+    43→  # PostgREST API
+    44→  - name: postgrest
+    45→    url: http://rest:3000
+    46→    routes:
+    47→      - name: rest-route
+    48→        paths:
+    49→          - /rest/v1
+    50→        strip_path: false
+    51→
+    52→  # Supabase Studio
+    53→  - name: studio
+    54→    url: http://studio:3000
+    55→    routes:
+    56→      - name: studio-route
+    57→        paths:
+    58→          - /studio
+    59→        strip_path: true
+    60→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

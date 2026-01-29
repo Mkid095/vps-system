@@ -1,0 +1,287 @@
+{
+  "project": "Audit Logs",
+  "branchName": "flow/audit-logs",
+  "description": "Logs show what happened (technical). Audit logs show who did what, when, from where (compliance, forensics). Essential for enterprise-grade trust and security incident investigation.",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Create Audit Logs Table",
+      "description": "As a platform engineer, I want an audit logs table so that I can track all governance operations.",
+      "acceptanceCriteria": [
+        "audit_logs table created in control_plane schema",
+        "Columns: id, actor_id, actor_type (user/system/api_key), action, target_type, target_id, metadata (JSONB), ip_address, user_agent, created_at",
+        "Index on actor_id for querying by user",
+        "Index on target_id for querying by resource",
+        "Index on created_at for date range queries",
+        "Migration script created and tested"
+      ],
+      "mavenSteps": [
+        1,
+        2,
+        7
+      ],
+      "mcpTools": {
+        "step1": [],
+        "step2": [],
+        "step7": []
+      },
+      "priority": 1,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "US-002",
+      "title": "Create Audit Logging Function",
+      "description": "As a platform engineer, I want an audit logging function so that I can easily log actions from anywhere in the codebase.",
+      "acceptanceCriteria": [
+        "logAction() function created at src/lib/audit.ts",
+        "Parameters: actor_id, actor_type, action, target_type, target_id, metadata, req (for ip/user_agent)",
+        "Automatically extracts IP and user agent from request",
+        "Stores action in audit_logs table",
+        "Returns audit log entry",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [
+        1,
+        2,
+        7,
+        10
+      ],
+      "mcpTools": {
+        "step1": [],
+        "step2": [],
+        "step7": [],
+        "step10": []
+      },
+      "priority": 1,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "US-003",
+      "title": "Audit Project CRUD Operations",
+      "description": "As a platform operator, I want all project create/update/delete operations logged so that I can investigate project lifecycle changes.",
+      "acceptanceCriteria": [
+        "Project creation logged with action: project.created",
+        "Project updates logged with action: project.updated",
+        "Project deletion logged with action: project.deleted",
+        "Actor captured from authenticated user",
+        "Target is project_id",
+        "Metadata includes changes made",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [
+        1,
+        2,
+        7,
+        10
+      ],
+      "mcpTools": {
+        "step1": [],
+        "step2": [],
+        "step7": [],
+        "step10": []
+      },
+      "priority": 1,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "US-004",
+      "title": "Audit API Key Operations",
+      "description": "As a platform operator, I want all API key create/rotate/revoke operations logged so that I can track credential changes.",
+      "acceptanceCriteria": [
+        "Key creation logged with action: key.created",
+        "Key rotation logged with action: key.rotated",
+        "Key revocation logged with action: key.revoked",
+        "Actor captured from authenticated user",
+        "Target is key_id",
+        "Metadata includes key_type and scopes (not key value)",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [
+        1,
+        2,
+        7,
+        10
+      ],
+      "mcpTools": {
+        "step1": [],
+        "step2": [],
+        "step7": [],
+        "step10": []
+      },
+      "priority": 1,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "US-005",
+      "title": "Audit User Management Operations",
+      "description": "As a platform operator, I want all user invite/remove operations logged so that I can track team membership changes.",
+      "acceptanceCriteria": [
+        "User invites logged with action: user.invited",
+        "User removals logged with action: user.removed",
+        "Role changes logged with action: user.role_changed",
+        "Actor captured from authenticated user",
+        "Target is user_id",
+        "Metadata includes role and organization",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [
+        1,
+        2,
+        7,
+        10
+      ],
+      "mcpTools": {
+        "step1": [],
+        "step2": [],
+        "step7": [],
+        "step10": []
+      },
+      "priority": 2,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "US-006",
+      "title": "Audit Project Suspensions",
+      "description": "As a platform operator, I want all project suspensions logged so that I can understand why projects were suspended.",
+      "acceptanceCriteria": [
+        "Manual suspensions logged with action: project.suspended",
+        "Auto-suspensions logged with action: project.auto_suspended",
+        "Actor captured (or 'system' for auto)",
+        "Target is project_id",
+        "Metadata includes reason and hard_cap_exceeded",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [
+        1,
+        2,
+        7,
+        10
+      ],
+      "mcpTools": {
+        "step1": [],
+        "step2": [],
+        "step7": [],
+        "step10": []
+      },
+      "priority": 2,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "US-007",
+      "title": "Audit Secret Access",
+      "description": "As a platform operator, I want all secret access logged so that I can detect unauthorized access attempts.",
+      "acceptanceCriteria": [
+        "Secret creation logged with action: secret.created",
+        "Secret access logged with action: secret.accessed",
+        "Secret rotation logged with action: secret.rotated",
+        "Actor captured from authenticated user",
+        "Target is secret_id (not secret value)",
+        "Metadata includes secret_name",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [
+        1,
+        2,
+        7,
+        10
+      ],
+      "mcpTools": {
+        "step1": [],
+        "step2": [],
+        "step7": [],
+        "step10": []
+      },
+      "priority": 2,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "US-008",
+      "title": "Create Audit Log API Endpoint",
+      "description": "As a platform operator, I want to query audit logs via API so that I can investigate actions programmatically.",
+      "acceptanceCriteria": [
+        "GET /api/audit endpoint created",
+        "Query parameters: actor_id, action, target_type, target_id, start_date, end_date",
+        "Returns paginated results",
+        "Filters applied securely (SQL injection protected)",
+        "Requires authentication",
+        "Results sorted by created_at DESC",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [
+        1,
+        2,
+        7,
+        10
+      ],
+      "mcpTools": {
+        "step1": [],
+        "step2": [],
+        "step7": [],
+        "step10": []
+      },
+      "priority": 2,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "US-009",
+      "title": "Create Audit Log Viewer UI",
+      "description": "As a platform operator, I want a UI to view audit logs so that I can investigate actions without writing queries.",
+      "acceptanceCriteria": [
+        "Audit log viewer page created",
+        "Filter by actor, action, target type",
+        "Date range picker",
+        "Paginated results table",
+        "Shows: timestamp, actor, action, target, details",
+        "Expandable metadata view",
+        "Export to CSV button",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [
+        5,
+        10
+      ],
+      "mcpTools": {
+        "step5": [],
+        "step10": []
+      },
+      "priority": 2,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "US-010",
+      "title": "Add Correlation ID to Audit Logs",
+      "description": "As a platform operator, I want audit logs to include correlation IDs so that I can trace requests across services.",
+      "acceptanceCriteria": [
+        "audit_logs table updated with request_id column",
+        "Correlation ID captured from x-request-id header",
+        "Links audit entries to specific requests",
+        "Can view all audit entries for a request",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [
+        1,
+        2,
+        7,
+        10
+      ],
+      "mcpTools": {
+        "step1": [],
+        "step2": [],
+        "step7": [],
+        "step10": []
+      },
+      "priority": 2,
+      "passes": false,
+      "notes": ""
+    }
+  ]
+}

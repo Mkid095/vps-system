@@ -1,0 +1,3 @@
+COMMAND      PID USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME
+docker-pr 848163 root    7u  IPv4 3368058      0t0  TCP *:8000 (LISTEN)
+docker-pr 848168 root    7u  IPv6 3368059      0t0  TCP *:8000 (LISTEN)

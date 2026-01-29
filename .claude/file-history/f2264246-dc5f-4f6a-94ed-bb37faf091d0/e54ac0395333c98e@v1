@@ -1,0 +1,500 @@
+const express = require('express');
+const TelegramBot = require('node-telegram-bot-api');
+const { Pool } = require('pg');
+const axios = require('axios');
+const cors = require('cors');
+require('dotenv').config();
+
+const app = express();
+
+// Configuration
+const PORT = process.env.PORT || 4005;
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const TELEGRAM_WEBHOOK_URL = process.env.TELEGRAM_WEBHOOK_URL;
+const ADMIN_CHAT_ID = process.env.ADMIN_CHAT_ID;
+
+// PostgreSQL connection
+const pgPool = new Pool({
+  connectionString: process.env.DATABASE_URL || 'postgresql://nextmavens:Elishiba@95@nextmavens-db-m4sxnf.1.mvuvh68efk7jnvynmv8r2jm2u:5432/nextmavens',
+  max: 20
+});
+
+// Initialize Telegram Bot
+const bot = new TelegramBot(TELEGRAM_BOT_TOKEN, { polling: false });
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Initialize database table
+async function initializeDatabase() {
+  try {
+    await pgPool.query(`
+      CREATE TABLE IF NOT EXISTS telegram_files (
+        id SERIAL PRIMARY KEY,
+        file_id VARCHAR(255) UNIQUE NOT NULL,
+        file_unique_id VARCHAR(255) UNIQUE NOT NULL,
+        file_type VARCHAR(50) NOT NULL,
+        file_name TEXT,
+        mime_type VARCHAR(100),
+        file_size INTEGER,
+        caption TEXT,
+        telegram_file_id TEXT NOT NULL,
+        telegram_file_path TEXT,
+        uploaded_by INTEGER,
+        chat_id BIGINT,
+        message_id INTEGER,
+        tenant_id UUID,
+        metadata JSONB,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+
+      CREATE INDEX IF NOT EXISTS idx_telegram_files_file_id ON telegram_files(file_id);
+      CREATE INDEX IF NOT EXISTS idx_telegram_files_tenant_id ON telegram_files(tenant_id);
+      CREATE INDEX IF NOT EXISTS idx_telegram_files_uploaded_by ON telegram_files(uploaded_by);
+      CREATE INDEX IF NOT EXISTS idx_telegram_files_file_type ON telegram_files(file_type);
+
+      CREATE TABLE IF NOT EXISTS telegram_downloads (
+        id SERIAL PRIMARY KEY,
+        file_id INTEGER REFERENCES telegram_files(id) ON DELETE CASCADE,
+        downloaded_by INTEGER,
+        downloaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        ip_address INET,
+        user_agent TEXT
+      );
+
+      CREATE INDEX IF NOT EXISTS idx_telegram_downloads_file_id ON telegram_downloads(file_id);
+    `);
+    console.log('[Database] Telegram storage tables initialized');
+  } catch (error) {
+    console.error('[Database] Error initializing tables:', error);
+  }
+}
+
+// Health check
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    service: 'telegram-storage-service',
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Get file info
+app.get('/api/files/:fileId', async (req, res) => {
+  try {
+    const { fileId } = req.params;
+
+    const result = await pgPool.query(
+      'SELECT * FROM telegram_files WHERE file_id = $1',
+      [fileId]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'File not found' });
+    }
+
+    res.json({ file: result.rows[0] });
+  } catch (error) {
+    console.error('[Error] Getting file info:', error);
+    res.status(500).json({ error: 'Failed to get file info' });
+  }
+});
+
+// List files (with tenant filtering)
+app.get('/api/files', async (req, res) => {
+  try {
+    const { tenant_id, file_type, limit = 50, offset = 0 } = req.query;
+
+    let query = 'SELECT * FROM telegram_files WHERE 1=1';
+    const params = [];
+    let paramIndex = 1;
+
+    if (tenant_id) {
+      query += ` AND tenant_id = $${paramIndex}`;
+      params.push(tenant_id);
+      paramIndex++;
+    }
+
+    if (file_type) {
+      query += ` AND file_type = $${paramIndex}`;
+      params.push(file_type);
+      paramIndex++;
+    }
+
+    query += ` ORDER BY created_at DESC LIMIT $${paramIndex} OFFSET $${paramIndex + 1}`;
+    params.push(limit, offset);
+
+    const result = await pgPool.query(query, params);
+
+    // Get total count
+    let countQuery = 'SELECT COUNT(*) FROM telegram_files WHERE 1=1';
+    const countParams = [];
+    let countIndex = 1;
+
+    if (tenant_id) {
+      countQuery += ` AND tenant_id = $${countIndex}`;
+      countParams.push(tenant_id);
+      countIndex++;
+    }
+
+    if (file_type) {
+      countQuery += ` AND file_type = $${countIndex}`;
+      countParams.push(file_type);
+      countIndex++;
+    }
+
+    const countResult = await pgPool.query(countQuery, countParams);
+
+    res.json({
+      files: result.rows,
+      total: parseInt(countResult.rows[0].count),
+      limit: parseInt(limit),
+      offset: parseInt(offset)
+    });
+  } catch (error) {
+    console.error('[Error] Listing files:', error);
+    res.status(500).json({ error: 'Failed to list files' });
+  }
+});
+
+// Get download URL for a file
+app.get('/api/files/:fileId/download', async (req, res) => {
+  try {
+    const { fileId } = req.params;
+
+    const result = await pgPool.query(
+      'SELECT * FROM telegram_files WHERE file_id = $1',
+      [fileId]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'File not found' });
+    }
+
+    const file = result.rows[0];
+
+    // Get file URL from Telegram
+    const fileUrl = await bot.getFileLink(file.telegram_file_id);
+
+    // Log download
+    await pgPool.query(
+      `INSERT INTO telegram_downloads (file_id, downloaded_by, ip_address, user_agent)
+       VALUES ($1, NULL, $2, $3)`,
+      [file.id, req.ip, req.get('user-agent')]
+    );
+
+    res.json({
+      file_id: file.file_id,
+      file_name: file.file_name,
+      file_type: file.file_type,
+      file_size: file.file_size,
+      download_url: fileUrl,
+      caption: file.caption,
+      created_at: file.created_at
+    });
+  } catch (error) {
+    console.error('[Error] Getting download URL:', error);
+    res.status(500).json({ error: 'Failed to get download URL' });
+  }
+});
+
+// Delete file
+app.delete('/api/files/:fileId', async (req, res) => {
+  try {
+    const { fileId } = req.params;
+
+    const result = await pgPool.query(
+      'DELETE FROM telegram_files WHERE file_id = $1 RETURNING *',
+      [fileId]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'File not found' });
+    }
+
+    res.json({ message: 'File deleted successfully', file: result.rows[0] });
+  } catch (error) {
+    console.error('[Error] Deleting file:', error);
+    res.status(500).json({ error: 'Failed to delete file' });
+  }
+});
+
+// Get storage stats
+app.get('/api/stats', async (req, res) => {
+  try {
+    const { tenant_id } = req.query;
+
+    let whereClause = tenant_id ? 'WHERE tenant_id = $1' : '';
+    const params = tenant_id ? [tenant_id] : [];
+
+    const stats = await pgPool.query(`
+      SELECT
+        COUNT(*) as total_files,
+        SUM(file_size) as total_size,
+        COUNT(DISTINCT file_type) as file_types,
+        COUNT(DISTINCT uploaded_by) as unique_uploaders
+      FROM telegram_files
+      ${whereClause}
+    `, params);
+
+    const byType = await pgPool.query(`
+      SELECT
+        file_type,
+        COUNT(*) as count,
+        SUM(file_size) as size
+      FROM telegram_files
+      ${whereClause}
+      GROUP BY file_type
+      ORDER BY count DESC
+    `, params);
+
+    res.json({
+      overall: stats.rows[0],
+      by_type: byType.rows
+    });
+  } catch (error) {
+    console.error('[Error] Getting stats:', error);
+    res.status(500).json({ error: 'Failed to get stats' });
+  }
+});
+
+// Telegram webhook handler
+app.post('/webhook/telegram', async (req, res) => {
+  try {
+    const message = req.body.message;
+
+    if (!message) {
+      return res.sendStatus(200);
+    }
+
+    const chatId = message.chat.id;
+    const messageId = message.message_id;
+    const userId = message.from.id;
+
+    // Handle different file types
+    let fileInfo = null;
+    let fileType = null;
+
+    if (message.photo) {
+      // Get the largest photo
+      fileInfo = message.photo[message.photo.length - 1];
+      fileType = 'photo';
+    } else if (message.document) {
+      fileInfo = message.document;
+      fileType = 'document';
+    } else if (message.video) {
+      fileInfo = message.video;
+      fileType = 'video';
+    } else if (message.audio) {
+      fileInfo = message.audio;
+      fileType = 'audio';
+    } else if (message.voice) {
+      fileInfo = message.voice;
+      fileType = 'voice';
+    } else if (message.sticker) {
+      fileInfo = message.sticker;
+      fileType = 'sticker';
+    } else if (message.animation) {
+      fileInfo = message.animation;
+      fileType = 'animation';
+    }
+
+    if (fileInfo) {
+      // Generate unique file ID
+      const fileId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+
+      // Store file metadata in database
+      await pgPool.query(`
+        INSERT INTO telegram_files (
+          file_id,
+          file_unique_id,
+          file_type,
+          file_name,
+          mime_type,
+          file_size,
+          caption,
+          telegram_file_id,
+          uploaded_by,
+          chat_id,
+          message_id
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+      `, [
+        fileId,
+        fileInfo.file_unique_id,
+        fileType,
+        fileInfo.file_name || null,
+        fileInfo.mime_type || null,
+        fileInfo.file_size || null,
+        message.caption || null,
+        fileInfo.file_id,
+        userId,
+        chatId,
+        messageId
+      ]);
+
+      // Send confirmation message
+      await bot.sendMessage(chatId,
+        `✅ File stored successfully!\n\n` +
+        `📁 File ID: \`${fileId}\`\n` +
+        `📝 Type: ${fileType}\n` +
+        `📦 Size: ${fileInfo.file_size ? formatBytes(fileInfo.file_size) : 'Unknown'}\n\n` +
+        `Use this ID to retrieve the file via API.`,
+        { parse_mode: 'Markdown' }
+      );
+
+      console.log(`[Telegram] File stored: ${fileId} (${fileType}) from user ${userId}`);
+    } else if (message.text) {
+      // Handle text commands
+      if (message.text.startsWith('/start')) {
+        await bot.sendMessage(chatId,
+          `👋 Welcome to NextMavens File Storage Bot!\n\n` +
+          `📤 Send me any file and I'll store it for you.\n` +
+          `📋 You'll receive a File ID to retrieve it later.\n\n` +
+          `Commands:\n` +
+          `/stats - View storage statistics\n` +
+          `/help - Show this help message`,
+          { parse_mode: 'Markdown' }
+        );
+      } else if (message.text.startsWith('/stats')) {
+        const stats = await pgPool.query(`
+          SELECT
+            COUNT(*) as total_files,
+            SUM(file_size) as total_size
+          FROM telegram_files
+        `);
+
+        await bot.sendMessage(chatId,
+          `📊 Storage Statistics\n\n` +
+          `Total Files: ${stats.rows[0].total_files}\n` +
+          `Total Size: ${stats.rows[0].total_size ? formatBytes(stats.rows[0].total_size) : '0 bytes'}`,
+          { parse_mode: 'Markdown' }
+        );
+      } else if (message.text.startsWith('/help')) {
+        await bot.sendMessage(chatId,
+          `📚 Help - NextMavens File Storage\n\n` +
+          `How to use:\n` +
+          `1. Send any file (photo, document, video, etc.)\n` +
+          `2. Get your unique File ID\n` +
+          `3. Use the API to retrieve files\n\n` +
+          `API Endpoints:\n` +
+          `GET /api/files/:id - Get file info\n` +
+          `GET /api/files/:id/download - Get download URL\n` +
+          `GET /api/files - List all files`,
+          { parse_mode: 'Markdown' }
+        );
+      }
+    }
+
+    res.sendStatus(200);
+  } catch (error) {
+    console.error('[Error] Processing webhook:', error);
+    res.sendStatus(500);
+  }
+});
+
+// Helper function to format bytes
+function formatBytes(bytes) {
+  if (bytes === 0) return '0 Bytes';
+  const k = 1024;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+}
+
+// Send notification to Telegram
+async function sendNotification(chatId, message) {
+  try {
+    await bot.sendMessage(chatId, message, { parse_mode: 'Markdown' });
+    console.log(`[Telegram] Notification sent to chat ${chatId}`);
+  } catch (error) {
+    console.error('[Error] Sending notification:', error);
+  }
+}
+
+// Webhook notification endpoint for Dokploy
+app.post('/webhook/deploy', async (req, res) => {
+  try {
+    const { status, service, repository, branch, commit, commit_message, deploy_url, error } = req.body;
+
+    let message = `🚀 *Deployment Update*\n\n`;
+
+    if (status === 'success') {
+      message += `✅ Status: Success\n`;
+    } else if (status === 'failed') {
+      message += `❌ Status: Failed\n`;
+    } else if (status === 'started') {
+      message += `🔄 Status: Started\n`;
+    } else {
+      message += `ℹ️ Status: ${status}\n`;
+    }
+
+    message += `🔧 Service: ${service}\n`;
+
+    if (repository) {
+      message += `📦 Repository: ${repository}\n`;
+    }
+
+    if (branch) {
+      message += `🌿 Branch: ${branch}\n`;
+    }
+
+    if (commit) {
+      message += `🆔 Commit: ${commit.substring(0, 7)}\n`;
+    }
+
+    if (commit_message) {
+      message += `💬 Message: ${commit_message}\n`;
+    }
+
+    if (deploy_url) {
+      message += `🔗 URL: ${deploy_url}\n`;
+    }
+
+    if (error) {
+      message += `\n⚠️ Error:\n\`\`\`\n${error}\n\`\`\``;
+    }
+
+    message += `\n⏰ ${new Date().toISOString()}`;
+
+    // Send to admin chat
+    if (ADMIN_CHAT_ID) {
+      await sendNotification(ADMIN_CHAT_ID, message);
+    }
+
+    res.json({ success: true });
+  } catch (error) {
+    console.error('[Error] Processing deployment webhook:', error);
+    res.status(500).json({ error: 'Failed to process webhook' });
+  }
+});
+
+// Initialize webhook
+async function initializeWebhook() {
+  try {
+    if (TELEGRAM_WEBHOOK_URL) {
+      await bot.setWebHook(TELEGRAM_WEBHOOK_URL);
+      console.log(`[Telegram] Webhook set to: ${TELEGRAM_WEBHOOK_URL}`);
+    }
+  } catch (error) {
+    console.error('[Error] Setting webhook:', error);
+  }
+}
+
+// Start server
+async function start() {
+  await initializeDatabase();
+  await initializeWebhook();
+
+  app.listen(PORT, () => {
+    console.log(`Telegram Storage Service running on port ${PORT}`);
+    console.log(`API: http://localhost:${PORT}/api`);
+    console.log(`Webhook: http://localhost:${PORT}/webhook/telegram`);
+    console.log(`Deploy Webhook: http://localhost:${PORT}/webhook/deploy`);
+  });
+}
+
+start().catch(console.error);
+
+module.exports = { app, pgPool, bot, sendNotification };

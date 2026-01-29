@@ -1,0 +1,4 @@
+Nginx reloaded successfully
+2026/01/25 19:36:57 [warn] 1274939#1274939: "ssl_stapling" ignored, no OCSP responder URL in the certificate "/etc/letsencrypt/live/nextmavens.cloud/fullchain.pem"
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful

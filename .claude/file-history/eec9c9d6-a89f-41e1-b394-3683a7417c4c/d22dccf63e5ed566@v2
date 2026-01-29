@@ -1,0 +1,179 @@
+// Provision Complete Supabase Stack for a Project
+// POST /api/projects/:id/provision-stack
+
+import { NextRequest } from 'next/server';
+import { withAuthAndError } from '@/lib/middleware';
+import { getAdminClient } from '@/lib/supabase-client';
+import { exec } from 'child_process';
+import { promisify } from 'util';
+
+const execAsync = promisify(exec);
+
+interface StackPorts {
+  studio_port: number;
+  postgrest_port: number;
+  gotrue_port: number;
+  kong_port: number;
+}
+
+// POST /api/projects/:id/provision-stack
+export async function POST(
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { id } = await params;
+  return withAuthAndError(async (user) => {
+    const supabase = getAdminClient();
+
+    // Get project details
+    const { data: project, error: projectError } = await supabase
+      .from('projects')
+      .select('*')
+      .eq('id', id)
+      .single();
+
+    if (projectError || !project) {
+      throw new Error('Project not found');
+    }
+
+    // Get database credentials
+    const { data: dbCredentials, error: dbError } = await supabase
+      .from('project_databases')
+      .select('*')
+      .eq('project_id', id)
+      .single();
+
+    if (dbError || !dbCredentials) {
+      throw new Error('Database credentials not found');
+    }
+
+    // Check if stack is already provisioned
+    if (project.stack_ports) {
+      return {
+        success: true,
+        message: 'Stack already provisioned',
+        ports: project.stack_ports,
+        urls: {
+          studio: `https://nextmavens.cloud/studio/${project.slug}`,
+          api: `https://nextmavens.cloud:${project.stack_ports.kong_port}`,
+          auth: `https://nextmavens.cloud:${project.stack_ports.kong_port}/auth/v1`,
+          rest: `https://nextmavens.cloud:${project.stack_ports.kong_port}/rest/v1`,
+        },
+      };
+    }
+
+    // Allocate ports for the new stack
+    const { stdout: portOutput } = await execAsync(
+      '/home/ken/nextmavens-platform/scripts/get-next-ports.sh'
+    );
+
+    const [studio_port, postgrest_port, gotrue_port, kong_port] = portOutput.trim().split(' ').map(Number);
+
+    const stackPorts: StackPorts = {
+      studio_port,
+      postgrest_port,
+      gotrue_port,
+      kong_port,
+    };
+
+    // Get environment variables
+    const POSTGRES_PASSWORD = process.env.POSTGRES_PASSWORD || 'NextMavensSecure2025ChangeMe';
+
+    // Provision the stack
+    try {
+      const { stdout, stderr } = await execAsync(
+        `cd /home/ken/nextmavensenses-platform/docker && ` +
+        `POSTGRES_PASSWORD=${POSTGRES_PASSWORD} ` +
+        `/home/ken/nextmavens-platform/scripts/provision-project-stack.sh ` +
+        `${project.id} ${project.slug} "${project.name}" ${dbCredentials.db_name} ` +
+        `${project.anon_key} ${project.service_role_key} ${project.jwt_secret}`
+      );
+
+      if (stderr && !stderr.includes('Stack provisioned successfully')) {
+        console.error('Stack provisioning warning:', stderr);
+      }
+
+      // Update project with stack ports
+      const { error: updateError } = await supabase
+        .from('projects')
+        .update({
+          stack_ports: stackPorts,
+          status: 'active',
+        })
+        .eq('id', id);
+
+      if (updateError) {
+        console.error('Failed to update project with stack ports:', updateError);
+      }
+
+      // Update nginx configuration
+      await updateNginxConfig(project.slug, kong_port);
+
+      return {
+        success: true,
+        message: 'Stack provisioned successfully',
+        ports: stackPorts,
+        project: {
+          id: project.id,
+          slug: project.slug,
+          name: project.name,
+        },
+        urls: {
+          studio: `https://nextmavens.cloud/studio/${project.slug}`,
+          api: `https://nextmavens.cloud:${kong_port}`,
+          auth: `https://nextmavens.cloud:${kong_port}/auth/v1`,
+          rest: `https://nextmavens.cloud:${kong_port}/rest/v1`,
+          studio_internal: `http://${project.slug}-studio:3000`,
+          postgrest_internal: `http://${project.slug}-postgrest:3000`,
+          gotrue_internal: `http://${project.slug}-gotrue:9999`,
+        },
+        env: {
+          NEXT_PUBLIC_STUDIO_URL: `https://nextmavens.cloud/studio/${project.slug}`,
+          NEXT_PUBLIC_API_URL: `https://nextmavens.cloud:${kong_port}`,
+          NEXT_PUBLIC_ANON_KEY: project.anon_key,
+        },
+        output: stdout,
+      };
+    } catch (error) {
+      console.error('Failed to provision stack:', error);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      throw new Error(`Failed to provision project stack: ${errorMessage}`);
+    }
+  })(req);
+}
+
+async function updateNginxConfig(slug: string, kongPort: number): Promise<void> {
+  const { exec } = require('child_process');
+  const { promisify } = require('util');
+  const execAsync = promisify(exec);
+
+  // Add project routing to nginx
+  const nginxConfig = `
+# Studio routing for ${slug}
+location ~ ^/studio/${slug}(/.*)?$ {
+    proxy_pass http://127.0.0.1:${kongPort}$request_uri;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Forwarded-Host $host;
+    proxy_set_header X-Forwarded-Port $server_port;
+    proxy_read_timeout 86400;
+    proxy_send_timeout 86400;
+}
+`;
+
+  const configFile = `/etc/nginx/sites-available/studio-${slug}.conf`;
+
+  try {
+    await execAsync(`echo '${nginxConfig}' | sudo tee ${configFile}`);
+    await execAsync(`sudo ln -sf ${configFile} /etc/nginx/sites-enabled/`);
+    await execAsync('sudo nginx -t && sudo systemctl reload nginx');
+  } catch (error) {
+    console.error('Failed to update nginx:', error);
+  }
+}

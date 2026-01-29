@@ -1,0 +1,22 @@
+[
+  {
+    "content": "Implement volume management",
+    "status": "in_progress",
+    "activeForm": "Implementing volume management"
+  },
+  {
+    "content": "Run typecheck tests",
+    "status": "pending",
+    "activeForm": "Running typecheck tests"
+  },
+  {
+    "content": "Update PRD to mark US-006 complete",
+    "status": "pending",
+    "activeForm": "Updating PRD to mark US-006 complete"
+  },
+  {
+    "content": "Commit changes",
+    "status": "pending",
+    "activeForm": "Committing changes"
+  }
+]

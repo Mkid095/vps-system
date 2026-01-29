@@ -1,0 +1,1 @@
+The file /home/ken/nextmavens-platform/.env has been updated successfully.

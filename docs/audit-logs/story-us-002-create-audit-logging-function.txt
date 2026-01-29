@@ -1,0 +1,40 @@
+---
+memoryVersion: 1
+storyId: US-002
+storyTitle: Create Audit Logging Function
+completedDate: 2026-01-28
+---
+
+STORY: US-002 - Create Audit Logging Function
+========================
+
+DESCRIPTION: As a platform engineer, I want an audit logging function so that I can easily log actions from anywhere in the codebase.
+
+MAVEN STEPS COMPLETED: [1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+The logAction() function was implemented in database/src/helpers.ts as part of the audit logs database integration package. It provides a type-safe interface for logging audit events with automatic IP and user agent extraction from request objects. The function integrates with the AuditLogService to store entries in the control_plane.audit_logs table.
+
+KEY FILES:
+- database/src/helpers.ts - logAction() function implementation (lines 77-99)
+- database/src/AuditLogService.ts - Core service for database operations
+- database/src/index.ts - Main exports including logAction
+- database/types/audit.types.ts - Type definitions
+
+DECISIONS MADE:
+- Placed logAction in the database package (database/src/helpers.ts) rather than src/lib/audit.ts for proper monorepo package structure
+- Used ActorInfo and TargetInfo interfaces for cleaner API instead of individual parameters
+- Request context extraction handled by extractIpAddress() and extractUserAgent() helper functions
+- Function is exported via the main index.ts for easy importing: @nextmavens/audit-logs-database
+
+INTEGRATION POINTS:
+- Uses audit_logs table created in US-001
+- Part of @nextmavens/audit-logs-database package
+- Can be imported by any service: api-gateway, auth-service, graphql-service
+- Integrates with database connection pool for PostgreSQL access
+
+LESSONS LEARNED:
+- The audit logging function was actually implemented as part of US-001's Step 7 integration work
+- Helper functions for specific domains (logProjectAction, logApiKeyAction, etc.) provide better ergonomics than generic logAction
+- Type safety with ActorType enum prevents invalid actor types
+- Request context interface handles multiple header formats (x-forwarded-for, x-real-ip)

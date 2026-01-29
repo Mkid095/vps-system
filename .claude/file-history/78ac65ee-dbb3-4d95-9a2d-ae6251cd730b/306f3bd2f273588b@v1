@@ -1,0 +1,182 @@
+---
+project: MCP Servers for Claude Integration
+branch: flow/mcp-servers
+availableMCPs:
+  - supabase
+  - chrome-devtools
+  - web-search-prime
+---
+
+# MCP Servers for Claude Integration
+
+## Overview
+Implement stdio-based MCP (Model Context Protocol) servers for Supabase, WhatsApp (Evolution API), and Email (Resend). Enable Claude Desktop to interact with platform services. Secure connection management with per-project credentials.
+
+## Technical Approach
+- stdio-based communication (stdin/stdout)
+- Handshake protocol: `{"type": "handshake", "version": "1.0"}`
+- Action invocation: `{"type": "invoke", "action": "...", "params": {...}}`
+- Response: `{"type": "response", "data": {...}}`
+- Error: `{"type": "error", "message": "..."}`
+- Environment-based configuration
+
+## User Stories
+
+### US-001: Supabase MCP Handshake
+**Priority:** 1
+**Maven Steps:** [1, 7]
+**MCP Tools:** []
+
+As the MCP protocol, I want to establish a handshake so that the client knows the server is ready.
+
+**Acceptance Criteria:**
+- Server outputs handshake on startup
+- Format: {"type": "handshake", "version": "1.0"}
+- Accepts newline-delimited JSON input
+- Typecheck passes
+
+**Status:** false
+
+### US-002: Supabase MCP Query Action
+**Priority:** 1
+**Maven Steps:** [1, 7, 10]
+**MCP Tools:** ["supabase"]
+
+As Claude Desktop, I want to query Supabase tables so that I can retrieve data for analysis.
+
+**Acceptance Criteria:**
+- Action: "query"
+- Params: {projectId, token, table, limit?, filter?}
+- Validates token and retrieves project credentials
+- Executes SELECT query
+- Returns data array
+- Typecheck passes
+
+**Status:** false
+
+### US-003: Supabase MCP Execute Action
+**Priority:** 2
+**Maven Steps:** [1, 7, 10]
+**MCP Tools:** ["supabase"]
+
+As Claude Desktop, I want to execute safe SQL so that I can perform complex queries.
+
+**Acceptance Criteria:**
+- Action: "execute"
+- Params: {projectId, token, sql}
+- Whitelisted SQL only (SELECT, limited INSERT/UPDATE)
+- Query result limits
+- Returns rows/affected count
+- Typecheck passes
+
+**Status:** false
+
+### US-004: WhatsApp MCP Send Message
+**Priority:** 1
+**Maven Steps:** [1, 7, 10]
+**MCP Tools:** []
+
+As Claude Desktop, I want to send WhatsApp messages so that I can notify users.
+
+**Acceptance Criteria:**
+- Action: "send-message"
+- Params: {instanceName, number, text}
+- Calls Evolution API
+- Returns message ID
+- Typecheck passes
+
+**Status:** false
+
+### US-005: WhatsApp MCP Get Status
+**Priority:** 1
+**Maven Steps:** [1, 7]
+**MCP Tools:** []
+
+As Claude Desktop, I want to check WhatsApp status so that I can verify connectivity.
+
+**Acceptance Criteria:**
+- Action: "get-status"
+- Params: {instanceName}
+- Returns state, phone number, battery
+- Typecheck passes
+
+**Status:** false
+
+### US-006: WhatsApp MCP Create Instance
+**Priority:** 2
+**Maven Steps:** [1, 7, 10]
+**MCP Tools:** []
+
+As Claude Desktop, I want to create WhatsApp instances so that I can set up new connections.
+
+**Acceptance Criteria:**
+- Action: "create-instance"
+- Params: {instanceName}
+- Calls Evolution API
+- Returns instance ID
+- Typecheck passes
+
+**Status:** false
+
+### US-007: Email MCP Send Email
+**Priority:** 2
+**Maven Steps:** [1, 7, 10]
+**MCP Tools:** []
+
+As Claude Desktop, I want to send emails via Resend so that I can communicate with users.
+
+**Acceptance Criteria:**
+- Action: "send-email"
+- Params: {to, subject, html?, text?}
+- Calls Resend API
+- Returns message ID
+- Typecheck passes
+
+**Status:** false
+
+### US-008: MCP Authentication
+**Priority:** 1
+**Maven Steps:** [1, 10]
+**MCP Tools:** ["supabase"]
+
+As the MCP server, I want to validate requests so that unauthorized clients cannot access data.
+
+**Acceptance Criteria:**
+- Each request includes project token
+- Token validated against master database
+- Project credentials retrieved
+- Invalid tokens return error
+- Typecheck passes
+
+**Status:** false
+
+### US-009: MCP Error Handling
+**Priority:** 2
+**Maven Steps:** [1, 7]
+**MCP Tools:** []
+
+As the MCP server, I want to return structured errors so that clients can handle failures gracefully.
+
+**Acceptance Criteria:**
+- Error format: {"type": "error", "message": "...", "code": "..."}
+- Catches all exceptions
+- Logs errors for debugging
+- Process continues after error
+- Typecheck passes
+
+**Status:** false
+
+### US-010: MCP Manifest/Capabilities
+**Priority:** 3
+**Maven Steps:** [1, 7]
+**MCP Tools:** []
+
+As Claude Desktop, I want to discover available actions so that I know what the server can do.
+
+**Acceptance Criteria:**
+- Action: "capabilities"
+- Returns list of actions and their params
+- Optional: "events" for subscriptions
+- Typecheck passes
+
+**Status:** false

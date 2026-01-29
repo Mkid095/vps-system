@@ -1,0 +1,475 @@
+# @nextmavens/js
+
+Official JavaScript/TypeScript SDK for the NextMavens platform.
+
+## Installation
+
+```bash
+npm install @nextmavens/js
+# or
+yarn add @nextmavens/js
+```
+
+## Quick Start
+
+```javascript
+import { NextMavensClient } from '@nextmavens/js';
+
+// Initialize the client
+const client = new NextMavensClient({
+  apiKey: 'nm_live_pk_your_public_key_here'
+});
+```
+
+## Features
+
+- ✅ **Authentication** - Sign up, sign in, password reset
+- ✅ **Database** - Query builder with filters, ordering, pagination
+- ✅ **Realtime** - Subscribe to database changes via WebSocket
+- ✅ **Storage** - File management via Telegram
+
+## Authentication
+
+### Sign Up
+
+```javascript
+const { user, accessToken } = await client.auth.signUp({
+  email: 'user@example.com',
+  password: 'secure_password',
+  name: 'John Doe',
+  tenantId: 'your-tenant-id'
+});
+
+console.log('User created:', user);
+```
+
+### Sign In
+
+```javascript
+const { user, accessToken } = await client.auth.signIn({
+  email: 'user@example.com',
+  password: 'secure_password'
+});
+
+console.log('Logged in as:', user.name);
+```
+
+### Get Current User
+
+```javascript
+const user = await client.auth.getCurrentUser();
+console.log('Current user:', user);
+```
+
+## Database
+
+The SDK provides a fluent query builder for database operations.
+
+### Simple Query
+
+```javascript
+// Get all users
+const users = await client.database.from('users').execute();
+
+console.log(users);
+```
+
+### Select Specific Columns
+
+```javascript
+const users = await client.database
+  .from('users')
+  .select('id', 'email', 'name')
+  .execute();
+```
+
+### Filter Results
+
+```javascript
+// Using filter method
+const activeUsers = await client.database
+  .from('users')
+  .filter('is_verified', 'eq', true)
+  .filter('role', 'eq', 'admin')
+  .execute();
+
+// Using shorthand methods
+const posts = await client.database
+  .from('posts')
+  .eq('status', 'published')
+  .gte('created_at', '2024-01-01')
+  .execute();
+```
+
+### Order & Limit
+
+```javascript
+const recentUsers = await client.database
+  .from('users')
+  .desc('created_at')
+  .limit(10)
+  .execute();
+
+const paginatedPosts = await client.database
+  .from('posts')
+  .asc('created_at')
+  .limit(20)
+  .offset(40)
+  .execute();
+```
+
+### Get Single Result
+
+```javascript
+// Get one result (throws if not found)
+const user = await client.database
+  .from('users')
+  .eq('email', 'user@example.com')
+  .single();
+
+console.log(user.name);
+
+// Get first result or null
+const user = await client.database
+  .from('users')
+  .eq('email', 'user@example.com')
+  .first();
+
+if (user) {
+  console.log(user.name);
+}
+```
+
+### Check Existence
+
+```javascript
+const hasAdmin = await client.database
+  .from('users')
+  .eq('role', 'admin')
+  .exists();
+
+console.log('Has admin:', hasAdmin);
+```
+
+### Insert
+
+```javascript
+const newUser = await client.database.insert('users', {
+  email: 'new@example.com',
+  name: 'New User',
+  password_hash: 'hashed_password',
+  tenant_id: 'tenant-uuid'
+});
+
+console.log('Created user:', newUser);
+```
+
+### Update
+
+```javascript
+const { data } = await client.database.update(
+  'users',
+  { name: 'Updated Name' },
+  [{ column: 'id', operator: 'eq', value: 1 }]
+);
+
+console.log('Updated users:', data);
+```
+
+### Delete
+
+```javascript
+await client.database.delete('users', [
+  { column: 'id', operator: 'eq', value: 1 }
+]);
+```
+
+## Realtime
+
+Subscribe to database changes in real-time.
+
+### Subscribe to All Changes
+
+```javascript
+const unsubscribe = client.realtime.subscribe('users', (payload) => {
+  console.log('Event:', payload.event);
+  console.log('Data:', payload.data);
+});
+
+// Unsubscribe later
+unsubscribe();
+```
+
+### Subscribe to Specific Events
+
+```javascript
+// New users only
+const unsubscribe = client.realtime.onInsert('users', (payload) => {
+  console.log('New user:', payload.data);
+});
+
+// Updates only
+const unsubscribe = client.realtime.onUpdate('posts', (payload) => {
+  console.log('Post updated:', payload.data);
+});
+
+// Deletes only
+const unsubscribe = client.realtime.onDelete('comments', (payload) => {
+  console.log('Comment deleted:', payload.old);
+});
+```
+
+### Subscribe to a Specific Row
+
+```javascript
+const unsubscribe = client.realtime.subscribeToRow('users', 123, (payload) => {
+  console.log('User 123 changed:', payload);
+});
+```
+
+### Connect/Disconnect
+
+```javascript
+// Connect manually
+client.realtime.connect();
+
+// Check connection status
+if (client.realtime.getConnectionStatus()) {
+  console.log('Connected');
+}
+
+// Disconnect
+client.realtime.disconnect();
+```
+
+## Storage
+
+Files are uploaded via the Telegram bot (@nextmavensuploadsbot) and can be downloaded through the SDK.
+
+### Get File Info
+
+```javascript
+const fileInfo = await client.storage.getFileInfo('file-id-here');
+
+console.log('File:', fileInfo.file_name);
+console.log('Size:', fileInfo.file_size);
+```
+
+### Get Download URL
+
+```javascript
+const downloadUrl = await client.storage.getDownloadUrl('file-id-here');
+
+// Use in browser
+window.location.href = downloadUrl;
+
+// Or download programmatically
+const blob = await client.storage.downloadFile('file-id-here');
+```
+
+### List Files
+
+```javascript
+const { files, total } = await client.storage.listFiles({
+  limit: 20,
+  offset: 0,
+  file_type: 'photo'
+});
+
+console.log('Files:', files);
+```
+
+### Delete File
+
+```javascript
+await client.storage.deleteFile('file-id-here');
+```
+
+### Get Public URL
+
+```javascript
+const url = client.storage.getPublicUrl('file-id-here');
+
+// Use in HTML
+<img src={url} alt="File" />
+```
+
+## Complete Example
+
+```javascript
+import { NextMavensClient } from '@nextmavens/js';
+
+const client = new NextMavensClient({
+  apiKey: 'nm_live_pk_your_key'
+});
+
+async function main() {
+  // Sign in a user
+  const { user } = await client.auth.signIn({
+    email: 'user@example.com',
+    password: 'password'
+  });
+
+  console.log('Logged in as:', user.name);
+
+  // Query users
+  const users = await client.database
+    .from('users')
+    .select('id', 'email', 'name')
+    .eq('tenant_id', user.tenant_id)
+    .execute();
+
+  console.log('Users:', users);
+
+  // Subscribe to changes
+  const unsubscribe = client.realtime.onInsert('users', (payload) => {
+    console.log('New user:', payload.data);
+  });
+
+  // Later...
+  unsubscribe();
+}
+
+main().catch(console.error);
+```
+
+## React Example
+
+```jsx
+import { NextMavensClient } from '@nextmavens/js';
+import { useEffect, useState } from 'react';
+
+const client = new NextMavensClient({
+  apiKey: 'nm_live_pk_your_key'
+});
+
+function UsersList() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    // Fetch users
+    client.database.from('users').select().execute()
+      .then(data => setUsers(data));
+
+    // Subscribe to new users
+    const unsubscribe = client.realtime.onInsert('users', (payload) => {
+      setUsers(prev => [...prev, payload.data]);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  return (
+    <ul>
+      {users.map(user => (
+        <li key={user.id}>{user.name}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+## Node.js Example
+
+```javascript
+import { NextMavensClient } from '@nextmavens/js';
+
+const client = new NextMavensClient({
+  apiKey: process.env.NEXTMAVENS_API_KEY
+});
+
+async function getAppUsers() {
+  const users = await client.database
+    .from('users')
+    .select('id', 'email', 'name')
+    .eq('is_verified', true)
+    .desc('created_at')
+    .limit(100)
+    .execute();
+
+  return users;
+}
+
+// Express.js endpoint
+app.get('/api/users', async (req, res) => {
+  const users = await getAppUsers();
+  res.json({ users });
+});
+```
+
+## Error Handling
+
+All methods throw typed errors:
+
+```javascript
+import {
+  AuthError,
+  DatabaseError,
+  RealtimeError,
+  StorageError
+} from '@nextmavens/js';
+
+try {
+  await client.auth.signIn({ email, password });
+} catch (error) {
+  if (error instanceof AuthError) {
+    console.error('Auth failed:', error.message);
+    console.error('Error code:', error.code);
+  }
+}
+```
+
+## TypeScript Support
+
+The SDK is written in TypeScript and includes full type definitions:
+
+```typescript
+import { NextMavensClient, User } from '@nextmavens/js';
+
+const client = new NextMavensClient({
+  apiKey: 'nm_live_pk_your_key'
+});
+
+interface Post {
+  id: number;
+  title: string;
+  content: string;
+}
+
+const posts: Post[] = await client.database
+  .from('posts')
+  .execute();
+```
+
+## API Reference
+
+### Client Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `apiKey` | `string` | **required** | Your API key |
+| `apiUrl` | `string` | `https://api.nextmavens.cloud` | API gateway URL |
+| `authUrl` | `string` | `https://auth.nextmavens.cloud` | Auth service URL |
+| `graphqlUrl` | `string` | `https://graphql.nextmavens.cloud` | GraphQL service URL |
+| `realtimeUrl` | `string` | `wss://realtime.nextmavens.cloud` | Realtime WebSocket URL |
+| `storageUrl` | `string` | `https://telegram.nextmavens.cloud` | Storage service URL |
+
+### Filter Operators
+
+| Operator | Shorthand | Description |
+|----------|-----------|-------------|
+| `eq` | `.eq()` | Equal to |
+| `neq` | `.neq()` | Not equal to |
+| `gt` | `.gt()` | Greater than |
+| `gte` | `.gte()` | Greater than or equal |
+| `lt` | `.lt()` | Less than |
+| `lte` | `.lte()` | Less than or equal |
+| `like` | `.like()` | LIKE (case-sensitive) |
+| `ilike` | `.ilike()` | ILIKE (case-insensitive) |
+| `in` | `.in()` | IN array |
+| `is` | `.isNull()` | IS NULL |
+| `isNotNull` | `.isNotNull()` | IS NOT NULL |
+
+## License
+
+MIT

@@ -1,0 +1,11 @@
+Exit code 1
+
+==========================================
+  Maven Flow - Dry Run Preview
+==========================================
+
+This is a PREVIEW of what would happen.
+No changes will be made.
+
+[0;31m[ERROR] No docs/ directory found[0m
+  Create a PRD first using the flow-prd skill.

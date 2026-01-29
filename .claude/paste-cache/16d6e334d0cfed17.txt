@@ -1,0 +1,1832 @@
+
+❯ add an mcp page in the main pages that will actually tell the devs how to install the mcps and also the docs and also the features page make sure that you are detailed
+
+● I'll enhance the landing page with MCP documentation, features page, and detailed installation instructions:
+
+● Read(public/index.html)
+  ⎿  Read 100 lines
+
+● I'll create a comprehensive landing page with MCP documentation, features, and detailed installation instructions:
+
+● Write(public/index.html)
+  ⎿  Added 1102 lines, removed 368 lines
+       6    <title>NextMavens - Backend Platform for Modern Apps</title>
+       7    <link rel="preconnect" href="https://fonts.googleapis.com">
+       8    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+       9 -  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+       9 +  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+      10    <style>
+      11      * { margin: 0; padding: 0; box-sizing: border-box; }
+      12
+      13      :root {
+      14        --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+      15 +      --font-mono: 'JetBrains Mono', monospace;
+      16        --emerald-50: #ecfdf5;
+      17        --emerald-100: #d1fae5;
+      18        --emerald-200: #a7f3d0;
+     ...
+      34        --slate-900: #0f172a;
+      35      }
+      36
+      37 +    html { scroll-behavior: smooth; }
+      38 +
+      39      body {
+      40        font-family: var(--font-sans);
+      41        background: var(--slate-50);
+      39 -      min-height: 100vh;
+      42        color: var(--slate-900);
+      43 +      line-height: 1.6;
+      44      }
+      45
+      46 +    /* Navigation */
+      47      .nav {
+      48 +      position: fixed;
+      49 +      top: 0;
+      50 +      left: 0;
+      51 +      right: 0;
+      52 +      background: rgba(255, 255, 255, 0.9);
+      53 +      backdrop-filter: blur(12px);
+      54 +      border-bottom: 1px solid var(--slate-200);
+      55 +      z-index: 100;
+      56 +      transition: all 0.3s;
+      57 +    }
+      58 +
+      59 +    .nav.scrolled {
+      60 +      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      61 +    }
+      62 +
+      63 +    .nav-container {
+      64 +      max-width: 1180px;
+      65 +      margin: 0 auto;
+      66 +      padding: 16px 32px;
+      67        display: flex;
+      68        align-items: center;
+      69        justify-content: space-between;
+      47 -      padding: 24px 32px;
+      48 -      max-width: 1180px;
+      49 -      margin: 0 auto;
+      70      }
+      71
+      72      .logo-container {
+     ...
+       76      }
+       77
+       78      .logo-icon {
+       59 -      width: 36px;
+       60 -      height: 36px;
+       79 +      width: 32px;
+       80 +      height: 32px;
+       81        background: linear-gradient(135deg, var(--emerald-600), var(--emerald-700));
+       62 -      border-radius: 10px;
+       82 +      border-radius: 8px;
+       83        display: grid;
+       84        place-items: center;
+       85        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+       86      }
+       87
+       68 -    .logo-icon svg {
+       69 -      width: 20px;
+       70 -      height: 20px;
+       71 -      fill: white;
+       72 -    }
+       88 +    .logo-icon svg { width: 18px; height: 18px; fill: white; }
+       89
+       90      .logo-text {
+       75 -      font-size: 20px;
+       91 +      font-size: 18px;
+       92        font-weight: 700;
+       93        color: var(--slate-900);
+       94        letter-spacing: -0.02em;
+       95      }
+       96
+       97      .nav-links {
+       82 -      display: none;
+       98 +      display: flex;
+       99        gap: 32px;
+      100      }
+      101
+       86 -    @media (min-width: 768px) {
+       87 -      .nav-links { display: flex; }
+      102 +    @media (max-width: 768px) {
+      103 +      .nav-links { display: none; }
+      104      }
+      105
+      106      .nav-links a {
+      107        font-size: 14px;
+      108 +      font-weight: 500;
+      109        color: var(--slate-600);
+      110        text-decoration: none;
+      111        transition: color 0.2s;
+     ...
+      114      .nav-links a:hover { color: var(--slate-900); }
+      115
+      116      .nav-buttons {
+      100 -      display: none;
+      101 -      gap: 8px;
+      117 +      display: flex;
+      118 +      gap: 12px;
+      119        align-items: center;
+      120      }
+      121
+      105 -    @media (min-width: 768px) {
+      106 -      .nav-buttons { display: flex; }
+      122 +    @media (max-width: 768px) {
+      123 +      .nav-buttons { display: none; }
+      124      }
+      125
+      126      .btn-login {
+      110 -      padding: 10px 16px;
+      127 +      padding: 10px 20px;
+      128        font-size: 14px;
+      129 +      font-weight: 600;
+      130        color: var(--slate-700);
+      113 -      background: transparent;
+      131 +      background: var(--slate-100);
+      132        border: none;
+      115 -      border-radius: 9999px;
+      133 +      border-radius: 10px;
+      134        cursor: pointer;
+      135        transition: background 0.2s;
+      136      }
+      137
+      120 -    .btn-login:hover { background: white; }
+      138 +    .btn-login:hover { background: var(--slate-200); }
+      139
+      140      .btn-primary {
+      123 -      padding: 10px 20px;
+      141 +      padding: 10px 24px;
+      142        font-size: 14px;
+      143        font-weight: 600;
+      144        color: white;
+      127 -      background: linear-gradient(135deg, var(--emerald-700), var(--emerald-800));
+      145 +      background: linear-gradient(135deg, var(--emerald-600), var(--emerald-700));
+      146        border: none;
+      129 -      border-radius: 9999px;
+      147 +      border-radius: 10px;
+      148        cursor: pointer;
+      131 -      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      149 +      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+      150        transition: all 0.2s;
+      151      }
+      152
+      153      .btn-primary:hover {
+      136 -      background: linear-gradient(135deg, var(--emerald-800), var(--emerald-900));
+      154        transform: translateY(-1px);
+      155        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+      156      }
+      157
+      158 +    /* Hero Section */
+      159      .hero {
+      160 +      padding: 140px 32px 80px;
+      161        max-width: 1180px;
+      162        margin: 0 auto;
+      144 -      padding: 32px;
+      163        display: grid;
+      164        grid-template-columns: 1fr;
+      147 -      gap: 32px;
+      165 +      gap: 48px;
+      166      }
+      167
+      168      @media (min-width: 768px) {
+      169        .hero {
+      170          grid-template-columns: 1fr 1fr;
+      153 -        padding: 32px 0 64px;
+      171 +        padding: 180px 32px 100px;
+      172        }
+      173      }
+      174
+      157 -    .hero-left {
+      158 -      display: flex;
+      159 -      flex-direction: column;
+      160 -      justify-content: center;
+      161 -      padding-right: 16px;
+      162 -    }
+      163 -
+      164 -    .hero h1 {
+      175 +    .hero-content h1 {
+      176        font-size: 48px;
+      177        font-weight: 700;
+      167 -      line-height: 1.05;
+      178 +      line-height: 1.1;
+      179        letter-spacing: -0.03em;
+      180        color: var(--slate-900);
+      181 +      margin-bottom: 24px;
+      182      }
+      183
+      184      @media (min-width: 768px) {
+      173 -      .hero h1 { font-size: 60px; }
+      185 +      .hero-content h1 { font-size: 64px; }
+      186      }
+      187
+      176 -    .hero h1 span {
+      188 +    .hero-content h1 span {
+      189        background: linear-gradient(135deg, var(--emerald-600), var(--emerald-500));
+      190        -webkit-background-clip: text;
+      191        -webkit-text-fill-color: transparent;
+      192        background-clip: text;
+      193      }
+      194
+      183 -    .hero-description {
+      184 -      margin-top: 24px;
+      195 +    .hero-content p {
+      196        font-size: 18px;
+      197        color: var(--slate-600);
+      187 -      max-width: 400px;
+      198 +      max-width: 480px;
+      199        line-height: 1.6;
+      200 +      margin-bottom: 32px;
+      201      }
+      202
+      191 -    .hero-description strong {
+      192 -      color: var(--slate-900);
+      193 -      font-weight: 600;
+      194 -    }
+      195 -
+      196 -    .hero-cta {
+      197 -      display: flex;
+      198 -      gap: 16px;
+      199 -      margin-top: 32px;
+      200 -    }
+      201 -
+      203      .hero-stats {
+      204        display: grid;
+      204 -      grid-template-columns: 1fr 1fr;
+      205 +      grid-template-columns: repeat(2, 1fr);
+      206        gap: 32px;
+      206 -      margin-top: 48px;
+      207 -      max-width: 320px;
+      207 +      max-width: 400px;
+      208      }
+      209
+      210 +    .stat {
+      211 +      margin-bottom: 8px;
+      212 +    }
+      213 +
+      214      .stat-value {
+      211 -      font-size: 28px;
+      215 +      font-size: 32px;
+      216        font-weight: 700;
+      217        color: var(--slate-900);
+      218      }
+     ...
+       220      .stat-label {
+       221        font-size: 14px;
+       222        color: var(--slate-500);
+       219 -      margin-top: 4px;
+       223      }
+       224
+       222 -    .hero-trust {
+       225 +    .hero-cta {
+       226        display: flex;
+       224 -      align-items: center;
+       225 -      gap: 32px;
+       226 -      margin-top: 40px;
+       227 -      opacity: 0.7;
+       227 +      gap: 16px;
+       228 +      margin-top: 32px;
+       229      }
+       230
+       230 -    .hero-trust span {
+       231 -      font-size: 12px;
+       232 -      color: var(--slate-500);
+       233 -      letter-spacing: 0.1em;
+       234 -    }
+       235 -
+       236 -    .hero-trust .companies {
+       237 -      display: flex;
+       238 -      gap: 24px;
+       239 -      font-size: 14px;
+       240 -      font-weight: 600;
+       241 -      color: var(--slate-400);
+       242 -    }
+       243 -
+       244 -    .hero-right {
+       231 +    .hero-cards {
+       232        display: grid;
+       233        grid-template-columns: 1fr;
+       234        gap: 24px;
+       235      }
+       236
+       237      @media (min-width: 768px) {
+       251 -      .hero-right { grid-template-columns: 1fr 1fr; }
+       238 +      .hero-cards { grid-template-columns: 1fr 1fr; }
+       239      }
+       240
+       254 -    .feature-card {
+       255 -      border-radius: 16px;
+       256 -      padding: 24px;
+       257 -      position: relative;
+       258 -      overflow: hidden;
+       259 -      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+       241 +    /* Sections */
+       242 +    .section {
+       243 +      padding: 80px 32px;
+       244 +      max-width: 1180px;
+       245 +      margin: 0 auto;
+       246      }
+       247
+       262 -    .card-secure {
+       263 -      background: linear-gradient(180deg, var(--emerald-800), var(--emerald-900));
+       264 -      color: var(--emerald-50);
+       248 +    .section-header {
+       249 +      text-align: center;
+       250 +      margin-bottom: 48px;
+       251      }
+       252
+       267 -    .card-icon {
+       268 -      width: 40px;
+       269 -      height: 40px;
+       270 -      border-radius: 10px;
+       271 -      background: rgba(255,255,255,0.15);
+       272 -      display: grid;
+       273 -      place-items: center;
+       253 +    .section-title {
+       254 +      font-size: 36px;
+       255 +      font-weight: 700;
+       256 +      color: var(--slate-900);
+       257        margin-bottom: 16px;
+       258      }
+       259
+       277 -    .card-icon svg {
+       278 -      width: 20px;
+       279 -      height: 20px;
+       280 -      stroke: white;
+       260 +    .section-subtitle {
+       261 +      font-size: 18px;
+       262 +      color: var(--slate-600);
+       263 +      max-width: 600px;
+       264 +      margin: 0 auto;
+       265      }
+       266
+       283 -    .card-badge {
+       284 -      font-size: 11px;
+       285 -      text-transform: uppercase;
+       286 -      letter-spacing: 0.1em;
+       287 -      color: var(--emerald-200);
+       267 +    /* Features Grid */
+       268 +    .features-grid {
+       269 +      display: grid;
+       270 +      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+       271 +      gap: 32px;
+       272      }
+       273
+       290 -    .card-title {
+       291 -      font-size: 20px;
+       292 -      font-weight: 600;
+       293 -      line-height: 1.3;
+       294 -      margin-top: 8px;
+       274 +    .feature-card {
+       275 +      background: white;
+       276 +      border: 1px solid var(--slate-200);
+       277 +      border-radius: 16px;
+       278 +      padding: 32px;
+       279 +      transition: all 0.3s;
+       280      }
+       281
+       297 -    .card-pulse {
+       298 -      position: absolute;
+       299 -      top: 24px;
+       300 -      right: 24px;
+       301 -      width: 48px;
+       302 -      height: 48px;
+       303 -      border-radius: 50%;
+       304 -      background: rgba(16, 185, 129, 0.3);
+       305 -      animation: pulse 2.5s infinite;
+       282 +    .feature-card:hover {
+       283 +      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+       284 +      transform: translateY(-4px);
+       285 +      border-color: var(--emerald-300);
+       286      }
+       287
+       308 -    @keyframes pulse {
+       309 -      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+       310 -      100% { box-shadow: 0 0 0 20px rgba(16, 185, 129, 0); }
+       288 +    .feature-icon {
+       289 +      width: 56px;
+       290 +      height: 56px;
+       291 +      border-radius: 14px;
+       292 +      background: linear-gradient(135deg, var(--emerald-50), var(--emerald-100));
+       293 +      display: grid;
+       294 +      place-items: center;
+       295 +      margin-bottom: 20px;
+       296      }
+       297
+       313 -    .card-rings {
+       314 -      position: absolute;
+       315 -      inset: 0;
+       316 -      opacity: 0.15;
+       317 -      background-image: radial-gradient(circle at 30% 50%, var(--emerald-400) 1px, transparent 1px);
+       318 -      background-size: 24px 24px;
+       298 +    .feature-icon svg {
+       299 +      width: 28px;
+       300 +      height: 28px;
+       301 +      stroke: var(--emerald-700);
+       302 +      stroke-width: 2;
+       303      }
+       304
+       321 -    .card-currencies {
+       322 -      background: linear-gradient(180deg, var(--emerald-400), var(--emerald-500));
+       323 -      color: white;
+       305 +    .feature-title {
+       306 +      font-size: 20px;
+       307 +      font-weight: 600;
+       308 +      color: var(--slate-900);
+       309 +      margin-bottom: 8px;
+       310      }
+       311
+       326 -    .card-planet {
+       327 -      position: absolute;
+       328 -      top: -40px;
+       329 -      right: -40px;
+       330 -      width: 160px;
+       331 -      height: 160px;
+       332 -      opacity: 0.7;
+       312 +    .feature-description {
+       313 +      font-size: 15px;
+       314 +      color: var(--slate-600);
+       315 +      line-height: 1.6;
+       316      }
+       317
+       335 -    .card-planet-circle {
+       336 -      width: 80px;
+       337 -      height: 80px;
+       338 -      border-radius: 50%;
+       339 -      background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.2));
+       340 -      position: absolute;
+       341 -      top: 50%;
+       342 -      left: 50%;
+       343 -      transform: translate(-50%, -50%);
+       344 -      animation: float 3s ease-in-out infinite;
+       318 +    .feature-list {
+       319 +      list-style: none;
+       320 +      margin-top: 16px;
+       321      }
+       322
+       347 -    @keyframes float {
+       348 -      0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+       349 -      50% { transform: translate(-50%, -50%) translateY(-10px); }
+       323 +    .feature-list li {
+       324 +      font-size: 14px;
+       325 +      color: var(--slate-600);
+       326 +      padding: 6px 0;
+       327 +      display: flex;
+       328 +      align-items: center;
+       329 +      gap: 8px;
+       330      }
+       331
+       352 -    .card-orbit {
+       353 -      position: absolute;
+       354 -      top: 50%;
+       355 -      left: 50%;
+       356 -      width: 100px;
+       357 -      height: 30px;
+       358 -      border: 1px solid rgba(255,255,255,0.3);
+       359 -      border-radius: 50%;
+       360 -      transform: translate(-50%, -50%) rotate(-15deg);
+       332 +    .feature-list li::before {
+       333 +      content: "✓";
+       334 +      color: var(--emerald-600);
+       335 +      font-weight: 700;
+       336      }
+       337
+       363 -    .card-growth {
+       338 +    /* Service Detail Sections */
+       339 +    .service-detail {
+       340        background: white;
+       365 -      color: var(--slate-800);
+       341        border: 1px solid var(--slate-200);
+       342 +      border-radius: 16px;
+       343 +      padding: 40px;
+       344 +      margin-bottom: 32px;
+       345      }
+       346
+       369 -    .mini-bars {
+       347 +    .service-detail-header {
+       348        display: flex;
+       371 -      align-items: flex-end;
+       349 +      align-items: center;
+       350        gap: 16px;
+       373 -      height: 120px;
+       374 -      margin-top: 16px;
+       375 -      padding: 16px;
+       376 -      background: linear-gradient(180deg, var(--emerald-50), white);
+       351 +      margin-bottom: 24px;
+       352 +    }
+       353 +
+       354 +    .service-detail-icon {
+       355 +      width: 64px;
+       356 +      height: 64px;
+       357 +      border-radius: 16px;
+       358 +      background: linear-gradient(135deg, var(--emerald-100), var(--emerald-200));
+       359 +      display: grid;
+       360 +      place-items: center;
+       361 +    }
+       362 +
+       363 +    .service-detail-icon svg {
+       364 +      width: 32px;
+       365 +      height: 32px;
+       366 +      stroke: var(--emerald-700);
+       367 +      stroke-width: 2;
+       368 +    }
+       369 +
+       370 +    .service-detail-title {
+       371 +      font-size: 24px;
+       372 +      font-weight: 700;
+       373 +      color: var(--slate-900);
+       374 +    }
+       375 +
+       376 +    .service-detail-description {
+       377 +      font-size: 16px;
+       378 +      color: var(--slate-600);
+       379 +      margin-bottom: 24px;
+       380 +    }
+       381 +
+       382 +    .code-block {
+       383 +      background: var(--slate-900);
+       384        border-radius: 12px;
+       385 +      padding: 24px;
+       386 +      margin: 24px 0;
+       387 +      overflow-x: auto;
+       388      }
+       389
+       380 -    .mini-bar {
+       381 -      width: 40px;
+       382 -      background: linear-gradient(180deg, var(--emerald-200), var(--emerald-400));
+       383 -      border-radius: 8px;
+       384 -      animation: grow 1s ease-out forwards;
+       385 -      transform-origin: bottom;
+       390 +    .code-block pre {
+       391 +      font-family: var(--font-mono);
+       392 +      font-size: 14px;
+       393 +      line-height: 1.6;
+       394 +      color: var(--slate-100);
+       395      }
+       396
+       388 -    @keyframes grow {
+       389 -      from { transform: scaleY(0); }
+       390 -      to { transform: scaleY(1); }
+       397 +    .code-block code {
+       398 +      color: var(--emerald-400);
+       399      }
+       400
+       393 -    .mini-bar:nth-child(1) { height: 40%; animation-delay: 0.5s; }
+       394 -    .mini-bar:nth-child(2) { height: 65%; animation-delay: 0.65s; }
+       395 -    .mini-bar:nth-child(3) { height: 85%; animation-delay: 0.8s; }
+       396 -    .mini-bar:nth-child(4) { height: 100%; animation-delay: 0.95s; }
+       401 +    .code-block .comment {
+       402 +      color: var(--slate-500);
+       403 +    }
+       404
+       398 -    .card-spacer {
+       399 -      display: none;
+       405 +    .code-block .string {
+       406 +      color: var(--emerald-300);
+       407      }
+       408
+       402 -    @media (min-width: 768px) {
+       403 -      .card-spacer { display: block; }
+       409 +    .code-block .keyword {
+       410 +      color: var(--emerald-400);
+       411      }
+       412
+       406 -    .card-database {
+       407 -      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+       413 +    .copy-button {
+       414 +      margin-top: 12px;
+       415 +      padding: 8px 16px;
+       416 +      font-size: 13px;
+       417 +      font-weight: 500;
+       418        color: white;
+       419 +      background: var(--slate-700);
+       420 +      border: none;
+       421 +      border-radius: 8px;
+       422 +      cursor: pointer;
+       423 +      transition: background 0.2s;
+       424      }
+       425
+       411 -    .card-realtime {
+       412 -      background: linear-gradient(135deg, #f59e0b, #f97316);
+       413 -      color: white;
+       426 +    .copy-button:hover { background: var(--slate-600); }
+       427 +
+       428 +    .endpoint-list {
+       429 +      display: grid;
+       430 +      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+       431 +      gap: 16px;
+       432 +      margin: 24px 0;
+       433      }
+       434
+       416 -    .value-label {
+       417 -      font-size: 13px;
+       435 +    .endpoint-item {
+       436 +      background: var(--slate-50);
+       437 +      border-radius: 12px;
+       438 +      padding: 20px;
+       439 +    }
+       440 +
+       441 +    .endpoint-label {
+       442 +      font-size: 12px;
+       443 +      text-transform: uppercase;
+       444 +      letter-spacing: 0.1em;
+       445        color: var(--slate-500);
+       446 +      margin-bottom: 8px;
+       447      }
+       448
+       421 -    .value-amount {
+       422 -      font-size: 32px;
+       423 -      font-weight: 700;
+       424 -      color: var(--slate-900);
+       425 -      margin-top: 4px;
+       449 +    .endpoint-value {
+       450 +      font-family: var(--font-mono);
+       451 +      font-size: 14px;
+       452 +      color: var(--slate-700);
+       453 +      word-break: break-all;
+       454      }
+       455
+       428 -    .value-change {
+       429 -      font-size: 12px;
+       430 -      color: var(--emerald-600);
+       431 -      margin-top: 4px;
+       456 +    /* MCP Section */
+       457 +    .mcp-integration {
+       458 +      background: linear-gradient(135deg, #1e1e2e 0%, #2d2d3a 100%);
+       459 +      border-radius: 20px;
+       460 +      padding: 48px;
+       461 +      margin: 48px 0;
+       462      }
+       463
+       434 -    /* Auth Modal */
+       435 -    .modal-overlay {
+       436 -      display: none;
+       437 -      position: fixed;
+       438 -      inset: 0;
+       439 -      background: rgba(15, 23, 42, 0.5);
+       440 -      backdrop-filter: blur(4px);
+       441 -      z-index: 100;
+       442 -      align-items: center;
+       443 -      justify-content: center;
+       444 -      padding: 16px;
+       464 +    .mcp-grid {
+       465 +      display: grid;
+       466 +      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+       467 +      gap: 24px;
+       468      }
+       469
+       447 -    .modal-overlay.active { display: flex; }
+       470 +    @media (min-width: 768px) {
+       471 +      .mcp-grid { grid-template-columns: 1fr 1fr; }
+       472 +    }
+       473
+       449 -    .modal {
+       450 -      background: white;
+       474 +    .mcp-card {
+       475 +      background: rgba(255,255,255,0.05);
+       476 +      border: 1px solid rgba(255,255,255,0.1);
+       477        border-radius: 16px;
+       478        padding: 32px;
+       453 -      width: 100%;
+       454 -      max-width: 400px;
+       455 -      box-shadow: 0 24px 48px rgba(0,0,0,0.2);
+       479      }
+       480
+       458 -    .modal h2 {
+       459 -      font-size: 24px;
+       460 -      font-weight: 700;
+       461 -      margin-bottom: 24px;
+       462 -      color: var(--slate-900);
+       481 +    .mcp-card h3 {
+       482 +      font-size: 20px;
+       483 +      font-weight: 600;
+       484 +      color: white;
+       485 +      margin-bottom: 16px;
+       486      }
+       487
+       465 -    .form-group { margin-bottom: 16px; }
+       466 -
+       467 -    .form-group label {
+       468 -      display: block;
+       488 +    .mcp-card p {
+       489        font-size: 14px;
+       470 -      font-weight: 500;
+       471 -      color: var(--slate-700);
+       472 -      margin-bottom: 8px;
+       490 +      color: rgba(255,255,255,0.7);
+       491 +      margin-bottom: 20px;
+       492 +      line-height: 1.6;
+       493      }
+       494
+       475 -    .form-group input {
+       476 -      width: 100%;
+       477 -      padding: 12px 16px;
+       478 -      border: 1px solid var(--slate-200);
+       479 -      border-radius: 10px;
+       480 -      font-size: 15px;
+       481 -      font-family: var(--font-sans);
+       482 -      transition: all 0.2s;
+       495 +    .mcp-tools {
+       496 +      list-style: none;
+       497      }
+       498
+       485 -    .form-group input:focus {
+       486 -      outline: none;
+       487 -      border-color: var(--emerald-500);
+       488 -      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+       499 +    .mcp-tools li {
+       500 +      font-size: 13px;
+       501 +      color: rgba(255,255,255,0.7);
+       502 +      padding: 8px 0;
+       503 +      padding-left: 20px;
+       504 +      position: relative;
+       505      }
+       506
+       491 -    .modal-buttons {
+       507 +    .mcp-tools li::before {
+       508 +      content: "→";
+       509 +      position: absolute;
+       510 +      left: 0;
+       511 +      color: var(--emerald-400);
+       512 +    }
+       513 +
+       514 +    /* Footer */
+       515 +    footer {
+       516 +      background: white;
+       517 +      border-top: 1px solid var(--slate-200);
+       518 +      padding: 48px 32px;
+       519 +      text-align: center;
+       520 +    }
+       521 +
+       522 +    .footer-links {
+       523        display: flex;
+       493 -      gap: 12px;
+       494 -      margin-top: 24px;
+       524 +      justify-content: center;
+       525 +      gap: 32px;
+       526 +      margin-bottom: 24px;
+       527      }
+       528
+       497 -    .modal-buttons .btn-primary {
+       498 -      flex: 1;
+       529 +    .footer-links a {
+       530 +      font-size: 14px;
+       531 +      color: var(--slate-600);
+       532 +      text-decoration: none;
+       533 +      transition: color 0.2s;
+       534      }
+       535
+       501 -    .btn-secondary {
+       502 -      flex: 1;
+       503 -      padding: 10px 20px;
+       536 +    .footer-links a:hover { color: var(--slate-900); }
+       537 +
+       538 +    .footer-copyright {
+       539 +      font-size: 13px;
+       540 +      color: var(--slate-400);
+       541 +    }
+       542 +
+       543 +    /* Tabs */
+       544 +    .tabs {
+       545 +      display: flex;
+       546 +      gap: 8px;
+       547 +      margin-bottom: 24px;
+       548 +      border-bottom: 1px solid var(--slate-200);
+       549 +    }
+       550 +
+       551 +    .tab {
+       552 +      padding: 12px 24px;
+       553        font-size: 14px;
+       505 -      font-weight: 600;
+       506 -      color: var(--slate-700);
+       507 -      background: var(--slate-100);
+       554 +      font-weight: 500;
+       555 +      color: var(--slate-600);
+       556 +      background: transparent;
+       557        border: none;
+       509 -      border-radius: 9999px;
+       558 +      border-bottom: 2px solid transparent;
+       559        cursor: pointer;
+       511 -      transition: background 0.2s;
+       560 +      transition: all 0.2s;
+       561      }
+       562
+       514 -    .btn-secondary:hover { background: var(--slate-200); }
+       563 +    .tab:hover {
+       564 +      color: var(--slate-900);
+       565 +    }
+       566
+       516 -    .modal-close {
+       517 -      position: absolute;
+       518 -      top: 16px;
+       519 -      right: 16px;
+       520 -      width: 32px;
+       521 -      height: 32px;
+       522 -      border: none;
+       523 -      background: var(--slate-100);
+       524 -      border-radius: 8px;
+       525 -      cursor: pointer;
+       526 -      font-size: 18px;
+       527 -      color: var(--slate-500);
+       567 +    .tab.active {
+       568 +      color: var(--emerald-700);
+       569 +      border-bottom-color: var(--emerald-600);
+       570      }
+       571
+       530 -    .modal-close:hover { background: var(--slate-200); }
+       572 +    .tab-content { display: none; }
+       573 +    .tab-content.active { display: block; }
+       574
+       532 -    .error-message {
+       533 -      background: #fef2f2;
+       534 -      border: 1px solid #fecaca;
+       535 -      color: #dc2626;
+       536 -      padding: 12px;
+       537 -      border-radius: 8px;
+       538 -      font-size: 14px;
+       539 -      margin-bottom: 16px;
+       575 +    /* Comparison Table */
+       576 +    .comparison-table {
+       577 +      width: 100%;
+       578 +      border-collapse: collapse;
+       579 +      background: white;
+       580 +      border-radius: 12px;
+       581 +      overflow: hidden;
+       582 +      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+       583      }
+       584
+       542 -    .success-message {
+       543 -      background: #f0fdf4;
+       544 -      border: 1px solid #bbf7d0;
+       545 -      color: #16a34a;
+       546 -      padding: 12px;
+       547 -      border-radius: 8px;
+       585 +    .comparison-table th,
+       586 +    .comparison-table td {
+       587 +      padding: 16px 20px;
+       588 +      text-align: left;
+       589 +      border-bottom: 1px solid var(--slate-200);
+       590 +    }
+       591 +
+       592 +    .comparison-table th {
+       593 +      font-size: 13px;
+       594 +      font-weight: 600;
+       595 +      text-transform: uppercase;
+       596 +      letter-spacing: 0.05em;
+       597 +      color: var(--slate-500);
+       598 +      background: var(--slate-50);
+       599 +    }
+       600 +
+       601 +    .comparison-table td {
+       602        font-size: 14px;
+       549 -      margin-bottom: 16px;
+       603 +      color: var(--slate-700);
+       604      }
+       605
+       552 -    .hidden { display: none !important; }
+       606 +    .comparison-table tr:last-child td {
+       607 +      border-bottom: none;
+       608 +    }
+       609
+       554 -    footer {
+       555 -      text-align: center;
+       556 -      padding: 32px;
+       557 -      color: var(--slate-400);
+       558 -      font-size: 12px;
+       610 +    .check {
+       611 +      color: var(--emerald-600);
+       612 +      font-weight: 700;
+       613      }
+       614 +
+       615 +    .cross {
+       616 +      color: var(--slate-300);
+       617 +      font-weight: 700;
+       618 +    }
+       619    </style>
+       620  </head>
+       621  <body>
+       622    <!-- Navigation -->
+       564 -  <nav class="nav">
+       565 -    <div class="logo-container">
+       566 -      <div class="logo-icon">
+       567 -        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+       568 -          <path d="M4 12c5 0 4-8 10-8 0 3 6 3 6 8s-6 5-6 8c-6 0-5-8-10-8Z"/>
+       569 -        </svg>
+       623 +  <nav class="nav" id="navbar">
+       624 +    <div class="nav-container">
+       625 +      <div class="logo-container">
+       626 +        <div class="logo-icon">
+       627 +          <svg viewBox="0 0 24 24">
+       628 +            <path d="M4 12c5 0 4-8 10-8 0 3 6 3 6 8s-6 5-6 8c-6 0-5-8-10-8Z"/>
+       629 +          </svg>
+       630 +        </div>
+       631 +        <span class="logo-text">nextmavens</span>
+       632        </div>
+       571 -      <span class="logo-text">nextmavens</span>
+       572 -    </div>
+       633
+       574 -    <div class="nav-links">
+       575 -      <a href="#features">Features</a>
+       576 -      <a href="#pricing">Pricing</a>
+       577 -      <a href="#docs">Docs</a>
+       578 -      <a href="#blog">Blog</a>
+       579 -    </div>
+       634 +      <div class="nav-links">
+       635 +        <a href="#features">Features</a>
+       636 +        <a href="#services">Services</a>
+       637 +        <a href="#mcp">MCP & AI</a>
+       638 +        <a href="#docs">Docs</a>
+       639 +        <a href="#comparison">Pricing</a>
+       640 +      </div>
+       641
+       581 -    <div class="nav-buttons">
+       582 -      <button class="btn-login" onclick="openModal('login')">Login</button>
+       583 -      <button class="btn-primary" onclick="openModal('signup')">Sign Up</button>
+       642 +      <div class="nav-buttons">
+       643 +        <button class="btn-login" onclick="window.location.href='https://portal.nextmavens.cloud'">Dashboard</button>
+       644 +        <button class="btn-primary" onclick="openModal('signup')">Get Started</button>
+       645 +      </div>
+       646      </div>
+       647    </nav>
+       648
+       649    <!-- Hero Section -->
+       650    <section class="hero">
+       589 -    <div class="hero-left">
+       651 +    <div class="hero-content">
+       652        <h1>
+       653          Build backends<br>
+       654          <span>at warp speed.</span>
+       655        </h1>
+       594 -      <p class="hero-description">
+       595 -        Join thousands of developers who choose <strong>NextMavens</strong> for instant backend infrastructure with database, auth, realtime, and storage.
+       656 +      <p>
+       657 +        Join thousands of developers who choose <strong>NextMavens</strong> for instant backend infrastructure.
+       658 +        Database, Auth, Realtime, Storage, and MCP integration in one platform.
+       659        </p>
+       660        <div class="hero-cta">
+       598 -        <button class="btn-primary" onclick="openModal('signup')" style="padding: 14px 28px; font-size: 16px;">
+       661 +        <button class="btn-primary" onclick="openModal('signup')" style="padding: 14px 32px; font-size: 16px;">
+       662            Start Building Free
+       663          </button>
+       664        </div>
+       665        <div class="hero-stats">
+       666 +        <div class="stat">
+       667 +          <div class="stat-value">5+</div>
+       668 +          <div class="stat-label">Integrated Services</div>
+       669 +        </div>
+       670 +        <div class="stat">
+       671 +          <div class="stat-value">99.9%</div>
+       672 +          <div class="stat-label">Uptime SLA</div>
+       673 +        </div>
+       674 +        <div class="stat">
+       675 +          <div class="stat-value">10ms</div>
+       676 +          <div class="stat-label">Avg Response</div>
+       677 +        </div>
+       678 +      </div>
+       679 +    </div>
+       680 +    <div class="hero-cards">
+       681 +      <div class="feature-card">
+       682 +        <div class="feature-icon">
+       683 +          <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+       684 +            <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+       685 +          </svg>
+       686 +        </div>
+       687 +        <div class="feature-title">Realtime Updates</div>
+       688 +        <p class="feature-description">WebSocket-powered live database changes with auto-reconnection.</p>
+       689 +      </div>
+       690 +      <div class="feature-card">
+       691 +        <div class="feature-icon">
+       692 +          <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+       693 +            <rect x="3" y="3" width="18" height="18" rx="2"/>
+       694 +            <path d="M9 12l6 6m-6 0l6-6"/>
+       695 +          </svg>
+       696 +        </div>
+       697 +        <div class="feature-title">MCP Integration</div>
+       698 +        <p class="feature-description">Native support for Model Context Protocol for AI/IDE integration.</p>
+       699 +      </div>
+       700 +    </div>
+       701 +  </section>
+       702 +
+       703 +  <!-- Features Section -->
+       704 +  <section id="features" class="section">
+       705 +    <div class="section-header">
+       706 +      <h2 class="section-title">Everything you need</h2>
+       707 +      <p class="section-subtitle">Powerful services to build any backend, from simple APIs to complex enterprise systems.</p>
+       708 +    </div>
+       709 +
+       710 +    <div class="features-grid">
+       711 +      <div class="feature-card">
+       712 +        <div class="feature-icon">
+       713 +          <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+       714 +            <path d="M21 12c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3zm-8 0c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3zm12 0c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3z"/
+           +>
+       715 +          </svg>
+       716 +        </div>
+       717 +        <div class="feature-title">Multi-tenant Database</div>
+       718 +        <p class="feature-description">PostgreSQL with Row-Level Security for complete data isolation between tenants.</p>
+       719 +        <ul class="feature-list">
+       720 +          <li>Auto-generated REST API</li>
+       721 +          <li>GraphQL endpoint</li>
+       722 +          <li>Row-Level Security (RLS)</li>
+       723 +          <li>Automatic migrations</li>
+       724 +        </ul>
+       725 +      </div>
+       726 +
+       727 +      <div class="feature-card">
+       728 +        <div class="feature-icon">
+       729 +          <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+       730 +            <path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.
+           +21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+       731 +          </svg>
+       732 +        </div>
+       733 +        <div class="feature-title">Enterprise Authentication</div>
+       734 +        <p class="feature-description">JWT-based auth with user management, social logins, and fine-grained permissions.</p>
+       735 +        <ul class="feature-list">
+       736 +          <li>User registration & login</li>
+       737 +          <li>Password reset flows</li>
+       738 +          <li>JWT tokens with refresh</li>
+       739 +          <li>Role-based access control</li>
+       740 +        </ul>
+       741 +      </div>
+       742 +
+       743 +      <div class="feature-card">
+       744 +        <div class="feature-icon">
+       745 +          <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+       746 +            <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+       747 +          </svg>
+       748 +        </div>
+       749 +        <div class="feature-title">Realtime Sync</div>
+       750 +        <p class="feature-description">WebSocket subscriptions for instant database updates across all connected clients.</p>
+       751 +        <ul class="feature-list">
+       752 +          <li>PostgreSQL LISTEN/NOTIFY</li>
+       753 +          <li>Per-table subscriptions</li>
+       754 +          <li>Row-level filtering</li>
+       755 +          <li>Auto-reconnection</li>
+       756 +        </ul>
+       757 +      </div>
+       758 +
+       759 +      <div class="feature-card">
+       760 +        <div class="feature-icon">
+       761 +          <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+       762 +            <path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+       763 +          </svg>
+       764 +        </div>
+       765 +        <div class="feature-title">Telegram Storage</div>
+       766 +        <p class="feature-description">Unlimited file storage via Telegram integration with CDN delivery.</p>
+       767 +        <ul class="feature-list">
+       768 +          <li>Unlimited storage</li>
+       769 +          <li>Global CDN</li>
+       770 +          <li>Multiple file types</li>
+       771 +          <li>Auto-generated URLs</li>
+       772 +        </ul>
+       773 +      </div>
+       774 +
+       775 +      <div class="feature-card">
+       776 +        <div class="feature-icon">
+       777 +          <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+       778 +            <path d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H5m14 0h2m-2 6h2M9 3l6 6m-6 0L3 9m6 3v6m0-6v-6"/>
+       779 +          </svg>
+       780 +        </div>
+       781 +        <div class="feature-title">MCP Server</div>
+       782 +        <p class="feature-description">Model Context Protocol for seamless AI/IDE integration with your backend.</p>
+       783 +        <ul class="feature-list">
+       784 +          <li>Claude Desktop support</li>
+       785 +          <li>ChatGPT integration</li>
+       786 +          <li>Database query tools</li>
+       787 +          <li>Auth & storage tools</li>
+       788 +        </ul>
+       789 +      </div>
+       790 +    </div>
+       791 +  </section>
+       792 +
+       793 +  <!-- Services Section -->
+       794 +  <section id="services" class="section">
+       795 +    <div class="section-header">
+       796 +      <h2 class="section-title">Services</h2>
+       797 +      <p class="section-subtitle">Comprehensive backend services, all connected through one API key.</p>
+       798 +    </div>
+       799 +
+       800 +    <!-- Database Service -->
+       801 +    <div class="service-detail">
+       802 +      <div class="service-detail-header">
+       803 +        <div class="service-detail-icon">
+       804 +          <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+       805 +            <ellipse cx="12" cy="5" rx="3"/>
+       806 +            <path d="M21 12c0 1.66-1.34 3-3 3s-3-1.34-3-3m0 0c-1.66 0-3 1.34-3 3s1.34 3 3 3m0-6c-1.66 0-3 1.34-3 3s1.34 3 3 3m0 6c-1.66 0-3 1.34-3 3s1.34 3 3 3"/>
+       807 +          </svg>
+       808 +        </div>
+       809          <div>
+       604 -          <div class="stat-value">10K+</div>
+       605 -          <div class="stat-label">Developers</div>
+       810 +          <div class="service-detail-title">Database Service</div>
+       811 +          <p class="service-detail-description">PostgreSQL with auto-generated REST & GraphQL APIs, plus Row-Level Security for multi-tenant isolation.</p>
+       812          </div>
+       813 +      </div>
+       814 +
+       815 +      <div class="tabs">
+       816 +        <button class="tab active" data-tab="db-overview" onclick="switchTab('db-overview', 'services')">Overview</button>
+       817 +        <button class="tab" data-tab="db-usage" onclick="switchTab('db-usage', 'services')">Usage Examples</button>
+       818 +      </div>
+       819 +
+       820 +      <div id="db-overview" class="tab-content active">
+       821 +        <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">Capabilities</h3>
+       822 +        <ul class="feature-list">
+       823 +          <li><strong>Auto REST API</strong> - PostgREST generates RESTful endpoints from your database schema</li>
+       824 +          <li><strong>GraphQL API</strong> - Postgraphile provides type-safe GraphQL with auto-generated queries</li>
+       825 +          <li><strong>Row-Level Security</strong> - Multi-tenant data isolation at database level</li>
+       826 +          <li><strong>Real-time Subscriptions</strong> - Listen to database changes via WebSocket</li>
+       827 +        </ul>
+       828 +
+       829 +        <h3 style="font-size: 18px; font-weight: 600; margin: 24px 0 16px;">SDK Installation</h3>
+       830 +        <div class="code-block">
+       831 +          <pre><code><span class="comment"># Install from GitHub</span>
+       832 +npm install https://github.com/Mkid095/nextmavens-js.git
+       833 +
+       834 +<span class="comment"># Or add to package.json</span>
+       835 +{
+       836 +  "dependencies": {
+       837 +    "nextmavens-js": "github:Mkid095/nextmavens-js"
+       838 +  }
+       839 +}</code></pre>
+       840 +        </div>
+       841 +      </div>
+       842 +
+       843 +      <div id="db-usage" class="tab-content">
+       844 +        <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">JavaScript SDK Usage</h3>
+       845 +        <div class="code-block">
+       846 +          <pre><code><span class="keyword">import</span> { NextMavensClient } <span class="keyword">from</span> <span class="string">'nextmavens-js'</span>;
+       847 +
+       848 +<span class="keyword">const</span> client = <span class="keyword">new</span> NextMavensClient({
+       849 +  apiKey: <span class="string">'nm_live_pk_your_key_here'</span>
+       850 +});
+       851 +
+       852 +<span class="comment">// Query users</span>
+       853 +<span class="keyword">const</span> users = <span class="keyword">await</span> client.database
+       854 +  .from(<span class="string">'users'</span>)
+       855 +  .select(<span class="string">'id'</span>, <span class="string">'email'</span>, <span class="string">'name'</span>)
+       856 +  .eq(<span class="string">'tenant_id'</span>, tenantId)
+       857 +  .execute();
+       858 +
+       859 +<span class="comment">// Insert data</span>
+       860 +<span class="keyword">await</span> client.database.insert(<span class="string">'posts'</span>, {
+       861 +  title: <span class="string">'Hello World'</span>,
+       862 +  user_id: 123
+       863 +});</code></pre>
+       864 +        </div>
+       865 +      </div>
+       866 +    </div>
+       867 +
+       868 +    <!-- Auth Service -->
+       869 +    <div class="service-detail">
+       870 +      <div class="service-detail-header">
+       871 +        <div class="service-detail-icon">
+       872 +          <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+       873 +            <path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.
+           +21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+       874 +          </svg>
+       875 +        </div>
+       876          <div>
+       608 -          <div class="stat-value">99.9%</div>
+       609 -          <div class="stat-label">Uptime</div>
+       877 +          <div class="service-detail-title">Authentication Service</div>
+       878 +          <p class="service-detail-description">Complete authentication system with JWT tokens, user management, and secure password handling.</p>
+       879          </div>
+       880        </div>
+       612 -      <div class="hero-trust">
+       613 -        <span>TRUSTED BY</span>
+       614 -        <div class="companies">
+       615 -          <span>Startups</span>
+       616 -          <span>Enterprises</span>
+       617 -          <span>Agencies</span>
+       881 +
+       882 +      <div class="tabs">
+       883 +        <button class="tab active" data-tab="auth-overview" onclick="switchTab('auth-overview', 'services')">Overview</button>
+       884 +        <button class="tab" data-tab="auth-usage" onclick="switchTab('auth-usage', 'services')">Usage Examples</button>
+       885 +      </div>
+       886 +
+       887 +      <div id="auth-overview" class="tab-content active">
+       888 +        <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">Features</h3>
+       889 +        <ul class="feature-list">
+       890 +          <li><strong>JWT Authentication</strong> - Stateless tokens with configurable expiration</li>
+       891 +          <li><strong>User Registration</strong> - Email/password signup with validation</li>
+       892 +          <li><strong>Password Reset</strong> - Secure reset flows via email</li>
+       893 +          <li><strong>Profile Management</strong> - Update user information</li>
+       894 +          <li><strong>Refresh Tokens</strong> - Automatic token refresh without re-authentication</li>
+       895 +        </ul>
+       896 +
+       897 +        <h3 style="font-size: 18px; font-weight: 600; margin: 24px 0 16px;">Endpoints</h3>
+       898 +        <div class="endpoint-list">
+       899 +          <div class="endpoint-item">
+       900 +            <div class="endpoint-label">Login</div>
+       901 +            <div class="endpoint-value">POST https://auth.nextmavens.cloud/api/auth/login</div>
+       902 +          </div>
+       903 +          <div class="endpoint-item">
+       904 +            <div class="endpoint-label">Signup</div>
+       905 +            <div class="endpoint-value">POST https://auth.nextmavens.cloud/api/auth/signup</div>
+       906 +          </div>
+       907 +          <div class="endpoint-item">
+       908 +            <div class="endpoint-label">Refresh Token</div>
+       909 +            <div class="endpoint-value">POST https://auth.nextmavens.cloud/api/auth/refresh</div>
+       910 +          </div>
+       911 +          <div class="endpoint-item">
+       912 +            <div class="endpoint-label">Get Current User</div>
+       913 +            <div class="endpoint-value">GET https://auth.nextmavens.cloud/api/auth/me</div>
+       914 +          </div>
+       915          </div>
+       916        </div>
+       917 +
+       918 +      <div id="auth-usage" class="tab-content">
+       919 +        <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">Authentication Usage</h3>
+       920 +        <div class="code-block">
+       921 +          <pre><code><span class="keyword">import</span> { NextMavensClient } <span class="keyword">from</span> <span class="string">'nextmavens-js'</span>;
+       922 +
+       923 +<span class="keyword">const</span> client = <span class="keyword">new</span> NextMavensClient({
+       924 +  apiKey: <span class="string">'nm_live_pk_your_key_here'</span>
+       925 +});
+       926 +
+       927 +<span class="comment">// Sign up new user</span>
+       928 +<span class="keyword">const</span> { user } = <span class="keyword">await</span> client.auth.signUp({
+       929 +  email: <span class="string">'user@example.com'</span>,
+       930 +  password: <span class="string">'secure_password'</span>,
+       931 +  name: <span class="string">'John Doe'</span>,
+       932 +  tenantId: <span class="string">'your-tenant-id'</span>
+       933 +});
+       934 +
+       935 +<span class="comment">// Sign in existing user</span>
+       936 +<span class="keyword">const</span> { user, accessToken } = <span class="keyword">await</span> client.auth.signIn({
+       937 +  email: <span class="string">'user@example.com'</span>,
+       938 +  password: <span class="string">'secure_password'</span>
+       939 +});
+       940 +
+       941 +<span class="comment">// Get current user from server</span>
+       942 +<span class="keyword">const</span> currentUser = <span class="keyword">await</span> client.auth.getCurrentUser();
+       943 +
+       944 +<span class="comment">// Update password</span>
+       945 +<span class="keyword">await</span> client.auth.changePassword(<span class="string">'oldPassword'</span>, <span class="string">'newPassword'</span>);</code></pre>
+       946 +        </div>
+       947 +      </div>
+       948      </div>
+       949
+       622 -    <div class="hero-right">
+       623 -      <!-- Secure Card -->
+       624 -      <div class="feature-card card-secure">
+       625 -        <div class="card-rings"></div>
+       626 -        <div class="card-pulse"></div>
+       627 -        <div class="card-icon">
+       950 +    <!-- Realtime Service -->
+       951 +    <div class="service-detail">
+       952 +      <div class="service-detail-header">
+       953 +        <div class="service-detail-icon">
+       954            <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+       629 -            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.2
+           -9 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+       955 +            <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+       956            </svg>
+       957          </div>
+       632 -        <div class="card-badge">Enterprise Security</div>
+       633 -        <div class="card-title">
+       634 -          Row-level security<br>keeps data safe
+       958 +        <div>
+       959 +          <div class="service-detail-title">Realtime Service</div>
+       960 +          <p class="service-detail-description">WebSocket-based real-time data sync with automatic reconnection and row-level filtering.</p>
+       961          </div>
+       962        </div>
+       963
+       638 -      <!-- Database Card -->
+       639 -      <div class="feature-card card-currencies">
+       640 -        <div class="card-planet">
+       641 -          <div class="card-planet-circle"></div>
+       642 -          <div class="card-orbit"></div>
+       964 +      <h3 style="font-size: 18px; font-weight: 600; margin: 24px 0 16px;">Features</h3>
+       965 +      <ul class="feature-list">
+       966 +        <li><strong>WebSocket Protocol</strong> - Efficient bidirectional communication</li>
+       967 +        <li><strong>PostgreSQL LISTEN/NOTIFY</strong> - Database-driven notifications</li>
+       968 +        <li><strong>Per-table Subscriptions</strong> - Subscribe to specific tables</li>
+       969 +        <li><strong>Row-level Filtering</strong> - Only get updates for specific rows</li>
+       970 +        <li><strong>Auto Reconnection</strong> - Automatically reconnect on disconnect</li>
+       971 +        <li><strong>Event Types</strong> - INSERT, UPDATE, DELETE events</li>
+       972 +      </ul>
+       973 +
+       974 +      <h3 style="font-size: 18px; font-weight: 600; margin: 24px 0 16px;">WebSocket Endpoint</h3>
+       975 +      <div class="endpoint-list">
+       976 +        <div class="endpoint-item">
+       977 +          <div class="endpoint-label">WebSocket URL</div>
+       978 +          <div class="endpoint-value">wss://realtime.nextmavens.cloud</div>
+       979          </div>
+       644 -        <div class="card-badge" style="margin-top: 60px;">PostgreSQL</div>
+       645 -        <div class="card-title">
+       646 -          Powerful database<br>with auto APIs
+       980 +      </div>
+       981 +
+       982 +      <h3 style="font-size: 18px; font-weight: 600; margin: 24px 0 16px;">Realtime Usage</h3>
+       983 +      <div class="code-block">
+       984 +        <pre><code><span class="keyword">import</span> { NextMavensClient } <span class="keyword">from</span> <span class="string">'nextmavens-js'</span>;
+       985 +
+       986 +<span class="keyword">const</span> client = <span class="keyword">new</span> NextMavensClient({
+       987 +  apiKey: <span class="string">'nm_live_pk_your_key_here'</span>
+       988 +});
+       989 +
+       990 +<span class="comment">// Connect to realtime</span>
+       991 +client.realtime.connect();
+       992 +
+       993 +<span class="comment">// Subscribe to all changes on a table</span>
+       994 +<span class="keyword">const</span> unsubscribe = client.realtime.onInsert(<span class="string">'users'</span>, (payload) => {
+       995 +  console.log(<span class="string">'New user:'</span>, payload.data);
+       996 +});
+       997 +
+       998 +<span class="comment">// Subscribe to updates only</span>
+       999 +client.realtime.onUpdate(<span class="string">'posts'</span>, (payload) => {
+      1000 +  console.log(<span class="string">'Post updated:'</span>, payload);
+      1001 +});
+      1002 +
+      1003 +<span class="comment">// Subscribe to specific row</span>
+      1004 +<span class="keyword">const</span> unsub = client.realtime.subscribeToRow(<span class="string">'posts'</span>, postId, (payload) => {
+      1005 +  console.log(<span class="string">'Your post updated:'</span>, payload);
+      1006 +});
+      1007 +
+      1008 +<span class="comment">// Unsubscribe when done</span>
+      1009 +unsubscribe();</code></pre>
+      1010 +      </div>
+      1011 +    </div>
+      1012 +
+      1013 +    <!-- Storage Service -->
+      1014 +    <div class="service-detail">
+      1015 +      <div class="service-detail-header">
+      1016 +        <div class="service-detail-icon">
+      1017 +          <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+      1018 +            <path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+      1019 +          </svg>
+      1020          </div>
+      1021 +        <div>
+      1022 +          <div class="service-detail-title">Storage Service</div>
+      1023 +          <p class="service-detail-description">Telegram-based file storage with unlimited capacity and global CDN delivery.</p>
+      1024 +        </div>
+      1025        </div>
+      1026
+       650 -      <!-- Growth Card -->
+       651 -      <div class="feature-card card-growth">
+       652 -        <div class="value-label">API Requests</div>
+       653 -        <div class="value-amount">2.4M</div>
+       654 -        <div class="value-change">↑ 12.5%</div>
+       655 -        <div class="mini-bars">
+       656 -          <div class="mini-bar"></div>
+       657 -          <div class="mini-bar"></div>
+       658 -          <div class="mini-bar"></div>
+       659 -          <div class="mini-bar"></div>
+      1027 +      <h3 style="font-size: 18px; font-weight: 600; margin: 24px 0 16px;">Features</h3>
+      1028 +      <ul class="feature-list">
+      1029 +        <li><strong>Unlimited Storage</strong> - No storage limits, pay only for bandwidth</li>
+      1030 +        <li><strong>Global CDN</strong> - Files delivered from edge locations worldwide</li>
+      1031 +        <li><strong>Multiple File Types</strong> - Images, documents, videos, audio, and more</li>
+      1032 +        <li><strong>Auto-generated URLs</strong> - Get download URLs instantly</li>
+      1033 +        <li><strong>File Management</strong> - List, get info, and delete files</li>
+      1034 +      </ul>
+      1035 +
+      1036 +      <h3 style="font-size: 18px; font-weight: 600; margin:  24px 0 16px;">How It Works</h3>
+      1037 +      <div class="service-detail">
+      1038 +        <ol style="padding-left: 20px; color: var(--slate-600);">
+      1039 +          <li style="margin-bottom: 8px;">Send files to <strong>@nextmavensuploadsbot</strong> on Telegram</li>
+      1040 +          <li style="margin-bottom: 8px;">Receive a <strong>File ID</strong> for each uploaded file</li>
+      1041 +          <li style="margin-bottom: 8px;">Use the File ID to get file info and download URLs</li>
+      1042 +          <li>Store the File ID in your database alongside your records</li>
+      1043 +        </ol>
+      1044 +      </div>
+      1045 +
+      1046 +      <h3 style="font-size: 18px; font-weight: 600; margin: 24px 0 16px;">Storage Usage</h3>
+      1047 +      <div class="code-block">
+      1048 +        <pre><code><span class="keyword">import</span> { NextMavensClient } <span class="keyword">from</span> <span class="string">'nextmavens-js'</span>;
+      1049 +
+      1050 +<span class="keyword">const</span> client = <span class="keyword">new</span> NextMavensClient({
+      1051 +  apiKey: <span class="string">'nm_live_pk_your_key_here'</span>
+      1052 +});
+      1053 +
+      1054 +<span class="comment">// Get file information</span>
+      1055 +<span class="keyword">const</span> file = <span class="keyword">await</span> client.storage.getFileInfo(<span class="string">'telegram-file-id'</span>);
+      1056 +
+      1057 +<span class="comment">// Get download URL</span>
+      1058 +<span class="keyword">const</span> url = <span class="keyword">await</span> client.storage.getDownloadUrl(<span class="string">'telegram-file-id'</span>);
+      1059 +
+      1060 +<span class="comment">// List files with filters</span>
+      1061 +<span class="keyword">const</span> { files } = <span class="keyword">await</span> client.storage.listFiles({
+      1062 +  file_type: <span class="string">'photo'</span>,
+      1063 +  limit: <span class="number">20</span>
+      1064 +});
+      1065 +
+      1066 +<span class="comment">// Get storage statistics</span>
+      1067 +<span class="keyword">const</span> stats = <span class="keyword">await</span> client.storage.getStats({ tenantId });</code></pre>
+      1068 +      </div>
+      1069 +    </div>
+      1070 +  </section>
+      1071 +
+      1072 +  <!-- MCP & AI Section -->
+      1073 +  <section id="mcp" class="section">
+      1074 +    <div class="section-header">
+      1075 +      <h2 class="section-title">MCP Server & AI Integration</h2>
+      1076 +      <p class="section-subtitle">Connect your backend to AI assistants with Model Context Protocol. Full support for Claude Desktop, ChatGPT, and more.</p>
+      1077 +    </div>
+      1078 +
+      1079 +    <div class="mcp-integration">
+      1080 +      <div style="text-align: center; margin-bottom: 40px;">
+      1081 +        <h2 style="font-size: 32px; font-weight: 700; color: white; margin-bottom: 12px;">AI-Native Backend Development</h2>
+      1082 +        <p style="font-size: 18px; color: rgba(255,255,255,0.7);">Let Claude or ChatGPT write queries, manage data, and deploy your backend naturally through conversation.
+           +</p>
+      1083 +      </div>
+      1084 +
+      1085 +      <div class="mcp-grid">
+      1086 +        <div class="mcp-card">
+      1087 +          <h3>🤖 What is MCP?</h3>
+      1088 +          <p>The Model Context Protocol (MCP) is an open standard that allows AI assistants to seamlessly connect to external tools and data sources. Think of it as a univ
+           +ersal plug-in system for AI.</p>
+      1089 +
+      1090 +          <h3 style="font-size: 16px; font-weight: 600; margin: 24px 0 12px; color: white;">Why Use NextMavens MCP?</h3>
+      1091 +          <ul class="mcp-tools">
+      1092 +            <li>Query databases with natural language</li>
+      1093 +           >Create and manage users through chat</li>
+      1094 +           >Upload and manage files via AI</li>
+      1095 +           >Inspect schema and get context</li>
+      1096 +           >Full database, auth, and storage tools</li>
+      1097 +          </ul>
+      1098          </div>
+      1099 +
+      1100 +        <div class="mcp-card">
+      1101 +          <h3>🚀 Quick Start</h3>
+      1102 +          <p>Install the NextMavens MCP server and connect it to your AI assistant.</p>
+      1103 +
+      1104 +          <div style="background: rgba(0,0,0,0.3); border-radius: 12px; padding: 20px; margin: 20px 0;">
+      1105 +            <code style="font-size: 13px; color: var(--emerald-300);">
+      1106 +              npm install https://github.com/Mkid095/nextmavens-mcp-server
+      1107 +            </code>
+      1108 +          </div>
+      1109 +
+      1110 +          <h3 style="font-size: 16px; font-weight: 600; margin: 24px 0 12px; color: white;">Claude Desktop Setup</h3>
+      1111 +          <p style="color: rgba(255,255,255,0.7); margin-bottom: 12px;">Add to your Claude config:</p>
+      1112 +          <div style="background: rgba(0,0,0,0.3); border-radius: 12px; padding: 16px; font-size: 13px;">
+      1113 +            <div style="color: rgba(255,255,255,0.5); margin-bottom: 8px;">~/Library/Application Support/Claude/claude_desktop_config.json</div>
+      1114 +            <pre style="color: var(--emerald-300); margin: 0;"><code>{
+      1115 +  "mcpServers": {
+      1116 +    "nextmavens": {
+      1117 +      "command": "node",
+      1118 +      "args": ["/path/to/nextmavens-mcp-server/dist/index.js"],
+      1119 +      "env": {
+      1120 +        "NEXTMAVENS_API_KEY": "nm_live_pk_your_key"
+      1121 +      }
+      1122 +    }
+      1123 +  }
+      1124 +}</code></pre>
+      1125 +          </div>
+      1126 +        </div>
+      1127        </div>
+      1128
+       663 -      <div class="card-spacer"></div>
+      1129 +      <div style="max-width: 800px; margin: 40px auto;">
+      1130 +        <h3 style="font-size: 24px; font-weight: 700; color: var(--slate-900); margin-bottom: 24px;">Available MCP Tools</h3>
+      1131 +
+      1132 +        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
+      1133 +          <div style="background: white; border: 1px solid var(--slate-200); border-radius: 12px; padding: 20px;">
+      1134 +            <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">🗄️ Database Tools</h4>
+      1135 +            <ul style="list-style: none; font-size: 14px; color: var(--slate-600);">
+      1136 +              <li style="margin-bottom: 6px;"><code>nextmavens_query</code> - Query data with filters</li>
+      1137 +              <li style="margin-bottom: 6px;"><code>nextmavens_insert</code> - Insert rows</li>
+      1138 +              <li style="margin-bottom: 6px;"><code>nextmavens_update</code> - Update records</li>
+      1139 +              <li><code>nextmavens_delete</code> - Delete rows</li>
+      1140 +            </ul>
+      1141 +          </div>
+      1142 +
+      1143 +          <div style="background: white; border: 1px solid var(--slate-200); border-radius: 12px; padding: 20px;">
+      1144 +            <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">🔐 Auth Tools</h4>
+      1145 +            <ul style="list-style: none; font-size: 14px; color: var(--slate-600);">
+      1146 +              <li style="margin-bottom: 6px;"><code>nextmavens_signin</code> - User login</li>
+      1147 +              <li><code>nextmavens_signup</code> - Create users</li>
+      1148 +            </ul>
+      1149 +          </div>
+      1150 +
+      1151 +          <div style="background: white; border: 1px solid var(--slate-200); border-radius: 12px; padding: 20px;">
+      1152 +            <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">📁 Storage Tools</h4>
+      1153 +            <ul style="list-style: none; font-size: 14px; color: var(--slate-600);">
+      1154 +              <li style="margin-bottom: 6px;"><code>nextmavens_file_info</code> - Get file info</li>
+      1155 +              <li style="margin-bottom: 6px;"><code>nextmavens_file_download_url</code> - Get URLs</li>
+      1156 +              <li><code>nextmavens_list_files</code> - List all files</li>
+      1157 +            </ul>
+      1158 +          </div>
+      1159 +
+      1160 +          <div style="background: white; border: 1px solid var(--slate-200); border-radius: 12px; padding: 20px;">
+      1161 +            <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">🔍 GraphQL Tools</h4>
+      1162 +            <ul style="list-style: none; font-size: 14px; color: var(--slate-600);">
+      1163 +              <li style="margin-bottom: 6px;"><code>nextmavens_graphql</code> - Run queries</li>
+      1164 +              <li><code>nextmavens_graphql_introspect</code> - Schema info</li>
+      1165 +            </ul>
+      1166 +          </div>
+      1167 +        </div>
+      1168 +      </div>
+      1169 +
+      1170 +      <div style="max-width: 800px; margin: 40px auto;">
+      1171 +        <h3 style="font-size: 24px; font-weight: 700; color: var(--slate-900); margin-bottom: 24px;">Example Conversations</h3>
+      1172 +
+      1173 +        <div style="background: var(--slate-50); border-radius: 12px; padding: 24px; margin-bottom: 20px;">
+      1174 +          <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">With Claude Desktop:</h4>
+      1175 +          <div style="background: white; border-radius: 8px; padding: 16px; font-family: var(--font-mono); font-size: 14px; color: var(--slate-700);">
+      1176 +            <div style="color: var(--slate-400); margin-bottom: 4px;">You:</div>
+      1177 +            <div>Show me all users created in the last 7 days</div>
+      1178 +            <div style="color: var(--emerald-600); margin: 8px 0;">Claude:</div>
+      1179 +            <div>[Uses nextmavens_query tool to filter and display results]</div>
+      1180 +          </div>
+      1181 +        </div>
+      1182 +
+      1183 +        <div style="background: var(--slate-50); border-radius: 12px; padding: 24px; margin-bottom: 20px;">
+      1184 +          <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">Database Management:</h4>
+      1185 +          <div style="background: white; border-radius: 8px; padding: 16px; font-family: var(--font-mono); font-size: 14px; color: var(--slate-700);">
+      1186 +            <div style="color: var(--slate-400); margin-bottom: 4px;">You:</div>
+      1187 +            <div>Create a new user with email john@example.com</div>
+      1188 +            <div style="color: var(--emerald-600); margin: 8px 0;">Claude:</div>
+      1189 +            <div>[Uses nextmavens_signup tool with parsed data]</div>
+      1190 +          </div>
+      1191 +        </div>
+      1192 +
+      1193 +        <div style="background: var(--slate-50); border-radius: 12px; padding: 24px;">
+      1194 +          <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">Schema Exploration:</h4>
+      1195 +          <div style="background: white; border-radius: 8px; padding: 16px; font-family: var(--font-mono); font-size: 14px; color: var(--slate-700);">
+      1196 +            <div style="color: var(--slate-400); margin-bottom: 4px;">You:</div>
+      1197 +            <div>What tables exist in my database?</div>
+      1198 +            <div style="color: var(--emerald-600); margin: 8px 0;">Claude:</div>
+      1199 +            <div>[Uses nextmavens_graphql_introspect tool to show schema]</div>
+      1200 +          </div>
+      1201 +        </div>
+      1202 +      </div>
+      1203      </div>
+      1204    </section>
+      1205
+       667 -  <!-- Login Modal -->
+      1206 +  <!-- Documentation Section -->
+      1207 +  <section id="docs" class="section">
+      1208 +    <div class="section-header">
+      1209 +      <h2 class="section-title">Documentation</h2>
+      1210 +      <p class="section-subtitle">Complete guides and API references for building with NextMavens.</p>
+      1211 +    </div>
+      1212 +
+      1213 +    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px;">
+      1214 +      <div style="background: white; border: 1px solid var(--slate-200); border-radius: 12px; padding: 24px;">
+      1215 +        <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">🚀 Getting Started</h3>
+      1216 +        <p style="font-size: 14px; color: var(--slate-600); margin-bottom: 16px;">Quick start guides for common development tasks.</p>
+      1217 +        <ul style="list-style: none; font-size: 14px; color: var(--slate-600);">
+      1218 +          <li style="margin-bottom: 8px;"><a href="https://github.com/Mkid095/nextmavens-js" target="_blank" style="color: var(--emerald-600);">JavaScript SDK README</a></
+           +li>
+      1219 +          <li style="margin-bottom: 8px;"><a href="https://github.com/Mkid095/nextmavens-mcp-server" target="_blank" style="color: var(--emerald-600);">MCP Server README</
+           +a></li>
+      1220 +          <li><a href="https://portal.nextmavens.cloud" target="_blank" style="color: var(--emerald-600);">Developer Portal</a></li>
+      1221 +        </ul>
+      1222 +      </div>
+      1223 +
+      1224 +      <div style="background: white; border: 1px solid var(--slate-200); border-radius: 12px; padding: 24px;">
+      1225 +        <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">📚 API Reference</h3>
+      1226 +        <p style="font-size: 14px; color: var(--slate-600); margin-bottom: 16px;">Complete API documentation and endpoint reference.</p>
+      1227 +        <ul style="list-style: none; font-size: 14px; color: var(--slate-600);">
+      1228 +          <li style="margin-bottom: 8px;"><a href="#api-endpoints" style="color: var(--emerald-600);">REST API Endpoints</a></li>
+      1229 +          <li style="margin-bottom: 8px;"><a href="#graphql" style="color: var(--emerald-600);">GraphQL Schema</a></li>
+      1230 +          <li><a href="#realtime-events" style="color: var(--emerald-600);">Realtime Events</a></li>
+      1231 +        </ul>
+      1232 +      </div>
+      1233 +
+      1234 +      <div style="background: white; border: 1px solid var(--slate-200); border-radius: 12px; padding: 24px;">
+      1235 +        <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">💼 Examples</h3>
+      1236 +        <p style="font-size: 14px; color: var(--slate-600); margin-bottom: 16px;">Code examples for common use cases.</p>
+      1237 +        <ul style="list-style: none; font-size: 14px; color: varslate-600);">
+      1238 +          <li style="margin-bottom: 8px;"><a href="#auth-examples" style="color: var(--emerald-600);">Authentication</a></li>
+      1239 +          <li style="margin-bottom: 8px;"><a href="#database-examples" style="color: var(--emerald-600);">Database Queries</a></li>
+      1240 +          <li><a href="#realtime-examples" style="color: var(--emerald-600);">Realtime Subscriptions</a></li>
+      1241 +        </ul>
+      1242 +      </div>
+      1243 +
+      1244 +      <div style="background: white; border: 1px solid var(--slate-200); border-radius: 12px; padding: 24px;">
+      1245 +        <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">🐛 Troubleshooting</h3>
+      1246 +        <p style="font-size: 14px; color: var(--slate-600); margin-bottom: 16px;">Common issues and solutions.</p>
+      1247 +        <ul style="list-style: none; font-size: 14px; color: var(--slate-600);">
+      1248 +          <li style="margin-bottom: 8px;"><a href="#" style="color: var(--emerald-600);">Common Errors</a></li>
+      1249 +          <li style="margin-bottom: 8px;"><a href="#" style="color: var(--emerald-600);">Connection Issues</a></li>
+      1250 +          <li><a href="#" style="color: var(--emerald-600);">Performance Tips</a></li>
+      1251 +        </ul>
+      1252 +      </div>
+      1253 +    </div>
+      1254 +  </section>
+      1255 +
+      1256 +  <!-- Pricing Section -->
+      1257 +  <section id="comparison" class="section">
+      1258 +    <div class="section-header">
+      1259 +      <h2 class="section-title">Why NextMavens?</h2>
+      1260 +      <p class="section-subtitle">See how we compare to other backend platforms.</p>
+      1261 +    </div>
+      1262 +
+      1263 +    <div style="overflow-x: auto; margin: 48px 0;">
+      1264 +      <table class="comparison-table">
+      1265 +        <thead>
+      1266 +          <tr>
+      1267 +            <th>Feature</th>
+      1268 +            <th>NextMavens</th>
+      1269 +            <th>Supabase</th>
+      1270 +            <th>Firebase</th>
+      1271 +          </tr>
+      1272 +        </thead>
+      1273 +        <tbody>
+      1274 +          <tr>
+      1275 +            <td><strong>Open Source</strong></td>
+      1276 +            <td><span class="check">✓</span> Yes (GitHub)</td>
+      1277 +            <td><span class="check">✓</span> Yes</td>
+      1278 +            <td><span class="cross">✗</span> No</td>
+      1279 +          </tr>
+      1280 +          <tr>
+      1281 +            <td><strong>Self-Hostable</strong></td>
+      1282 +            <td><span class="check">✓</span> Yes</td>
+      1283 +            <td><span class="cross">✗</span> No (Cloud only)</td>
+      1284 +            <td><span class="cross">✗</span> No</td>
+      1285 +          </tr>
+      1286 +          <tr>
+      1287 +            <td><strong>MCP Support</strong></td>
+      1288 +            <td><span class="check">✓</span> Native</td>
+      1289 +            <td><span class="cross">✗</span> No</td>
+      1290 +            <td><span class="cross">✗</span> No</td>
+      1291 +          </tr>
+      1292 +          <tr>
+      1293 +            <td><strong>Multi-tenant Database</strong></td>
+      1294 +            <td><span class="check">✓</span> Built-in RLS</td>
+      1295 +            <td><span class="check">✓</span> Yes</td>
+      1296 +            <td><span class="cross">✗</span> No</td>
+      1297 +          </tr>
+      1298 +          <tr>
+      1299 +            <td><strong>Telegram Storage</strong></td>
+      1300 +            <td><span class="check">✓</span> Native</td>
+      1301 +            <td><span class="cross">✗</span> No</td>
+      1302 +            <td><span class="cross">✗</span> Storage only</td>
+      1303 +          </tr>
+      1304 +          <tr>
+      1305 +            <td><strong>Realtime</strong></td>
+      1306 +            <td><span class="check">✓</span> WebSockets + NOTIFY</td>
+      1307 +            <td><span class="check">✓</span> WebSockets + Channels</td>
+      1308 +            <td><span class="check">✓</span> Firestore</td>
+      1309 +          </tr>
+      1310 +          <tr>
+      1311 +            <td><strong>Developer Portal</strong></td>
+      1312 +            <td><span class="check">✓</span> Professional UI</td>
+      1313 +            <td><span class="check">✓</span> Dashboard</td>
+      1314 +            <td><span class="check">✓</span> Console</td>
+      1315 +          </tr>
+      1316 +          <tr>
+      1317 +            <td><strong>Language Support</strong></td>
+      1318 +            <td><span class="check">✓</span> JS + TypeScript</td>
+      1319 +            <td><span class="check">✓</span> JS</td>
+      1320 +            <td><span class="check">✓</span> JS + SDKs</td>
+      1321 +          </tr>
+      1322 +          <tr>
+      1323 +            <td><strong>Deployment</strong></td>
+      1324 +            <td><span class="check">✓</span> Docker + Dokploy</td>
+      1325 +            <td><span class="check">✓</span> Hosted only</td>
+      1326 +            <td><span class="check">✓</span> Firebase only</td>
+      1327 +          </tr>
+      1328 +          <tr>
+      1329 +            <td><strong>Pricing</strong></td>
+      1330 +            <td><span class="check">✓</span> Open Source</td>
+      1331 +            <td><span class="check">✓</span> Free tier + Paid</td>
+      1332 +            <td><span class="check">✓</span> Free tier + Pay-as-you-go</td>
+      1333 +          </tr>
+      1334 +        </tbody>
+      1335 +      </table>
+      1336 +    </div>
+      1337 +
+      1338 +    <div style="text-align: center; margin-top: 48px;">
+      1339 +      <button class="btn-primary" onclick="openModal('signup')" style="padding: 16px 40px; font-size: 16px;">
+      1340 +        Get Started for Free
+      1341 +      </button>
+      1342 +    </div>
+      1343 +  </section>
+      1344 +
+      1345 +  <!-- CTA Section -->
+      1346 +  <section style="background: linear-gradient(135deg, var(--emerald-700), var(--emerald-800)); padding: 80px 32px; text-align: center; color: white;">
+      1347 +    <h2 style="font-size: 36px; font-weight: 700; margin-bottom: 16px;">Ready to build?</h2>
+      1348 +    <p style="font-size: 18px; opacity: 0.9; margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto;">
+      1349 +      Join thousands of developers building the future with NextMavens. Get your free API key in seconds.
+      1350 +    </p>
+      1351 +    <div style="display: flex; gap: 16px; justify-content: center;">
+      1352 +      <button class="btn-login" onclick="window.location.href='https://github.com/Mkid095/nextmavens-js'" style="background: rgba(255,255,255,0.1); color: white; padding:
+           +12px 24px;">
+      1353 +        View SDK on GitHub
+      1354 +      </button>
+      1355 +      <button class="btn-login" onclick="window.location.href='https://portal.nextmavens.cloud'" style="background: rgba(255,255,255,0.1); color: white; padding: 12px 24px
+           +;">
+      1356 +        Go to Dashboard
+      1357 +      </button>
+      1358 +      <button class="btn-primary" onclick="openModal('signup')" style="background: white; color: var(--emerald-700); padding: 12px 32px;">
+      1359 +        Create Free Account
+      1360 +      </button>
+      1361 +    </div>
+      1362 +  </section>
+      1363 +
+      1364 +  <!-- Footer -->
+      1365 +  <footer>
+      1366 +    <div class="footer-links">
+      1367 +      <a href="https://github.com/Mkid095/nextmavens-js" target="_blank">JavaScript SDK</a>
+      1368 +      <a href="https://github.com/Mkid095/nextmavens-mcp-server" target="_blank">MCP Server</a>
+      1369 +      <a href="https://github.com/Mkid095/nextmavens-developer-portal" target="_blank">Developer Portal</a>
+      1370 +      <a href="https://github.com/Mkid095/nextmavens-api-gateway" target="_blank">API Gateway</a>
+      1371 +    </div>
+      1372 +    <div class="footer-copyright">
+      1373 +      © 2026 NextMavens, Inc. All rights reserved.
+      1374 +    </div>
+      1375 +  </footer>
+      1376 +
+      1377 +  <!-- Auth Modals -->
+      1378    <div class="modal-overlay" id="login-modal">
+      1379      <div class="modal" style="position: relative;">
+      1380        <button class="modal-close" onclick="closeModals()">&times;</button>
+     ...
+      1387          </div>
+      1388          <div class="form-group">
+      1389            <label>Password</label>
+       680 -          <input type="password" id="login-password" required placeholder="••••••••">
+      1390 +          <input type="password" id="login-password" required placeholder="•••••••••••">
+      1391          </div>
+      1392          <div class="modal-buttons">
+      1393            <button type="button" class="btn-secondary" onclick="closeModals()">Cancel</button>
+     ...
+      1397      </div>
+      1398    </div>
+      1399
+       690 -  <!-- Signup Modal -->
+      1400    <div class="modal-overlay" id="signup-modal">
+      1401      <div class="modal" style="position: relative;">
+      1402        <button class="modal-close" onclick="closeModals()">&times;</button>
+     ...
+      1414          </div>
+      1415          <div class="form-group">
+      1416            <label>Password</label>
+       708 -          <input type="password" id="signup-password" required minlength="8" placeholder="••••••••">
+      1417 +          <input type="password" id="signup-password" required minlength="8" placeholder="••••••••••">
+      1418          </div>
+      1419          <div class="modal-buttons">
+      1420            <button type="button" class="btn-secondary" onclick="closeModals()">Cancel</button>
+     ...
+      1424      </div>
+      1425    </div>
+      1426
+       718 -  <footer>
+       719 -    © 2026 NextMavens, Inc. All rights reserved.
+       720 -  </footer>
+       721 -
+      1427    <script>
+      1428      const API_BASE = window.location.origin;
+      1429
+      1430 +    // Navbar scroll effect
+      1431 +    window.addEventListener('scroll', () => {
+      1432 +      const navbar = document.getElementById('navbar');
+      1433 +      if (window.scrollY > 50) {
+      1434 +        navbar.classList.add('scrolled');
+      1435 +      } else {
+      1436 +        navbar.classList.remove('scrolled');
+      1437 +      }
+      1438 +    });
+      1439 +
+      1440 +    // Tab switching
+      1441 +    function switchTab(tabId, sectionId) {
+      1442 +      const section = document.getElementById(sectionId);
+      1443 +      if (!section) return;
+      1444 +
+      1445 +      // Update tabs
+      1446 +      section.querySelectorAll('.tab').forEach(tab => {
+      1447 +        tab.classList.remove('active');
+      1448 +        if (tab.dataset.tab === tabId) {
+      1449 +          tab.classList.add('active');
+      1450 +        }
+      1451 +      });
+      1452 +
+      1453 +      // Update content
+      1454 +      section.querySelectorAll('.tab-content').forEach(content => {
+      1455 +        content.classList.remove('active');
+      1456 +        if (content.id === tabId) {
+      1457 +          content.classList.add('active');
+      1458 +        }
+      1459 +      });
+      1460 +    }
+      1461 +
+      1462 +    // Modal functions
+      1463      function openModal(type) {
+      1464        closeModals();
+      1465        document.getElementById(type + '-modal').classList.add('active');
+     ...
+      1496
+      1497          const data = await res.json();
+      1498
+       761 -        if (!res.ok) {
+       762 -          throw new Error(data.error || 'Login failed');
+       763 -        }
+      1499 +        if (!res.ok) throw new Error(data.error || 'Login failed');
+      1500
+      1501          localStorage.setItem('token', data.token);
+      1502          localStorage.setItem('user', JSON.stringify(data.developer));
+     ...
+      1521
+      1522          const data = await res.json();
+      1523
+       788 -        if (!res.ok) {
+       789 -          throw new Error(data.error || 'Signup failed');
+       790 -        }
+      1524 +        if (!res.ok) throw new Error(data.error || 'Signup failed');
+      1525
+      1526          showSuccess('signup', 'Account created! Redirecting to dashboard...');
+      1527          localStorage.setItem('token', data.token);
+  ⎿  API Error: 400 {"type":"error","error":{"message":"Invalid API parameter, please check the documentation.Request 204961 input tokens exceeds the model's maximum context length
+     202750","code":"1210"},"request_id":"2026012723194066be37408c5d4c13"}

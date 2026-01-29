@@ -1,0 +1,42 @@
+[
+  {
+    "content": "Load memory from previous stories",
+    "status": "completed",
+    "activeForm": "Loading memory from previous stories"
+  },
+  {
+    "content": "Process Maven Step 1 (development-agent)",
+    "status": "completed",
+    "activeForm": "Processing Maven Step 1"
+  },
+  {
+    "content": "Process Maven Step 2 (development-agent)",
+    "status": "in_progress",
+    "activeForm": "Processing Maven Step 2"
+  },
+  {
+    "content": "Process Maven Step 7 (development-agent)",
+    "status": "pending",
+    "activeForm": "Processing Maven Step 7"
+  },
+  {
+    "content": "Process Maven Step 10 (security-agent)",
+    "status": "pending",
+    "activeForm": "Processing Maven Step 10"
+  },
+  {
+    "content": "Run typecheck",
+    "status": "pending",
+    "activeForm": "Running typecheck"
+  },
+  {
+    "content": "Update PRD and commit",
+    "status": "pending",
+    "activeForm": "Updating PRD and committing"
+  },
+  {
+    "content": "Create story memory",
+    "status": "pending",
+    "activeForm": "Creating story memory"
+  }
+]

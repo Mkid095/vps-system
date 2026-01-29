@@ -1,0 +1,5 @@
+supabase-gotrue
+ count 
+-------
+    20
+(1 row)

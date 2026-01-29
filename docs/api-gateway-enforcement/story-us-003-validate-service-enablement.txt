@@ -1,0 +1,47 @@
+---
+memoryVersion: 1
+storyId: US-003
+storyTitle: Validate Service Enablement
+completedDate: 2026-01-28
+---
+
+STORY: US-003 - Validate Service Enablement
+========================
+
+DESCRIPTION:
+As a gateway engineer, I want to check service enablement so that disabled services can't be accessed.
+
+MAVEN STEPS COMPLETED:
+[1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Created service enablement validation middleware that checks if services are enabled for projects from snapshot data. Includes input sanitization, constant-time validation, fail-closed architecture, and proper error handling with service names in error messages.
+
+KEY FILES:
+- /home/ken/api-gateway/src/validation/service-enablement.validator.ts - Core validation logic (171 lines)
+- /home/ken/api-gateway/src/validation/middleware/service-enablement.middleware.ts - Express middleware (256 lines)
+- /home/ken/api-gateway/src/validation/middleware/service-extraction.helpers.ts - Service name extraction helpers (134 lines)
+- /home/ken/api-gateway/src/validation/__tests__/service-enablement.validator.test.ts - Unit tests
+- /home/ken/api-gateway/src/validation/integration/__tests__/service-enablement-integration.test.ts - Integration tests
+- /home/ken/api-gateway/src/validation/index.ts - Updated with exports
+
+DECISIONS MADE:
+- Service name validation: strict regex /^[a-zA-Z0-9_-]{1,100}$/
+- Constant-time validation using Array.includes() to prevent timing attacks
+- Fail-closed architecture - blocks requests if snapshot unavailable
+- Generic error messages to prevent service enumeration while including service name for UX
+- Length limits (200 char pre-check, 100 char enforced) to prevent ReDoS
+
+INTEGRATION POINTS:
+- Reads from snapshot service (project.enabledServices array)
+- Express middleware chain - applies before protected routes
+- Returns SERVICE_DISABLED error code (403 Forbidden)
+- Compatible with existing project-status middleware
+- Ready for JWT auth integration (US-005)
+
+LESSONS LEARNED:
+- Input validation pipeline: length check → trim → length check → regex
+- Timing attack resistance requires consistent code paths regardless of result
+- Error messages should balance UX (include service name) with security (generic format)
+- Always fail-closed when snapshot data unavailable
+- Type safety critical: zero 'any' types across 561 lines

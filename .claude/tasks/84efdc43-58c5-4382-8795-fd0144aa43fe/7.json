@@ -1,0 +1,9 @@
+{
+  "id": "7",
+  "subject": "Build Developer Portal",
+  "description": "Create developer portal with signup/login, project creation, API key generation (pk_/sk_), dashboard, and usage stats",
+  "activeForm": "Building Developer Portal service",
+  "status": "pending",
+  "blocks": [],
+  "blockedBy": []
+}

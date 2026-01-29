@@ -1,0 +1,77 @@
+     1→# ==============================================
+     2→# NextMavens Platform Environment Configuration
+     3→# ==============================================
+     4→
+     5→# ---------- Supabase Configuration ----------
+     6→# Generate with: openssl rand -base64 32
+     7→SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5leHRtYXZlbnMiLCJyb2xlIjoiYW5vbiIsImlhdCI6MTcwNjE0MDAwMCwiZXhwIjoyMDIxNzAwMDAwfQ.anon
+     8→SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1zcnYiLCJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNzA2MTQwMDAwLCJleHAiOjIwMjE3MDAwMDB9.service
+     9→SUPABASE_URL=https://nextmavens.cloud
+    10→SUPABASE_STUDIO_URL=https://nextmavens.cloud/studio
+    11→
+    12→# Master Database Password
+    13→POSTGRES_PASSWORD=NextMavensSecure2025ChangeMe
+    14→MASTER_DB_URL=postgres://postgres:NextMavensSecure2025ChangeMe@localhost:5432/postgres
+    15→
+    16→# ---------- JWT Secrets (Generate new ones for production) ----------
+    17→JWT_SECRET=supersecretjwtsecretchangeinproduction2025
+    18→SUPAVISOR_SECRET_KEY=supavisorsecretkeychangeinproduction2025
+    19→REALTIME_SECRET_KEY=realtimesecretkeychangeinproduction2025
+    20→
+    21→# ---------- Evolution API Configuration ----------
+    22→EVOLUTION_API_URL=https://nextmavens.cloud
+    23→EVOLUTION_API_KEY=NextMavensEvolution2025SecureKey
+    24→EVOLUTION_WEBHOOK_SECRET=webhooksecret2025nextmavens
+    25→EVOLUTION_WEBHOOK_URL=https://nextmavens.cloud/api/webhooks/whatsapp
+    26→
+    27→# ---------- Redis Configuration ----------
+    28→REDIS_URL=redis://localhost:6379
+    29→
+    30→# ---------- API Key Rate Limiting ----------
+    31→API_KEY_RATE_LIMIT=60
+    32→API_KEY_RATE_WINDOW_SECONDS=60
+    33→API_KEY_RATE_LIMIT_ADMIN=100
+    34→API_KEY_RATE_WINDOW_SECONDS_ADMIN=60
+    35→API_KEY_RATE_LIMIT_WRITE=60
+    36→API_KEY_RATE_WINDOW_SECONDS_WRITE=60
+    37→API_KEY_RATE_LIMIT_READ=100
+    38→API_KEY_RATE_WINDOW_SECONDS_READ=60
+    39→
+    40→# ---------- Kong API Gateway ----------
+    41→KONG_ADMIN_URL=http://localhost:8001
+    42→KONG_PROXY_URL=http://localhost:8000
+    43→
+    44→# ---------- External Services ----------
+    45→# Cloudinary - ADD YOUR KEYS HERE
+    46→CLOUDINARY_CLOUD_NAME=
+    47→CLOUDINARY_API_KEY=
+    48→CLOUDINARY_API_SECRET=
+    49→CLOUDINARY_UPLOAD_PRESET=
+    50→
+    51→# Resend - ADD YOUR KEY HERE
+    52→RESEND_API_KEY=
+    53→
+    54→# ---------- Telegram Backup (Your credentials) ----------
+    55→TELEGRAM_BOT_TOKEN=8311565035:AAEMMAmLAHM8L7zCnx42F3J3W4mcUfw4yhQ
+    56→TELEGRAM_CHAT_ID=7809186882
+    57→TELEGRAM_BACKUP_CHANNEL_ID=-3876778158
+    58→
+    59→# ---------- Application ----------
+    60→NEXT_PUBLIC_APP_URL=https://nextmavens.cloud
+    61→NEXT_PUBLIC_APP_NAME=NextMavens Platform
+    62→NEXT_PUBLIC_STUDIO_URL=https://nextmavens.cloud/studio
+    63→NEXT_PUBLIC_EVOLUTION_API_URL=https://nextmavens.cloud/whatsapp
+    64→
+    65→# ---------- Storage Monitoring ----------
+    66→STORAGE_ALERT_80_SENT=false
+    67→STORAGE_ALERT_90_SENT=false
+    68→STORAGE_ALERT_95_SENT=false
+    69→
+    70→# ---------- Supabase Auth (for dashboard) ----------
+    71→# You'll get these from Supabase Studio after first run
+    72→SUPABASE_AUTH_URL=https://nextmavens.cloud
+    73→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

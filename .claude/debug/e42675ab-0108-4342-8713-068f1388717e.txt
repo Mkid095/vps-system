@@ -1,0 +1,133 @@
+2026-01-28T05:07:48.457Z [DEBUG] Failed to check enabledPlatforms: TypeError: undefined is not an object (evaluating 'l7.join')
+2026-01-28T05:07:48.491Z [DEBUG] Watching for changes in setting files /home/ken/.claude, /home/ken/.claude...
+2026-01-28T05:07:48.496Z [DEBUG] [init] configureGlobalMTLS starting
+2026-01-28T05:07:48.496Z [DEBUG] [init] configureGlobalMTLS complete
+2026-01-28T05:07:48.496Z [DEBUG] [init] configureGlobalAgents starting
+2026-01-28T05:07:48.496Z [DEBUG] [init] configureGlobalAgents complete
+2026-01-28T05:07:48.502Z [DEBUG] [STARTUP] Loading MCP configs...
+2026-01-28T05:07:48.512Z [DEBUG] Loading plugin rust-analyzer-lsp from source: "./plugins/rust-analyzer-lsp"
+2026-01-28T05:07:48.512Z [DEBUG] Using provided version for rust-analyzer-lsp@claude-plugins-official: 1.0.0
+2026-01-28T05:07:48.513Z [DEBUG] Plugin rust-analyzer-lsp@claude-plugins-official version 1.0.0 already cached at /home/ken/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0
+2026-01-28T05:07:48.513Z [DEBUG] Copied local plugin rust-analyzer-lsp to versioned cache: /home/ken/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0
+2026-01-28T05:07:48.514Z [DEBUG] Plugin rust-analyzer-lsp has no entry.skills defined
+2026-01-28T05:07:48.514Z [DEBUG] Found 1 plugins (1 enabled, 0 disabled)
+2026-01-28T05:07:48.514Z [DEBUG] [claudeai-mcp] Checking gate (cached)...
+2026-01-28T05:07:48.514Z [DEBUG] [claudeai-mcp] Gate returned: true
+2026-01-28T05:07:48.514Z [DEBUG] [claudeai-mcp] No access token
+2026-01-28T05:07:48.515Z [DEBUG] [ToolSearch:optimistic] mode=standard, ENABLE_TOOL_SEARCH=undefined, result=false
+2026-01-28T05:07:48.516Z [DEBUG] [STARTUP] Running setup()...
+2026-01-28T05:07:48.526Z [DEBUG] Loading skills from: managed=/etc/claude-code/.claude/skills, user=/home/ken/.claude/skills, project=[]
+2026-01-28T05:07:48.530Z [ERROR] Error: Error: ENOENT: no such file or directory, scandir '/etc/claude-code/.claude/skills'
+    at readdirSync (unknown)
+    at <anonymous> (/$bunfs/root/claude:12:2063)
+    at aJ (/$bunfs/root/claude:11:35454)
+    at readdirSync (/$bunfs/root/claude:12:2024)
+    at AZ$ (/$bunfs/root/claude:1756:380)
+    at AZ$ (/$bunfs/root/claude:1756:1350)
+    at <anonymous> (/$bunfs/root/claude:1756:4670)
+    at <anonymous> (/$bunfs/root/claude:1756:5401)
+    at A (/$bunfs/root/claude:11:7259)
+    at vS1 (/$bunfs/root/claude:4818:4342)
+2026-01-28T05:07:48.530Z [DEBUG] Error log sink initialized
+2026-01-28T05:07:48.537Z [DEBUG] getPluginSkills: Processing 1 enabled plugins
+2026-01-28T05:07:48.537Z [DEBUG] Checking plugin rust-analyzer-lsp: skillsPath=none, skillsPaths=0 paths
+2026-01-28T05:07:48.537Z [DEBUG] Total plugin skills loaded: 0
+2026-01-28T05:07:48.537Z [DEBUG] Total plugin commands loaded: 0
+2026-01-28T05:07:48.537Z [DEBUG] Registered 0 hooks from 1 plugins
+2026-01-28T05:07:48.538Z [DEBUG] [STARTUP] setup() completed in 22ms
+2026-01-28T05:07:48.538Z [DEBUG] [STARTUP] Loading commands and agents...
+2026-01-28T05:07:48.543Z [DEBUG] Acquired PID lock for 2.1.21 (PID 3010360)
+2026-01-28T05:07:48.543Z [DEBUG] Acquired PID lock on running version: /home/ken/.local/share/claude/versions/2.1.21
+2026-01-28T05:07:48.562Z [DEBUG] Watching for changes in skill/command directories: /home/ken/.claude/skills, /home/ken/.claude/commands, /home/ken/.claude/skills, /home/ken/.claude/commands...
+2026-01-28T05:07:48.564Z [DEBUG] Total plugin agents loaded: 0
+2026-01-28T05:07:48.565Z [DEBUG] Loaded 10 unique skills (managed: 0, user: 2, project: 0, legacy commands: 8)
+2026-01-28T05:07:48.565Z [DEBUG] getSkills returning: 10 skill dir commands, 0 plugin skills, 1 bundled skills
+2026-01-28T05:07:48.566Z [DEBUG] [STARTUP] Commands and agents loaded in 28ms
+2026-01-28T05:07:48.566Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2026-01-28T05:07:48.566Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2026-01-28T05:07:48.566Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2026-01-28T05:07:48.572Z [DEBUG] [STARTUP] MCP configs loaded in 70ms
+2026-01-28T05:07:48.576Z [DEBUG] MCP server "zai-mcp-server": Starting connection with timeout of 30000ms
+2026-01-28T05:07:48.579Z [DEBUG] MCP server "web-search-prime": Initializing HTTP transport to https://api.z.ai/api/mcp/web_search_prime/mcp
+2026-01-28T05:07:48.579Z [DEBUG] MCP server "web-search-prime": Node version: v24.3.0, Platform: linux
+2026-01-28T05:07:48.579Z [DEBUG] MCP server "web-search-prime": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-28T05:07:48.579Z [DEBUG] MCP server "web-reader": Initializing HTTP transport to https://api.z.ai/api/mcp/web_reader/mcp
+2026-01-28T05:07:48.579Z [DEBUG] MCP server "web-reader": Node version: v24.3.0, Platform: linux
+2026-01-28T05:07:48.579Z [DEBUG] MCP server "web-reader": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-28T05:07:48.580Z [DEBUG] MCP server "zread": Initializing HTTP transport to https://api.z.ai/api/mcp/zread/mcp
+2026-01-28T05:07:48.580Z [DEBUG] MCP server "zread": Node version: v24.3.0, Platform: linux
+2026-01-28T05:07:48.580Z [DEBUG] MCP server "zread": Environment: {"NODE_OPTIONS":"not set","UV_THREADPOOL_SIZE":"default","HTTP_PROXY":"not set","HTTPS_PROXY":"not set","NO_PROXY":"not set"}
+2026-01-28T05:07:48.581Z [DEBUG] MCP server "web-search-prime": Proxy options: default
+2026-01-28T05:07:48.582Z [DEBUG] MCP server "web-search-prime": HTTP transport options: {"url":"https://api.z.ai/api/mcp/web_search_prime/mcp","headers":{"User-Agent":"claude-code/2.1.21","Authorization":"[REDACTED]"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-28T05:07:48.582Z [DEBUG] MCP server "web-search-prime": HTTP transport created successfully
+2026-01-28T05:07:48.584Z [DEBUG] MCP server "web-search-prime": Client created, setting up request handler
+2026-01-28T05:07:48.584Z [DEBUG] MCP server "web-search-prime": Starting connection with timeout of 30000ms
+2026-01-28T05:07:48.584Z [DEBUG] MCP server "web-search-prime": Testing basic HTTP connectivity to https://api.z.ai/api/mcp/web_search_prime/mcp
+2026-01-28T05:07:48.584Z [DEBUG] MCP server "web-search-prime": Parsed URL: host=api.z.ai, port=default, protocol=https:
+2026-01-28T05:07:48.585Z [DEBUG] MCP server "web-reader": Proxy options: default
+2026-01-28T05:07:48.585Z [DEBUG] MCP server "web-reader": HTTP transport options: {"url":"https://api.z.ai/api/mcp/web_reader/mcp","headers":{"User-Agent":"claude-code/2.1.21","Authorization":"[REDACTED]"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-28T05:07:48.585Z [DEBUG] MCP server "web-reader": HTTP transport created successfully
+2026-01-28T05:07:48.591Z [DEBUG] MCP server "web-reader": Client created, setting up request handler
+2026-01-28T05:07:48.591Z [DEBUG] MCP server "web-reader": Starting connection with timeout of 30000ms
+2026-01-28T05:07:48.591Z [DEBUG] MCP server "web-reader": Testing basic HTTP connectivity to https://api.z.ai/api/mcp/web_reader/mcp
+2026-01-28T05:07:48.591Z [DEBUG] MCP server "web-reader": Parsed URL: host=api.z.ai, port=default, protocol=https:
+2026-01-28T05:07:48.591Z [DEBUG] MCP server "zread": Proxy options: default
+2026-01-28T05:07:48.591Z [DEBUG] MCP server "zread": HTTP transport options: {"url":"https://api.z.ai/api/mcp/zread/mcp","headers":{"User-Agent":"claude-code/2.1.21","Authorization":"[REDACTED]"},"hasAuthProvider":true,"timeoutMs":60000}
+2026-01-28T05:07:48.591Z [DEBUG] MCP server "zread": HTTP transport created successfully
+2026-01-28T05:07:48.591Z [DEBUG] MCP server "zread": Client created, setting up request handler
+2026-01-28T05:07:48.591Z [DEBUG] MCP server "zread": Starting connection with timeout of 30000ms
+2026-01-28T05:07:48.591Z [DEBUG] MCP server "zread": Testing basic HTTP connectivity to https://api.z.ai/api/mcp/zread/mcp
+2026-01-28T05:07:48.591Z [DEBUG] MCP server "zread": Parsed URL: host=api.z.ai, port=default, protocol=https:
+2026-01-28T05:07:48.599Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-28T05:07:48.599Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-28T05:07:48.599Z [DEBUG] MCP server "zread": No token data found
+2026-01-28T05:07:48.610Z [DEBUG] Loaded 1 LSP server(s) from plugin: rust-analyzer-lsp
+2026-01-28T05:07:48.610Z [DEBUG] Total LSP servers loaded: 1
+2026-01-28T05:07:48.610Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 1 server(s)
+2026-01-28T05:07:48.610Z [DEBUG] Queued request handler for plugin:rust-analyzer-lsp:rust-analyzer.workspace/configuration (connection not ready)
+2026-01-28T05:07:48.611Z [DEBUG] Starting LSP server instance: plugin:rust-analyzer-lsp:rust-analyzer
+2026-01-28T05:07:48.611Z [DEBUG] LSP manager initialized with 1 servers
+2026-01-28T05:07:48.611Z [DEBUG] LSP server manager initialized successfully
+2026-01-28T05:07:48.612Z [DEBUG] Queued notification handler for plugin:rust-analyzer-lsp:rust-analyzer.textDocument/publishDiagnostics (connection not ready)
+2026-01-28T05:07:48.612Z [DEBUG] Registered diagnostics handler for plugin:rust-analyzer-lsp:rust-analyzer
+2026-01-28T05:07:48.612Z [DEBUG] LSP notification handlers registered successfully for all 1 server(s)
+2026-01-28T05:07:48.612Z [ERROR] Error: Error: LSP server plugin:rust-analyzer-lsp:rust-analyzer failed to start: Executable not found in $PATH: "rust-analyzer"
+    at start (/$bunfs/root/claude:1724:22299)
+    at async f (/$bunfs/root/claude:1724:24751)
+    at processTicksAndRejections (native:7:39)
+2026-01-28T05:07:48.612Z [ERROR] Error: Error: Executable not found in $PATH: "rust-analyzer"
+    at spawn (unknown)
+    at spawn (node:child_process:669:35)
+    at spawn (node:child_process:14:39)
+    at start (/$bunfs/root/claude:1724:20844)
+    at start (/$bunfs/root/claude:1724:22353)
+    at f (/$bunfs/root/claude:1724:24751)
+    at f (/$bunfs/root/claude:1724:25726)
+    at L (/$bunfs/root/claude:1724:32513)
+    at processTicksAndRejections (native:7:39)
+2026-01-28T05:07:48.612Z [ERROR] Error: Error: Failed to start LSP server plugin:rust-analyzer-lsp:rust-analyzer: Executable not found in $PATH: "rust-analyzer"
+    at <anonymous> (/$bunfs/root/claude:1724:32535)
+    at processTicksAndRejections (native:7:39)
+2026-01-28T05:07:49.269Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-28T05:07:49.271Z [ERROR] MCP server "zai-mcp-server" Server stderr: [2026-01-28T05:07:49.258Z] INFO: MCP Server Application initialized
+[2026-01-28T05:07:49.259Z] INFO: Starting MCP server...
+[2026-01-28T05:07:49.260Z] INFO: UI to Artifact tool registered successfully
+[2026-01-28T05:07:49.260Z] INFO: Text Extraction tool registered successfully
+[2026-01-28T05:07:49.260Z] INFO: Error Diagnosis tool registered successfully
+[2026-01-28T05:07:49.260Z] INFO: Diagram Analysis tool registered successfully
+[2026-01-28T05:07:49.260Z] INFO: Data Visualization Analysis tool registered successfully
+[2026-01-28T05:07:49.260Z] INFO: UI Diff Check tool registered successfully
+[2026-01-28T05:07:49.261Z] INFO: General Image Analysis tool registered successfully
+[2026-01-28T05:07:49.261Z] INFO: Video analysis tool registered successfully
+[2026-01-28T05:07:49.261Z] INFO: Successfully registered all tools
+[2026-01-28T05:07:49.261Z] INFO: MCP Server started successfully [{"mode":"ZHIPU","name":"zai-mcp-server","version":"0.1.2"}]
+2026-01-28T05:07:49.271Z [DEBUG] MCP server "zai-mcp-server": Successfully connected to stdio server in 698ms
+2026-01-28T05:07:49.271Z [DEBUG] MCP server "zai-mcp-server": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"zai-mcp-server","version":"0.1.2"}}
+2026-01-28T05:07:49.382Z [DEBUG] MCP server "zread": No token data found
+2026-01-28T05:07:49.698Z [DEBUG] MCP server "web-reader": No token data found
+2026-01-28T05:07:49.822Z [DEBUG] MCP server "web-search-prime": Successfully connected to http server in 1243ms
+2026-01-28T05:07:49.822Z [DEBUG] MCP server "web-search-prime": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"mcp-web-search-prime","version":"0.0.1"}}
+2026-01-28T05:07:49.822Z [DEBUG] MCP server "web-search-prime": No token data found
+2026-01-28T05:07:50.128Z [DEBUG] MCP server "zread": Successfully connected to http server in 1548ms
+2026-01-28T05:07:50.128Z [DEBUG] MCP server "zread": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":false,"serverVersion":{"name":"zread-server","version":"0.0.1"}}
+2026-01-28T05:07:50.128Z [DEBUG] MCP server "zread": No token data found

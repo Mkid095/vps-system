@@ -1,0 +1,77 @@
+Nameservers
+Nameservers handle internet requests for your domain. You can use Hostinger nameservers or use custom nameservers to point to other hosting provider.
+ns1.dns-parking.com
+
+ns2.dns-parking.com
+
+Manage DNS records
+These records define how your domain behaves. Common uses include pointing your domain at web servers or configuring email delivery for your domain.
+Type
+Type
+A
+Name
+Name
+@
+
+Points to
+TTL
+TTL
+14400
+
+Add Record
+Search
+Type
+Name
+Priority
+Content
+TTL
+CNAME    www    0    nextmavens.cloud    300    
+Delete
+Edit
+CAA    @    0    0 issuewild "digicert.com"    14400    
+Delete
+Edit
+CAA    @    0    0 issuewild "sectigo.com"    14400    
+Delete
+Edit
+CAA    @    0    0 issuewild "pki.goog"    14400    
+Delete
+Edit
+CAA    @    0    0 issuewild "letsencrypt.org"    14400    
+Delete
+Edit
+CAA    @    0    0 issuewild "globalsign.com"    14400    
+Delete
+Edit
+CAA    @    0    0 issuewild "comodoca.com"    14400    
+Delete
+Edit
+CAA    @    0    0 issue "sectigo.com"    14400    
+Delete
+Edit
+CAA    @    0    0 issue "pki.goog"    14400    
+Delete
+Edit
+CAA    @    0    0 issue "letsencrypt.org"    14400    
+Delete
+Edit
+CAA    @    0    0 issue "globalsign.com"    14400    
+Delete
+Edit
+CAA    @    0    0 issue "digicert.com"    14400    
+Delete
+Edit
+CAA    @    0    0 issue "comodoca.com"    14400    
+Delete
+Edit
+AAAA    @    0    2a02:4780:41:a8ce::1    14400    
+Delete
+Edit
+MX    @    10    nextmavens.cloud    14400    
+Delete
+Edit
+A    @    0    72.61.89.110    14400    
+Delete
+Edit
+Reset DNS records
+This feature resets all existing DNS records of nextmavens.cloud to default.

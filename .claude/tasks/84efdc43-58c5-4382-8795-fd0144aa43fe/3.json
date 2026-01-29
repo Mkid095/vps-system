@@ -1,0 +1,9 @@
+{
+  "id": "3",
+  "subject": "Build API Key System",
+  "description": "Build complete API key system with pk_live/sk_live key generation, project-scoped keys, rotation, revocation, and usage tracking per key",
+  "activeForm": "Implementing API Key system",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

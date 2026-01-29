@@ -1,0 +1,298 @@
+-- NextMavens Platform - Row Level Security Policies
+-- This file sets up RLS policies for all tables
+
+-- ====================================================================
+-- Organizations Table
+-- ====================================================================
+
+-- Enable RLS
+ALTER TABLE organizations ENABLE ROW LEVEL SECURITY;
+
+-- Drop existing policies
+DROP POLICY IF EXISTS "Users can create organizations" ON organizations;
+DROP POLICY IF EXISTS "Users can view organizations they are members of" ON organizations;
+DROP POLICY IF EXISTS "Organization owners can update" ON organizations;
+DROP POLICY IF EXISTS "Organization owners can delete" ON organizations;
+
+-- INSERT: Allow authenticated users to create organizations
+CREATE POLICY "Users can create organizations"
+ON organizations
+FOR INSERT
+TO authenticated
+WITH CHECK (true);
+
+-- SELECT: Allow users to view organizations they are members of
+CREATE POLICY "Users can view organizations they are members of"
+ON organizations
+FOR SELECT
+TO public
+USING (
+  EXISTS (
+    SELECT 1
+    FROM organization_members
+    WHERE organization_members.organization_id = organizations.id
+      AND organization_members.user_id = current_setting('request.jwt.claim.user_id', true)
+  )
+);
+
+-- UPDATE: Allow organization owners to update
+CREATE POLICY "Organization owners can update"
+ON organizations
+FOR UPDATE
+TO authenticated
+USING (
+  EXISTS (
+    SELECT 1
+    FROM organization_members
+    WHERE organization_members.organization_id = organizations.id
+      AND organization_members.user_id = current_setting('request.jwt.claim.user_id', true)
+      AND organization_members.role = 'owner'
+  )
+);
+
+-- DELETE: Allow organization owners to delete
+CREATE POLICY "Organization owners can delete"
+ON organizations
+FOR DELETE
+TO authenticated
+USING (
+  EXISTS (
+    SELECT 1
+    FROM organization_members
+    WHERE organization_members.organization_id = organizations.id
+      AND organization_members.user_id = current_setting('request.jwt.claim.user_id', true)
+      AND organization_members.role = 'owner'
+  )
+);
+
+-- ====================================================================
+-- Organization Members Table
+-- ====================================================================
+
+-- Enable RLS
+ALTER TABLE organization_members ENABLE ROW LEVEL SECURITY;
+
+-- Drop existing policies
+DROP POLICY IF EXISTS "Users can create organization memberships" ON organization_members;
+DROP POLICY IF EXISTS "Users can view organization memberships" ON organization_members;
+DROP POLICY IF EXISTS "Organization owners can update memberships" ON organization_members;
+DROP POLICY IF EXISTS "Organization owners can delete memberships" ON organization_members;
+
+-- INSERT: Allow authenticated users to create memberships
+CREATE POLICY "Users can create organization memberships"
+ON organization_members
+FOR INSERT
+TO authenticated
+WITH CHECK (true);
+
+-- SELECT: Allow users to view memberships
+CREATE POLICY "Users can view organization memberships"
+ON organization_members
+FOR SELECT
+TO public
+USING (
+  user_id = current_setting('request.jwt.claim.user_id', true)
+  OR EXISTS (
+    SELECT 1 FROM organizations
+    WHERE organizations.id = organization_members.organization_id
+      AND EXISTS (
+        SELECT 1 FROM organization_members om2
+        WHERE om2.organization_id = organizations.id
+          AND om2.user_id = current_setting('request.jwt.claim.user_id', true)
+      )
+  )
+);
+
+-- UPDATE: Allow organization owners to update memberships
+CREATE POLICY "Organization owners can update memberships"
+ON organization_members
+FOR UPDATE
+TO authenticated
+USING (
+  EXISTS (
+    SELECT 1 FROM organization_members om
+    WHERE om.organization_id = organization_members.organization_id
+      AND om.user_id = current_setting('request.jwt.claim.user_id', true)
+      AND om.role = 'owner'
+  )
+);
+
+-- DELETE: Allow organization owners to delete memberships
+CREATE POLICY "Organization owners can delete memberships"
+ON organization_members
+FOR DELETE
+TO authenticated
+USING (
+  EXISTS (
+    SELECT 1 FROM organization_members om
+    WHERE om.organization_id = organization_members.organization_id
+      AND om.user_id = current_setting('request.jwt.claim.user_id', true)
+      AND om.role = 'owner'
+  )
+);
+
+-- ====================================================================
+-- Projects Table
+-- ====================================================================
+
+-- Enable RLS
+ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
+
+-- Drop existing policies
+DROP POLICY IF EXISTS "Users can view projects in their organizations" ON projects;
+DROP POLICY IF EXISTS "Users can create projects in their organizations" ON projects;
+DROP POLICY IF EXISTS "Users can update projects in their organizations" ON projects;
+DROP POLICY IF EXISTS "Users can delete projects in their organizations" ON projects;
+
+-- INSERT: Allow users in org to create projects
+CREATE POLICY "Users can create projects in their organizations"
+ON projects
+FOR INSERT
+TO authenticated
+WITH CHECK (
+  EXISTS (
+    SELECT 1 FROM organization_members
+    WHERE organization_members.organization_id = projects.organization_id
+      AND organization_members.user_id = current_setting('request.jwt.claim.user_id', true)
+      AND organization_members.role IN ('owner', 'admin')
+  )
+);
+
+-- SELECT: Allow users to view projects in their organizations
+CREATE POLICY "Users can view projects in their organizations"
+ON projects
+FOR SELECT
+TO public
+USING (
+  EXISTS (
+    SELECT 1 FROM organization_members
+    WHERE organization_members.organization_id = projects.organization_id
+      AND organization_members.user_id = current_setting('request.jwt.claim.user_id', true)
+  )
+);
+
+-- UPDATE: Allow owners/admins to update projects
+CREATE POLICY "Users can update projects in their organizations"
+ON projects
+FOR UPDATE
+TO authenticated
+USING (
+  EXISTS (
+    SELECT 1 FROM organization_members
+    WHERE organization_members.organization_id = projects.organization_id
+      AND organization_members.user_id = current_setting('request.jwt.claim.user_id', true)
+      AND organization_members.role IN ('owner', 'admin')
+  )
+);
+
+-- DELETE: Allow owners/admins to delete projects
+CREATE POLICY "Users can delete projects in their organizations"
+ON projects
+FOR DELETE
+TO authenticated
+USING (
+  EXISTS (
+    SELECT 1 FROM organization_members
+    WHERE organization_members.organization_id = projects.organization_id
+      AND organization_members.user_id = current_setting('request.jwt.claim.user_id', true)
+      AND organization_members.role IN ('owner', 'admin')
+  )
+);
+
+-- ====================================================================
+-- API Keys Table
+-- ====================================================================
+
+-- Enable RLS
+ALTER TABLE api_keys ENABLE ROW LEVEL SECURITY;
+
+-- Drop existing policies
+DROP POLICY IF EXISTS "Users can view API keys for their projects" ON api_keys;
+DROP POLICY IF EXISTS "Users can create API keys for their projects" ON api_keys;
+DROP POLICY IF EXISTS "Users can update API keys for their projects" ON api_keys;
+DROP POLICY IF EXISTS "Users can delete API keys for their projects" ON api_keys;
+
+-- SELECT: Allow users to view API keys for their projects
+CREATE POLICY "Users can view API keys for their projects"
+ON api_keys
+FOR SELECT
+TO public
+USING (
+  EXISTS (
+    SELECT 1 FROM projects
+    WHERE projects.id = api_keys.project_id
+      AND EXISTS (
+        SELECT 1 FROM organization_members
+        WHERE organization_members.organization_id = projects.organization_id
+          AND organization_members.user_id = current_setting('request.jwt.claim.user_id', true)
+      )
+  )
+);
+
+-- INSERT: Allow users to create API keys for their projects
+CREATE POLICY "Users can create API keys for their projects"
+ON api_keys
+FOR INSERT
+TO authenticated
+WITH CHECK (
+  EXISTS (
+    SELECT 1 FROM projects
+    WHERE projects.id = api_keys.project_id
+      AND EXISTS (
+        SELECT 1 FROM organization_members
+        WHERE organization_members.organization_id = projects.organization_id
+          AND organization_members.user_id = current_setting('request.jwt.claim.user_id', true)
+          AND organization_members.role IN ('owner', 'admin')
+      )
+  )
+);
+
+-- UPDATE: Allow owners/admins to update API keys
+CREATE POLICY "Users can update API keys for their projects"
+ON api_keys
+FOR UPDATE
+TO authenticated
+USING (
+  EXISTS (
+    SELECT 1 FROM projects
+    WHERE projects.id = api_keys.project_id
+      AND EXISTS (
+        SELECT 1 FROM organization_members
+        WHERE organization_members.organization_id = projects.organization_id
+          AND organization_members.user_id = current_setting('request.jwt.claim.user_id', true)
+          AND organization_members.role IN ('owner', 'admin')
+      )
+  )
+);
+
+-- DELETE: Allow owners/admins to delete API keys
+CREATE POLICY "Users can delete API keys for their projects"
+ON api_keys
+FOR DELETE
+TO authenticated
+USING (
+  EXISTS (
+    SELECT 1 FROM projects
+    WHERE projects.id = api_keys.project_id
+      AND EXISTS (
+        SELECT 1 FROM organization_members
+        WHERE organization_members.organization_id = projects.organization_id
+          AND organization_members.user_id = current_setting('request.jwt.claim.user_id', true)
+          AND organization_members.role IN ('owner', 'admin')
+      )
+  )
+);
+
+-- ====================================================================
+-- Verification
+-- ====================================================================
+
+-- Display all policies
+SELECT 'organizations' as table_name, policyname, cmd FROM pg_policies WHERE tablename = 'organizations'
+UNION ALL
+SELECT 'organization_members', policyname, cmd FROM pg_policies WHERE tablename = 'organization_members'
+UNION ALL
+SELECT 'projects', policyname, cmd FROM pg_policies WHERE tablename = 'projects'
+UNION ALL
+SELECT 'api_keys', policyname, cmd FROM pg_policies WHERE tablename = 'api_keys'
+ORDER BY table_name, cmd;

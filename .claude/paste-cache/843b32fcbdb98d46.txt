@@ -1,0 +1,21 @@
+Initializing deployment
+File 'docker-compose.yml' created: ✅
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║ App Name: nextmavens-postgrestapi-srrfw0                                     ║
+║ Build Compose 🐳                                                             ║
+║ Detected: 0 mounts 📂                                                        ║
+║ Command: docker compose -p nextmavens-postgrestapi-srrfw0 -f                 ║
+║ docker-compose.yml up -d --build --remove-orphans                            ║
+║ Source Type: docker raw ✅                                                   ║
+║ Compose Type: docker-compose ✅                                              ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+time="2026-01-26T22:15:41Z" level=warning msg="/etc/dokploy/compose/nextmavens-postgrestapi-srrfw0/code/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+time="2026-01-26T22:15:41Z" level=warning msg="No services to build"
+Container postgrest Recreate
+Container postgrest Recreated
+Container postgrest Starting
+Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint postgrest (0bf79c762b8da7f29f9a91efb55212898d39e7f02296d2e6faf7300427303702): Bind for 0.0.0.0:3000 failed: port is already allocated
+Error: ❌ Docker command failed
+Error occurred ❌, check the logs for details.

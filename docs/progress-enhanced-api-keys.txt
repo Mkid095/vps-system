@@ -1,0 +1,29 @@
+# Enhanced Api Keys - Progress Tracker
+
+## Feature: Enhanced Api Keys
+**Branch**: flow/enhanced-api-keys
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (12 total)
+
+| US-001 | Add Key Type and Scopes to API Keys Table | 1 | Pending | |
+| US-002 | Define Key Type Prefixes | 1 | Pending | |
+| US-003 | Define Scope Per Service | 1 | Pending | |
+| US-004 | Implement Create Key with Type | 1 | Pending | |
+| US-005 | Implement Public Key Creation | 1 | Pending | |
+| US-006 | Implement Secret Key Creation | 1 | Pending | |
+| US-007 | Implement Service Role Key Creation | 2 | Pending | |
+| US-008 | Add Environment Selector | 2 | Pending | |
+| US-009 | Track Key Usage | 2 | Pending | |
+| US-010 | Create Key Type Documentation | 2 | Pending | |
+| US-011 | Create Enhanced Key Creation UI | 2 | Pending | |
+| US-012 | Enforce Scopes at Gateway | 1 | Pending | |
+
+## Progress Summary
+- Total Stories: 12
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 12
+
+## Iteration Log

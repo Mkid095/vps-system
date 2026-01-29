@@ -1,0 +1,2 @@
+supabase-gotrue
+{"code":500,"error_code":"unexpected_failure","msg":"Database error finding user","error_id":"8a3ee27f-9d31-4771-86aa-1d29e338d251"}

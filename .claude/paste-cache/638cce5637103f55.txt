@@ -1,0 +1,101 @@
+Initializing deployment
+Cloning Repo github.com/Mkid095/nextmavens-api-gateway.git to /etc/dokploy/compose/nextmavens-apigateway-qjuap1/code: ✅
+Cloning into '/etc/dokploy/compose/nextmavens-apigateway-qjuap1/code'...
+remote: Enumerating objects: 8, done.
+remote: Counting objects:  12% (1/8)        
+remote: Counting objects:  25% (2/8)        
+remote: Counting objects:  37% (3/8)        
+remote: Counting objects:  50% (4/8)        
+remote: Counting objects:  62% (5/8)        
+remote: Counting objects:  75% (6/8)        
+remote: Counting objects:  87% (7/8)        
+remote: Counting objects: 100% (8/8)        
+remote: Counting objects: 100% (8/8), done.
+remote: Compressing objects:  14% (1/7)        
+remote: Compressing objects:  28% (2/7)        
+remote: Compressing objects:  42% (3/7)        
+remote: Compressing objects:  57% (4/7)        
+remote: Compressing objects:  71% (5/7)        
+remote: Compressing objects:  85% (6/7)        
+remote: Compressing objects: 100% (7/7)        
+remote: Compressing objects: 100% (7/7), done.
+remote: Total 8 (delta 0), reused 8 (delta 0), pack-reused 0 (from 0)
+Receiving objects:  12% (1/8)
+Receiving objects:  25% (2/8)
+Receiving objects:  37% (3/8)
+Receiving objects:  50% (4/8)
+Receiving objects:  62% (5/8)
+Receiving objects:  75% (6/8)
+Receiving objects:  87% (7/8)
+Receiving objects: 100% (8/8)
+Receiving objects: 100% (8/8), 7.79 KiB | 7.79 MiB/s, done.
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║ App Name: nextmavens-apigateway-qjuap1                                       ║
+║ Build Compose 🐳                                                             ║
+║ Detected: 0 mounts 📂                                                        ║
+║ Command: docker compose -p nextmavens-apigateway-qjuap1 -f                   ║
+║ ./docker-compose.yml up -d --build --remove-orphans                          ║
+║ Source Type: docker github ✅                                                ║
+║ Compose Type: docker-compose ✅                                              ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+Image nextmavens-apigateway-qjuap1-api-gateway Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 622B done
+#1 DONE 0.0s
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 291B done
+#2 DONE 0.0s
+#3 [internal] load metadata for docker.io/library/node:18-alpine
+#3 DONE 0.8s
+#4 [internal] load .dockerignore
+#4 transferring context: 79B done
+#4 DONE 0.0s
+#5 [internal] load build context
+#5 transferring context: 21.53kB done
+#5 DONE 0.0s
+#6 [1/6] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+#6 resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e 0.0s done
+#6 DONE 0.0s
+#7 [2/6] WORKDIR /app
+#7 CACHED
+#8 [3/6] RUN apk add --no-cache python3 make g++
+#8 CACHED
+#9 [4/6] COPY package*.json ./
+#9 DONE 0.0s
+#10 [5/6] RUN npm install
+#10 8.399
+#10 8.399 added 137 packages, and audited 138 packages in 8s
+#10 8.399
+#10 8.399 23 packages are looking for funding
+#10 8.399   run `npm fund` for details
+#10 8.399
+#10 8.399 found 0 vulnerabilities
+#10 8.400 npm notice
+#10 8.400 npm notice New major version of npm available! 10.8.2 -> 11.8.0
+#10 8.400 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.8.0
+#10 8.400 npm notice To update run: npm install -g npm@11.8.0
+#10 8.400 npm notice
+#10 DONE 8.5s
+#11 [6/6] COPY . .
+#11 DONE 0.1s
+#12 exporting to image
+#12 exporting layers
+#12 exporting layers 0.8s done
+#12 exporting manifest sha256:330a3eb58832ae3647ec27301a14d7c89ab8d89831f5e3b4db41fee41fe7be2a done
+#12 exporting config sha256:d3de76c545ca1dd87b5b4ce7518bfcc29865537b0c1823e5e5497cfa6d1bc24b done
+#12 exporting attestation manifest sha256:b6dd4c76a12fb87e54c183ac31001562108211a1d31c8d3daf649ab4d2cd96a9 0.0s done
+#12 exporting manifest list sha256:29539f5578846f4c5bacfb86f83e4fde66631ad6977c0a185fe65512d67cdd4e done
+#12 naming to docker.io/library/nextmavens-apigateway-qjuap1-api-gateway:latest done
+#12 unpacking to docker.io/library/nextmavens-apigateway-qjuap1-api-gateway:latest
+#12 unpacking to docker.io/library/nextmavens-apigateway-qjuap1-api-gateway:latest 0.6s done
+#12 DONE 1.5s
+#13 resolving provenance for metadata file
+#13 DONE 0.0s
+Image nextmavens-apigateway-qjuap1-api-gateway Built
+Container nextmavens-api-gateway Creating
+Container nextmavens-api-gateway Created
+Container nextmavens-api-gateway Starting
+Container nextmavens-api-gateway Started
+Docker Compose Deployed: ✅

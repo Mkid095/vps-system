@@ -1,0 +1,6 @@
+basenc
+fincore
+runcon
+sync
+truncate
+uncompress

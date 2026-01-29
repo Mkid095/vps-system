@@ -1,0 +1,167 @@
+     1→#!/bin/bash
+     2→# ============================================================================
+     3→# Maven Flow PRD Converter
+     4→# Converts markdown PRDs to JSON format with skip/reconvert support
+     5→# ============================================================================
+     6→
+     7→# Colors
+     8→CYAN='\033[0;36m'
+     9→GREEN='\033[0;32m'
+    10→YELLOW='\033[1;33m'
+    11→BLUE='\033[0;34m'
+    12→RED='\033[0;31m'
+    13→GRAY='\033[0;90m'
+    14→DARK_YELLOW='\033[0;33m'
+    15→NC='\033[0m'
+    16→
+    17→# Parse arguments
+    18→FORCE=false
+    19→ALL=false
+    20→FEATURE=""
+    21→
+    22→for arg in "$@"; do
+    23→    case $arg in
+    24→        --force)
+    25→            FORCE=true
+    26→            shift
+    27→            ;;
+    28→        --all)
+    29→            ALL=true
+    30→            shift
+    31→            ;;
+    32→        -*)
+    33→            # Unknown flag
+    34→            ;;
+    35→        *)
+    36→            if [ -z "$FEATURE" ]; then
+    37→                FEATURE="$arg"
+    38→            fi
+    39→            ;;
+    40→    esac
+    41→done
+    42→
+    43→# Print header
+    44→print_header() {
+    45→    echo ""
+    46→    echo -e "${CYAN}+============================================================+${NC}"
+    47→    echo -e "${CYAN}|           Maven Flow - PRD Format Converter               |${NC}"
+    48→    echo -e "${CYAN}+============================================================+${NC}"
+    49→    echo ""
+    50→}
+    51→
+    52→print_header
+    53→
+    54→# --all mode
+    55→if [ "$ALL" = true ] || [ -z "$FEATURE" ]; then
+    56→    echo -e "${YELLOW}  Converting all markdown PRDs to JSON...${NC}"
+    57→    if [ "$FORCE" = true ]; then
+    58→        echo -e "${YELLOW}  Mode: FORCE (reconvert existing)${NC}"
+    59→    else
+    60→        echo -e "${GRAY}  Mode: SKIP existing JSON files${NC}"
+    61→    fi
+    62→    echo ""
+    63→
+    64→    # Find all markdown PRDs
+    65→    PRD_FILES=(docs/prd-*.md 2>/dev/null)
+    66→
+    67→    if [ ${#PRD_FILES[@]} -eq 0 ] || [ ! -f "${PRD_FILES[0]}" ]; then
+    68→        echo -e "${YELLOW}  [!] No markdown PRDs found in docs/${NC}"
+    69→        echo ""
+    70→        echo -e "${GRAY}  Usage:${NC}"
+    71→        echo -e "    flow-convert <feature-name>"
+    72→        echo ""
+    73→        exit 1
+    74→    fi
+    75→
+    76→    echo -e "${GREEN}  Found ${#PRD_FILES[@]} markdown PRD(s)${NC}"
+    77→    echo ""
+    78→
+    79→    success_count=0
+    80→    fail_count=0
+    81→    skip_count=0
+    82→
+    83→    for prd in "${PRD_FILES[@]}"; do
+    84→        feature=$(basename "$prd" | sed 's/prd-//' | sed 's/\.md$//')
+    85→        json_file="docs/prd-$feature.json"
+    86→
+    87→        echo ""
+    88→        echo -e "${CYAN}  Checking: ${YELLOW}$feature${NC}"
+    89→
+    90→        # Check if JSON already exists
+    91→        if [ -f "$json_file" ] && [ "$FORCE" = false ]; then
+    92→            echo -e "${DARK_YELLOW} [SKIPPED] (JSON exists)${NC}"
+    93→            ((skip_count++))
+    94→            continue
+    95→        fi
+    96→
+    97→        echo -e "${GRAY} -> Converting...${NC}"
+    98→
+    99→        force_flag=""
+   100→        if [ "$FORCE" = true ]; then
+   101→            force_flag="--force"
+   102→        fi
+   103→
+   104→        if claude --dangerously-skip-permissions -p "/flow-convert $force_flag $feature" 2>&1; then
+   105→            echo -e "${GREEN} [OK]${NC}"
+   106→            ((success_count++))
+   107→        else
+   108→            echo -e "${RED} [FAILED]${NC}"
+   109→            ((fail_count++))
+   110→        fi
+   111→    done
+   112→
+   113→    echo ""
+   114→    echo -e "${GRAY}==============================================================================${NC}"
+   115→    echo ""
+   116→    echo -e "${GRAY}  Summary:${NC}"
+   117→    echo -e "${GRAY}    Converted: ${GREEN}$success_count PRD(s)${NC}"
+   118→    if [ $skip_count -gt 0 ]; then
+   119→        echo -e "${GRAY}    Skipped: ${DARK_YELLOW}$skip_count PRD(s) (already exist)${NC}"
+   120→    fi
+   121→    if [ $fail_count -gt 0 ]; then
+   122→        echo -e "${GRAY}    Failed: ${RED}$fail_count PRD(s)${NC}"
+   123→    fi
+   124→    echo ""
+   125→
+   126→    exit 0
+   127→fi
+   128→
+   129→# Single PRD conversion
+   130→echo -e "${BLUE}  Converting: ${YELLOW}$FEATURE${NC}"
+   131→echo ""
+   132→echo -e "${GRAY}  -> Reading from: docs/prd-$FEATURE.md${NC}"
+   133→echo -e "${GRAY}  -> Writing to: docs/prd-$FEATURE.json${NC}"
+   134→echo ""
+   135→
+   136→force_flag=""
+   137→if [ "$FORCE" = true ]; then
+   138→    force_flag="--force"
+   139→fi
+   140→
+   141→PROMPT="/flow-convert $force_flag $FEATURE"
+   142→
+   143→if claude --dangerously-skip-permissions -p "$PROMPT"; then
+   144→    echo ""
+   145→    echo -e "${GREEN}+============================================================+${NC}"
+   146→    echo -e "${GREEN}|                [OK] CONVERSION COMPLETE                   |${NC}"
+   147→    echo -e "${GREEN}+============================================================+${NC}"
+   148→    echo ""
+   149→    echo -e "${GRAY}  Created: docs/prd-$FEATURE.json${NC}"
+   150→    echo ""
+   151→    echo -e "${YELLOW}  Next: ${GRAY}flow start    Begin development${NC}"
+   152→else
+   153→    echo ""
+   154→    echo -e "${RED}+============================================================+${NC}"
+   155→    echo -e "${RED}|              [ERROR] CONVERSION FAILED                    |${NC}"
+   156→    echo -e "${RED}+============================================================+${NC}"
+   157→    echo ""
+   158→    echo -e "${GRAY}  Make sure docs/prd-$FEATURE.md exists${NC}"
+   159→    exit 1
+   160→fi
+   161→
+   162→echo ""
+   163→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

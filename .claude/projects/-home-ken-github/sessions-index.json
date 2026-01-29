@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sessionId": "f02a98c9-b490-4e35-9f43-293fd40c5686",
+      "fullPath": "/home/ken/.claude/projects/-home-ken-github/f02a98c9-b490-4e35-9f43-293fd40c5686.jsonl",
+      "fileMtime": 1769278224086,
+      "firstPrompt": "the flow cli direct for terminla is not working on linux I am not able to install it as a terminal command",
+      "summary": "Linux flow CLI: Fixed PowerShell dependency, created native bash implementation",
+      "messageCount": 37,
+      "created": "2026-01-24T13:47:37.940Z",
+      "modified": "2026-01-24T14:05:07.447Z",
+      "gitBranch": "main",
+      "projectPath": "/home/ken/github",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "0474b09a-81fb-47d7-bc09-baa104628889",
+      "fullPath": "/home/ken/.claude/projects/-home-ken-github/0474b09a-81fb-47d7-bc09-baa104628889.jsonl",
+      "fileMtime": 1769319544602,
+      "firstPrompt": "commit and push",
+      "summary": "AI Memory Architecture Research and Planning",
+      "messageCount": 26,
+      "created": "2026-01-24T18:10:20.574Z",
+      "modified": "2026-01-24T19:37:45.296Z",
+      "gitBranch": "main",
+      "projectPath": "/home/ken/github",
+      "isSidechain": false
+    }
+  ],
+  "originalPath": "/home/ken/github"
+}

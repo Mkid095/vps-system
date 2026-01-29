@@ -1,0 +1,2 @@
+Exit code 1
+open /home/ken/nextmavens-platform/docker/docker/docker-compose.yml: no such file or directory

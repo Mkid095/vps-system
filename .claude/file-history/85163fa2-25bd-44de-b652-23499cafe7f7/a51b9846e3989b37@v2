@@ -1,0 +1,153 @@
+# NextMavens Platform - nextmavens.cloud
+# SSL configuration with certbot
+
+# Upstream for Next.js Dashboard (port 3000)
+upstream nextmavens_dashboard {
+    server [::1]:3000;
+    keepalive 64;
+}
+
+# Upstream for Supabase Studio (port 8000)
+upstream supabase_studio {
+    server 127.0.0.1:8000;
+    keepalive 64;
+}
+
+# Upstream for Supabase API (PostgREST port 4003)
+upstream supabase_api {
+    server 127.0.0.1:4003;
+    keepalive 64;
+}
+
+# Upstream for Evolution API (port 8080)
+upstream evolution_api {
+    server 127.0.0.1:8080;
+    keepalive 64;
+}
+
+# Upstream for Supabase Realtime (port 4001)
+upstream supabase_realtime {
+    server 127.0.0.1:4001;
+    keepalive 64;
+}
+
+# HTTP server - redirect to HTTPS and handle ACME challenges
+server {
+    if ($host = nextmavens.cloud) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    listen [::]:80;
+    server_name nextmavens.cloud www.nextmavens.cloud;
+
+    # ACME challenge location for certbot
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+        try_files $uri =404;
+    }
+
+    # Redirect all other HTTP traffic to HTTPS
+    location / {
+        return 301 https://$server_name$request_uri;
+    }
+
+
+}
+
+# HTTPS server
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name nextmavens.cloud www.nextmavens.cloud;
+
+    # SSL configuration
+    ssl_certificate /etc/letsencrypt/live/nextmavens.cloud-0001/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/nextmavens.cloud-0001/privkey.pem; # managed by Certbot
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers 'ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384';
+    ssl_prefer_server_ciphers off;
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 10m;
+
+    # Logging
+    access_log /var/log/nginx/nextmavens-access.log;
+    error_log /var/log/nginx/nextmavens-error.log;
+
+    # Maximum upload size
+    client_max_body_size 100M;
+
+    # Main dashboard
+    location / {
+        proxy_pass http://nextmavens_dashboard;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+    }
+
+    # Supabase Studio
+    location /studio {
+        proxy_pass http://supabase_studio;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+        proxy_read_timeout 300s;
+        proxy_connect_timeout 75s;
+    }
+
+    # Supabase API
+    location /api/ {
+        proxy_pass http://supabase_api/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # Evolution API (WhatsApp)
+    location /whatsapp {
+        proxy_pass http://evolution_api;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+        proxy_read_timeout 300s;
+    }
+
+    # Supabase Realtime (WebSockets)
+    location /realtime {
+        proxy_pass http://supabase_realtime;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 86400;
+    }
+
+    # Health check endpoint
+    location /health {
+        access_log off;
+        return 200 "healthy\n";
+        add_header Content-Type text/plain;
+    }
+
+}

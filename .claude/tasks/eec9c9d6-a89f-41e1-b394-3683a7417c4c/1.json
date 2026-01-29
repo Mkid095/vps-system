@@ -1,0 +1,8 @@
+{
+  "id": "1",
+  "subject": "Fix authentication - configure Kong for GoTrue auth",
+  "description": "Configure Kong to properly proxy auth requests to GoTrue and fix JWT token validation. This includes:\n- Update SUPABASE_URL to point correctly to GoTrue through Kong\n- Configure Kong auth routes properly\n- Generate new JWT secrets if needed\n- Set up proper email confirmation flow\n- Test authentication flow end-to-end",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

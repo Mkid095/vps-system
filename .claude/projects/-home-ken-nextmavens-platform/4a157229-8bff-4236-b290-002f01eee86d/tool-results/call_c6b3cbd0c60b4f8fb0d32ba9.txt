@@ -1,0 +1,40 @@
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"email_changed_notification","msg":"mailer: reloaded template type: email_changed_notification","time":"2026-01-25T08:04:50Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"phone_changed_notification","msg":"mailer: reloaded template type: phone_changed_notification","time":"2026-01-25T08:04:50Z"}
+{"component":"api","level":"warning","msg":"DEPRECATION NOTICE: GOTRUE_JWT_ADMIN_GROUP_NAME not supported by Supabase's GoTrue, will be removed soon","time":"2026-01-25T08:04:50Z"}
+{"component":"api","level":"warning","msg":"DEPRECATION NOTICE: GOTRUE_JWT_DEFAULT_GROUP_NAME not supported by Supabase's GoTrue, will be removed soon","time":"2026-01-25T08:04:50Z"}
+{"level":"info","msg":"GoTrue API started on: 0.0.0.0:9999","time":"2026-01-25T08:04:50Z","version":"v2.185.0"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"identity_linked_notification","msg":"mailer: reloaded template type: identity_linked_notification","time":"2026-01-25T08:04:50Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"identity_unlinked_notification","msg":"mailer: reloaded template type: identity_unlinked_notification","time":"2026-01-25T08:04:50Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"mfa_factor_enrolled_notification","msg":"mailer: reloaded template type: mfa_factor_enrolled_notification","time":"2026-01-25T08:04:50Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"reauthentication","msg":"mailer: reloaded template type: reauthentication","time":"2026-01-25T08:04:50Z"}
+{"component":"apiworker","level":"info","msg":"apiworker: index worker started","time":"2026-01-25T08:04:50Z","worker_type":"apiworker_index_worker"}
+{"component":"apiworker","level":"info","msg":"apiworker: config notifier started","time":"2026-01-25T08:04:50Z","worker_type":"apiworker_config_notifier"}
+{"component":"apiworker","level":"info","msg":"apiworker: template cache worker started","time":"2026-01-25T08:04:50Z","worker_type":"apiworker_template_cache"}
+{"component":"apiworker","level":"info","msg":"apiworker: db worker started","time":"2026-01-25T08:04:50Z","worker_type":"apiworker_db_worker"}
+{"component":"apiworker","config_conn_max_idle_time":"0s","config_conn_max_lifetime":"0s","config_conn_percentage":0,"config_max_idle_pool_size":0,"config_max_pool_size":0,"level":"info","limit_conn_max_idle_time":"0s","limit_conn_max_lifetime":"0s","limit_max_idle_conns":0,"limit_max_open_conns":0,"limit_strategy":"fixed","msg":"applying connection limits to db using the \"fixed\" strategy","server_max_conns":100,"time":"2026-01-25T08:04:50Z","worker_type":"apiworker_db_worker"}
+{"component":"api","error":"unable to find identity by email for duplicates: unable to fetch records: ERROR: relation \"identities\" does not exist (SQLSTATE 42P01)","level":"error","method":"POST","msg":"500: Database error finding user","path":"/signup","referer":"https://nextmavens.cloud","remote_addr":"172.18.0.1","request_id":"661d2654-c9d0-42e4-aded-7b5f25a90e4e","time":"2026-01-25T08:05:16Z"}
+{"component":"api","duration":7067242,"error_code":"unexpected_failure","level":"info","method":"POST","msg":"request completed","path":"/signup","referer":"https://nextmavens.cloud","remote_addr":"172.18.0.1","request_id":"661d2654-c9d0-42e4-aded-7b5f25a90e4e","status":500,"time":"2026-01-25T08:05:16Z"}
+{"level":"info","msg":"received graceful shutdown signal","time":"2026-01-25T08:06:04Z"}
+{"component":"apiworker","level":"info","msg":"apiworker: template cache worker exited","time":"2026-01-25T08:06:04Z","worker_type":"apiworker_template_cache"}
+{"component":"apiworker","level":"info","msg":"apiworker: db worker exited","time":"2026-01-25T08:06:04Z","worker_type":"apiworker_db_worker"}
+{"component":"apiworker","level":"info","msg":"apiworker: config notifier exited","time":"2026-01-25T08:06:04Z","worker_type":"apiworker_config_notifier"}
+{"component":"apiworker","level":"info","msg":"apiworker: index worker exited","time":"2026-01-25T08:06:04Z","worker_type":"apiworker_index_worker"}
+{"component":"apiworker","error":"context canceled","level":"error","msg":"background apiworker is exiting","time":"2026-01-25T08:06:04Z"}
+{"component":"api","level":"info","msg":"http server closed","time":"2026-01-25T08:06:04Z"}
+{"level":"info","msg":"Go runtime metrics collection started","time":"2026-01-25T08:06:04Z"}
+{"component":"pop","level":"info","msg":"Migrations already up to date, nothing to apply","time":"2026-01-25T08:06:04Z"}
+{"args":[0.014759486],"component":"pop","level":"info","msg":"%.4f seconds","time":"2026-01-25T08:06:04Z"}
+{"count":0,"level":"info","msg":"GoTrue migrations applied successfully","time":"2026-01-25T08:06:04Z"}
+{"component":"api","level":"warning","msg":"DEPRECATION NOTICE: GOTRUE_JWT_ADMIN_GROUP_NAME not supported by Supabase's GoTrue, will be removed soon","time":"2026-01-25T08:06:04Z"}
+{"component":"api","level":"warning","msg":"DEPRECATION NOTICE: GOTRUE_JWT_DEFAULT_GROUP_NAME not supported by Supabase's GoTrue, will be removed soon","time":"2026-01-25T08:06:04Z"}
+{"level":"info","msg":"GoTrue API started on: 0.0.0.0:9999","time":"2026-01-25T08:06:04Z","version":"v2.185.0"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"mfa_factor_unenrolled_notification","msg":"mailer: reloaded template type: mfa_factor_unenrolled_notification","time":"2026-01-25T08:06:04Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"invite","msg":"mailer: reloaded template type: invite","time":"2026-01-25T08:06:04Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"confirmation","msg":"mailer: reloaded template type: confirmation","time":"2026-01-25T08:06:04Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"recovery","msg":"mailer: reloaded template type: recovery","time":"2026-01-25T08:06:04Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"email_change","msg":"mailer: reloaded template type: email_change","time":"2026-01-25T08:06:04Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"magic_link","msg":"mailer: reloaded template type: magic_link","time":"2026-01-25T08:06:04Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"reauthentication","msg":"mailer: reloaded template type: reauthentication","time":"2026-01-25T08:06:04Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"password_changed_notification","msg":"mailer: reloaded template type: password_changed_notification","time":"2026-01-25T08:06:04Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"email_changed_notification","msg":"mailer: reloaded template type: email_changed_notification","time":"2026-01-25T08:06:04Z"}
+{"event":"templatemailer_reloader_template_update","level":"info","mail_type":"phone_changed_notification","msg":"mailer: reloaded template type: phone_changed_notification","time":"2026-01-25T08:06:04Z"}

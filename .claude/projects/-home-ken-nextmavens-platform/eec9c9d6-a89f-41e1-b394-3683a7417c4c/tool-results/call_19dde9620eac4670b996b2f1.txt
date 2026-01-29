@@ -1,0 +1,5 @@
+cc9e82e feat: Complete dashboard redesign with sidebar navigation
+739190e fix: Fix API response handling in frontend components
+260e54f fix: Fix API response format handling and add RLS policies
+98d428b fix: Update Docker configuration for dashboard production build
+1b60fef feat: Add Docker production setup for dashboard

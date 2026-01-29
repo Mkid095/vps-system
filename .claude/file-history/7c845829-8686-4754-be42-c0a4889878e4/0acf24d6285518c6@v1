@@ -1,0 +1,185 @@
+---
+project: Dashboard UI
+branch: flow/dashboard-ui
+availableMCPs:
+  - supabase
+  - chrome-devtools
+  - web-search-prime
+---
+
+# Dashboard UI
+
+## Overview
+Build a Next.js 15+ TypeScript dashboard with Tailwind CSS for managing NextMavens Platform. Professional design with Inter font, neutral colors, no emojis/gradients. Integrate Supabase Auth, provide organizations→projects navigation, service redirects, and real-time notifications.
+
+## Technical Approach
+- Next.js 15 with App Router and TypeScript
+- Tailwind CSS with professional color palette (slate/zinc)
+- Supabase Auth for authentication
+- Client-side Supabase client with RLS
+- Realtime subscriptions for live updates
+- Server Actions for mutations
+
+## User Stories
+
+### US-001: User Authentication
+**Priority:** 1
+**Maven Steps:** [1, 7, 10]
+**MCP Tools:** ["supabase", "chrome-devtools"]
+
+As a user, I want to log in with email/password so that I can access my organizations and projects.
+
+**Acceptance Criteria:**
+- Login page at /login
+- Email/password form with validation
+- Session persisted
+- Redirect to dashboard after login
+- Logout functionality
+- Typecheck passes
+
+**Status:** false
+
+### US-002: Dashboard Home
+**Priority:** 1
+**Maven Steps:** [1, 7]
+**MCP Tools:** []
+
+As a logged-in user, I want to see my organizations and projects on the dashboard so that I can navigate to my applications.
+
+**Acceptance Criteria:**
+- Display all organizations
+- Display projects grouped by organization
+- Quick actions (new project, new org)
+- Statistics (total projects, active instances)
+- Typecheck passes
+
+**Status:** false
+
+### US-003: Organization Switcher
+**Priority:** 1
+**Maven Steps:** [1, 7]
+**MCP Tools:** []
+
+As a user with multiple organizations, I want to switch between organizations so that I can focus on one context.
+
+**Acceptance Criteria:**
+- Dropdown or sidebar selector
+- Shows current organization
+- Lists all accessible organizations
+- Updates context on selection
+- Typecheck passes
+
+**Status:** false
+
+### US-004: Project List View
+**Priority:** 1
+**Maven Steps:** [1, 7]
+**MCP Tools:** []
+
+As a user, I want to see all projects in an organization with status indicators so that I can identify active/provisioning/suspended projects.
+
+**Acceptance Criteria:**
+- Table or card layout
+- Status badges (active/provisioning/suspended)
+- Quick links to Studio, logs, settings
+- Filter by status
+- Typecheck passes
+
+**Status:** false
+
+### US-005: Create Project Modal
+**Priority:** 1
+**Maven Steps:** [1, 7, 10]
+**MCP Tools:** ["chrome-devtools"]
+
+As an organization member, I want to create a new project so that I can deploy a new application.
+
+**Acceptance Criteria:**
+- Modal form with name, description, slug
+- Slug auto-generated from name
+- Validation for slug uniqueness
+- Shows API keys after creation (one-time display)
+- Typecheck passes
+
+**Status:** false
+
+### US-006: Service Redirects
+**Priority:** 2
+**Maven Steps:** [1, 7]
+**MCP Tools:** []
+
+As a developer, I want quick links to external services so that I can access Studio, Evolution API, and other tools.
+
+**Acceptance Criteria:**
+- Links to Supabase Studio (per project)
+- Links to Evolution API console
+- Links to logs/monitoring
+- Opens in new tab
+- Typecheck passes
+
+**Status:** false
+
+### US-007: API Key Management
+**Priority:** 2
+**Maven Steps:** [1, 7, 10]
+**MCP Tools:** []
+
+As a developer, I want to manage API keys so that I can rotate credentials and control access.
+
+**Acceptance Criteria:**
+- List active API keys
+- Show key prefix and last used
+- Create new key (shows full value once)
+- Revoke key
+- Set expiration
+- Typecheck passes
+
+**Status:** false
+
+### US-008: Real-time Notifications
+**Priority:** 2
+**Maven Steps:** [1, 7]
+**MCP Tools**: []
+
+As a user, I want to receive real-time notifications so that I know about events affecting my projects.
+
+**Acceptance Criteria:**
+- Supabase Realtime subscription
+- Toast notifications for events
+- Events: deployment status, WhatsApp connect, errors
+- Notification center history
+- Typecheck passes
+
+**Status:** false
+
+### US-009: Project Settings Page
+**Priority:** 3
+**Maven Steps:** [1, 7]
+**MCP Tools:** []
+
+As a project owner, I want to configure project settings so that I can customize behavior.
+
+**Acceptance Criteria:**
+- Edit project name/description
+- Configure storage quota
+- Set rate limits
+- Danger zone: delete project
+- Typecheck passes
+
+**Status:** false
+
+### US-010: Team Management Page
+**Priority:** 3
+**Maven Steps:** [1, 7, 10]
+**MCP Tools:** ["supabase"]
+
+As an organization owner, I want to manage team members so that I can control access.
+
+**Acceptance Criteria:**
+- List members with roles
+- Invite new members
+- Change member roles
+- Remove members
+- Typecheck passes
+
+**Status:** false

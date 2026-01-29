@@ -1,0 +1,51 @@
+---
+memoryVersion: 1
+storyId: US-001
+storyTitle: Implement Snapshot Consumption
+completedDate: 2026-01-28
+---
+
+STORY: US-001 - Implement Snapshot Consumption
+========================
+
+DESCRIPTION:
+As a gateway engineer, I want to consume the snapshot API so that I don't hit the control database directly.
+
+MAVEN STEPS COMPLETED:
+[1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Built a complete snapshot consumption service for the API Gateway with 30-second TTL caching, automatic background refresh every 25 seconds, and fail-closed behavior. Created centralized data layer with HTTP client, authentication middleware, error handling, and type-safe snapshot validation.
+
+KEY FILES:
+- /home/ken/api-gateway/src/types/snapshot.types.ts - Type definitions for snapshot data structures
+- /home/ken/api-gateway/src/snapshot/snapshot.service.ts - Core snapshot service with TTL caching and background refresh
+- /home/ken/api-gateway/src/snapshot/snapshot.middleware.ts - Request validation middleware for fail-closed behavior
+- /home/ken/api-gateway/src/api/client/snapshot.client.ts - HTTP client with retry logic and exponential backoff
+- /home/ken/api-gateway/src/api/middleware/auth.middleware.ts - API key validation and project ID extraction
+- /home/ken/api-gateway/src/api/middleware/error.handler.ts - Standardized error codes and handling
+- /home/ken/api-gateway/src/index.ts - Main Express server entry point
+- /home/ken/api-gateway/tsconfig.json - TypeScript configuration with @/ path aliases
+- /home/ken/api-gateway/pnpm-lock.yaml - Package manager lockfile
+
+DECISIONS MADE:
+- Used pnpm instead of npm for faster installs and better disk space efficiency
+- Set background refresh to 25 seconds (5 seconds before TTL expiration) to prevent stale cache
+- Implemented fail-closed architecture - gateway won't start without initial snapshot fetch
+- Used enum-based error codes for consistent error responses
+- Chose exponential backoff for HTTP client retry logic to handle transient failures
+- No API keys stored - only validated and extracted project IDs
+
+INTEGRATION POINTS:
+- HTTP client connects to control plane snapshot API (SNAPSHOT_API_URL env variable)
+- Snapshot middleware protects routes that need project/service validation
+- Authentication middleware validates API keys before snapshot lookup
+- Will integrate with rate limiting middleware (rate-limiter-flexible package installed but not yet used)
+
+LESSONS LEARNED:
+- Always validate snapshot data structure before caching to prevent runtime errors
+- Fail-closed behavior is critical for security - never allow requests when configuration is unavailable
+- TTL should be slightly longer than background refresh interval to prevent race conditions
+- Use @/ path aliases consistently to avoid relative import confusion
+- Security audit found CORS origin config needs restriction for production (currently allows all origins)
+- Rate limiting is installed but not yet implemented - should be added in future story

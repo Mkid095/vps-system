@@ -1,0 +1,8 @@
+{"level":"info","msg":"Go runtime metrics collection started","time":"2026-01-25T20:28:40Z"}
+{"component":"api","level":"warning","msg":"DEPRECATION NOTICE: GOTRUE_JWT_ADMIN_GROUP_NAME not supported by Supabase's GoTrue, will be removed soon","time":"2026-01-25T20:28:40Z"}
+{"component":"api","level":"warning","msg":"DEPRECATION NOTICE: GOTRUE_JWT_DEFAULT_GROUP_NAME not supported by Supabase's GoTrue, will be removed soon","time":"2026-01-25T20:28:40Z"}
+{"level":"info","msg":"GoTrue API started on: 0.0.0.0:9999","time":"2026-01-25T20:28:40Z","version":"v2.185.0"}
+{"component":"apiworker","level":"info","msg":"apiworker: index worker started","time":"2026-01-25T20:28:40Z","worker_type":"apiworker_index_worker"}
+{"component":"apiworker","level":"info","msg":"apiworker: config notifier started","time":"2026-01-25T20:28:40Z","worker_type":"apiworker_config_notifier"}
+{"component":"apiworker","level":"info","msg":"apiworker: template cache worker started","time":"2026-01-25T20:28:40Z","worker_type":"apiworker_template_cache"}
+{"component":"apiworker","level":"info","msg":"apiworker: db worker started","time":"2026-01-25T20:28:40Z","worker_type":"apiworker_db_worker"}

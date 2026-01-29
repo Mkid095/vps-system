@@ -1,0 +1,13 @@
+     typname     
+-----------------
+ factor_type
+ _factor_type
+ factor_status
+ _factor_status
+ mfa_factors
+ _mfa_factors
+ mfa_challenges
+ _mfa_challenges
+ mfa_amr_claims
+ _mfa_amr_claims
+(10 rows)

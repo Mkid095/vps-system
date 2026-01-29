@@ -1,0 +1,24 @@
+   153→GRAY='\033[0;90m'
+   154→MAGENTA='\033[0;35m'
+   155→WHITE='\033[0;37m'
+   156→NC='\033[0m'
+   157→
+   158→# Get script directory
+   159→SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+   160→
+   161→# Session setup
+   162→PROJECT_NAME="$(basename "$(pwd)")"
+   163→SESSION_ID="${PROJECT_NAME}-$(head /dev/urandom | tr -dc a-z0-9 | head -c 8)"
+   164→SESSION_FILE=".flow-session"
+   165→START_TIME=$(date +%s)
+   166→
+   167→# Save session ID to file
+   168→echo "$SESSION_ID" > "$SESSION_FILE"
+   169→
+   170→# Check if claude CLI is available
+   171→if ! command -v claude &> /dev/null; then
+   172→    echo -e "${RED}[ERROR] Claude CLI not found in PATH${NC}"
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

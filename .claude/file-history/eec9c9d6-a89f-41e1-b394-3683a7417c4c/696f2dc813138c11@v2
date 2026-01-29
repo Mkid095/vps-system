@@ -1,0 +1,119 @@
+// Provision Studio for a Project
+// POST /api/projects/:id/provision-studio
+
+import { NextRequest } from 'next/server';
+import { withAuthAndError } from '@/lib/middleware';
+import { getAdminClient } from '@/lib/supabase-client';
+import { exec } from 'child_process';
+import { promisify } from 'util';
+
+const execAsync = promisify(exec);
+
+// POST /api/projects/:id/provision-studio
+export async function POST(
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { id } = await params;
+  return withAuthAndError(async (user) => {
+    const supabase = getAdminClient();
+
+    // Get project details
+    const { data: project, error: projectError } = await supabase
+      .from('projects')
+      .select('*, organizations!inner(name)')
+      .eq('id', id)
+      .single();
+
+    if (projectError || !project) {
+      throw new Error('Project not found');
+    }
+
+    // Check if project already has a Studio provisioned
+    const existingPort = getStudioPort(project.slug);
+    if (existingPort) {
+      return {
+        success: true,
+        message: 'Studio already provisioned',
+        studio_url: `/studio/${project.slug}`,
+        port: existingPort,
+      };
+    }
+
+    // Get next available port (start from 3001)
+    const port = await getNextAvailableStudioPort();
+
+    // Provision Studio container
+    try {
+      const { stdout, stderr } = await execAsync(
+        `/home/ken/nextmavens-platform/scripts/provision-studio.sh ${project.id} ${project.slug} ${project.db_name} ${port}`
+      );
+
+      if (stderr && !stderr.includes('Studio provisioned')) {
+        console.error('Studio provisioning error:', stderr);
+      }
+
+      // Update nginx configuration
+      await updateNginxConfig(project.slug, port);
+
+      return {
+        success: true,
+        message: 'Studio provisioned successfully',
+        studio_url: `/studio/${project.slug}`,
+        port: port,
+        output: stdout,
+      };
+    } catch (error) {
+      console.error('Failed to provision Studio:', error);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      throw new Error(`Failed to provision Studio: ${errorMessage}`);
+    }
+  })(req);
+}
+
+function getStudioPort(slug: string): number | null {
+  // Check if Studio already exists for this project
+  // For now, use a simple mapping based on project creation order
+  // In production, store this in the database
+  const studioPorts: Record<string, number> = {
+    'nextmavens': 3001,
+  };
+  return studioPorts[slug] || null;
+}
+
+async function getNextAvailableStudioPort(): Promise<number> {
+  // For simplicity, increment from 3001
+  // In production, query existing containers or store in database
+  const { stdout } = await execAsync(
+    'docker ps --format "{{.Ports}}" | grep -o ":300[0-9]" | sort -u | tail -1'
+  );
+
+  const lastUsedPort = stdout.trim() ? parseInt(stdout.replace(':', '')) : 3000;
+  return lastUsedPort + 1;
+}
+
+async function updateNginxConfig(slug: string, port: number): Promise<void> {
+  // Add project to nginx configuration
+  const nginxConf = '/etc/nginx/sites-available/studio-projects.conf';
+
+  // Read existing config
+  const { exec } = require('child_process');
+  const { promisify } = require('util');
+  const execAsync = promisify(exec);
+
+  // Add if statement for this project
+  const ifStatement = `    if ($project_slug = "${slug}") { set $studio_port ${port}; }\n`;
+
+  try {
+    // Check if line already exists
+    const { stdout } = await execAsync(`grep -q "project_slug = \\"${slug}\\"" ${nginxConf} || echo "not found"`);
+    if (stdout.includes('not found')) {
+      // Add the if statement after the comment
+      await execAsync(`sed -i '/# Project-specific port mappings/a ${ifStatement}' ${nginxConf}`);
+      // Reload nginx
+      await execAsync('sudo nginx -t && sudo systemctl reload nginx');
+    }
+  } catch (error) {
+    console.error('Failed to update nginx config:', error);
+  }
+}

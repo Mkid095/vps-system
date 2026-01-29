@@ -1,0 +1,2 @@
+Exit code 1
+wget: server returned error: HTTP/1.1 400 Bad Request

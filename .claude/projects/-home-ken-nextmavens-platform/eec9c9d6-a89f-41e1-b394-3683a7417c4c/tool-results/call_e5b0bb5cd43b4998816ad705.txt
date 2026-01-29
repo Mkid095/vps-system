@@ -1,0 +1,20 @@
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+--
+            "ExposedPorts": {
+                "8000/tcp": {},
+                "8001/tcp": {},
+                "8443/tcp": {},
+                "8444/tcp": {}
+            },
+--
+            "Ports": {},
+            "Networks": {}
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:c38f27046d3966189c15c9652c80ef8740f287dbe7a49dabc6fa9a47e4a7440a",

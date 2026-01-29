@@ -1,0 +1,324 @@
+/**
+ * Realtime Module - WebSocket subscriptions for live database updates
+ */
+
+import { RealtimeCallback, RealtimePayload, SubscriptionOptions, RealtimeError, NextMavensConfig } from './types';
+import { WebSocket } from 'ws';
+
+export class RealtimeClient {
+  private config: Required<NextMavensConfig>;
+  private ws: WebSocket | null = null;
+  private subscriptions: Map<string, Set<RealtimeCallback>> = new Map();
+  private reconnectAttempts = 0;
+  private maxReconnectAttempts = 5;
+  private reconnectInterval = 1000;
+  private isConnected = false;
+
+  constructor(config: NextMavensConfig) {
+    this.config = {
+      apiKey: config.apiKey,
+      apiUrl: config.apiUrl || 'https://api.nextmavens.cloud',
+      authUrl: config.authUrl || 'https://auth.nextmavens.cloud',
+      graphqlUrl: config.graphqlUrl || 'https://graphql.nextmavens.cloud',
+      realtimeUrl: config.realtimeUrl || 'wss://realtime.nextmavens.cloud',
+      storageUrl: config.storageUrl || 'https://telegram.nextmavens.cloud'
+    };
+  }
+
+  /**
+   * Connect to the realtime server
+   */
+  connect(): void {
+    if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+      return; // Already connected
+    }
+
+    const wsUrl = this.config.realtimeUrl.replace('wss://', 'ws://').replace('ws://', 'ws://');
+    this.ws = new WebSocket(wsUrl);
+
+    this.ws.on('open', () => {
+      console.log('[NextMavens] Realtime connected');
+      this.isConnected = true;
+      this.reconnectAttempts = 0;
+
+      // Resubscribe to all channels
+      this.resubscribeAll();
+    });
+
+    this.ws.on('message', (data: string) => {
+      try {
+        const payload: RealtimePayload = JSON.parse(data);
+        this.handleMessage(payload);
+      } catch (error) {
+        console.error('[NextMavens] Failed to parse message:', error);
+      }
+    });
+
+    this.ws.on('close', () => {
+      console.log('[NextMavens] Realtime disconnected');
+      this.isConnected = false;
+      this.attemptReconnect();
+    });
+
+    this.ws.on('error', (error) => {
+      console.error('[NextMavens] Realtime error:', error);
+      this.isConnected = false;
+    });
+  }
+
+  /**
+   * Disconnect from the realtime server
+   */
+  disconnect(): void {
+    if (this.ws) {
+      this.ws.close();
+      this.ws = null;
+      this.isConnected = false;
+    }
+  }
+
+  /**
+   * Subscribe to a table for all changes
+   */
+  subscribe<T = any>(
+    table: string,
+    callback: RealtimeCallback<T>,
+    options?: SubscriptionOptions
+  ): () => void {
+    const channel = this.buildChannelName(table, '*', options);
+
+    if (!this.subscriptions.has(channel)) {
+      this.subscriptions.set(channel, new Set());
+    }
+
+    this.subscriptions.get(channel)!.add(callback as RealtimeCallback);
+
+    // Subscribe on the server
+    this.sendSubscribe(channel);
+
+    // Return unsubscribe function
+    return () => {
+      this.unsubscribe(table, callback, options);
+    };
+  }
+
+  /**
+   * Subscribe to INSERT events on a table
+   */
+  onInsert<T = any>(
+    table: string,
+    callback: RealtimeCallback<T>,
+    options?: SubscriptionOptions
+  ): () => void {
+    return this.subscribe(table, (payload) => {
+      if (payload.event === 'INSERT') {
+        callback(payload as RealtimePayload<T>);
+      }
+    }, options);
+  }
+
+  /**
+   * Subscribe to UPDATE events on a table
+   */
+  onUpdate<T = any>(
+    table: string,
+    callback: RealtimeCallback<T>,
+    options?: SubscriptionOptions
+  ): () => void {
+    return this.subscribe(table, (payload) => {
+      if (payload.event === 'UPDATE') {
+        callback(payload as RealtimePayload<T>);
+      }
+    }, options);
+  }
+
+  /**
+   * Subscribe to DELETE events on a table
+   */
+  onDelete<T = any>(
+    table: string,
+    callback: RealtimeCallback<T>,
+    options?: SubscriptionOptions
+  ): () => void {
+    return this.subscribe(table, (payload) => {
+      if (payload.event === 'DELETE') {
+        callback(payload as RealtimePayload<T>);
+      }
+    }, options);
+  }
+
+  /**
+   * Subscribe to a specific row (by ID)
+   */
+  subscribeToRow<T = any>(
+    table: string,
+    rowId: string | number,
+    callback: RealtimeCallback<T>,
+    options?: SubscriptionOptions
+  ): () => void {
+    const channel = this.buildChannelName(table, String(rowId), options);
+
+    if (!this.subscriptions.has(channel)) {
+      this.subscriptions.set(channel, new Set());
+    }
+
+    this.subscriptions.get(channel)!.add(callback as RealtimeCallback);
+
+    this.sendSubscribe(channel);
+
+    return () => {
+      const callbacks = this.subscriptions.get(channel);
+      if (callbacks) {
+        callbacks.delete(callback as RealtimeCallback);
+        if (callbacks.size === 0) {
+          this.subscriptions.delete(channel);
+          this.sendUnsubscribe(channel);
+        }
+      }
+    };
+  }
+
+  /**
+   * Unsubscribe from a table
+   */
+  unsubscribe(table: string, callback?: RealtimeCallback, options?: SubscriptionOptions): void {
+    const channels = this.findChannelsForTable(table, options);
+
+    channels.forEach(channel => {
+      const callbacks = this.subscriptions.get(channel);
+
+      if (callbacks) {
+        if (callback) {
+          callbacks.delete(callback);
+        } else {
+          callbacks.clear();
+        }
+
+        if (callbacks.size === 0) {
+          this.subscriptions.delete(channel);
+          this.sendUnsubscribe(channel);
+        }
+      }
+    });
+  }
+
+  /**
+   * Get connection status
+   */
+  getConnectionStatus(): boolean {
+    return this.isConnected;
+  }
+
+  /**
+   * Handle incoming message
+   */
+  private handleMessage(payload: RealtimePayload): void {
+    // Find matching subscriptions
+    for (const [channel, callbacks] of this.subscriptions.entries()) {
+      if (this.channelMatches(channel, payload)) {
+        callbacks.forEach(callback => {
+          try {
+            callback(payload);
+          } catch (error) {
+            console.error('[NextMavens] Callback error:', error);
+          }
+        });
+      }
+    }
+  }
+
+  /**
+   * Build channel name
+   */
+  private buildChannelName(table: string, rowId: string, options?: SubscriptionOptions): string {
+    const schema = options?.schema || 'public';
+    return `${schema}:${table}:${rowId}`;
+  }
+
+  /**
+   * Check if channel matches payload
+   */
+  private channelMatches(channel: string, payload: RealtimePayload): boolean {
+    const [schema, table, rowId] = channel.split(':');
+
+    // Check table match
+    if (table !== '*' && table !== payload.table) {
+      return false;
+    }
+
+    // Check row ID match
+    if (rowId !== '*' && payload.data && String(payload.data.id) !== rowId) {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * Find all channels for a table
+   */
+  private findChannelsForTable(table: string, options?: SubscriptionOptions): string[] {
+    const schema = options?.schema || 'public';
+    const prefix = `${schema}:${table}:`;
+
+    return Array.from(this.subscriptions.keys()).filter(channel =>
+      channel.startsWith(prefix)
+    );
+  }
+
+  /**
+   * Send subscribe message
+   */
+  private sendSubscribe(channel: string): void {
+    if (!this.ws || this.ws.readyState !== WebSocket.OPEN) {
+      return;
+    }
+
+    this.ws.send(JSON.stringify({
+      action: 'subscribe',
+      channel
+    }));
+  }
+
+  /**
+   * Send unsubscribe message
+   */
+  private sendUnsubscribe(channel: string): void {
+    if (!this.ws || this.ws.readyState !== WebSocket.OPEN) {
+      return;
+    }
+
+    this.ws.send(JSON.stringify({
+      action: 'unsubscribe',
+      channel
+    }));
+  }
+
+  /**
+   * Resubscribe to all channels
+   */
+  private resubscribeAll(): void {
+    for (const channel of this.subscriptions.keys()) {
+      this.sendSubscribe(channel);
+    }
+  }
+
+  /**
+   * Attempt to reconnect
+   */
+  private attemptReconnect(): void {
+    if (this.reconnectAttempts >= this.maxReconnectAttempts) {
+      console.error('[NextMavens] Max reconnect attempts reached');
+      return;
+    }
+
+    this.reconnectAttempts++;
+    const delay = this.reconnectInterval * Math.pow(2, this.reconnectAttempts - 1);
+
+    console.log(`[NextMavens] Reconnecting... Attempt ${this.reconnectAttempts}`);
+
+    setTimeout(() => {
+      this.connect();
+    }, delay);
+  }
+}

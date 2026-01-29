@@ -1,0 +1,174 @@
+node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/build/templates/app-page.d.ts(10,40): error TS2307: Cannot find module 'VAR_MODULE_GLOBAL_ERROR' or its corresponding type declarations.
+node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/build/webpack-config.d.ts(11,104): error TS2694: Namespace '"/home/ken/developer-portal/node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/webpack/webpack".webpack' has no exported member 'RuleSetUseItem'.
+node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/build/webpack/loaders/next-app-loader.d.ts(1,13): error TS2613: Module '"/home/ken/developer-portal/node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/webpack/webpack"' has no default export. Did you mean to use 'import { webpack } from "/home/ken/developer-portal/node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/webpack/webpack"' instead?
+node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/build/webpack/plugins/define-env-plugin.d.ts(26,86): error TS2694: Namespace '"/home/ken/developer-portal/node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/compiled/webpack/webpack".webpack' has no exported member 'DefinePlugin'.
+node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/client/components/error-boundary.d.ts(1,8): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/@types+react@18.3.27/node_modules/@types/react/index"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/client/components/layout-router.d.ts(3,8): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/@types+react@18.3.27/node_modules/@types/react/index"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/client/components/not-found-boundary.d.ts(1,8): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/@types+react@18.3.27/node_modules/@types/react/index"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/client/with-router.d.ts(1,8): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/@types+react@18.3.27/node_modules/@types/react/index"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/server/app-render/entry-base.d.ts(1,85): error TS2307: Cannot find module 'react-server-dom-webpack/server.edge' or its corresponding type declarations.
+node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/server/render.d.ts(17,8): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/@types+react@18.3.27/node_modules/@types/react/index"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/shared/lib/amp-context.shared-runtime.d.ts(1,8): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/@types+react@18.3.27/node_modules/@types/react/index"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/shared/lib/app-router-context.shared-runtime.d.ts(4,8): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/@types+react@18.3.27/node_modules/@types/react/index"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/shared/lib/head-manager-context.shared-runtime.d.ts(1,8): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/@types+react@18.3.27/node_modules/@types/react/index"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/shared/lib/image-config-context.shared-runtime.d.ts(1,8): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/@types+react@18.3.27/node_modules/@types/react/index"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/shared/lib/loadable-context.shared-runtime.d.ts(1,8): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/@types+react@18.3.27/node_modules/@types/react/index"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/shared/lib/loadable.shared-runtime.d.ts(21,8): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/@types+react@18.3.27/node_modules/@types/react/index"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/shared/lib/router-context.shared-runtime.d.ts(1,8): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/@types+react@18.3.27/node_modules/@types/react/index"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/shared/lib/server-inserted-html.shared-runtime.d.ts(1,8): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/@types+react@18.3.27/node_modules/@types/react/index"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/dist/shared/lib/utils.d.ts(12,13): error TS1192: Module '"fs"' has no default export.
+node_modules/.pnpm/next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/types/index.d.ts(10,13): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/@types+react@18.3.27/node_modules/@types/react/index"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(1,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/ar"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(2,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/az"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(3,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/be"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(4,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/bg"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(5,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/ca"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(6,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/cs"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(7,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/da"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(8,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/de"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(9,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/en"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(10,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/eo"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(11,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/es"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(12,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/fa"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(13,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/fi"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(14,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/fr"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(15,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/fr-CA"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(16,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/he"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(17,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/hu"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(18,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/hy"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(19,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/id"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(20,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/is"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(21,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/it"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(22,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/ja"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(23,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/ka"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(24,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/kh"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(25,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/km"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(26,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/ko"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(27,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/lt"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(28,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/mk"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(29,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/ms"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(30,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/nl"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(31,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/no"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(32,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/ota"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(33,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/ps"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(34,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/pl"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(35,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/pt"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(36,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/ru"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(37,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/sl"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(38,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/sv"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(39,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/ta"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(40,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/th"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(41,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/tr"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(42,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/ua"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(43,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/uk"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(44,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/ur"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(45,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/uz"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(46,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/vi"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(47,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/zh-CN"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(48,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/zh-TW"' can only be default-imported using the 'esModuleInterop' flag
+node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/index.d.cts(49,21): error TS1259: Module '"/home/ken/developer-portal/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/locales/yo"' can only be default-imported using the 'esModuleInterop' flag
+src/app/api/admin/users/[userId]/route.ts(2,25): error TS2307: Cannot find module '@/lib/db' or its corresponding type declarations.
+src/app/api/admin/users/[userId]/route.ts(3,37): error TS2307: Cannot find module '@/lib/middleware' or its corresponding type declarations.
+src/app/api/admin/users/[userId]/route.ts(4,54): error TS2307: Cannot find module '@/features/abuse-controls/lib/authorization' or its corresponding type declarations.
+src/features/admin/users/UserDetail.tsx(10,28): error TS6142: Module './components/UserHeader' was resolved to '/home/ken/developer-portal/src/features/admin/users/components/UserHeader.tsx', but '--jsx' is not set.
+src/features/admin/users/UserDetail.tsx(11,31): error TS6142: Module './components/UserBasicInfo' was resolved to '/home/ken/developer-portal/src/features/admin/users/components/UserBasicInfo.tsx', but '--jsx' is not set.
+src/features/admin/users/UserDetail.tsx(12,30): error TS6142: Module './components/UserAuthInfo' was resolved to '/home/ken/developer-portal/src/features/admin/users/components/UserAuthInfo.tsx', but '--jsx' is not set.
+src/features/admin/users/UserDetail.tsx(13,36): error TS6142: Module './components/UserMetadataEditor' was resolved to '/home/ken/developer-portal/src/features/admin/users/components/UserMetadataEditor.tsx', but '--jsx' is not set.
+src/features/admin/users/UserDetail.tsx(14,34): error TS2307: Cannot find module '@/features/users/components/DeleteUserButton' or its corresponding type declarations.
+src/features/admin/users/UserDetail.tsx(172,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(173,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(174,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(175,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(183,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(184,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(185,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(186,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(187,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(200,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(201,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(202,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(209,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(210,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(212,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(213,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(214,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(217,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(218,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(219,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(220,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(225,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(235,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(236,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(237,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(239,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(240,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(241,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(242,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(243,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/UserDetail.tsx(247,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserAuthInfo.tsx(24,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserAuthInfo.tsx(25,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserAuthInfo.tsx(26,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserAuthInfo.tsx(27,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserAuthInfo.tsx(28,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserAuthInfo.tsx(29,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserAuthInfo.tsx(30,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserAuthInfo.tsx(31,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserAuthInfo.tsx(36,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserAuthInfo.tsx(37,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserAuthInfo.tsx(38,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserAuthInfo.tsx(39,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserAuthInfo.tsx(40,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserAuthInfo.tsx(41,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserAuthInfo.tsx(47,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserAuthInfo.tsx(48,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserAuthInfo.tsx(49,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserAuthInfo.tsx(50,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserAuthInfo.tsx(51,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserBasicInfo.tsx(17,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserBasicInfo.tsx(18,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserBasicInfo.tsx(19,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserBasicInfo.tsx(20,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserBasicInfo.tsx(21,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserBasicInfo.tsx(22,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserBasicInfo.tsx(23,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserBasicInfo.tsx(24,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserBasicInfo.tsx(28,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserBasicInfo.tsx(29,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserBasicInfo.tsx(30,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserBasicInfo.tsx(31,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserBasicInfo.tsx(32,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserBasicInfo.tsx(36,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserBasicInfo.tsx(37,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserBasicInfo.tsx(38,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserBasicInfo.tsx(39,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserBasicInfo.tsx(40,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserHeader.tsx(18,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserHeader.tsx(19,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserHeader.tsx(20,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserHeader.tsx(21,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserHeader.tsx(22,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserHeader.tsx(24,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserHeader.tsx(25,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserHeader.tsx(28,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserHeader.tsx(29,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserHeader.tsx(30,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserHeader.tsx(34,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserMetadataEditor.tsx(33,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserMetadataEditor.tsx(34,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserMetadataEditor.tsx(35,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserMetadataEditor.tsx(37,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserMetadataEditor.tsx(41,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserMetadataEditor.tsx(47,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserMetadataEditor.tsx(49,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserMetadataEditor.tsx(50,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserMetadataEditor.tsx(56,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserMetadataEditor.tsx(58,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserMetadataEditor.tsx(59,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserMetadataEditor.tsx(63,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserMetadataEditor.tsx(66,15): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserMetadataEditor.tsx(70,17): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserMetadataEditor.tsx(76,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/components/UserMetadataEditor.tsx(77,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/features/admin/users/index.ts(9,28): error TS6142: Module './UserDetail' was resolved to '/home/ken/developer-portal/src/features/admin/users/UserDetail.tsx', but '--jsx' is not set.
+Exit code: 2

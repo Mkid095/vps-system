@@ -1,0 +1,239 @@
+Initializing deployment
+Cloning Repo github.com/Mkid095/nextmavens-graphql.git to /etc/dokploy/compose/nextmavens-graphql-1ukiks/code: ✅
+Cloning into '/etc/dokploy/compose/nextmavens-graphql-1ukiks/code'...
+remote: Enumerating objects: 8, done.
+remote: Counting objects:  12% (1/8)        
+remote: Counting objects:  25% (2/8)        
+remote: Counting objects:  37% (3/8)        
+remote: Counting objects:  50% (4/8)        
+remote: Counting objects:  62% (5/8)        
+remote: Counting objects:  75% (6/8)        
+remote: Counting objects:  87% (7/8)        
+remote: Counting objects: 100% (8/8)        
+remote: Counting objects: 100% (8/8), done.
+remote: Compressing objects:  14% (1/7)        
+remote: Compressing objects:  28% (2/7)        
+remote: Compressing objects:  42% (3/7)        
+remote: Compressing objects:  57% (4/7)        
+remote: Compressing objects:  71% (5/7)        
+remote: Compressing objects:  85% (6/7)        
+remote: Compressing objects: 100% (7/7)        
+remote: Compressing objects: 100% (7/7), done.
+remote: Total 8 (delta 0), reused 5 (delta 0), pack-reused 0 (from 0)
+Receiving objects:  12% (1/8)
+Receiving objects:  25% (2/8)
+Receiving objects:  37% (3/8)
+Receiving objects:  50% (4/8)
+Receiving objects:  62% (5/8)
+Receiving objects:  75% (6/8)
+Receiving objects:  87% (7/8)
+Receiving objects: 100% (8/8)
+Receiving objects: 100% (8/8), 5.20 KiB | 5.20 MiB/s, done.
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║ App Name: nextmavens-graphql-1ukiks                                          ║
+║ Build Compose 🐳                                                             ║
+║ Detected: 0 mounts 📂                                                        ║
+║ Command: docker compose -p nextmavens-graphql-1ukiks -f ./docker-compose.yml ║
+║ up -d --build --remove-orphans                                               ║
+║ Source Type: docker github ✅                                                ║
+║ Compose Type: docker-compose ✅                                              ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+Image nextmavens-graphql-1ukiks-graphql Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 594B done
+#1 DONE 0.0s
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 313B done
+#2 DONE 0.0s
+#3 [internal] load metadata for docker.io/library/node:18-alpine
+#3 DONE 0.4s
+#4 [internal] load .dockerignore
+#4 transferring context: 79B done
+#4 DONE 0.0s
+#5 [internal] load build context
+#5 transferring context: 13.55kB 0.0s done
+#5 DONE 0.0s
+#6 [1/6] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+#6 resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e 0.0s done
+#6 DONE 0.0s
+#7 [2/6] WORKDIR /app
+#7 CACHED
+#8 [3/6] RUN apk add --no-cache python3 make g++
+#8 CACHED
+#9 [4/6] COPY package*.json ./
+#9 DONE 0.0s
+#10 [5/6] RUN npm install
+#10 18.58 npm warn ERESOLVE overriding peer dependency
+#10 29.32 npm warn ERESOLVE overriding peer dependency
+#10 29.32 npm warn While resolving: graphiql-explorer@0.9.0
+#10 29.32 npm warn Found: react@19.2.4
+#10 29.32 npm warn node_modules/react
+#10 29.32 npm warn   react@"^19.2.0" from ruru-components@2.0.0-rc.4
+#10 29.32 npm warn   node_modules/ruru-components
+#10 29.32 npm warn     ruru-components@"^2.0.0-rc.4" from ruru@2.0.0-rc.4
+#10 29.32 npm warn     node_modules/ruru
+#10 29.32 npm warn   55 more (@graphiql/plugin-doc-explorer, react-dom, ...)
+#10 29.32 npm warn
+#10 29.32 npm warn Could not resolve dependency:
+#10 29.32 npm warn peer react@"^15.6.0 || ^16.0.0" from graphiql-explorer@0.9.0
+#10 29.32 npm warn node_modules/@graphiql/plugin-explorer/node_modules/graphiql-explorer
+#10 29.32 npm warn   graphiql-explorer@"^0.9.0" from @graphiql/plugin-explorer@5.1.1
+#10 29.32 npm warn   node_modules/@graphiql/plugin-explorer
+#10 29.32 npm warn
+#10 29.32 npm warn Conflicting peer dependency: react@16.14.0
+#10 29.32 npm warn node_modules/react
+#10 29.32 npm warn   peer react@"^15.6.0 || ^16.0.0" from graphiql-explorer@0.9.0
+#10 29.32 npm warn   node_modules/@graphiql/plugin-explorer/node_modules/graphiql-explorer
+#10 29.32 npm warn     graphiql-explorer@"^0.9.0" from @graphiql/plugin-explorer@5.1.1
+#10 29.32 npm warn     node_modules/@graphiql/plugin-explorer
+#10 29.33 npm warn ERESOLVE overriding peer dependency
+#10 29.33 npm warn While resolving: graphiql-explorer@0.9.0
+#10 29.33 npm warn Found: react-dom@19.2.4
+#10 29.33 npm warn node_modules/react-dom
+#10 29.33 npm warn   react-dom@"^19.2.0" from ruru-components@2.0.0-rc.4
+#10 29.33 npm warn   node_modules/ruru-components
+#10 29.33 npm warn     ruru-components@"^2.0.0-rc.4" from ruru@2.0.0-rc.4
+#10 29.33 npm warn     node_modules/ruru
+#10 29.33 npm warn   29 more (@graphiql/plugin-doc-explorer, @graphiql/react, ...)
+#10 29.33 npm warn
+#10 29.33 npm warn Could not resolve dependency:
+#10 29.33 npm warn peer react-dom@"^15.6.0 || ^16.0.0" from graphiql-explorer@0.9.0
+#10 29.33 npm warn node_modules/@graphiql/plugin-explorer/node_modules/graphiql-explorer
+#10 29.33 npm warn   graphiql-explorer@"^0.9.0" from @graphiql/plugin-explorer@5.1.1
+#10 29.33 npm warn   node_modules/@graphiql/plugin-explorer
+#10 29.33 npm warn
+#10 29.33 npm warn Conflicting peer dependency: react-dom@16.14.0
+#10 29.33 npm warn node_modules/react-dom
+#10 29.33 npm warn   peer react-dom@"^15.6.0 || ^16.0.0" from graphiql-explorer@0.9.0
+#10 29.33 npm warn   node_modules/@graphiql/plugin-explorer/node_modules/graphiql-explorer
+#10 29.33 npm warn     graphiql-explorer@"^0.9.0" from @graphiql/plugin-explorer@5.1.1
+#10 29.33 npm warn     node_modules/@graphiql/plugin-explorer
+#10 29.36 npm warn EBADENGINE Unsupported engine {
+#10 29.36 npm warn EBADENGINE   package: 'postgraphile@5.0.0-rc.4',
+#10 29.36 npm warn EBADENGINE   required: { node: '>=22' },
+#10 29.36 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#10 29.36 npm warn EBADENGINE }
+#10 29.36 npm warn EBADENGINE Unsupported engine {
+#10 29.36 npm warn EBADENGINE   package: '@dataplan/json@1.0.0-rc.3',
+#10 29.36 npm warn EBADENGINE   required: { node: '>=22' },
+#10 29.36 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#10 29.36 npm warn EBADENGINE }
+#10 29.36 npm warn EBADENGINE Unsupported engine {
+#10 29.36 npm warn EBADENGINE   package: 'grafast@1.0.0-rc.4',
+#10 29.36 npm warn EBADENGINE   required: { node: '>=22' },
+#10 29.36 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#10 29.36 npm warn EBADENGINE }
+#10 29.36 npm warn EBADENGINE Unsupported engine {
+#10 29.36 npm warn EBADENGINE   package: '@dataplan/pg@1.0.0-rc.3',
+#10 29.36 npm warn EBADENGINE   required: { node: '>=22' },
+#10 29.36 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#10 29.36 npm warn EBADENGINE }
+#10 29.36 npm warn EBADENGINE Unsupported engine {
+#10 29.36 npm warn EBADENGINE   package: 'graphile-config@1.0.0-rc.3',
+#10 29.36 npm warn EBADENGINE   required: { node: '>=22' },
+#10 29.36 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#10 29.36 npm warn EBADENGINE }
+#10 29.36 npm warn EBADENGINE Unsupported engine {
+#10 29.36 npm warn EBADENGINE   package: '@graphile/lru@5.0.0-rc.3',
+#10 29.36 npm warn EBADENGINE   required: { node: '>=22' },
+#10 29.36 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#10 29.36 npm warn EBADENGINE }
+#10 29.36 npm warn EBADENGINE Unsupported engine {
+#10 29.36 npm warn EBADENGINE   package: 'grafserv@1.0.0-rc.4',
+#10 29.36 npm warn EBADENGINE   required: { node: '>=22' },
+#10 29.36 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#10 29.36 npm warn EBADENGINE }
+#10 29.36 npm warn EBADENGINE Unsupported engine {
+#10 29.36 npm warn EBADENGINE   package: 'graphile-build@5.0.0-rc.3',
+#10 29.36 npm warn EBADENGINE   required: { node: '>=22' },
+#10 29.36 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#10 29.36 npm warn EBADENGINE }
+#10 29.36 npm warn EBADENGINE Unsupported engine {
+#10 29.36 npm warn EBADENGINE   package: 'graphile-build-pg@5.0.0-rc.3',
+#10 29.36 npm warn EBADENGINE   required: { node: '>=22' },
+#10 29.36 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#10 29.36 npm warn EBADENGINE }
+#10 29.36 npm warn EBADENGINE Unsupported engine {
+#10 29.36 npm warn EBADENGINE   package: 'tamedevil@0.1.0-rc.3',
+#10 29.36 npm warn EBADENGINE   required: { node: '>=22' },
+#10 29.36 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#10 29.36 npm warn EBADENGINE }
+#10 29.36 npm warn EBADENGINE Unsupported engine {
+#10 29.36 npm warn EBADENGINE   package: 'graphile-utils@5.0.0-rc.3',
+#10 29.36 npm warn EBADENGINE   required: { node: '>=22' },
+#10 29.36 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#10 29.36 npm warn EBADENGINE }
+#10 29.36 npm warn EBADENGINE Unsupported engine {
+#10 29.36 npm warn EBADENGINE   package: 'pg-sql2@5.0.0-rc.3',
+#10 29.36 npm warn EBADENGINE   required: { node: '>=22' },
+#10 29.36 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#10 29.36 npm warn EBADENGINE }
+#10 29.36 npm warn EBADENGINE Unsupported engine {
+#10 29.36 npm warn EBADENGINE   package: 'graphql-ws@6.0.6',
+#10 29.36 npm warn EBADENGINE   required: { node: '>=20' },
+#10 29.36 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#10 29.36 npm warn EBADENGINE }
+#10 29.36 npm warn EBADENGINE Unsupported engine {
+#10 29.36 npm warn EBADENGINE   package: 'ruru@2.0.0-rc.4',
+#10 29.36 npm warn EBADENGINE   required: { node: '>=22' },
+#10 29.36 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#10 29.36 npm warn EBADENGINE }
+#10 29.36 npm warn EBADENGINE Unsupported engine {
+#10 29.36 npm warn EBADENGINE   package: 'pg-introspection@1.0.0-rc.3',
+#10 29.36 npm warn EBADENGINE   required: { node: '>=22' },
+#10 29.36 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#10 29.36 npm warn EBADENGINE }
+#10 29.36 npm warn EBADENGINE Unsupported engine {
+#10 29.36 npm warn EBADENGINE   package: 'ruru-components@2.0.0-rc.4',
+#10 29.36 npm warn EBADENGINE   required: { node: '>=22' },
+#10 29.36 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#10 29.36 npm warn EBADENGINE }
+#10 29.36 npm warn EBADENGINE Unsupported engine {
+#10 29.36 npm warn EBADENGINE   package: 'marked@16.4.2',
+#10 29.36 npm warn EBADENGINE   required: { node: '>= 20' },
+#10 29.36 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#10 29.36 npm warn EBADENGINE }
+#10 40.75
+#10 40.75 added 421 packages, and audited 422 packages in 40s
+#10 40.75
+#10 40.75 31 packages are looking for funding
+#10 40.75   run `npm fund` for details
+#10 40.76
+#10 40.76 11 moderate severity vulnerabilities
+#10 40.76
+#10 40.76 To address issues that do not require attention, run:
+#10 40.76   npm audit fix
+#10 40.76
+#10 40.76 To address all issues (including breaking changes), run:
+#10 40.76   npm audit fix --force
+#10 40.76
+#10 40.76 Run `npm audit` for details.
+#10 40.76 npm notice
+#10 40.76 npm notice New major version of npm available! 10.8.2 -> 11.8.0
+#10 40.76 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.8.0
+#10 40.76 npm notice To update run: npm install -g npm@11.8.0
+#10 40.76 npm notice
+#10 DONE 41.2s
+#11 [6/6] COPY . .
+#11 DONE 0.2s
+#12 exporting to image
+#12 exporting layers
+#12 exporting layers 16.5s done
+#12 exporting manifest sha256:691796a73f5aefc34e027e59abde8430690e33ba9d4ccb9ac5c8400a01955b90 done
+#12 exporting config sha256:478a6ca8a60a670ec87498308d4c0f18b1eb0ae7f894821b1e133038ca0c2f2d done
+#12 exporting attestation manifest sha256:d19c0e3f511ae9a7d4a3342693ba7089a6a48521929d77a4e5a6c5388910ce6d 0.0s done
+#12 exporting manifest list sha256:7a3e083a52202ee11f4fbbbf46a249ef35bfb1db79af574c28f179a5142c162e done
+#12 naming to docker.io/library/nextmavens-graphql-1ukiks-graphql:latest done
+#12 unpacking to docker.io/library/nextmavens-graphql-1ukiks-graphql:latest
+#12 unpacking to docker.io/library/nextmavens-graphql-1ukiks-graphql:latest 10.9s done
+#12 DONE 27.5s
+#13 resolving provenance for metadata file
+#13 DONE 0.0s
+Image nextmavens-graphql-1ukiks-graphql Built
+Container nextmavens-graphql Creating
+Container nextmavens-graphql Created
+Container nextmavens-graphql Starting
+Container nextmavens-graphql Started
+Docker Compose Deployed: ✅

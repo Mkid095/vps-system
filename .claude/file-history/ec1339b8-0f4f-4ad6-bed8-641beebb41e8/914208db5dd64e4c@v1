@@ -1,0 +1,35 @@
+{
+  "name": "nextmavens-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NextMavens Self-Hosted Platform - Deploy and manage multiple SaaS applications",
+  "scripts": {
+    "dev": "pnpm --filter nextmavens-dashboard dev",
+    "build": "pnpm --filter nextmavens-dashboard build",
+    "start": "pnpm --filter nextmavens-dashboard start",
+    "lint": "pnpm -r lint",
+    "clean": "rm -rf node_modules **/node_modules",
+    "docker:supabase": "docker compose -f docker/supabase.yml up -d",
+    "docker:evolution": "docker compose -f docker/evolution.yml up -d",
+    "docker:all": "docker compose -f docker/supabase.yml -f docker/evolution.yml up -d",
+    "docker:down": "docker compose -f docker/supabase.yml -f docker/evolution.yml down"
+  },
+  "keywords": [
+    "saas",
+    "platform",
+    "self-hosted",
+    "supabase",
+    "whatsapp"
+  ],
+  "author": "NextMavens",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@10.28.1"
+}

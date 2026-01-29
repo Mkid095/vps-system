@@ -1,0 +1,16 @@
+2026-01-25T06:02:07.548Z [DEBUG] Watching for changes in setting files /home/ken/.claude...
+2026-01-25T06:02:07.552Z [DEBUG] [init] configureGlobalMTLS starting
+2026-01-25T06:02:07.552Z [DEBUG] [init] configureGlobalMTLS complete
+2026-01-25T06:02:07.552Z [DEBUG] [init] configureGlobalAgents starting
+2026-01-25T06:02:07.552Z [DEBUG] [init] configureGlobalAgents complete
+2026-01-25T06:02:07.560Z [DEBUG] Loading plugin rust-analyzer-lsp from source: "./plugins/rust-analyzer-lsp"
+2026-01-25T06:02:07.560Z [DEBUG] Using provided version for rust-analyzer-lsp@claude-plugins-official: 1.0.0
+2026-01-25T06:02:07.560Z [DEBUG] Plugin rust-analyzer-lsp@claude-plugins-official version 1.0.0 already cached at /home/ken/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0
+2026-01-25T06:02:07.560Z [DEBUG] Copied local plugin rust-analyzer-lsp to versioned cache: /home/ken/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0
+2026-01-25T06:02:07.560Z [DEBUG] Plugin rust-analyzer-lsp has no entry.skills defined
+2026-01-25T06:02:07.560Z [DEBUG] Found 1 plugins (1 enabled, 0 disabled)
+2026-01-25T06:02:07.561Z [DEBUG] [claudeai-mcp] Checking gate (cached)...
+2026-01-25T06:02:07.561Z [DEBUG] [claudeai-mcp] Gate returned: false
+2026-01-25T06:02:07.561Z [DEBUG] [claudeai-mcp] Disabled via gate
+2026-01-25T06:02:07.574Z [DEBUG] Watching for changes in skill/command directories: /home/ken/.claude/skills, /home/ken/.claude/commands...
+2026-01-25T06:02:10.180Z [DEBUG] Skipping SessionEnd:other hook execution - workspace trust not accepted

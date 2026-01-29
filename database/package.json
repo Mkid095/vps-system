@@ -1,0 +1,43 @@
+{
+  "name": "@nextmavens/audit-logs-database",
+  "version": "1.0.0",
+  "description": "Database schema, migrations, and integration layer for audit logs feature",
+  "type": "module",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "migrations",
+    "types"
+  ],
+  "scripts": {
+    "migrate": "tsx migrate.ts up",
+    "migrate:status": "tsx migrate.ts status",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc",
+    "test:integration": "tsx src/test-integration.ts"
+  },
+  "keywords": [
+    "audit-logs",
+    "database",
+    "migrations",
+    "postgresql",
+    "integration"
+  ],
+  "dependencies": {
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "@types/pg": "^8.10.9",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3",
+    "vitest": "^4.0.18"
+  }
+}

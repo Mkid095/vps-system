@@ -1,0 +1,8 @@
+NAMES                STATUS                             PORTS
+supabase-studio      Up 10 seconds (health: starting)   0.0.0.0:8000->3000/tcp, [::]:8000->3000/tcp
+supabase-supavisor   Created                            
+supabase-storage     Restarting (1) 1 second ago        
+supabase-realtime    Restarting (1) 1 second ago        
+supabase-rest        Up 10 seconds                      0.0.0.0:4003->3000/tcp, [::]:4003->3000/tcp
+supabase-db          Up 21 seconds (healthy)            0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+supabase-kong        Up 23 seconds (healthy)            0.0.0.0:8001->8001/tcp, [::]:8001->8001/tcp, 8000/tcp, 8444/tcp, 0.0.0.0:8443->8443/tcp, [::]:8443->8443/tcp

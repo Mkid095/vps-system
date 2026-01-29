@@ -1,0 +1,127 @@
+     1→// NextMavens Dashboard - Supabase Client Configuration
+     2→
+     3→import { createClient } from '@supabase/supabase-js';
+     4→
+     5→const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'http://localhost:8000';
+     6→const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+     7→
+     8→export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+     9→  auth: {
+    10→    autoRefreshToken: true,
+    11→    persistSession: true,
+    12→    detectSessionInUrl: true,
+    13→    storage: typeof window !== 'undefined' ? window.localStorage : undefined,
+    14→    storageKey: 'supabase-auth-token',
+    15→  },
+    16→});
+    17→
+    18→// Types for our database
+    19→export type Database = {
+    20→  public: {
+    21→    Tables: {
+    22→      organizations: {
+    23→        Row: {
+    24→          id: string;
+    25→          name: string;
+    26→          slug: string;
+    27→          logo_url: string | null;
+    28→          created_at: string;
+    29→          updated_at: string;
+    30→        };
+    31→        Insert: {
+    32→          id?: string;
+    33→          name: string;
+    34→          slug: string;
+    35→          logo_url?: string | null;
+    36→          created_at?: string;
+    37→          updated_at?: string;
+    38→        };
+    39→        Update: {
+    40→          id?: string;
+    41→          name?: string;
+    42→          slug?: string;
+    43→          logo_url?: string | null;
+    44→          updated_at?: string;
+    45→        };
+    46→      };
+    47→      organization_members: {
+    48→        Row: {
+    49→          id: string;
+    50→          organization_id: string;
+    51→          user_id: string;
+    52→          role: 'owner' | 'admin' | 'member' | 'viewer';
+    53→          invited_by: string | null;
+    54→          created_at: string;
+    55→          updated_at: string;
+    56→        };
+    57→        Insert: {
+    58→          id?: string;
+    59→          organization_id: string;
+    60→          user_id: string;
+    61→          role?: 'owner' | 'admin' | 'member' | 'viewer';
+    62→          invited_by?: string | null;
+    63→          created_at?: string;
+    64→          updated_at?: string;
+    65→        };
+    66→        Update: {
+    67→          role?: 'owner' | 'admin' | 'member' | 'viewer';
+    68→          updated_at?: string;
+    69→        };
+    70→      };
+    71→      projects: {
+    72→        Row: {
+    73→          id: string;
+    74→          organization_id: string;
+    75→          name: string;
+    76→          slug: string;
+    77→          description: string | null;
+    78→          status: 'provisioning' | 'active' | 'suspended' | 'archived';
+    79→          db_name: string | null;
+    80→          db_user: string | null;
+    81→          anon_key: string | null;
+    82→          service_role_key: string | null;
+    83→          jwt_secret: string | null;
+    84→          created_at: string;
+    85→          updated_at: string;
+    86→        };
+    87→        Insert: {
+    88→          id?: string;
+    89→          organization_id: string;
+    90→          name: string;
+    91→          slug: string;
+    92→          description?: string | null;
+    93→          status?: 'provisioning' | 'active' | 'suspended' | 'archived';
+    94→          db_name?: string | null;
+    95→          db_user?: string | null;
+    96→          anon_key?: string | null;
+    97→          service_role_key?: string | null;
+    98→          jwt_secret?: string | null;
+    99→          created_at?: string;
+   100→          updated_at?: string;
+   101→        };
+   102→        Update: {
+   103→          name?: string;
+   104→          slug?: string;
+   105→          description?: string | null;
+   106→          status?: 'provisioning' | 'active' | 'suspended' | 'archived';
+   107→          db_name?: string | null;
+   108→          db_user?: string | null;
+   109→          anon_key?: string | null;
+   110→          service_role_key?: string | null;
+   111→          jwt_secret?: string | null;
+   112→          updated_at?: string;
+   113→        };
+   114→      };
+   115→    };
+   116→  };
+   117→};
+   118→
+   119→export type Organization = Database['public']['Tables']['organizations']['Row'];
+   120→export type OrganizationMember = Database['public']['Tables']['organization_members']['Row'];
+   121→export type Project = Database['public']['Tables']['projects']['Row'];
+   122→export type OrganizationRole = OrganizationMember['role'];
+   123→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

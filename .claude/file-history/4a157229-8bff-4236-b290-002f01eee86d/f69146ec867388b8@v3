@@ -1,0 +1,118 @@
+// NextMavens Dashboard - Client-side Supabase Configuration
+
+import { createBrowserClient } from '@supabase/ssr'
+import { useState } from 'react'
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'http://localhost:9999'
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+
+// Create a singleton client for browser
+let client: ReturnType<typeof createBrowserClient> | null = null
+
+export const supabase = createBrowserClient(supabaseUrl, supabaseAnonKey)
+
+// Types for our database
+export type Database = {
+  public: {
+    Tables: {
+      organizations: {
+        Row: {
+          id: string
+          name: string
+          slug: string
+          logo_url: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          slug: string
+          logo_url?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          slug?: string
+          logo_url?: string | null
+          updated_at?: string
+        }
+      }
+      organization_members: {
+        Row: {
+          id: string
+          organization_id: string
+          user_id: string
+          role: 'owner' | 'admin' | 'member' | 'viewer'
+          invited_by: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          organization_id: string
+          user_id: string
+          role?: 'owner' | 'admin' | 'member' | 'viewer'
+          invited_by?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          role?: 'owner' | 'admin' | 'member' | 'viewer'
+          updated_at?: string
+        }
+      }
+      projects: {
+        Row: {
+          id: string
+          organization_id: string
+          name: string
+          slug: string
+          description: string | null
+          status: 'provisioning' | 'active' | 'suspended' | 'archived'
+          db_name: string | null
+          db_user: string | null
+          anon_key: string | null
+          service_role_key: string | null
+          jwt_secret: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          organization_id: string
+          name: string
+          slug: string
+          description?: string | null
+          status?: 'provisioning' | 'active' | 'suspended' | 'archived'
+          db_name?: string | null
+          db_user?: string | null
+          anon_key?: string | null
+          service_role_key?: string | null
+          jwt_secret?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          name?: string
+          slug?: string
+          description?: string | null
+          status?: 'provisioning' | 'active' | 'suspended' | 'archived'
+          db_name?: string | null
+          db_user?: string | null
+          anon_key?: string | null
+          service_role_key?: string | null
+          jwt_secret?: string | null
+          updated_at?: string
+        }
+      }
+    }
+  }
+}
+
+export type Organization = Database['public']['Tables']['organizations']['Row']
+export type OrganizationMember = Database['public']['Tables']['organization_members']['Row']
+export type Project = Database['public']['Tables']['projects']['Row']
+export type OrganizationRole = OrganizationMember['role']

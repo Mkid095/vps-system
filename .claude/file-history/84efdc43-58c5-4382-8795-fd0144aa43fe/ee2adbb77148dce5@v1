@@ -1,0 +1,23 @@
+const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
+
+const app = express();
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Routes
+app.use('/api/auth', require('./auth.routes'));
+app.use('/api/upload', require('./upload.routes'));
+
+// Health check
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', service: 'auth-service', timestamp: new Date().toISOString() });
+});
+
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log(`Auth Service running on port ${PORT}`);
+});

@@ -1,0 +1,3 @@
+supabase-gotrue
+supabase-studio      Up 38 minutes (unhealthy)
+supabase-gotrue      Restarting (1) Less than a second ago

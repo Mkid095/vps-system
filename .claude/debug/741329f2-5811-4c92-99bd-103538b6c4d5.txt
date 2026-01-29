@@ -1,0 +1,171 @@
+2026-01-24T11:43:21.488Z [ERROR] Failed to save config with lock: Error: ENOENT: no such file or directory, lstat '/home/ken/.claude.json'
+2026-01-24T11:43:21.488Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.10291.1769255001488
+2026-01-24T11:43:21.488Z [DEBUG] Setting permissions for new file: 600
+2026-01-24T11:43:21.489Z [DEBUG] Temp file written successfully, size: 82 bytes
+2026-01-24T11:43:21.489Z [DEBUG] Renaming /home/ken/.claude.json.tmp.10291.1769255001488 to /home/ken/.claude.json
+2026-01-24T11:43:21.489Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-24T11:43:21.493Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.10291.1769255001493
+2026-01-24T11:43:21.493Z [DEBUG] Preserving file permissions: 100600
+2026-01-24T11:43:21.493Z [DEBUG] Temp file written successfully, size: 130 bytes
+2026-01-24T11:43:21.493Z [DEBUG] Applied original permissions to temp file
+2026-01-24T11:43:21.493Z [DEBUG] Renaming /home/ken/.claude.json.tmp.10291.1769255001493 to /home/ken/.claude.json
+2026-01-24T11:43:21.494Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-24T11:43:21.494Z [DEBUG] [init] configureGlobalMTLS starting
+2026-01-24T11:43:21.494Z [DEBUG] [init] configureGlobalMTLS complete
+2026-01-24T11:43:21.494Z [DEBUG] [init] configureGlobalAgents starting
+2026-01-24T11:43:21.494Z [DEBUG] [init] configureGlobalAgents complete
+2026-01-24T11:43:21.495Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.10291.1769255001495
+2026-01-24T11:43:21.495Z [DEBUG] Preserving file permissions: 100600
+2026-01-24T11:43:21.496Z [DEBUG] Temp file written successfully, size: 167 bytes
+2026-01-24T11:43:21.496Z [DEBUG] Applied original permissions to temp file
+2026-01-24T11:43:21.496Z [DEBUG] Renaming /home/ken/.claude.json.tmp.10291.1769255001495 to /home/ken/.claude.json
+2026-01-24T11:43:21.496Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-24T11:43:21.497Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.10291.1769255001497
+2026-01-24T11:43:21.497Z [DEBUG] Preserving file permissions: 100600
+2026-01-24T11:43:21.498Z [DEBUG] Temp file written successfully, size: 202 bytes
+2026-01-24T11:43:21.498Z [DEBUG] Applied original permissions to temp file
+2026-01-24T11:43:21.498Z [DEBUG] Renaming /home/ken/.claude.json.tmp.10291.1769255001497 to /home/ken/.claude.json
+2026-01-24T11:43:21.498Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-24T11:43:21.498Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.10291.1769255001498
+2026-01-24T11:43:21.498Z [DEBUG] Preserving file permissions: 100600
+2026-01-24T11:43:21.499Z [DEBUG] Temp file written successfully, size: 238 bytes
+2026-01-24T11:43:21.499Z [DEBUG] Applied original permissions to temp file
+2026-01-24T11:43:21.499Z [DEBUG] Renaming /home/ken/.claude.json.tmp.10291.1769255001498 to /home/ken/.claude.json
+2026-01-24T11:43:21.499Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-24T11:43:21.500Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.10291.1769255001500
+2026-01-24T11:43:21.500Z [DEBUG] Preserving file permissions: 100600
+2026-01-24T11:43:21.500Z [DEBUG] Temp file written successfully, size: 275 bytes
+2026-01-24T11:43:21.500Z [DEBUG] Applied original permissions to temp file
+2026-01-24T11:43:21.500Z [DEBUG] Renaming /home/ken/.claude.json.tmp.10291.1769255001500 to /home/ken/.claude.json
+2026-01-24T11:43:21.500Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-24T11:43:21.514Z [DEBUG] Loading skills from: managed=/etc/claude-code/.claude/skills, user=/home/ken/.claude/skills, project=[]
+2026-01-24T11:43:21.515Z [ERROR] Error: Error: ENOENT: no such file or directory, scandir '/etc/claude-code/.claude/skills'
+    at readdirSync (unknown)
+    at <anonymous> (/$bunfs/root/claude:12:1903)
+    at pJ (/$bunfs/root/claude:11:35427)
+    at readdirSync (/$bunfs/root/claude:12:1864)
+    at XY$ (/$bunfs/root/claude:2213:380)
+    at XY$ (/$bunfs/root/claude:2213:1350)
+    at <anonymous> (/$bunfs/root/claude:2213:4440)
+    at <anonymous> (/$bunfs/root/claude:2213:5171)
+    at A (/$bunfs/root/claude:11:7251)
+    at Z71 (/$bunfs/root/claude:4860:4342)
+2026-01-24T11:43:21.515Z [ERROR] Error: Error: ENOENT: no such file or directory, scandir '/home/ken/.claude/skills'
+    at readdirSync (unknown)
+    at <anonymous> (/$bunfs/root/claude:12:1903)
+    at pJ (/$bunfs/root/claude:11:35427)
+    at readdirSync (/$bunfs/root/claude:12:1864)
+    at XY$ (/$bunfs/root/claude:2213:380)
+    at XY$ (/$bunfs/root/claude:2213:1350)
+    at <anonymous> (/$bunfs/root/claude:2213:4483)
+    at <anonymous> (/$bunfs/root/claude:2213:5171)
+    at A (/$bunfs/root/claude:11:7251)
+    at Z71 (/$bunfs/root/claude:4860:4342)
+2026-01-24T11:43:21.515Z [DEBUG] Error log sink initialized
+2026-01-24T11:43:21.525Z [DEBUG] [render] initYoga starting
+2026-01-24T11:43:21.526Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2026-01-24T11:43:21.526Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2026-01-24T11:43:21.526Z [DEBUG] Total plugin skills loaded: 0
+2026-01-24T11:43:21.526Z [DEBUG] Total plugin commands loaded: 0
+2026-01-24T11:43:21.526Z [DEBUG] Registered 0 hooks from 0 plugins
+2026-01-24T11:43:21.527Z [DEBUG] Loaded 0 unique skills (managed: 0, user: 0, project: 0, legacy commands: 0)
+2026-01-24T11:43:21.528Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills, 0 bundled skills
+2026-01-24T11:43:21.539Z [DEBUG] [render] initYoga complete
+2026-01-24T11:43:21.542Z [DEBUG] [render] first ink render: 449ms since process start
+2026-01-24T11:43:21.600Z [DEBUG] [Claude in Chrome] Extension not found in any browser
+2026-01-24T11:43:21.601Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.10291.1769255001601
+2026-01-24T11:43:21.601Z [DEBUG] Preserving file permissions: 100600
+2026-01-24T11:43:21.602Z [DEBUG] Temp file written successfully, size: 318 bytes
+2026-01-24T11:43:21.602Z [DEBUG] Applied original permissions to temp file
+2026-01-24T11:43:21.602Z [DEBUG] Renaming /home/ken/.claude.json.tmp.10291.1769255001601 to /home/ken/.claude.json
+2026-01-24T11:43:21.602Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-24T11:43:21.604Z [DEBUG] Install: Starting installation process (force=false, target=undefined)
+2026-01-24T11:43:21.604Z [DEBUG] Install: Calling installLatest(channelOrVersion=latest, forceReinstall=false)
+2026-01-24T11:43:21.614Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.10291.1769255001614
+2026-01-24T11:43:21.614Z [DEBUG] Preserving file permissions: 100600
+2026-01-24T11:43:21.615Z [DEBUG] Temp file written successfully, size: 359 bytes
+2026-01-24T11:43:21.615Z [DEBUG] Applied original permissions to temp file
+2026-01-24T11:43:21.615Z [DEBUG] Renaming /home/ken/.claude.json.tmp.10291.1769255001614 to /home/ken/.claude.json
+2026-01-24T11:43:21.615Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-24T11:43:21.654Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.10291.1769255001654
+2026-01-24T11:43:21.654Z [DEBUG] Preserving file permissions: 100600
+2026-01-24T11:43:21.655Z [DEBUG] Temp file written successfully, size: 535 bytes
+2026-01-24T11:43:21.655Z [DEBUG] Applied original permissions to temp file
+2026-01-24T11:43:21.655Z [DEBUG] Renaming /home/ken/.claude.json.tmp.10291.1769255001654 to /home/ken/.claude.json
+2026-01-24T11:43:21.655Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-24T11:43:21.655Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.10291.1769255001655
+2026-01-24T11:43:21.655Z [DEBUG] Preserving file permissions: 100600
+2026-01-24T11:43:21.656Z [DEBUG] Temp file written successfully, size: 571 bytes
+2026-01-24T11:43:21.656Z [DEBUG] Applied original permissions to temp file
+2026-01-24T11:43:21.656Z [DEBUG] Renaming /home/ken/.claude.json.tmp.10291.1769255001655 to /home/ken/.claude.json
+2026-01-24T11:43:21.656Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-24T11:43:21.657Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.10291.1769255001657
+2026-01-24T11:43:21.657Z [DEBUG] Preserving file permissions: 100600
+2026-01-24T11:43:21.657Z [DEBUG] Temp file written successfully, size: 599 bytes
+2026-01-24T11:43:21.657Z [DEBUG] Applied original permissions to temp file
+2026-01-24T11:43:21.657Z [DEBUG] Renaming /home/ken/.claude.json.tmp.10291.1769255001657 to /home/ken/.claude.json
+2026-01-24T11:43:21.657Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-24T11:43:21.658Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.10291.1769255001658
+2026-01-24T11:43:21.658Z [DEBUG] Preserving file permissions: 100600
+2026-01-24T11:43:21.658Z [DEBUG] Temp file written successfully, size: 632 bytes
+2026-01-24T11:43:21.658Z [DEBUG] Applied original permissions to temp file
+2026-01-24T11:43:21.658Z [DEBUG] Renaming /home/ken/.claude.json.tmp.10291.1769255001658 to /home/ken/.claude.json
+2026-01-24T11:43:21.658Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-24T11:43:21.659Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.10291.1769255001659
+2026-01-24T11:43:21.659Z [DEBUG] Preserving file permissions: 100600
+2026-01-24T11:43:21.660Z [DEBUG] Temp file written successfully, size: 671 bytes
+2026-01-24T11:43:21.660Z [DEBUG] Applied original permissions to temp file
+2026-01-24T11:43:21.660Z [DEBUG] Renaming /home/ken/.claude.json.tmp.10291.1769255001659 to /home/ken/.claude.json
+2026-01-24T11:43:21.660Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-24T11:43:21.660Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.10291.1769255001660
+2026-01-24T11:43:21.660Z [DEBUG] Preserving file permissions: 100600
+2026-01-24T11:43:21.661Z [DEBUG] Temp file written successfully, size: 701 bytes
+2026-01-24T11:43:21.661Z [DEBUG] Applied original permissions to temp file
+2026-01-24T11:43:21.661Z [DEBUG] Renaming /home/ken/.claude.json.tmp.10291.1769255001660 to /home/ken/.claude.json
+2026-01-24T11:43:21.661Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-24T11:43:21.661Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.10291.1769255001661
+2026-01-24T11:43:21.661Z [DEBUG] Preserving file permissions: 100600
+2026-01-24T11:43:21.663Z [DEBUG] Temp file written successfully, size: 740 bytes
+2026-01-24T11:43:21.663Z [DEBUG] Applied original permissions to temp file
+2026-01-24T11:43:21.663Z [DEBUG] Renaming /home/ken/.claude.json.tmp.10291.1769255001661 to /home/ken/.claude.json
+2026-01-24T11:43:21.663Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-24T11:43:21.663Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.10291.1769255001663
+2026-01-24T11:43:21.663Z [DEBUG] Preserving file permissions: 100600
+2026-01-24T11:43:21.664Z [DEBUG] Temp file written successfully, size: 778 bytes
+2026-01-24T11:43:21.664Z [DEBUG] Applied original permissions to temp file
+2026-01-24T11:43:21.664Z [DEBUG] Renaming /home/ken/.claude.json.tmp.10291.1769255001663 to /home/ken/.claude.json
+2026-01-24T11:43:21.664Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-24T11:43:21.664Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.10291.1769255001664
+2026-01-24T11:43:21.664Z [DEBUG] Preserving file permissions: 100600
+2026-01-24T11:43:21.665Z [DEBUG] Temp file written successfully, size: 823 bytes
+2026-01-24T11:43:21.665Z [DEBUG] Applied original permissions to temp file
+2026-01-24T11:43:21.665Z [DEBUG] Renaming /home/ken/.claude.json.tmp.10291.1769255001664 to /home/ken/.claude.json
+2026-01-24T11:43:21.665Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-24T11:43:21.666Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.10291.1769255001666
+2026-01-24T11:43:21.666Z [DEBUG] Preserving file permissions: 100600
+2026-01-24T11:43:21.666Z [DEBUG] Temp file written successfully, size: 853 bytes
+2026-01-24T11:43:21.666Z [DEBUG] Applied original permissions to temp file
+2026-01-24T11:43:21.666Z [DEBUG] Renaming /home/ken/.claude.json.tmp.10291.1769255001666 to /home/ken/.claude.json
+2026-01-24T11:43:21.666Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-24T11:43:21.837Z [DEBUG] Checking for native installer update to version 2.1.19
+2026-01-24T11:43:21.838Z [DEBUG] Downloading native installer version 2.1.19
+2026-01-24T11:43:30.010Z [DEBUG] Atomically installed binary to /home/ken/.local/share/claude/versions/2.1.19
+2026-01-24T11:43:30.077Z [DEBUG] Could not remove empty directory at /home/ken/.local/bin/claude: Error: ENOENT: no such file or directory, statx '/home/ken/.local/bin/claude'
+2026-01-24T11:43:30.077Z [DEBUG] Created directory /home/ken/.local/bin for symlink
+2026-01-24T11:43:30.078Z [DEBUG] Atomically updated symlink /home/ken/.local/bin/claude -> /home/ken/.local/share/claude/versions/2.1.19
+2026-01-24T11:43:30.079Z [DEBUG] Successfully updated to version 2.1.19
+2026-01-24T11:43:30.080Z [DEBUG] Writing to temp file: /home/ken/.claude.json.tmp.10291.1769255010080
+2026-01-24T11:43:30.080Z [DEBUG] Preserving file permissions: 100600
+2026-01-24T11:43:30.081Z [DEBUG] Temp file written successfully, size: 947 bytes
+2026-01-24T11:43:30.081Z [DEBUG] Applied original permissions to temp file
+2026-01-24T11:43:30.081Z [DEBUG] Renaming /home/ken/.claude.json.tmp.10291.1769255010080 to /home/ken/.claude.json
+2026-01-24T11:43:30.081Z [DEBUG] File /home/ken/.claude.json written atomically
+2026-01-24T11:43:30.081Z [DEBUG] Native installer: Set installMethod to "native" and disabled legacy auto-updater for protection
+2026-01-24T11:43:30.081Z [DEBUG] Install: installLatest returned version=2.1.19, wasUpdated=true, lockFailed=false
+2026-01-24T11:43:30.085Z [DEBUG] Install: Setup launcher completed with 1 messages
+2026-01-24T11:43:30.085Z [DEBUG] Install: Setup message: Native installation exists but ~/.local/bin is not in your PATH. Run:
+
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
+2026-01-24T11:43:30.085Z [DEBUG] Install: Cleaning up npm installations after successful install
+2026-01-24T11:43:30.358Z [DEBUG] Removed global npm installation of @anthropic-ai/claude-code
+2026-01-24T11:43:30.358Z [DEBUG] Cleaned up 1 npm installation(s)

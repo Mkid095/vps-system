@@ -1,0 +1,29 @@
+# Mcp Governance - Progress Tracker
+
+## Feature: Mcp Governance
+**Branch**: flow/mcp-governance
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (12 total)
+
+| US-001 | Define MCP Token Types | 1 | Pending | |
+| US-002 | Define MCP Default Scopes | 1 | Pending | |
+| US-003 | Implement MCP Read-Only Token | 1 | Pending | |
+| US-004 | Implement MCP Write Token | 2 | Pending | |
+| US-005 | Implement MCP Admin Token | 2 | Pending | |
+| US-006 | Add Explicit Opt-In for Write Access | 1 | Pending | |
+| US-007 | Implement MCP Scope Enforcement | 1 | Pending | |
+| US-008 | Implement MCP Audit Logging | 1 | Pending | |
+| US-009 | Create MCP Documentation | 2 | Pending | |
+| US-010 | Add MCP Token Indicators in UI | 2 | Pending | |
+| US-011 | Implement MCP Usage Analytics | 3 | Pending | |
+| US-012 | Disable Auth Access by Default | 2 | Pending | |
+
+## Progress Summary
+- Total Stories: 12
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 12
+
+## Iteration Log

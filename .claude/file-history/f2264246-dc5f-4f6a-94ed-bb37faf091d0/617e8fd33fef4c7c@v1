@@ -1,0 +1,200 @@
+# NextMavens Telegram File Storage Service
+
+Store and retrieve files via Telegram Bot with PostgreSQL metadata tracking.
+
+## Features
+
+- **File Upload via Telegram** - Send files to bot, get unique File ID
+- **File Retrieval** - Download files using File ID via REST API
+- **Multi-tenant Support** - Tenant-scoped file storage
+- **File Metadata** - Track file type, size, uploader, timestamps
+- **Download Tracking** - Log all file downloads
+- **Storage Statistics** - API endpoints for usage stats
+- **Deployment Notifications** - Webhook for Dokploy deployments
+
+## Environment Variables
+
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `PORT` | Server port | `4005` |
+| `DATABASE_URL` | PostgreSQL connection | `postgresql://...` |
+| `TELEGRAM_BOT_TOKEN` | Bot token from BotFather | `123456:ABC-DEF...` |
+| `TELEGRAM_WEBHOOK_URL` | Webhook URL | `https://telegram.nextmavens.cloud/webhook/telegram` |
+| `ADMIN_CHAT_ID` | Admin chat for notifications | `123456789` |
+
+## Setup
+
+### 1. Create Telegram Bot
+
+1. Message @BotFather on Telegram
+2. Send `/newbot`
+3. Follow instructions to create bot
+4. Save the bot token
+
+### 2. Get Chat ID
+
+1. Message your bot
+2. Visit: `https://api.telegram.org/bot<TOKEN>/getUpdates`
+3. Find your `chat.id` in the response
+
+### 3. Set Environment Variables
+
+```bash
+TELEGRAM_BOT_TOKEN=your_bot_token_here
+TELEGRAM_WEBHOOK_URL=https://telegram.nextmavens.cloud/webhook/telegram
+ADMIN_CHAT_ID=your_chat_id_here
+```
+
+## API Endpoints
+
+### Health Check
+```bash
+GET /health
+```
+
+### Get File Info
+```bash
+GET /api/files/:fileId
+```
+
+### List Files
+```bash
+GET /api/files?tenant_id=xxx&file_type=photo&limit=50&offset=0
+```
+
+### Get Download URL
+```bash
+GET /api/files/:fileId/download
+```
+
+### Delete File
+```bash
+DELETE /api/files/:fileId
+```
+
+### Get Storage Stats
+```bash
+GET /api/stats?tenant_id=xxx
+```
+
+## Usage Examples
+
+### Upload File via Telegram
+
+1. Start a chat with your bot
+2. Send any file (photo, document, video, etc.)
+3. Receive File ID in response
+
+### Retrieve File via API
+
+```javascript
+// Get download URL
+const response = await fetch('https://telegram.nextmavens.cloud/api/files/1234567890-abc123/download');
+const data = await response.json();
+
+console.log(data.download_url); // Telegram file URL
+console.log(data.file_name);
+console.log(data.file_size);
+
+// Download file
+window.location.href = data.download_url;
+```
+
+### List Files
+
+```javascript
+const response = await fetch('https://telegram.nextmavens.cloud/api/files?limit=20');
+const data = await response.json();
+
+console.log(data.files); // Array of files
+console.log(data.total); // Total count
+```
+
+### Get Statistics
+
+```javascript
+const response = await fetch('https://telegram.nextmavens.cloud/api/stats');
+const data = await response.json();
+
+console.log(data.overall); // { total_files, total_size, file_types, unique_uploaders }
+console.log(data.by_type); // Breakdown by file type
+```
+
+## Telegram Bot Commands
+
+- `/start` - Welcome message
+- `/stats` - View storage statistics
+- `/help` - Show help message
+
+## Dokploy Deployment Webhook
+
+Send deployment notifications to Telegram:
+
+```bash
+POST /webhook/deploy
+Content-Type: application/json
+
+{
+  "status": "success|failed|started",
+  "service": "auth-service",
+  "repository": "owner/repo",
+  "branch": "main",
+  "commit": "abc123...",
+  "commit_message": "Fix bug",
+  "deploy_url": "https://...",
+  "error": "Error message if failed"
+}
+```
+
+## Database Schema
+
+### telegram_files
+- `id` - Primary key
+- `file_id` - Unique file identifier (API)
+- `file_unique_id` - Telegram unique ID
+- `file_type` - photo, document, video, audio, etc.
+- `file_name` - Original filename
+- `mime_type` - MIME type
+- `file_size` - Size in bytes
+- `caption` - File caption
+- `telegram_file_id` - Telegram file ID
+- `uploaded_by` - User ID
+- `chat_id` - Chat ID
+- `tenant_id` - Tenant UUID
+- `metadata` - Additional metadata (JSONB)
+- `created_at` - Upload timestamp
+- `updated_at` - Update timestamp
+
+### telegram_downloads
+- `id` - Primary key
+- `file_id` - Reference to telegram_files
+- `downloaded_by` - User ID
+- `downloaded_at` - Download timestamp
+- `ip_address` - Download IP
+- `user_agent` - Browser/client info
+
+## Integration with Cloudinary
+
+This service complements Cloudinary:
+- **Telegram Storage** - User uploads via chat, team collaboration files
+- **Cloudinary** - Profile pictures, avatars, public images
+
+Use Telegram Storage for:
+- Internal document sharing
+- Team file collaboration
+- User-uploaded attachments
+- Temporary file storage
+
+Use Cloudinary for:
+- User avatars/profile pictures
+- Public image assets
+- Optimized web images
+- Image transformations
+
+## Production Deployment
+
+1. Push code to GitHub
+2. Connect repository to Dokploy
+3. Set environment variables
+4. Deploy
+5. Set webhook via BotFather: `https://telegram.nextmavens.cloud/webhook/telegram`

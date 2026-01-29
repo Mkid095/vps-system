@@ -1,0 +1,114 @@
+     1→_format_version: "3.0"
+     2→
+     3→services:
+     4→  # NextMavens Dashboard - must be first to catch / before /studio
+     5→  - name: dashboard
+     6→    url: http://dashboard:3000
+     7→    routes:
+     8→      - name: dashboard-root
+     9→        paths:
+    10→          - /              # Root path
+    11→          - /api            # Dashboard API
+    12→        strip_path: false
+    13→        plugins:
+    14→          - name: cors
+    15→            config:
+    16→              origins:
+    17→                - "*"
+    18→              methods:
+    19→                - GET
+    20→                - POST
+    21→                - PUT
+    22→                - DELETE
+    23→                - OPTIONS
+    24→              headers:
+    25→                - Accept
+    26→                - Accept-Language
+    27→                - Content-Type
+    28→                - Authorization
+    29→              exposed_headers:
+    30→                - Content-Length
+    31→                - Content-Type
+    32→              max_age: 3600
+    33→
+    34→  # GoTrue Auth Service
+    35→  - name: gotrue
+    36→    url: http://gotrue:9999
+    37→    routes:
+    38→      - name: auth-route
+    39→        paths:
+    40→          - /auth/v1
+    41→        strip_path: false
+    42→        plugins:
+    43→          - name: cors
+    44→            config:
+    45→              origins:
+    46→                - "*"
+    47→                - "http://localhost:3000"
+    48→                - "http://localhost:3005"
+    49→                - "https://nextmavens.cloud"
+    50→              methods:
+    51→                - GET
+    52→                - POST
+    53→                - PUT
+    54→                - DELETE
+    55→                - PATCH
+    56→                - OPTIONS
+    57→              headers:
+    58→                - Accept
+    59→                - Accept-Language
+    60→                - Content-Type
+    61→                - Authorization
+    62→                - X-Client-Info
+    63→                - Apikey
+    64→              exposed_headers:
+    65→                - Content-Length
+    66→                - Content-Type
+    67→              max_age: 3600
+    68→              credentials: true
+    69→
+    70→  # PostgREST API
+    71→  - name: postgrest
+    72→    url: http://rest:3000
+    73→    routes:
+    74→      - name: rest-route
+    75→        paths:
+    76→          - /rest/v1
+    77→        strip_path: false
+    78→        plugins:
+    79→          - name: cors
+    80→            config:
+    81→              origins:
+    82→                - "*"
+    83→              methods:
+    84→                - GET
+    85→                - POST
+    86→                - PUT
+    87→                - DELETE
+    88→                - PATCH
+    89→                - OPTIONS
+    90→              headers:
+    91→                - Accept
+    92→                - Accept-Language
+    93→                - Content-Type
+    94→                - Authorization
+    95→                - Apikey
+    96→              exposed_headers:
+    97→                - Content-Length
+    98→                - Content-Type
+    99→                - Content-Range
+   100→              max_age: 3600
+   101→
+   102→  # Supabase Studio
+   103→  - name: studio
+   104→    url: http://studio:3000
+   105→    routes:
+   106→      - name: studio-route
+   107→        paths:
+   108→          - /studio
+   109→        strip_path: true
+   110→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

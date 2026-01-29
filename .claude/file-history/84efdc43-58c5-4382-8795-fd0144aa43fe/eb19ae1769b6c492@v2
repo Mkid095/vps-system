@@ -1,0 +1,26 @@
+services:
+  auth-service:
+    build: .
+    container_name: auth-service
+    environment:
+      - PORT=4000
+      - DB_HOST=nextmavens-db-m4sxnf
+      - DB_PORT=5432
+      - DB_NAME=nextmavens
+      - DB_USER=nextmavens
+      - DB_PASSWORD=Elishiba@95
+      - JWT_SECRET=nextmavens-auth-secret-key-2024-production-secure
+      - CLOUDINARY_CLOUD_NAME=dxlflpaln
+      - CLOUDINARY_API_KEY=862746238943118
+      - CLOUDINARY_API_SECRET=W_LaFIowdKfB2MgNm2lPtv63NyE
+      - CLOUDINARY_UPLOAD_PRESET=nextmavens
+      - CLOUDINARY_FOLDER=nextmavens
+    ports:
+      - "4002:4000"
+    restart: unless-stopped
+    networks:
+      - dokploy-network
+
+networks:
+  dokploy-network:
+    external: true

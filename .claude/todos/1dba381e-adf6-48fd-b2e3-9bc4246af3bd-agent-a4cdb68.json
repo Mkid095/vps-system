@@ -1,0 +1,22 @@
+[
+  {
+    "content": "Create spike detection types in types/index.ts",
+    "status": "completed",
+    "activeForm": "Creating spike detection types"
+  },
+  {
+    "content": "Add spike detection configuration constants to lib/config.ts",
+    "status": "completed",
+    "activeForm": "Adding spike detection configuration constants"
+  },
+  {
+    "content": "Create lib/spike-detection.ts with core spike detection logic",
+    "status": "completed",
+    "activeForm": "Creating spike detection library"
+  },
+  {
+    "content": "Run typecheck to verify implementation",
+    "status": "in_progress",
+    "activeForm": "Running typecheck"
+  }
+]

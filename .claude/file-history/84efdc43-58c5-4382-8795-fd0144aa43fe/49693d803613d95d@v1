@@ -1,0 +1,236 @@
+/**
+ * Storage Module - File upload and download via Telegram
+ */
+
+import { UploadOptions, FileInfo, UploadResult, StorageError, NextMavensConfig } from './types';
+
+export class StorageClient {
+  private config: NextMavensConfig;
+
+  constructor(config: NextMavensConfig) {
+    this.config = config;
+  }
+
+  /**
+   * Upload a file (must be done via Telegram bot)
+   * This returns info about the file if it exists
+   */
+  async getFileInfo(fileId: string): Promise<FileInfo> {
+    try {
+      const response = await fetch(`${this.config.storageUrl}/api/files/${fileId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': this.config.apiKey
+        }
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new StorageError(result.error || 'Failed to get file info', 'GET_FILE_FAILED');
+      }
+
+      return result.file;
+    } catch (error) {
+      if (error instanceof StorageError) throw error;
+      throw new StorageError('Failed to get file info', 'NETWORK_ERROR');
+    }
+  }
+
+  /**
+   * Get download URL for a file
+   */
+  async getDownloadUrl(fileId: string): Promise<string> {
+    try {
+      const response = await fetch(`${this.config.storageUrl}/api/files/${fileId}/download`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': this.config.apiKey
+        }
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new StorageError(result.error || 'Failed to get download URL', 'GET_URL_FAILED');
+      }
+
+      return result.download_url;
+    } catch (error) {
+      if (error instanceof StorageError) throw error;
+      throw new StorageError('Failed to get download URL', 'NETWORK_ERROR');
+    }
+  }
+
+  /**
+   * Download a file (returns a blob)
+   */
+  async downloadFile(fileId: string): Promise<Blob> {
+    const downloadUrl = await this.getDownloadUrl(fileId);
+
+    try {
+      const response = await fetch(downloadUrl);
+
+      if (!response.ok) {
+        throw new StorageError('Failed to download file', 'DOWNLOAD_FAILED');
+      }
+
+      return await response.blob();
+    } catch (error) {
+      if (error instanceof StorageError) throw error;
+      throw new StorageError('Failed to download file', 'NETWORK_ERROR');
+    }
+  }
+
+  /**
+   * List files
+   */
+  async listFiles(options?: {
+    tenant_id?: string;
+    file_type?: string;
+    limit?: number;
+    offset?: number;
+  }): Promise<{ files: FileInfo[]; total: number }> {
+    try {
+      const params = new URLSearchParams();
+
+      if (options?.tenant_id) {
+        params.append('tenant_id', options.tenant_id);
+      }
+
+      if (options?.file_type) {
+        params.append('file_type', options.file_type);
+      }
+
+      if (options?.limit) {
+        params.append('limit', String(options.limit));
+      }
+
+      if (options?.offset) {
+        params.append('offset', String(options.offset));
+      }
+
+      const url = `${this.config.storageUrl}/api/files${params.toString() ? '?' + params.toString() : ''}`;
+
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': this.config.apiKey
+        }
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new StorageError(result.error || 'Failed to list files', 'LIST_FILES_FAILED');
+      }
+
+      return result;
+    } catch (error) {
+      if (error instanceof StorageError) throw error;
+      throw new StorageError('Failed to list files', 'NETWORK_ERROR');
+    }
+  }
+
+  /**
+   * Delete a file
+   */
+  async deleteFile(fileId: string): Promise<void> {
+    try {
+      const response = await fetch(`${this.config.storageUrl}/api/files/${fileId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': this.config.apiKey
+        }
+      });
+
+      if (!response.ok) {
+        const result = await response.json();
+        throw new StorageError(result.error || 'Failed to delete file', 'DELETE_FAILED');
+      }
+    } catch (error) {
+      if (error instanceof StorageError) throw error;
+      throw new StorageError('Failed to delete file', 'NETWORK_ERROR');
+    }
+  }
+
+  /**
+   * Get storage statistics
+   */
+  async getStats(options?: { tenant_id?: string }): Promise<{
+    overall: {
+      total_files: number;
+      total_size: number;
+      file_types: number;
+      unique_uploaders: number;
+    };
+    by_type: Array<{
+      file_type: string;
+      count: number;
+      size: number;
+    }>;
+  }> {
+    try {
+      const params = options?.tenant_id
+        ? `?tenant_id=${options.tenant_id}`
+        : '';
+
+      const response = await fetch(`${this.config.storageUrl}/api/stats${params}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': this.config.apiKey
+        }
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new StorageError(result.error || 'Failed to get stats', 'GET_STATS_FAILED');
+      }
+
+      return result;
+    } catch (error) {
+      if (error instanceof StorageError) throw error;
+      throw new StorageError('Failed to get stats', 'NETWORK_ERROR');
+    }
+  }
+
+  /**
+   * Get a public URL for a file (for displaying in HTML)
+   */
+  getPublicUrl(fileId: string): string {
+    return `${this.config.storageUrl}/api/files/${fileId}/download`;
+  }
+
+  /**
+   * Upload instructions (since files must be uploaded via Telegram)
+   */
+  getUploadInstructions(): string {
+    return `
+To upload files to NextMavens Storage:
+
+1. Open Telegram and search for @nextmavensuploadsbot
+2. Start a chat with the bot
+3. Send your file (photo, document, video, etc.)
+4. You'll receive a File ID
+5. Use this File ID with the SDK:
+
+   const fileInfo = await nextmavens.storage.getFileInfo(fileId);
+   const downloadUrl = await nextmavens.storage.getDownloadUrl(fileId);
+
+Supported file types:
+- Photos
+- Documents (PDF, DOC, etc.)
+- Videos
+- Audio files
+- Voice messages
+- Stickers
+- GIFs
+    `.trim();
+  }
+}

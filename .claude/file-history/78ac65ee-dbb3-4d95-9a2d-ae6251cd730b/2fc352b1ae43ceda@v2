@@ -1,0 +1,176 @@
+{
+  "project": "Docker Infrastructure",
+  "branchName": "flow/docker-infrastructure",
+  "description": "Set up complete Docker infrastructure for NextMavens Platform. Version-pinned images for stability. Self-hosted Supabase, Evolution API, Redis, Kong gateway. Monitoring and storage optimization.",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Supabase Docker Stack",
+      "description": "As a platform operator, I want to run Supabase containers so that I have a self-hosted database.",
+      "acceptanceCriteria": [
+        "docker/supabase.yml",
+        "Services: db, studio, meta, realtime, storage, rest, supavisor, kong",
+        "Version-pinned images",
+        "Health checks configured",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 1,
+      "passes": true,
+      "notes": "Implemented with docker/supabase.yml containing all required services (db with pgvector/pgvector:pg16, studio with supabase/studio:20250115-7a7e3d3, meta with supabase/pg-meta:v0.79.0, realtime with supabase/realtime:v2.31.4, storage with supabase/storage-api:v1.14.2, rest with postgrest/postgrest:v12.2.0, supavisor with supabase/supavisor:1.1.51, kong with kong:3.7.1). Health checks configured on db service."
+    },
+    {
+      "id": "US-002",
+      "title": "Evolution API Docker Stack",
+      "description": "As a platform operator, I want to run Evolution API so that I can provide WhatsApp services.",
+      "acceptanceCriteria": [
+        "docker/evolution.yml",
+        "Services: evolution, redis",
+        "Version pinned: v2.3.7",
+        "Webhook configuration via env",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 1,
+      "passes": true,
+      "notes": "Implemented with docker/evolution.yml containing Evolution API v2.3.7 (evolutionapi/evolution-api:v2.3.7) and Redis (redis:7-alpine). Webhook configuration via WEBHOOK_GLOBAL_URL and WEBHOOK_GLOBAL_EVENTS environment variables. Health checks configured for both services."
+    },
+    {
+      "id": "US-003",
+      "title": "Combined Docker Stack",
+      "description": "As a platform operator, I want to run all services with one command so that deployment is simple.",
+      "acceptanceCriteria": [
+        "docker/docker-compose.yml",
+        "Includes all services",
+        "Single network: nextmavens-network",
+        "Named volumes for persistence",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 1,
+      "passes": true,
+      "notes": "Implemented with docker/docker-compose.yml containing all services (db, redis, studio, meta, realtime, evolution, kong) on single nextmavens-network. Named volumes for persistence: supabase-db-data, supabase-storage, evolution-data."
+    },
+    {
+      "id": "US-004",
+      "title": "Database Initialization",
+      "description": "As the database container, I want to run init scripts so that the master schema is created.",
+      "acceptanceCriteria": [
+        "scripts/db-init.sql mounted to /docker-entrypoint-initdb.d/",
+        "Runs on first start",
+        "Creates tables, functions, triggers",
+        "Enables RLS",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 1,
+      "passes": true,
+      "notes": "Implemented with scripts/db-init.sql mounted to /docker-entrypoint-initdb.d/ in both docker/docker-compose.yml and docker/supabase.yml. The script creates tables, functions, triggers, and enables RLS."
+    },
+    {
+      "id": "US-005",
+      "title": "Environment Configuration",
+      "description": "As a platform operator, I want to configure services via env vars so that I can customize the deployment.",
+      "acceptanceCriteria": [
+        ".env.example with all variables",
+        "Docker Compose reads from .env",
+        "Secrets documented",
+        "Defaults for local dev",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 1,
+      "passes": true,
+      "notes": "Implemented with .env.example at root level containing all environment variables for Supabase, Evolution API, Redis, Kong, and external services. Docker Compose files reference ${VAR_NAME} variables which read from .env file."
+    },
+    {
+      "id": "US-006",
+      "title": "Volume Management",
+      "description": "As a platform operator, I want persistent volumes so that data survives container restarts.",
+      "acceptanceCriteria": [
+        "Named volumes for: db data, storage, evolution data",
+        "Backup script included",
+        "Restore procedure documented",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 2,
+      "passes": true,
+      "notes": "Implemented with named volumes in docker/docker-compose.yml (supabase-db-data, supabase-storage, evolution-data). Backup script at scripts/backup.sh creates tar.gz archives of volumes and SQL dumps of databases. Restore script at scripts/restore.sh with comprehensive documentation, usage instructions, and confirmation prompts. Both scripts are executable with proper bash shebangs. Typecheck passes."
+    },
+    {
+      "id": "US-007",
+      "title": "Service Health Checks",
+      "description": "As Docker Compose, I want to health check services so that unhealthy containers restart.",
+      "acceptanceCriteria": [
+        "All services have healthcheck directive",
+        "db: pg_isready",
+        "redis: redis-cli ping",
+        "evolution: wget localhost:8080",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 2,
+      "passes": true,
+      "notes": "Implemented health checks for all services in docker/docker-compose.yml. db: pg_isready -U postgres -h localhost (10s interval, 5s timeout, 5 retries). redis: redis-cli ping (10s interval, 5s timeout, 5 retries). studio: wget --spider http://localhost:3000/api/profile (30s interval, 10s timeout, 3 retries, 40s start_period). meta: wget --spider http://localhost:8080/health (30s interval, 10s timeout, 3 retries, 20s start_period). realtime: wget --spider http://localhost:4000/api/health (30s interval, 10s timeout, 3 retries, 30s start_period). evolution: wget --spider http://localhost:8080 (30s interval, 10s timeout, 3 retries, 40s start_period). kong: kong health (30s interval, 10s timeout, 3 retries, 40s start_period). All services have restart: unless-stopped policy. Dependencies configured to wait for healthy services. Typecheck passes."
+    },
+    {
+      "id": "US-008",
+      "title": "Kong API Gateway Configuration",
+      "description": "As the platform, I want Kong to route requests so that services are properly isolated.",
+      "acceptanceCriteria": [
+        "Kong in DB-less mode",
+        "Routes configured via API",
+        "/studio/* -> Studio container",
+        "/api/* -> API container",
+        "Rate limiting plugin enabled",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 2,
+      "passes": true,
+      "notes": "Implemented Kong API Gateway in DB-less mode with docker/kong.yml declarative configuration. Routes: /studio -> Studio container (port 3000), /api -> API service (host.docker.internal:3000 for local development). Rate limiting plugin enabled globally (100 req/min, 1000 req/hour, local policy). CORS plugin enabled globally with origins *, all methods, standard headers. Kong exposed on ports 8000 (HTTP proxy), 8443 (HTTPS proxy), 8001 (Admin API). Declarative config mounted via volume. KONG_DECLARATIVE_CONFIG env var points to config file. KONG_DATABASE=off for DB-less mode. Typecheck passes."
+    },
+    {
+      "id": "US-009",
+      "title": "Container Resource Limits",
+      "description": "As a platform operator, I want to set resource limits so that no container consumes all resources.",
+      "acceptanceCriteria": [
+        "Memory limits on all containers",
+        "CPU reservations",
+        "Container restart policies",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 3,
+      "passes": true,
+      "notes": "Implemented resource limits for all Docker containers in docker-compose.yml using deploy.resources configuration. Memory limits and reservations: db (2G limit, 512M reservation, 0.25 CPU), redis (512M limit, 128M reservation, 0.1 CPU), studio (512M limit, 256M reservation, 0.1 CPU), meta (256M limit, 128M reservation, 0.1 CPU), realtime (512M limit, 256M reservation, 0.1 CPU), evolution (1G limit, 256M reservation, 0.1 CPU), kong (512M limit, 256M reservation, 0.1 CPU). All containers have restart: unless-stopped policy to ensure automatic recovery. Typecheck passes."
+    },
+    {
+      "id": "US-010",
+      "title": "Log Management",
+      "description": "As a platform operator, I want to access logs so that I can debug issues.",
+      "acceptanceCriteria": [
+        "All containers log to stdout/stderr",
+        "JSON log format",
+        "Log rotation configured",
+        "CLI can stream logs",
+        "Typecheck passes"
+      ],
+      "mavenSteps": [1, 7],
+      "mcpTools": {},
+      "priority": 3,
+      "passes": true,
+      "notes": "Implemented centralized logging configuration for all Docker containers in docker-compose.yml. Added x-logging YAML anchor with json-file driver, max-size 10m, max-file 3 for log rotation. Applied logging configuration to all services: db, redis, studio, meta, realtime, evolution, kong. All containers now log to stdout/stderr in JSON format with automatic rotation (3 files of 10MB each = 30MB max per service). Kong log level set to info. CLI logs command (cli/src/commands/logs.ts) already implements log streaming with --follow flag, color-coded output by log level, service filtering. Typecheck passes."
+    }
+  ]
+}

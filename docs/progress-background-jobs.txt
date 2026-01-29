@@ -1,0 +1,29 @@
+# Background Jobs - Progress Tracker
+
+## Feature: Background Jobs
+**Branch**: flow/background-jobs
+**Start Date**: 2026-01-28
+**Status**: Initialized
+
+## User Stories (12 total)
+
+| US-001 | Create Jobs Database Table | 1 | Pending | |
+| US-002 | Create Job Queue System | 1 | Pending | |
+| US-003 | Create Job Worker | 1 | Pending | |
+| US-004 | Implement Provision Project Job | 1 | Pending | |
+| US-005 | Implement Rotate Key Job | 2 | Pending | |
+| US-006 | Implement Deliver Webhook Job | 2 | Pending | |
+| US-007 | Implement Export Backup Job | 2 | Pending | |
+| US-008 | Implement Check Usage Limits Job | 2 | Pending | |
+| US-009 | Implement Auto Suspend Job | 2 | Pending | |
+| US-010 | Create Job Status API | 2 | Pending | |
+| US-011 | Create Job Retry API | 2 | Pending | |
+| US-012 | Create Job Progress UI | 2 | Pending | |
+
+## Progress Summary
+- Total Stories: 12
+- Completed: 0 (0%)
+- In Progress: 0
+- Pending: 12
+
+## Iteration Log

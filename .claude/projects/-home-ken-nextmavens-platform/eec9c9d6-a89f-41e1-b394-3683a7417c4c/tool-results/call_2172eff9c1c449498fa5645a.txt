@@ -1,0 +1,16 @@
+Exit code 1
+time="2026-01-25T19:30:17Z" level=warning msg="Found orphan containers ([supabase-mailhog supabase-gotrue supabase-storage supabase-supavisor supabase-rest evolution-db]) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up."
+ Container nextmavens-db Running 
+ Container nextmavens-meta Recreate 
+ Container nextmavens-meta Recreated 
+ Container nextmavens-studio Recreate 
+ Container nextmavens-studio Recreated 
+ Container nextmavens-db Waiting 
+ Container nextmavens-db Healthy 
+ Container nextmavens-meta Starting 
+ Container nextmavens-meta Started 
+ Container nextmavens-meta Waiting 
+ Container nextmavens-db Waiting 
+ Container nextmavens-db Healthy 
+ Container nextmavens-meta Error dependency meta failed to start
+dependency failed to start: container nextmavens-meta is unhealthy

@@ -1,0 +1,4 @@
+           policyname           | permissive |      roles      |  cmd   |   qual    |    with_check    
+--------------------------------+------------+-----------------+--------+-----------+------------------
+ Users can create organizations | PERMISSIVE | {authenticated} | INSERT | <no_qual> | <has_with_check>
+(1 row)

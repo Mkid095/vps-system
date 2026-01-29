@@ -1,0 +1,27 @@
+[
+  {
+    "content": "Step 1: Foundation - Create reset password API route",
+    "status": "completed",
+    "activeForm": "Creating reset password API route"
+  },
+  {
+    "content": "Step 2: Package Manager - Verify dependencies",
+    "status": "in_progress",
+    "activeForm": "Verifying dependencies"
+  },
+  {
+    "content": "Step 5: Type Safety - Add reset password to UserDetail component",
+    "status": "pending",
+    "activeForm": "Adding reset password to UserDetail component"
+  },
+  {
+    "content": "Step 7: Integration - Wire up API and frontend",
+    "status": "pending",
+    "activeForm": "Wiring up API and frontend"
+  },
+  {
+    "content": "Step 10: Final Testing - Test and verify",
+    "status": "pending",
+    "activeForm": "Testing and verifying implementation"
+  }
+]

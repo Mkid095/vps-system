@@ -1,0 +1,188 @@
+// VPS Stats API - Real system information from the KVM server
+
+export interface VPSStats {
+  disk: {
+    used: string;
+    total: string;
+    percent: number;
+  };
+  cpu: {
+    usage: number;
+    cores: number;
+  };
+  ram: {
+    used: string;
+    total: string;
+    percent: number;
+  };
+  network: {
+    in: string;
+    out: string;
+  };
+  uptime: string;
+}
+
+export interface WhatsAppInstance {
+  name: string;
+  status: 'open' | 'close' | 'connecting';
+  qrCode?: string;
+  phone?: string;
+}
+
+export interface SupabaseProject {
+  id: string;
+  name: string;
+  slug: string;
+  organization_id: string;
+  status: 'active' | 'provisioning' | 'suspended';
+  database_url: string;
+  api_url: string;
+  studio_url: string;
+}
+
+// Fetch real VPS stats from the system
+export async function getVPSStats(): Promise<VPSStats> {
+  try {
+    const response = await fetch('/api/vps/stats', {
+      cache: 'no-store'
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch VPS stats: ${response.statusText}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching VPS stats:', error);
+    // Return default values on error
+    return {
+      disk: { used: '--', total: '--', percent: 0 },
+      cpu: { usage: 0, cores: 0 },
+      ram: { used: '--', total: '--', percent: 0 },
+      network: { in: '--', out: '--' },
+      uptime: '--'
+    };
+  }
+}
+
+// Fetch WhatsApp instances from Evolution API
+export async function getWhatsAppInstances(): Promise<WhatsAppInstance[]> {
+  try {
+    const response = await fetch('/api/whatsapp/instances', {
+      cache: 'no-store'
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch WhatsApp instances: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data.instances || [];
+  } catch (error) {
+    console.error('Error fetching WhatsApp instances:', error);
+    return [];
+  }
+}
+
+// Create new WhatsApp instance
+export async function createWhatsAppInstance(name: string): Promise<WhatsAppInstance> {
+  const response = await fetch('/api/whatsapp/create', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ instanceName: name })
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to create instance: ${response.statusText}`);
+  }
+
+  return await response.json();
+}
+
+// Get instance QR code
+export async function getInstanceQR(instanceName: string): Promise<string> {
+  const response = await fetch(`/api/whatsapp/qr/${instanceName}`, {
+    cache: 'no-store'
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to get QR: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data.qrCode || '';
+}
+
+// Get instance status
+export async function getInstanceStatus(instanceName: string): Promise<'open' | 'close' | 'connecting'> {
+  const response = await fetch(`/api/whatsapp/status/${instanceName}`, {
+    cache: 'no-store'
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to get status: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data.state || 'close';
+}
+
+// Send WhatsApp message
+export async function sendWhatsAppMessage(
+  instanceName: string,
+  number: string,
+  message: string
+): Promise<void> {
+  const response = await fetch('/api/whatsapp/send', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ instanceName, number, text: message })
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to send message: ${response.statusText}`);
+  }
+}
+
+// Connect to Supabase projects
+export async function getSupabaseProjects(): Promise<SupabaseProject[]> {
+  try {
+    const response = await fetch('/api/projects');
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch projects: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data.items || [];
+  } catch (error) {
+    console.error('Error fetching Supabase projects:', error);
+    return [];
+  }
+}
+
+// Health check for all services
+export async function getServiceHealth(): Promise<{
+  whatsapp: boolean;
+  supabase: boolean;
+  evolution: boolean;
+}> {
+  try {
+    const [whatsapp, supabase] = await Promise.all([
+      fetch('/api/whatsapp/health').then(r => r.ok).catch(() => false),
+      fetch('/api/projects').then(r => r.ok).catch(() => false),
+    ]);
+
+    return {
+      whatsapp,
+      supabase,
+      evolution: whatsapp // Evolution is the same as WhatsApp
+    };
+  } catch {
+    return {
+      whatsapp: false,
+      supabase: false,
+      evolution: false
+    };
+  }
+}

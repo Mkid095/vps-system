@@ -1,0 +1,168 @@
+STORY MEMORY: US-002 - Implement Signup Rate Limiting
+=========================================================
+
+COMPLETED: 2026-01-28
+
+STORY DETAILS:
+- ID: US-002
+- Title: Implement Signup Rate Limiting
+- Priority: 1
+- Maven Steps: [1, 2, 7, 10]
+- Status: Complete
+
+IMPLEMENTATION SUMMARY:
+Implemented signup rate limiting to prevent abuse at registration. The system uses PostgreSQL-based rate limiting with dual-layer protection: IP-based limiting (5 signups/hour) and organization-based limiting (3 signups/hour). The implementation includes a rate limiter library, database migration, and integration with the registration endpoint. Rate limit responses include standard HTTP 429 status with Retry-After header and rate limit metadata.
+
+FILES CREATED (3):
+- src/features/abuse-controls/lib/rate-limiter.ts (201 lines) - Core rate limiting library with checkRateLimit(), recordRateLimitAttempt(), getRetryAfterSeconds(), and extractClientIP() functions
+- src/features/abuse-controls/migrations/create-rate-limits-table.ts (71 lines) - Database migration for rate_limits table with indexes for performance
+- scripts/migrate-rate-limits.ts (23 lines) - Migration runner script for rate_limits table
+
+FILES MODIFIED (4):
+- src/app/api/developer/register/route.ts - Added IP-based and organization-based rate limiting with 429 responses and rate limit headers
+- src/app/api/projects/route.ts - Added project creation rate limiting (similar pattern to signup)
+- src/features/abuse-controls/types/index.ts - Added RateLimitIdentifierType enum, RateLimitIdentifier, RateLimitResult, and RateLimitError interfaces
+- src/features/abuse-controls/index.ts - Exported rate limiting functions and types
+
+KEY DECISIONS:
+1. Dual-layer rate limiting (IP + Organization)
+   - Rationale: IP limiting prevents abuse from single source; org limiting prevents organizational spam
+   - Impact: More comprehensive protection; attackers must bypass both layers
+   - Configuration: 5 signups/hour per IP, 3 signups/hour per organization
+
+2. PostgreSQL as rate limit storage backend
+   - Rationale: Existing infrastructure uses PostgreSQL; keeps data centralized and consistent
+   - Impact: Rate limits are persistent across server restarts; can be queried for analytics
+   - Trade-off: Slightly slower than Redis but no additional infrastructure needed
+
+3. Sliding window with automatic cleanup
+   - Rationale: Old records outside the window are automatically deleted during checks
+   - Impact: Database size stays bounded; no separate cleanup job needed
+   - Implementation: DELETE query runs before each rate limit check
+
+4. Standard HTTP 429 response with headers
+   - Rationale: Follows RFC 6585 for rate limiting; client-friendly
+   - Impact: Clients can implement proper backoff using Retry-After header
+   - Headers included: Retry-After, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+
+5. Fail-open error handling
+   - Rationale: Rate limiting failures should not block legitimate signups
+   - Impact: If database is down, registration still works (with logged error)
+   - Implementation: checkRateLimit() returns allowed: true on error
+
+INTEGRATION POINTS:
+- Registration Endpoint (src/app/api/developer/register/route.ts): Rate limiting checks happen before validation and database operations
+- Database (@/lib/db): Uses existing PostgreSQL connection pool for all rate limit operations
+- Projects Endpoint (src/app/api/projects/route.ts): Also uses rate limiting (bonus implementation)
+- Future - Other Endpoints: Rate limiter library can be used for login, password reset, API calls
+
+CHALLENGES RESOLVED:
+1. Order of rate limit checks
+   - Problem: Should we check IP or org limit first?
+   - Solution: Check IP limit first since it's always available; org limit only if organization provided
+   - Lesson: Check prerequisites in order of availability to minimize database queries
+
+2. IP extraction from headers
+   - Problem: Need to get real client IP behind proxies/load balancers
+   - Solution: Check x-forwarded-for, cf-connecting-ip, x-real-ip headers in order
+   - Lesson: Handle multiple proxy scenarios; fallback to 0.0.0.0 for safety
+
+3. Organization-based rate limiting for new users
+   - Problem: Organization is provided during signup, but how do we track it?
+   - Solution: Use the organization name directly as the identifier value (pre-enumeration not needed)
+   - Lesson: Rate limiting can work with user-provided identifiers; just validate input
+
+4. Response headers for successful requests
+   - Problem: Should we include rate limit info on successful responses?
+   - Solution: Yes, include X-RateLimit headers to help clients track their usage
+   - Lesson: Transparency improves user experience; clients can implement UI indicators
+
+LESSONS LEARNED:
+1. Rate limiting should be defensive - fail open to not block legitimate users
+2. Multiple rate limit dimensions (IP + org) provide better protection than single dimension
+3. Standard HTTP headers (Retry-After, X-RateLimit-*) make API more client-friendly
+4. Database-based rate limiting is viable for moderate traffic; consider Redis for high-scale scenarios
+5. Extracting IP from headers requires handling multiple proxy scenarios (Cloudflare, Nginx, etc.)
+
+CODE PATTERNS ESTABLISHED:
+
+Pattern 1: Rate Limit Check with Response
+```typescript
+const ipRateLimitResult = await checkRateLimit(
+  ipIdentifier,
+  SIGNUPS_PER_HOUR_PER_IP,
+  ONE_HOUR_MS
+)
+
+if (!ipRateLimitResult.allowed) {
+  const retryAfter = await getRetryAfterSeconds(ipIdentifier, ONE_HOUR_MS)
+  return NextResponse.json(
+    { error: 'Rate limit exceeded', message: '...', retry_after: retryAfter },
+    { status: 429, headers: { 'Retry-After': retryAfter.toString(), ... } }
+  )
+}
+```
+- Usage: For any endpoint requiring rate limiting
+- Benefits: Consistent error responses, proper HTTP status, client-friendly headers
+
+Pattern 2: Conditional Rate Limiting
+```typescript
+if (organization) {
+  const orgIdentifier: RateLimitIdentifier = {
+    type: RateLimitIdentifierType.ORG,
+    value: organization,
+  }
+  const orgRateLimitResult = await checkRateLimit(orgIdentifier, limit, windowMs)
+  if (!orgRateLimitResult.allowed) { /* return 429 */ }
+}
+```
+- Usage: When rate limiting should only apply if certain conditions are met
+- Benefits: Flexible rate limiting based on request context
+
+Pattern 3: Rate Limit Headers on Success
+```typescript
+return NextResponse.json(data, {
+  status: 201,
+  headers: {
+    'X-RateLimit-Limit': limit.toString(),
+    'X-RateLimit-Remaining': result.remainingAttempts.toString(),
+    'X-RateLimit-Reset': result.resetAt.toISOString(),
+  },
+})
+```
+- Usage: Include rate limit information in successful responses
+- Benefits: Clients can display usage info, implement better UI feedback
+
+Pattern 4: IP Extraction from Headers
+```typescript
+export function extractClientIP(req: Request): string {
+  const forwardedFor = req.headers.get('x-forwarded-for')
+  if (forwardedFor) return forwardedFor.split(',')[0].trim()
+  const cfIP = req.headers.get('cf-connecting-ip')
+  if (cfIP) return cfIP
+  const realIP = req.headers.get('x-real-ip')
+  if (realIP) return realIP
+  return '0.0.0.0'
+}
+```
+- Usage: For any rate limiting or security features requiring client IP
+- Benefits: Works with various proxy configurations; safe fallback
+
+ACCEPTANCE CRITERIA:
+- Signup endpoint rate limited - VERIFIED: src/app/api/developer/register/route.ts includes rate limiting checks at lines 21-108
+- 3 projects per hour per org - VERIFIED: SIGNUPS_PER_HOUR_PER_ORG = 3 in register/route.ts:15
+- 5 projects per hour per IP - VERIFIED: SIGNUPS_PER_HOUR_PER_IP = 5 in register/route.ts:16
+- Returns 429 with retry-after - VERIFIED: Lines 36-54 and 89-107 return 429 with Retry-After header
+- Typecheck passes - VERIFIED: pnpm run typecheck completed with no errors
+
+NEXT STORY DEPENDENCIES:
+- US-003 (Auto-Suspend on Hard Cap) can use rate limiting patterns for API endpoints
+- US-004 (Detect Usage Spikes) will benefit from rate limit data for anomaly detection
+- Future stories can reuse rate-limiter.ts for login, password reset, and other operations
+
+ARCHITECTURAL NOTES:
+- Rate limiting is endpoint-specific but uses shared library for consistency
+- System assumes sliding window approach; fixed window would be simpler but less accurate
+- Rate limits are configurable per endpoint; no global rate limit configuration needed
+- Database cleanup is implicit (old records deleted during checks); no background job required
+- System is designed to be feature-agnostic - can be used for any rate limiting scenario

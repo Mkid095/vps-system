@@ -1,0 +1,74 @@
+/**
+ * NextMavens JavaScript SDK
+ * Complete platform client for auth, database, realtime, and storage
+ */
+
+import { AuthClient } from './auth';
+import { DatabaseClient } from './database';
+import { RealtimeClient } from './realtime';
+import { StorageClient } from './storage';
+
+export interface NextMavensConfig {
+  apiKey: string;
+  apiUrl?: string;
+  authUrl?: string;
+  graphqlUrl?: string;
+  realtimeUrl?: string;
+  storageUrl?: string;
+}
+
+export class NextMavensClient {
+  public readonly auth: AuthClient;
+  public readonly database: DatabaseClient;
+  public readonly realtime: RealtimeClient;
+  public readonly storage: StorageClient;
+
+  private config: Required<NextMavensConfig>;
+
+  constructor(config: NextMavensConfig) {
+    this.config = {
+      apiKey: config.apiKey,
+      apiUrl: config.apiUrl || 'https://api.nextmavens.cloud',
+      authUrl: config.authUrl || 'https://auth.nextmavens.cloud',
+      graphqlUrl: config.graphqlUrl || 'https://graphql.nextmavens.cloud',
+      realtimeUrl: config.realtimeUrl || 'wss://realtime.nextmavens.cloud',
+      storageUrl: config.storageUrl || 'https://telegram.nextmavens.cloud'
+    };
+
+    // Initialize clients
+    this.auth = new AuthClient(config);
+    this.database = new DatabaseClient(config);
+    this.realtime = new RealtimeClient(config);
+    this.storage = new StorageClient(config);
+  }
+
+  /**
+   * Get the current configuration
+   */
+  getConfig(): Required<NextMavensConfig> {
+    return { ...this.config };
+  }
+
+  /**
+   * Update API key
+   */
+  setApiKey(apiKey: string): void {
+    this.config.apiKey = apiKey;
+  }
+
+  /**
+   * Get API key
+   */
+  getApiKey(): string {
+    return this.config.apiKey;
+  }
+}
+
+// Re-export types and clients
+export * from './auth';
+export * from './database';
+export * from './realtime';
+export * from './storage';
+
+// Default export
+export default NextMavensClient;

@@ -1,0 +1,282 @@
+// NextMavens Platform API - Projects Endpoint
+// POST /api/projects - Create project (with database)
+// GET /api/projects - List user's projects
+
+import { NextRequest, NextResponse } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
+import { Pool } from 'pg';
+import { slugify, generateApiKey, hashApiKey, buildConnectionString } from '../lib/utils';
+import type { Project, CreateProjectInput, ProjectDatabaseConnection } from '../types';
+
+const supabaseUrl = process.env.SUPABASE_URL || 'http://localhost:8000';
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+const masterDbUrl = process.env.MASTER_DB_URL || 'postgres://postgres:postgres@localhost:5432/postgres';
+
+// Helper to get authenticated user
+async function getAuthenticatedUser(req: NextRequest) {
+  const authHeader = req.headers.get('authorization');
+  if (!authHeader?.startsWith('Bearer ')) {
+    return null;
+  }
+
+  const token = authHeader.substring(7);
+  const supabase = createClient(supabaseUrl, supabaseServiceKey);
+  const { data: { user }, error } = await supabase.auth.getUser(token);
+
+  if (error || !user) {
+    return null;
+  }
+
+  return user;
+}
+
+// GET /api/projects - List projects
+export async function GET(req: NextRequest) {
+  try {
+    const user = await getAuthenticatedUser(req);
+    if (!user) {
+      return NextResponse.json({ error: { code: 'UNAUTHORIZED', message: 'Invalid or missing token' } }, { status: 401 });
+    }
+
+    const { searchParams } = new URL(req.url);
+    const orgId = searchParams.get('org_id');
+    const status = searchParams.get('status');
+
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    // Build query
+    let query = supabase
+      .from('projects')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    // Filter by organization if specified
+    if (orgId) {
+      // Verify user is member of org
+      const { data: membership } = await supabase
+        .from('organization_members')
+        .select('role')
+        .eq('organization_id', orgId)
+        .eq('user_id', user.id)
+        .single();
+
+      if (!membership) {
+        return NextResponse.json({ error: { code: 'FORBIDDEN', message: 'Not a member of this organization' } }, { status: 403 });
+      }
+
+      query = query.eq('organization_id', orgId);
+    } else {
+      // Otherwise get all projects from user's organizations
+      const { data: memberships } = await supabase
+        .from('organization_members')
+        .select('organization_id')
+        .eq('user_id', user.id);
+
+      const orgIds = memberships?.map(m => m.organization_id) || [];
+      if (orgIds.length > 0) {
+        query = query.in('organization_id', orgIds);
+      }
+    }
+
+    // Filter by status if specified
+    if (status) {
+      query = query.eq('status', status);
+    }
+
+    const { data: projects, error } = await query;
+
+    if (error) {
+      throw error;
+    }
+
+    return NextResponse.json({ items: projects || [], total: projects?.length || 0 });
+  } catch (error: unknown) {
+    console.error('Error fetching projects:', error);
+    return NextResponse.json(
+      { error: { code: 'INTERNAL_ERROR', message: error instanceof Error ? error.message : 'Failed to fetch projects' } },
+      { status: 500 }
+    );
+  }
+}
+
+// POST /api/projects - Create project with database
+export async function POST(req: NextRequest) {
+  const pool = new Pool({ connectionString: masterDbUrl });
+  let client: any = null;
+
+  try {
+    const user = await getAuthenticatedUser(req);
+    if (!user) {
+      return NextResponse.json({ error: { code: 'UNAUTHORIZED', message: 'Invalid or missing token' } }, { status: 401 });
+    }
+
+    const body = await req.json() as CreateProjectInput;
+
+    // Validate input
+    if (!body.name || body.name.trim().length < 2) {
+      return NextResponse.json({ error: { code: 'VALIDATION_ERROR', message: 'Name must be at least 2 characters' } }, { status: 400 });
+    }
+
+    if (!body.organization_id) {
+      return NextResponse.json({ error: { code: 'VALIDATION_ERROR', message: 'Organization ID is required' } }, { status: 400 });
+    }
+
+    const slug = body.slug || slugify(body.name);
+
+    // Validate slug format
+    if (!/^[a-z0-9-]+$/.test(slug)) {
+      return NextResponse.json({ error: { code: 'VALIDATION_ERROR', message: 'Slug must contain only lowercase letters, numbers, and hyphens' } }, { status: 400 });
+    }
+
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    // Verify user is member of the organization
+    const { data: membership, error: memberError } = await supabase
+      .from('organization_members')
+      .select('role, organization_id')
+      .eq('organization_id', body.organization_id)
+      .eq('user_id', user.id)
+      .single();
+
+    if (memberError || !membership) {
+      return NextResponse.json({ error: { code: 'FORBIDDEN', message: 'Not a member of this organization' } }, { status: 403 });
+    }
+
+    // Check if slug is already taken in this org
+    const { data: existing } = await supabase
+      .from('projects')
+      .select('id')
+      .eq('organization_id', body.organization_id)
+      .eq('slug', slug)
+      .single();
+
+    if (existing) {
+      return NextResponse.json({ error: { code: 'SLUG_TAKEN', message: 'A project with this slug already exists in this organization' } }, { status: 409 });
+    }
+
+    // Generate API keys and secrets
+    const anonKey = generateApiKey();
+    const serviceRoleKey = generateApiKey();
+    const jwtSecret = generateApiKey().key;
+
+    // Start transaction for database creation
+    client = await pool.connect();
+    await client.query('BEGIN');
+
+    // Create project record
+    const { data: project, error: projectError } = await supabase
+      .from('projects')
+      .insert({
+        organization_id: body.organization_id,
+        name: body.name.trim(),
+        slug,
+        description: body.description,
+        status: 'provisioning',
+        anon_key: hashApiKey(anonKey.key),
+        service_role_key: hashApiKey(serviceRoleKey.key),
+        jwt_secret,
+      })
+      .select()
+      .single();
+
+    if (projectError) {
+      throw projectError;
+    }
+
+    // Generate database name and role
+    const projectId = project.id;
+    const dbName = `project_${projectId.replace(/-/g, '_')}`;
+    const roleName = `app_${projectId.replace(/-/g, '_')}`;
+    const dbPassword = generateApiKey().key;
+
+    // Create the database
+    await client.query(`CREATE DATABASE "${dbName}"`);
+
+    // Create role and grant privileges
+    await client.query(`CREATE ROLE "${roleName}" WITH LOGIN PASSWORD '${dbPassword}'`);
+    await client.query(`GRANT ALL PRIVILEGES ON DATABASE "${dbName}" TO "${roleName}"`);
+
+    // Connect to the new database and set up schema
+    const newDbPool = new Pool({
+      host: 'localhost',
+      port: 5432,
+      database: dbName,
+      user: 'postgres',
+      password: process.env.POSTGRES_PASSWORD || 'postgres',
+    });
+
+    await newDbPool.query(`GRANT ALL ON SCHEMA public TO "${roleName}"`);
+    await newDbPool.query(`ALTER DATABASE "${dbName}" OWNER TO "${roleName}"`);
+
+    // Enable required extensions in new database
+    await newDbPool.query(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`);
+    await newDbPool.query(`CREATE EXTENSION IF NOT EXISTS "pgcrypto"`);
+
+    await newDbPool.end();
+
+    // Store credentials
+    await supabase
+      .from('project_databases')
+      .insert({
+        project_id: projectId,
+        db_name: dbName,
+        db_user: roleName,
+        db_password: dbPassword,
+        db_host: 'localhost',
+        db_port: 5432,
+        connection_pool: 'transaction',
+      });
+
+    // Update project status to active
+    const { data: updatedProject, error: updateError } = await supabase
+      .from('projects')
+      .update({
+        status: 'active',
+        db_name: dbName,
+        db_user: roleName,
+      })
+      .eq('id', projectId)
+      .select()
+      .single();
+
+    await client.query('COMMIT');
+
+    if (updateError) {
+      throw updateError;
+    }
+
+    // Return project with API keys (only show keys once on creation)
+    const response: Project & { api_keys?: { anon: string; service_role: string }; connection_string?: string } = {
+      ...updatedProject,
+      api_keys: {
+        anon: anonKey.key,
+        service_role: serviceRoleKey.key,
+      },
+      connection_string: buildConnectionString({
+        db_name: dbName,
+        db_user: roleName,
+        db_password: dbPassword,
+        db_host: 'localhost',
+        db_port: 5432,
+      }),
+    };
+
+    return NextResponse.json({ success: true, data: response }, { status: 201 });
+  } catch (error: unknown) {
+    // Rollback on error
+    if (client) {
+      await client.query('ROLLBACK');
+    }
+
+    console.error('Error creating project:', error);
+    return NextResponse.json(
+      { error: { code: 'INTERNAL_ERROR', message: error instanceof Error ? error.message : 'Failed to create project' } },
+      { status: 500 }
+    );
+  } finally {
+    if (client) {
+      client.release();
+    }
+    await pool.end();
+  }
+}

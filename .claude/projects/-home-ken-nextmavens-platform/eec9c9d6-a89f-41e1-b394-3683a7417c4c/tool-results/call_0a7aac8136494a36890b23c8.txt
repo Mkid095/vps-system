@@ -1,0 +1,21 @@
+c3b1dc336d3b   kong:3.7.1                         "/docker-entrypoint.…"   2 minutes ago   Up 59 seconds (healthy)                                                                                               nextmavens-kong
+---
+2026/01/25 19:21:18 [warn] ulimit is currently set to "1024". For better performance set it to at least "4096" using "ulimit -n"
+2026/01/25 19:21:18 [warn] ulimit is currently set to "1024". For better performance set it to at least "4096" using "ulimit -n"
+2026/01/25 19:21:18 [warn] 1#0: the "user" directive makes sense only if the master process runs with super-user privileges, ignored in /usr/local/kong/nginx.conf:7
+nginx: [warn] the "user" directive makes sense only if the master process runs with super-user privileges, ignored in /usr/local/kong/nginx.conf:7
+2026/01/25 19:21:18 [info] 1#0: [lua] node.lua:294: new(): kong node-id: 17ba33da-7d48-405a-ad39-755e3b244043
+2026/01/25 19:21:19 [notice] 1#0: [lua] init.lua:788: init(): [request-debug] token for request debugging: 8b983c2d-cb88-44a2-b7b3-5182bbdf4c25
+2026/01/25 19:21:19 [notice] 1#0: using the "epoll" event method
+2026/01/25 19:21:19 [notice] 1#0: openresty/1.25.3.1
+2026/01/25 19:21:19 [notice] 1#0: OS: Linux 6.8.0-90-generic
+2026/01/25 19:21:19 [notice] 1#0: getrlimit(RLIMIT_NOFILE): 1024:524288
+2026/01/25 19:21:19 [notice] 1#0: start worker processes
+2026/01/25 19:21:19 [notice] 1#0: start worker process 1332
+2026/01/25 19:21:19 [notice] 1#0: start worker process 1333
+2026/01/25 19:21:19 [notice] 1333#0: *2 [lua] init.lua:266: purge(): [DB cache] purging (local) cache, context: init_worker_by_lua*
+2026/01/25 19:21:19 [notice] 1332#0: *1 [lua] globalpatches.lua:75: sleep(): executing a blocking 'sleep' (0.001 seconds), context: init_worker_by_lua*
+2026/01/25 19:21:19 [notice] 1333#0: *2 [lua] init.lua:266: purge(): [DB cache] purging (local) cache, context: init_worker_by_lua*
+2026/01/25 19:21:19 [notice] 1333#0: *2 [kong] init.lua:593 declarative config loaded from /kong/declarative/kong.yml, context: init_worker_by_lua*
+2026/01/25 19:21:19 [info] 1332#0: *1 [kong] handler.lua:90 [acme] acme renew timer started on worker 0, context: init_worker_by_lua*
+2026/01/25 19:21:19 [info] 1333#0: *2 [kong] handler.lua:90 [acme] acme renew timer started on worker 1, context: init_worker_by_lua*

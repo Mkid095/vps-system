@@ -1,0 +1,44 @@
+---
+memoryVersion: 1
+storyId: US-004
+storyTitle: Audit API Key Operations
+completedDate: 2026-01-28
+---
+
+STORY: US-004 - Audit API Key Operations
+========================
+
+DESCRIPTION:
+As a platform operator, I want all API key create/rotate/revoke operations logged so that I can track credential changes.
+
+MAVEN STEPS COMPLETED:
+[1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Integrated audit logging into API key operations in developer-portal. Key creation and revocation are now logged with proper actor capture and metadata. Also fixed a critical security issue where sensitive headers (Authorization, Cookie) were being logged in audit metadata - removed these from all audit logging calls across api-keys and projects endpoints.
+
+KEY FILES:
+- developer-portal/src/app/api/api-keys/route.ts - Added audit logging for key creation and deletion
+- developer-portal/src/app/api/projects/route.ts - Fixed security issue (removed sensitive headers)
+- developer-portal/src/app/api/projects/[projectId]/route.ts - Fixed security issue (removed sensitive headers)
+- database/src/helpers.ts - logApiKeyAction helper functions (already existed from US-001)
+- docs/prd-audit-logs.json - Updated US-004 passes: true
+
+DECISIONS MADE:
+- Integrated into developer-portal (not separate service) as it handles the API keys REST API
+- Key rotation logging infrastructure exists but endpoint not yet implemented
+- Only log IP address and user agent - NOT full request headers (security fix)
+- Audit logging failures don't fail the main operation (error isolation)
+
+INTEGRATION POINTS:
+- Uses @nextmavens/audit-logs-database package (from US-001, US-002)
+- Integrates with existing authenticateRequest middleware for actor identification
+- Uses control_plane.audit_logs table (created in US-001)
+- Helper functions: logApiKeyAction.created(), logApiKeyAction.rotated(), logApiKeyAction.revoked()
+
+LESSONS LEARNED:
+- CRITICAL: Never log request headers directly - contains Authorization tokens and cookies
+- Only extract specific safe values: IP from x-forwarded-for/x-real-ip, user-agent header
+- The audit infrastructure from US-001/US-002 made this integration straightforward
+- Key rotation endpoint doesn't exist yet - logging helper ready but no place to integrate
+- Scopes field is empty array until scopes feature is implemented

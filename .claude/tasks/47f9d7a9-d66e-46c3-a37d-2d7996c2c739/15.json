@@ -1,0 +1,9 @@
+{
+  "id": "15",
+  "subject": "Implement Deletion with Preview",
+  "description": "Create soft delete with dependency awareness:\n1. Create /home/ken/control-plane-api/src/app/api/projects/[id]/deletion-preview/route.ts\n2. Add deleted_at, deletion_scheduled_at, grace_period_ends_at columns\n3. Calculate dependencies: schemas, api_keys, webhooks, edge_functions, storage_buckets, secrets\n4. Show preview with what will be deleted and impact\n5. Implement 30-day grace period before hard delete\n6. Create restore functionality during grace period\n7. Update deletion API to use soft delete first\n\nThis builds trust by showing exactly what will happen.",
+  "activeForm": "Implementing deletion with preview",
+  "status": "pending",
+  "blocks": [],
+  "blockedBy": []
+}

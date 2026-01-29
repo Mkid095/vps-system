@@ -1,0 +1,84 @@
+    55→        echo "SourceMissing"
+    56→    elif [ -z "$dest_hash" ]; then
+    57→        echo "DestMissing"
+    58→    elif [ "$source_hash" = "$dest_hash" ]; then
+    59→        echo "Same"
+    60→    else
+    61→        echo "Different"
+    62→    fi
+    63→}
+    64→
+    65→# Parse command
+    66→DIRECTION="${1:-auto}"
+    67→FORCE=false
+    68→VERBOSE=false
+    69→
+    70→shift
+    71→while [[ $# -gt 0 ]]; do
+    72→    case $1 in
+    73→        --force)
+    74→            FORCE=true
+    75→            shift
+    76→            ;;
+    77→        --verbose)
+    78→            VERBOSE=true
+    79→            shift
+    80→            ;;
+    81→        *)
+    82→            shift
+    83→            ;;
+    84→    esac
+    85→done
+    86→
+    87→print_header
+    88→
+    89→# Auto-detect direction
+    90→if [ "$DIRECTION" = "auto" ]; then
+    91→    echo -e "${BLUE}▶ Auto-detecting sync direction...${NC}"
+    92→    echo ""
+    93→
+    94→    global_newer=0
+    95→    project_newer=0
+    96→
+    97→    for file in "${SYNC_FILES[@]}"; do
+    98→        global_path="$GLOBAL_BIN_DIR/$file"
+    99→        project_path="$BIN_DIR/$file"
+   100→
+   101→        if [ -f "$global_path" ] && [ -f "$project_path" ]; then
+   102→            global_time=$(stat -c %Y "$global_path" 2>/dev/null || stat -f %m "$global_path")
+   103→            project_time=$(stat -c %Y "$project_path" 2>/dev/null || stat -f %m "$project_path")
+   104→
+   105→            if [ "$global_time" -gt "$project_time" ]; then
+   106→                ((global_newer++))
+   107→                if [ "$VERBOSE" = true ]; then
+   108→                    echo "  ${GRAY}Global is newer: ${CYAN}${file}${NC}"
+   109→                fi
+   110→            elif [ "$project_time" -gt "$global_time" ]; then
+   111→                ((project_newer++))
+   112→                if [ "$VERBOSE" = true ]; then
+   113→                    echo "  ${GRAY}Project is newer: ${CYAN}${file}${NC}"
+   114→                fi
+   115→            fi
+   116→        fi
+   117→    done
+   118→
+   119→    if [ $global_newer -gt $project_newer ]; then
+   120→        DIRECTION="pull"
+   121→        echo "  ${YELLOW}→ Pull mode${NC} (Global is newer)"
+   122→    elif [ $project_newer -gt $global_newer ]; then
+   123→        DIRECTION="push"
+   124→        echo "  ${YELLOW}→ Push mode${NC} (Project is newer)"
+   125→    else
+   126→        DIRECTION="status"
+   127→        echo "  ${GREEN}→ Status mode${NC} (Everything in sync)"
+   128→    fi
+   129→    echo ""
+   130→fi
+   131→
+   132→# Execute sync based on direction
+   133→case $DIRECTION in
+   134→    "status")
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

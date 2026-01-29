@@ -1,0 +1,112 @@
+Exit code 1
+ Image supabase/postgres-meta:v0.83.0 Pulling 
+ 9af6566d8b72 Pulling fs layer 
+ 2cc3ae149d28 Pulling fs layer 
+ bc0c71ec15ba Pulling fs layer 
+ b6eee747f3db Pulling fs layer 
+ 522d2fdafee1 Pulling fs layer 
+ 4678a4e58601 Pulling fs layer 
+ eaac2c48329c Pulling fs layer 
+ d84d19465512 Pulling fs layer 
+ e81eb26d7818 Pulling fs layer 
+ 91ee5706e0f5 Pulling fs layer 
+ b6eee747f3db Downloading [=>                                                 ]  1.049MB/40.56MB
+ 4678a4e58601 Download complete 
+ bc0c71ec15ba Download complete 
+ b6eee747f3db Downloading [=========>                                         ]   7.34MB/40.56MB
+ 15dbcbf8e2be Download complete 
+ 2cc3ae149d28 Downloading [=====>                                             ]  3.146MB/29.15MB
+ b6eee747f3db Downloading [===================>                               ]  15.73MB/40.56MB
+ 522d2fdafee1 Downloading [>                                                  ]  32.77kB/1.715MB
+ 2cc3ae149d28 Downloading [=======>                                           ]  4.194MB/29.15MB
+ 91ee5706e0f5 Download complete 
+ 9af6566d8b72 Download complete 
+ 2cc3ae149d28 Downloading [==============>                                    ]  8.389MB/29.15MB
+ b6eee747f3db Downloading [============================>                      ]  23.13MB/40.56MB
+ 522d2fdafee1 Download complete 
+ d84d19465512 Download complete 
+ 2cc3ae149d28 Downloading [==========================>                        ]  15.73MB/29.15MB
+ b6eee747f3db Downloading [================================>                  ]  26.21MB/40.56MB
+ 2cc3ae149d28 Downloading [===========================================>       ]  25.17MB/29.15MB
+ b6eee747f3db Downloading [=================================>                 ]  27.26MB/40.56MB
+ b6eee747f3db Downloading [======================================>            ]  31.46MB/40.56MB
+ eaac2c48329c Downloading [============================================>      ]  3.146MB/3.507MB
+ 2cc3ae149d28 Download complete 
+ 2cc3ae149d28 Extracting 1 s
+ eaac2c48329c Download complete 
+ e81eb26d7818 Downloading [===========>                                       ]  5.243MB/23.02MB
+ b6eee747f3db Downloading [===========================================>       ]  35.65MB/40.56MB
+ 2cc3ae149d28 Extracting 1 s
+ b6eee747f3db Download complete 
+ e81eb26d7818 Downloading [===========================>                       ]  12.58MB/23.02MB
+ 2cc3ae149d28 Extracting 1 s
+ e81eb26d7818 Downloading [===========================================>       ]  20.23MB/23.02MB
+ 2cc3ae149d28 Extracting 1 s
+ e81eb26d7818 Download complete 
+ 2cc3ae149d28 Extracting 1 s
+ 2cc3ae149d28 Extracting 1 s
+ 2cc3ae149d28 Extracting 1 s
+ 2cc3ae149d28 Extracting 1 s
+ 2cc3ae149d28 Extracting 1 s
+ 2cc3ae149d28 Extracting 1 s
+ 2cc3ae149d28 Extracting 1 s
+ 2cc3ae149d28 Extracting 2 s
+ 2cc3ae149d28 Extracting 2 s
+ bc0c71ec15ba Pull complete 
+ 2cc3ae149d28 Pull complete 
+ b6eee747f3db Extracting 1 s
+ b6eee747f3db Extracting 1 s
+ b6eee747f3db Extracting 1 s
+ b6eee747f3db Extracting 1 s
+ b6eee747f3db Extracting 1 s
+ b6eee747f3db Extracting 1 s
+ b6eee747f3db Extracting 1 s
+ b6eee747f3db Extracting 1 s
+ b6eee747f3db Extracting 1 s
+ b6eee747f3db Extracting 1 s
+ b6eee747f3db Extracting 2 s
+ b6eee747f3db Extracting 2 s
+ b6eee747f3db Extracting 2 s
+ b6eee747f3db Pull complete 
+ 4678a4e58601 Pull complete 
+ 522d2fdafee1 Pull complete 
+ eaac2c48329c Extracting 1 s
+ d84d19465512 Extracting 1 s
+ eaac2c48329c Pull complete 
+ d84d19465512 Pull complete 
+ e81eb26d7818 Extracting 1 s
+ e81eb26d7818 Extracting 1 s
+ e81eb26d7818 Extracting 1 s
+ e81eb26d7818 Extracting 1 s
+ e81eb26d7818 Extracting 1 s
+ e81eb26d7818 Extracting 1 s
+ e81eb26d7818 Extracting 1 s
+ e81eb26d7818 Extracting 1 s
+ e81eb26d7818 Extracting 1 s
+ e81eb26d7818 Extracting 1 s
+ e81eb26d7818 Extracting 1 s
+ e81eb26d7818 Extracting 2 s
+ e81eb26d7818 Extracting 2 s
+ 91ee5706e0f5 Extracting 1 s
+ e81eb26d7818 Pull complete 
+ 91ee5706e0f5 Pull complete 
+ 9af6566d8b72 Pull complete 
+ Image supabase/postgres-meta:v0.83.0 Pulled 
+time="2026-01-25T19:27:46Z" level=warning msg="Found orphan containers ([supabase-mailhog supabase-gotrue supabase-storage supabase-supavisor supabase-rest evolution-db]) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up."
+ Container supabase-db Recreate 
+ Container supabase-db Recreated 
+ Container nextmavens-meta Creating 
+ Container nextmavens-meta Created 
+ Container nextmavens-studio Creating 
+ Container nextmavens-studio Created 
+ Container nextmavens-db Starting 
+ Container nextmavens-db Started 
+ Container nextmavens-db Waiting 
+ Container nextmavens-db Healthy 
+ Container nextmavens-meta Starting 
+ Container nextmavens-meta Started 
+ Container nextmavens-db Waiting 
+ Container nextmavens-meta Waiting 
+ Container nextmavens-db Healthy 
+ Container nextmavens-meta Error dependency meta failed to start
+dependency failed to start: container nextmavens-meta is unhealthy
