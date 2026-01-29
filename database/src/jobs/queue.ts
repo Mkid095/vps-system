@@ -20,6 +20,8 @@ import type {
  * Job queue options
  */
 export interface JobQueueOptions {
+  /** Project ID for authorization and data isolation */
+  project_id: string;
   /** Delay before job should be processed (milliseconds) */
   delay?: number;
   /** Maximum number of retry attempts (default: 3) */
@@ -165,7 +167,7 @@ class JobQueueClass {
    *
    * @param type - The job type identifier
    * @param payload - Job data payload
-   * @param options - Additional job options (delay, max_attempts, priority)
+   * @param options - Additional job options (project_id, delay, max_attempts, priority)
    * @returns The created job ID and metadata
    *
    * @example
@@ -175,6 +177,7 @@ class JobQueueClass {
    *   project_id: 'proj-123',
    *   region: 'us-east-1',
    * }, {
+   *   project_id: 'proj-123',
    *   delay: 5000, // 5 seconds
    *   max_attempts: 3,
    * });
@@ -183,9 +186,9 @@ class JobQueueClass {
   async enqueue(
     type: JobType | string,
     payload: JobPayload = {},
-    options: JobQueueOptions = {}
+    options: JobQueueOptions
   ): Promise<EnqueueJobResult> {
-    const { delay = 0, max_attempts = 3, priority } = options;
+    const { project_id, delay = 0, max_attempts = 3, priority } = options;
 
     // Validate inputs
     validateJobType(type);
@@ -212,17 +215,19 @@ class JobQueueClass {
     const queryText = `
       INSERT INTO control_plane.jobs (
         id,
+        project_id,
         type,
         payload,
         status,
         max_attempts,
         scheduled_at
-      ) VALUES ($1, $2, $3, 'pending', $4, $5)
+      ) VALUES ($1, $2, $3, $4, 'pending', $5, $6)
       RETURNING id, type, status, scheduled_at, created_at
     `;
 
     const values = [
       id,
+      project_id,
       type,
       JSON.stringify(finalPayload),
       max_attempts,
@@ -259,7 +264,7 @@ class JobQueueClass {
    * @param type - The job type identifier
    * @param scheduledAt - When to run the job
    * @param payload - Job data payload
-   * @param options - Additional job options
+   * @param options - Additional job options (project_id is required)
    * @returns The created job ID and metadata
    *
    * @example
@@ -269,6 +274,7 @@ class JobQueueClass {
    * const result = await queue.schedule(
    *   'backup',
    *   scheduledTime,
+   *   { project_id: 'proj-123' },
    *   { project_id: 'proj-123' }
    * );
    * ```
@@ -277,9 +283,9 @@ class JobQueueClass {
     type: JobType | string,
     scheduledAt: Date,
     payload: JobPayload = {},
-    options: Omit<JobQueueOptions, 'delay'> = {}
+    options: JobQueueOptions
   ): Promise<EnqueueJobResult> {
-    const { max_attempts = 3, priority } = options;
+    const { project_id, max_attempts = 3, priority } = options;
 
     // Validate inputs
     validateJobType(type);
@@ -301,17 +307,19 @@ class JobQueueClass {
     const queryText = `
       INSERT INTO control_plane.jobs (
         id,
+        project_id,
         type,
         payload,
         status,
         max_attempts,
         scheduled_at
-      ) VALUES ($1, $2, $3, 'pending', $4, $5)
+      ) VALUES ($1, $2, $3, $4, 'pending', $5, $6)
       RETURNING id, type, status, scheduled_at, created_at
     `;
 
     const values = [
       id,
+      project_id,
       type,
       JSON.stringify(finalPayload),
       max_attempts,
@@ -352,6 +360,7 @@ class JobQueueClass {
     const queryText = `
       SELECT
         id,
+        project_id,
         type,
         payload,
         status,
@@ -381,6 +390,7 @@ class JobQueueClass {
 
       return {
         id: row.id,
+        project_id: row.project_id,
         type: row.type,
         payload: row.payload,
         status: row.status as JobStatus,
@@ -410,7 +420,7 @@ const jobQueue = new JobQueueClass();
  *
  * @param type - The job type identifier
  * @param payload - Job data payload
- * @param options - Additional job options (delay, max_attempts, priority)
+ * @param options - Additional job options (project_id is required, delay, max_attempts, priority)
  * @returns The created job ID and metadata
  *
  * @example
@@ -421,12 +431,15 @@ const jobQueue = new JobQueueClass();
  * const result = await enqueueJob('provision_project', {
  *   project_id: 'proj-123',
  *   region: 'us-east-1',
+ * }, {
+ *   project_id: 'proj-123',
  * });
  *
  * // Enqueue a job with a delay
  * const delayed = await enqueueJob('rotate_key', {
  *   key_id: 'key-456',
  * }, {
+ *   project_id: 'proj-123',
  *   delay: 60000, // 1 minute
  *   max_attempts: 5,
  * });
@@ -436,6 +449,7 @@ const jobQueue = new JobQueueClass();
  *   user_id: 'user-789',
  *   message: 'Project provisioned successfully',
  * }, {
+ *   project_id: 'proj-123',
  *   priority: 100, // High priority
  * });
  * ```
@@ -443,7 +457,7 @@ const jobQueue = new JobQueueClass();
 export async function enqueueJob(
   type: JobType | string,
   payload: JobPayload = {},
-  options: JobQueueOptions = {}
+  options: JobQueueOptions
 ): Promise<EnqueueJobResult> {
   return jobQueue.enqueue(type, payload, options);
 }
@@ -456,7 +470,7 @@ export async function enqueueJob(
  * @param type - The job type identifier
  * @param scheduledAt - When to run the job
  * @param payload - Job data payload
- * @param options - Additional job options
+ * @param options - Additional job options (project_id is required)
  * @returns The created job ID and metadata
  *
  * @example
@@ -466,6 +480,8 @@ export async function enqueueJob(
  * const scheduledTime = new Date('2026-01-30T10:00:00Z');
  * const result = await scheduleJob('backup', scheduledTime, {
  *   project_id: 'proj-123',
+ * }, {
+ *   project_id: 'proj-123',
  * });
  * ```
  */
@@ -473,7 +489,7 @@ export async function scheduleJob(
   type: JobType | string,
   scheduledAt: Date,
   payload: JobPayload = {},
-  options: Omit<JobQueueOptions, 'delay'> = {}
+  options: JobQueueOptions
 ): Promise<EnqueueJobResult> {
   return jobQueue.schedule(type, scheduledAt, payload, options);
 }

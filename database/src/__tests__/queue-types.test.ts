@@ -24,11 +24,13 @@ import type {
 describe('Job Queue - Type Verification', () => {
   it('should have JobQueueOptions type defined', () => {
     const options: JobQueueOptions = {
+      project_id: 'test-project-123',
       delay: 1000,
       max_attempts: 3,
       priority: 10,
     };
     expect(options).toBeDefined();
+    expect(options.project_id).toBe('test-project-123');
     expect(options.delay).toBe(1000);
     expect(options.max_attempts).toBe(3);
     expect(options.priority).toBe(10);
@@ -51,6 +53,7 @@ describe('Job Queue - Type Verification', () => {
   it('should have Job type compatible with queue system', () => {
     const job: Job = {
       id: 'test-id',
+      project_id: 'test-project-123',
       type: 'provision_project' as JobType,
       payload: { project_id: 'proj-123' } as JobPayload,
       status: 'pending' as JobStatus,
@@ -78,6 +81,7 @@ describe('Job Queue - Type Verification', () => {
 
   it('should support delay in options', () => {
     const options: JobQueueOptions = {
+      project_id: 'test-project-123',
       delay: 5000, // 5 seconds
     };
     expect(options).toBeDefined();
@@ -86,6 +90,7 @@ describe('Job Queue - Type Verification', () => {
 
   it('should support max_attempts configuration', () => {
     const options: JobQueueOptions = {
+      project_id: 'test-project-123',
       max_attempts: 5,
     };
     expect(options).toBeDefined();

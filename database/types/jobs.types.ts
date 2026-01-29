@@ -69,6 +69,7 @@ export interface JobPayload {
  */
 export interface Job {
   id: string;
+  project_id: string;
   type: JobType | string; // Allow custom job types
   payload: JobPayload;
   status: JobStatus;
@@ -86,6 +87,7 @@ export interface Job {
  * All fields except id, attempts, and timestamps are required or have defaults
  */
 export interface CreateJobInput {
+  project_id: string;
   type: JobType | string;
   payload?: JobPayload;
   scheduled_at?: Date;

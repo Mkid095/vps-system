@@ -5,6 +5,7 @@
  * and used correctly.
  *
  * US-011: Create Job Retry API - Step 2: Package Manager Migration
+ * US-011: Security Fix - Add project ownership verification
  */
 
 import { describe, it, expect, beforeEach, vi } from 'vitest';
@@ -15,6 +16,8 @@ import { query } from '../pool.js';
 vi.mock('../pool.js', () => ({
   query: vi.fn(),
 }));
+
+const TEST_PROJECT_ID = 'test-project-123';
 
 describe('retryJob', () => {
   beforeEach(() => {
@@ -28,13 +31,14 @@ describe('retryJob', () => {
   it('should throw error if job not found', async () => {
     vi.mocked(query).mockResolvedValueOnce({ rows: [] } as never);
 
-    await expect(retryJob('non-existent-job')).rejects.toThrow('Job not found');
+    await expect(retryJob('non-existent-job', TEST_PROJECT_ID)).rejects.toThrow('Job not found');
   });
 
   it('should throw error if max_attempts reached', async () => {
     vi.mocked(query).mockResolvedValueOnce({
       rows: [{
         id: 'job-123',
+        project_id: TEST_PROJECT_ID,
         type: 'test_job',
         payload: {},
         status: 'failed',
@@ -48,12 +52,34 @@ describe('retryJob', () => {
       }],
     } as never);
 
-    await expect(retryJob('job-123')).rejects.toThrow('Maximum retry attempts reached');
+    await expect(retryJob('job-123', TEST_PROJECT_ID)).rejects.toThrow('Maximum retry attempts reached');
+  });
+
+  it('should throw error if project ownership check fails', async () => {
+    vi.mocked(query).mockResolvedValueOnce({
+      rows: [{
+        id: 'job-123',
+        project_id: 'different-project-456',
+        type: 'test_job',
+        payload: {},
+        status: 'failed',
+        attempts: 1,
+        max_attempts: 3,
+        last_error: 'Test error',
+        scheduled_at: new Date(),
+        started_at: new Date(),
+        completed_at: new Date(),
+        created_at: new Date(),
+      }],
+    } as never);
+
+    await expect(retryJob('job-123', TEST_PROJECT_ID)).rejects.toThrow('Job not found');
   });
 
   it('should reset job to pending when retry is allowed', async () => {
     const mockJob = {
       id: 'job-123',
+      project_id: TEST_PROJECT_ID,
       type: 'test_job',
       payload: { test: 'data' },
       status: 'pending',
@@ -76,7 +102,7 @@ describe('retryJob', () => {
       rows: [{ ...mockJob, status: 'pending', scheduled_at: new Date() }],
     } as never);
 
-    const result = await retryJob('job-123');
+    const result = await retryJob('job-123', TEST_PROJECT_ID);
 
     expect(result.status).toBe('pending');
     expect(query).toHaveBeenCalledTimes(2);
@@ -85,6 +111,7 @@ describe('retryJob', () => {
   it('should clear error and timestamps on retry', async () => {
     const mockJob = {
       id: 'job-123',
+      project_id: TEST_PROJECT_ID,
       type: 'test_job',
       payload: { test: 'data' },
       status: 'failed',
@@ -114,7 +141,7 @@ describe('retryJob', () => {
       }],
     } as never);
 
-    const result = await retryJob('job-123');
+    const result = await retryJob('job-123', TEST_PROJECT_ID);
 
     expect(result.status).toBe('pending');
     expect(result.last_error).toBeNull();

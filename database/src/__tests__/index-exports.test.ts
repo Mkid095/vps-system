@@ -44,6 +44,7 @@ describe('Main Index - Queue Export Verification', () => {
 
   it('should export JobQueueOptions type', () => {
     const options: JobQueueOptions = {
+      project_id: 'test-project-123',
       delay: 1000,
       max_attempts: 3,
       priority: 10,

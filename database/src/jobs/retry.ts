@@ -15,28 +15,34 @@ import type { Job } from '../../types/jobs.types.js';
  *
  * Resets the job status to 'pending' so it can be picked up by the worker again.
  * Increments the attempt count and checks if max_attempts has been reached.
+ * Verifies project ownership to prevent authorization bypass.
+ *
+ * SECURITY: This function enforces project ownership. A job can only be retried
+ * by users from the project that owns the job.
  *
  * @param jobId - The ID of the job to retry
+ * @param projectId - The project ID of the user attempting to retry
  * @returns The updated job or null if not found
- * @throws Error if max_attempts has been reached
+ * @throws Error if max_attempts has been reached or project ownership check fails
  *
  * @example
  * ```typescript
  * import { retryJob } from '@nextmavens/audit-logs-database';
  *
  * try {
- *   const job = await retryJob('job-uuid-123');
+ *   const job = await retryJob('job-uuid-123', 'proj-abc-123');
  *   console.log('Job retry queued:', job.id);
  * } catch (error) {
  *   console.error('Failed to retry job:', error);
  * }
  * ```
  */
-export async function retryJob(jobId: string): Promise<Job> {
-  // First, get the current job to check max_attempts
+export async function retryJob(jobId: string, projectId: string): Promise<Job> {
+  // First, get the current job to check max_attempts and project ownership
   const selectQuery = `
     SELECT
       id,
+      project_id,
       type,
       payload,
       status,
@@ -62,6 +68,12 @@ export async function retryJob(jobId: string): Promise<Job> {
     throw new Error('Job not found');
   }
 
+  // SECURITY: Verify project ownership before allowing retry
+  // This prevents users from retrying jobs belonging to other projects
+  if (currentJob.project_id !== projectId) {
+    throw new Error('Job not found');
+  }
+
   // Check if max_attempts has been reached
   if (currentJob.attempts >= currentJob.max_attempts) {
     throw new Error('Maximum retry attempts reached');
@@ -78,8 +90,10 @@ export async function retryJob(jobId: string): Promise<Job> {
       completed_at = NULL,
       scheduled_at = NOW()
     WHERE id = $1
+      AND project_id = $2
     RETURNING
       id,
+      project_id,
       type,
       payload,
       status,
@@ -92,7 +106,7 @@ export async function retryJob(jobId: string): Promise<Job> {
       created_at
   `;
 
-  const updateResult = await query(updateQuery, [jobId]);
+  const updateResult = await query(updateQuery, [jobId, projectId]);
 
   if (updateResult.rows.length === 0) {
     throw new Error('Failed to retry job');
@@ -105,6 +119,7 @@ export async function retryJob(jobId: string): Promise<Job> {
 
   return {
     id: row.id,
+    project_id: row.project_id,
     type: row.type,
     payload: row.payload,
     status: row.status,

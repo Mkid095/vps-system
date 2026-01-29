@@ -131,6 +131,7 @@ describe('US-002: Job Queue Database Integration Tests', () => {
 
       // Verify all required columns exist
       expect(columns).toContain('id');
+      expect(columns).toContain('project_id');
       expect(columns).toContain('type');
       expect(columns).toContain('payload');
       expect(columns).toContain('status');
@@ -152,6 +153,7 @@ describe('US-002: Job Queue Database Integration Tests', () => {
       };
 
       const result = await enqueueJob('test-provision', payload, {
+        project_id: 'test-project-123',
         delay: 0,
         max_attempts: 3,
       });
@@ -182,7 +184,9 @@ describe('US-002: Job Queue Database Integration Tests', () => {
         key_id: 'key-456',
       };
 
-      const enqueued = await enqueueJob('test-rotate-key', payload);
+      const enqueued = await enqueueJob('test-rotate-key', payload, {
+        project_id: 'test-project-123',
+      });
 
       // Retrieve the job
       const job = await getJob(enqueued.id);
@@ -205,7 +209,7 @@ describe('US-002: Job Queue Database Integration Tests', () => {
         project_id: 'proj-789',
       };
 
-      const result = await scheduleJob('test-backup', scheduledAt, payload);
+      const result = await scheduleJob('test-backup', scheduledAt, payload, { project_id: 'test-project-123' });
 
       expect(result.id).toBeDefined();
       expect(result.status).toBe(JobStatus.PENDING);
@@ -244,7 +248,7 @@ describe('US-002: Job Queue Database Integration Tests', () => {
         },
       };
 
-      const result = await enqueueJob('test-complex-payload', complexPayload);
+      const result = await enqueueJob('test-complex-payload', complexPayload, { project_id: 'test-project-123' });
 
       // Verify payload is stored correctly
       const dbResult = await query<Job>(
@@ -258,7 +262,7 @@ describe('US-002: Job Queue Database Integration Tests', () => {
 
     it('should respect status enum constraints', async () => {
       // Valid status should work
-      const result = await enqueueJob('test-status-valid');
+      const result = await enqueueJob('test-status-valid', {}, { project_id: 'test-project-123' });
       expect(result.status).toBe(JobStatus.PENDING);
 
       // Try to insert invalid status directly (should fail)
@@ -294,7 +298,7 @@ describe('US-002: Job Queue Database Integration Tests', () => {
       const delay = 5000; // 5 seconds
       const beforeEnqueue = Date.now();
 
-      const result = await enqueueJob('test-delayed', {}, { delay });
+      const result = await enqueueJob('test-delayed', {}, { project_id: 'test-project-123', delay });
 
       const afterEnqueue = Date.now();
       const expectedScheduledAt = beforeEnqueue + delay;
@@ -309,7 +313,7 @@ describe('US-002: Job Queue Database Integration Tests', () => {
     });
 
     it('should insert job with custom max_attempts', async () => {
-      const result = await enqueueJob('test-custom-attempts', {}, {
+      const result = await enqueueJob('test-custom-attempts', {}, { project_id: 'test-project-123', 
         max_attempts: 5,
       });
 
@@ -323,7 +327,7 @@ describe('US-002: Job Queue Database Integration Tests', () => {
     });
 
     it('should insert job with priority in payload', async () => {
-      const result = await enqueueJob('test-priority', {}, {
+      const result = await enqueueJob('test-priority', {}, { project_id: 'test-project-123', 
         priority: 100,
       });
 
@@ -337,7 +341,7 @@ describe('US-002: Job Queue Database Integration Tests', () => {
     });
 
     it('should set default values correctly', async () => {
-      const result = await enqueueJob('test-defaults');
+      const result = await enqueueJob('test-defaults', {}, { project_id: 'test-project-123' });
 
       const dbResult = await query<Job>(
         'SELECT * FROM control_plane.jobs WHERE id = $1',
@@ -366,8 +370,8 @@ describe('US-002: Job Queue Database Integration Tests', () => {
 
     it('should use index when querying by status', async () => {
       // Create some test jobs
-      await enqueueJob('test-index-status-1');
-      await enqueueJob('test-index-status-2');
+      await enqueueJob('test-index-status-1', {}, { project_id: 'test-project-123' });
+      await enqueueJob('test-index-status-2', {}, { project_id: 'test-project-123' });
 
       // Verify index usage
       const { uses_index } = await verifyIndexUsage(`
@@ -381,7 +385,7 @@ describe('US-002: Job Queue Database Integration Tests', () => {
 
     it('should use index when querying by scheduled_at', async () => {
       const scheduledAt = new Date(Date.now() + 3600000);
-      await scheduleJob('test-index-scheduled', scheduledAt);
+      await scheduleJob('test-index-scheduled', scheduledAt, {}, { project_id: 'test-project-123' });
 
       // Verify index usage
       const { uses_index } = await verifyIndexUsage(`
@@ -395,7 +399,7 @@ describe('US-002: Job Queue Database Integration Tests', () => {
     });
 
     it('should use composite index when querying by status and scheduled_at', async () => {
-      await enqueueJob('test-index-composite-1');
+      await enqueueJob('test-index-composite-1', {}, { project_id: 'test-project-123' });
 
       // Verify composite index usage
       const { uses_index } = await verifyIndexUsage(`
@@ -414,9 +418,7 @@ describe('US-002: Job Queue Database Integration Tests', () => {
     it('should work with JobQueue class instance', async () => {
       const queue = new JobQueue();
 
-      const result = await queue.enqueue('test-queue-instance', {
-        test: 'data',
-      });
+      const result = await queue.enqueue('test-queue-instance', { test: 'data' }, { project_id: 'test-project-123' });
 
       expect(result.id).toBeDefined();
 
@@ -430,9 +432,9 @@ describe('US-002: Job Queue Database Integration Tests', () => {
       const queue = new JobQueue();
 
       const results = await Promise.all([
-        queue.enqueue('test-batch-1', { index: 1 }),
-        queue.enqueue('test-batch-2', { index: 2 }),
-        queue.enqueue('test-batch-3', { index: 3 }),
+        queue.enqueue('test-batch-1', { index: 1 }, { project_id: 'test-project-123' }),
+        queue.enqueue('test-batch-2', { index: 2 }, { project_id: 'test-project-123' }),
+        queue.enqueue('test-batch-3', { index: 3 }, { project_id: 'test-project-123' }),
       ]);
 
       expect(results).toHaveLength(3);

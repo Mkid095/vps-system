@@ -13,6 +13,7 @@
  */
 export enum ActorType {
   USER = 'user',
+  PROJECT = 'project',
   SYSTEM = 'system',
   API_KEY = 'api_key'
 }
@@ -26,6 +27,7 @@ export enum TargetType {
   USER = 'user',
   API_KEY = 'api_key',
   SECRET = 'secret',
+  JOB = 'job',
   ORGANIZATION = 'organization',
   TEAM = 'team'
 }

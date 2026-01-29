@@ -49,6 +49,7 @@ describe('Job Queue - Export Verification', () => {
   it('should export JobQueueOptions type', () => {
     // This is a compile-time check - if it compiles, the type is exported
     const options: JobQueueOptions = {
+      project_id: 'test-project-123',
       delay: 1000,
       max_attempts: 3,
       priority: 10,
@@ -76,6 +77,7 @@ describe('Job Queue - Export Verification', () => {
     // Compile-time check for Job type
     const job: Job = {
       id: 'test-id',
+      project_id: 'test-project-123',
       type: 'test-job' as JobType,
       payload: { test: 'data' } as JobPayload,
       status: 'pending' as JobStatus,
