@@ -1,0 +1,84 @@
+# US-004: Implement Provision Project Job
+
+**Story ID:** US-004
+**Title:** Implement Provision Project Job
+**Status:** Completed
+**Date Completed:** 2026-01-29
+
+## Description
+As a platform operator, I want project provisioning to run as a background job so that failures can be retried automatically.
+
+## Acceptance Criteria
+✅ provision_project job handler implemented
+✅ Creates tenant database
+✅ Creates tenant schema
+✅ Registers with services (auth, realtime, storage)
+✅ Generates API keys
+✅ Retries on failure every 5 minutes
+✅ Max 3 attempts
+✅ Typecheck passes
+
+## Maven Steps Completed
+- Step 1: Foundation
+- Step 2: Package Manager Setup
+- Step 7: Data Layer
+- Step 10: Integration/Production Readiness
+
+## Implementation Details
+
+### Files Created
+1. **`/home/ken/database/src/jobs/types.ts`** - Job-specific types
+2. **`/home/ken/database/src/jobs/provision-project.handler.ts`** - Main job handler
+3. **`/home/ken/database/src/jobs/registry.ts`** - Job handler registry
+4. **`/home/ken/database/src/jobs/provision-project/database.ts`** - Database operations
+5. **`/home/ken/database/src/jobs/provision-project/services.ts`** - Service registration
+6. **`/home/ken/database/src/jobs/provision-project/api-keys.ts`** - API key generation
+7. **`/home/ken/database/src/jobs/provision-project/validation.ts`** - Validation functions
+8. **`/home/ken/database/src/jobs/provision-project/retry.ts`** - Retry logic
+
+### Database Migrations Created
+1. **`004_create_project_services_table.sql`** - Track service registrations
+2. **`005_create_api_keys_table.sql`** - Manage API keys
+3. **`006_create_project_resources_table.sql`** - Track resource usage
+
+### Key Features
+- 8-stage provisioning process with progress tracking
+- Tenant database and schema creation
+- Service registration (auth, realtime, storage)
+- Secure API key generation with scrypt hashing
+- Retry logic with exponential backoff
+- Custom error classes for handling different failure scenarios
+
+## Security Fixes Applied (Step 10)
+1. **Removed password from connection strings** - Database details returned without credentials
+2. **Upgraded to scrypt for API key hashing** - Replaced SHA-256 with memory-hard KDF
+3. **Added database name validation** - Prevent SQL injection with strict regex
+4. **Added UUID validation** - Validate owner_id and organization_id format
+5. **Added environment variable validation** - Require all DB credentials at startup
+6. **Increased API key entropy** - 64 bytes instead of 32, removed timestamp
+
+## Tech Stack
+- TypeScript with strict type checking
+- PostgreSQL with pg library
+- Node.js crypto module (scrypt, randomBytes)
+- Custom job handler registry
+
+## Integration Points
+- Jobs system: Uses `JobHandler` interface from types
+- Database: Uses `query()` and `getClient()` from pool
+- Queue: Integrates with existing job queue system
+- Control plane: Reads/writes to control_plane schema
+
+## Lessons Learned
+1. **Security first:** Always consider credential exposure in return values
+2. **Use proper KDFs:** SHA-256 is not suitable for password/key hashing
+3. **Validate all inputs:** Even optional fields need validation
+4. **Type safety matters:** Proper types prevent runtime errors
+5. **Document migrations:** Track what each migration does
+
+## Future Considerations
+- Add circuit breaker pattern for service registration
+- Implement structured logging with correlation IDs
+- Add metrics/monitoring hooks for observability
+- Consider implementing rate limiting for job creation
+- Add graceful shutdown handling for in-progress jobs

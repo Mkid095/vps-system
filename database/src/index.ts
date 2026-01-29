@@ -182,6 +182,7 @@ export {
   enqueueJob,
   scheduleJob,
   getJob,
+  retryJob,
 } from './jobs/queue.js';
 
 export type {

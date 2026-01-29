@@ -1,0 +1,46 @@
+---
+memoryVersion: 1
+storyId: US-007
+storyTitle: Implement Export Backup Job
+completedDate: 2026-01-29
+---
+
+STORY: US-007 - Implement Export Backup Job
+==========================================
+
+DESCRIPTION:
+As a platform operator, I want backup exports to run as background jobs so that large exports don't block requests.
+
+MAVEN STEPS COMPLETED: [1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Created export_backup job handler that generates SQL dumps of project schemas using pg_dump and uploads them to Telegram storage. Includes comprehensive input validation, retry logic with 3 attempts, and security hardening against command injection and path traversal attacks.
+
+KEY FILES:
+- api-gateway/src/lib/jobs/handlers/export-backup.handler.ts - Main job handler (949 lines)
+- api-gateway/src/lib/jobs/__tests__/export-backup.integration.test.ts - Integration tests (625 lines)
+- api-gateway/src/lib/jobs/index.ts - Exported handler registration
+- api-gateway/STEP-10-US-007-SECURITY-AUDIT.md - Security audit report
+
+DECISIONS MADE:
+- Use spawn() instead of exec() for secure command execution with argument arrays
+- Pass database password via environment object, not command string
+- Support both SQL and tar backup formats with optional gzip compression
+- 30-minute timeout for backup generation, 10GB maximum backup size
+- Validate project_id format, schema names, and storage paths to prevent injection
+- Mock Telegram storage upload and email notification with detailed TODOs
+
+INTEGRATION POINTS:
+- Uses JobWorker from US-003 for job execution
+- Uses enqueueJob from US-002 for job scheduling
+- Queries control_plane.projects table for project validation
+- Generates SQL dumps using pg_dump command-line tool
+- Follows pattern established by rotate-key.handler.ts from US-005
+
+LESSONS LEARNED:
+- Critical: Never interpolate user input into shell commands - use argument arrays
+- Critical: Pass secrets via environment object in spawn(), not command string
+- Input validation must cover format, length, and special characters
+- Temp file cleanup is essential in error paths to prevent disk exhaustion
+- Security audit (Step 10) found and fixed 2 critical, 2 high, 1 medium severity issues
+- Relative imports with .js extension required for ESM compatibility in tests

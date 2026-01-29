@@ -1,0 +1,43 @@
+---
+memoryVersion: 1
+storyId: US-006
+storyTitle: Implement Deliver Webhook Job
+completedDate: 2026-01-29
+---
+
+STORY: US-006 - Implement Deliver Webhook Job
+========================================
+
+DESCRIPTION:
+As a platform operator, I want webhook delivery to run as a background job so that failed webhooks are retried automatically.
+
+MAVEN STEPS COMPLETED: [1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Implemented webhook delivery job handler with retry logic, security hardening, and database integration. The handler posts payloads to webhook URLs with 5x exponential backoff retry, records delivery status, and auto-disables webhooks after 5 consecutive failures. Includes SSRF protection, payload validation, and comprehensive error handling.
+
+KEY FILES:
+- database/src/jobs/types.webhook.ts - TypeScript types for webhook delivery
+- database/src/jobs/deliver-webhook.handler.ts - Main job handler with retry logic and security
+- database/src/jobs/registry.ts - Handler registration
+- database/src/jobs/index.ts - Exported types and handler
+- database/SECURITY_AUDIT_US006.md - Security audit report
+
+DECISIONS MADE:
+- HTTPS-only enforcement for webhook URLs (SSRF prevention)
+- Blocked all private IP ranges (127.0.0.0/8, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16)
+- Maximum 10MB payload size, 8KB per header
+- Exponential backoff: 1s, 2s, 4s, 8s, 16s (max 5 min)
+- Auto-disable after 5 consecutive failures
+- Sensitive header redaction in logs
+
+INTEGRATION POINTS:
+- Uses jobs table from US-001 for job tracking
+- Integrates with webhooks table for delivery status
+- Handler registered in job handler registry
+
+LESSONS LEARNED:
+- SSRF protection is critical for webhook delivery
+- URL and header validation prevents injection attacks
+- Logging must sanitize sensitive data (auth tokens, API keys)
+- Exponential backoff with jitter prevents thundering herd

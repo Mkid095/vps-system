@@ -495,3 +495,6 @@ export async function getJob(id: string): Promise<Job | null> {
  * Export the JobQueue class for advanced usage
  */
 export { JobQueueClass as JobQueue };
+
+// Re-export retryJob from retry.ts
+export { retryJob } from './retry.js';

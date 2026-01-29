@@ -1,0 +1,46 @@
+---
+memoryVersion: 1
+storyId: US-002
+storyTitle: Create Job Queue System
+completedDate: 2026-01-29
+---
+
+STORY: US-002 - Create Job Queue System
+========================================
+
+DESCRIPTION:
+As a platform engineer, I want a job queue system so that I can enqueue jobs for background processing.
+
+MAVEN STEPS COMPLETED:
+[1, 2, 7, 10]
+
+IMPLEMENTATION SUMMARY:
+Created a comprehensive job queue system with JobQueue class and enqueueJob function. Supports delayed scheduling, configurable retry attempts, and job priority. Full TypeScript type safety with comprehensive input validation and SQL injection protection.
+
+KEY FILES:
+- database/src/jobs/queue.ts - Main JobQueue class (352 lines)
+- database/src/index.ts - Queue exports (enqueueJob, scheduleJob, getJob, JobQueue)
+- database/src/__tests__/queue-types.test.ts - Type verification tests
+- database/src/__tests__/queue-database-integration.test.ts - Integration test suite (485 lines)
+
+DECISIONS MADE:
+- Used UUID v4 for unique job IDs
+- Parameterized queries for SQL injection prevention
+- Input validation on all user inputs (type, payload, max_attempts, delay, priority, scheduledAt)
+- Error messages generic to prevent information leakage
+- Priority merged into job payload for worker processing
+- Maximum delay capped at 24 hours to prevent abuse
+
+INTEGRATION POINTS:
+- Connects to control_plane.jobs table (created in US-001)
+- Imports query from pool.ts for database operations
+- Will be used by job worker (US-003) for processing
+- Will be used by specific job handlers (US-004 through US-009)
+
+LESSONS LEARNED:
+- Always validate inputs before database operations
+- Use parameterized queries to prevent SQL injection
+- Generic error messages prevent information leakage
+- Resource limits (payload size, max attempts, delay) prevent DoS
+- Type safety at compile time catches many bugs
+- Index usage (status, scheduled_at) critical for performance

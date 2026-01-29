@@ -1,0 +1,32 @@
+[
+  {
+    "content": "Step 1: Foundation for US-010 Job Status API",
+    "status": "completed",
+    "activeForm": "Step 1: Foundation for US-010 Job Status API"
+  },
+  {
+    "content": "Step 2: Package Manager for US-010 Job Status API",
+    "status": "completed",
+    "activeForm": "Step 2: Package Manager for US-010 Job Status API"
+  },
+  {
+    "content": "Step 7: Integration for US-010 Job Status API",
+    "status": "completed",
+    "activeForm": "Step 7: Integration for US-010 Job Status API"
+  },
+  {
+    "content": "Step 10: Security & Auth for US-010 Job Status API",
+    "status": "in_progress",
+    "activeForm": "Step 10: Security & Auth for US-010 Job Status API"
+  },
+  {
+    "content": "Run typecheck",
+    "status": "pending",
+    "activeForm": "Running typecheck"
+  },
+  {
+    "content": "Mark US-010 complete and commit",
+    "status": "pending",
+    "activeForm": "Marking US-010 complete and committing"
+  }
+]
