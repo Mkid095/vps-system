@@ -139,7 +139,7 @@ POSTGRESQL_HOST=nextmavens-db-m4sxnf
 POSTGRESQL_PORT=5432
 POSTGRESQL_DB=nextmavens
 POSTGRESQL_USER=nextmavens
-POSTGRESQL_PASSWORD=Elishiba@95
+POSTGRESQL_PASSWORD=your_secure_password_here
 JWT_SECRET=your-production-secret-key
 ```
 
