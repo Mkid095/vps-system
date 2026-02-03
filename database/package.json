@@ -1,6 +1,6 @@
 {
-  "name": "@nextmavens/audit-logs-database",
-  "version": "1.0.0",
+  "name": "@nextmavenspacks/audit-logs-database",
+  "version": "1.0.2",
   "description": "Database schema, migrations, and integration layer for audit logs feature",
   "type": "module",
   "main": "./dist/src/index.js",

@@ -36,6 +36,11 @@ class DatabasePool {
 
   /**
    * Get database configuration from environment variables
+   *
+   * Note: During build time, environment variables may not be available.
+   * This function returns placeholder config when credentials are missing.
+   * The actual database connection will fail properly at runtime if credentials
+   * are not configured correctly.
    */
   private getConfig(): PoolConfig {
     const DATABASE_URL = process.env.DATABASE_URL;
@@ -50,10 +55,19 @@ class DatabasePool {
     const user = process.env.AUDIT_LOGS_DB_USER || 'postgres';
     const password = process.env.AUDIT_LOGS_DB_PASSWORD;
 
+    // During build time, use placeholder password if not set
+    // The actual connection will fail at runtime with proper credentials
     if (!password) {
-      throw new Error(
-        'Database password not set. Set DATABASE_URL or AUDIT_LOGS_DB_PASSWORD environment variable.'
-      );
+      return {
+        host,
+        port,
+        database,
+        user,
+        password: 'placeholder-for-build-time',
+        max: parseInt(process.env.AUDIT_LOGS_DB_POOL_MAX || '20', 10),
+        idleTimeoutMillis: parseInt(process.env.AUDIT_LOGS_DB_IDLE_TIMEOUT || '30000', 10),
+        connectionTimeoutMillis: parseInt(process.env.AUDIT_LOGS_DB_CONN_TIMEOUT || '2000', 10),
+      };
     }
 
     return {
